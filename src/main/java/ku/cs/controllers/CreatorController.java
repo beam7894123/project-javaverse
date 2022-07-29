@@ -38,13 +38,19 @@ public class CreatorController {
         nameLabel2.setText("Mahatthana Intaraklom");
         nicknameLabel2.setText("Euro");
         idLabel2.setText("6210450687");
+
+        image.setImage(new Image(url));
+        nameLabel.setText("Tananya Piyaleartluck");
+        nicknameLabel.setText("Joy");
+        idLabel.setText("6210451217");
     }
     String url2 = getClass().getResource("/images/euro.jpg").toExternalForm();
+    String url = getClass().getResource("/images/joy.jpg").toExternalForm();
     @FXML
     public void handleBackButton(ActionEvent actionEvent) {try
     {
         com.github.saacsos.FXRouter.goTo("home");}
     catch (IOException e) {
-        System.err.println("ไปที7หน้าhome ไม่ได้");System.err.println("ให้ตรวจสอบการกําหนดroute");}
+        System.err.println("ไปที่หน้าhome ไม่ได้");System.err.println("ให้ตรวจสอบการกําหนดroute");}
     }
 }
