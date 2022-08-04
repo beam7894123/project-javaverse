@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.DetailController">
+   <children>
+      <Label layoutX="319.0" layoutY="47.0" text="รายละเอียดเรื่องร้องเรียน">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="54.0" layoutY="119.0" text="หัวเรื่อง :" />
+      <Label layoutX="54.0" layoutY="164.0" text="หัวข้อเรื่อง :" />
+      <Label layoutX="54.0" layoutY="227.0" text="รายละเอียดของเรื่อง  :" />
+      <CheckBox layoutX="514.0" layoutY="504.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="81.0" text="โหวดคะเเนน" />
+   </children>
+</AnchorPane>

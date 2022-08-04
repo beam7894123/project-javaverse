@@ -22,5 +22,14 @@ public class SignInController {
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
+    @FXML
+    public void handleRegisterButtonClick(ActionEvent actionEvent){
+        try {
+            FXRouter.goTo("register");
+        } catch (IOException e) {
+            System.err.println("ไปที่หน้าhome ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกําหนดroute");
+        }
+    }
 
 }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.MainController">
+   <children>
+      <Label layoutX="529.0" layoutY="29.0" text="เรื่องร้องเรียน">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="400.0" layoutY="89.0" prefHeight="440.0" prefWidth="354.0" />
+      <Label layoutX="35.0" layoutY="29.0" text="Account Infomation">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="39.0" layoutY="141.0" mnemonicParsing="false" onAction="#handleNisitButtonClick" prefHeight="31.0" prefWidth="98.0" text="Nisit" />
+      <Label fx:id="listinfo" layoutX="60.0" layoutY="80.0" text="listInfo" />
+      <Button layoutX="42.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleStaffButtonClick" prefHeight="31.0" prefWidth="98.0" text="Staff" />
+      <Button layoutX="42.0" layoutY="257.0" mnemonicParsing="false" onAction="#handleAdminButtonClick" prefHeight="31.0" prefWidth="98.0" text="Admin" />
+      <Separator layoutX="321.0" layoutY="13.0" orientation="VERTICAL" prefHeight="574.0" prefWidth="8.0" />
+   </children>
+</AnchorPane>
