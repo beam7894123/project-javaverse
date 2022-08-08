@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.AdminController">
+   <children>
+      <Label layoutX="98.0" layoutY="27.0" text="Admin">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Label>
+      <ListView layoutX="36.0" layoutY="151.0" prefHeight="419.0" prefWidth="249.0" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="317.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/default.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="323.0" layoutY="219.0" text="Username" />
+      <ListView layoutX="317.0" layoutY="420.0" prefHeight="150.0" prefWidth="215.0" />
+      <Label layoutX="315.0" layoutY="395.0" text="Login History" />
+      <ChoiceBox layoutX="86.0" layoutY="113.0" prefWidth="150.0" />
+      <Slider layoutX="271.0" layoutY="151.0" orientation="VERTICAL" prefHeight="419.0" prefWidth="14.0" />
+   </children>
+</AnchorPane>
