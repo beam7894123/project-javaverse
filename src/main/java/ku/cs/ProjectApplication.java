@@ -11,17 +11,18 @@ import com.github.saacsos.FXRouter;
 public class ProjectApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXRouter.bind(this, stage, "Student ID", 800, 600);
+        FXRouter.bind(this, stage);
         configRoute();
-        FXRouter.goTo("home");
+        FXRouter.goTo("main");
     }
 
     private static void configRoute() {
         String packageStr = "ku/cs/";
         FXRouter.when("home", packageStr + "home.fxml");
-        FXRouter.when("creator", packageStr + "creator.fxml");
-        FXRouter.when("register",packageStr+ "register.fxml");
-        FXRouter.when("signIn",packageStr+"signIn.fxml");
+        FXRouter.when("creator", packageStr + "creator.fxml","Javaverse | Creator",542,759);
+        FXRouter.when("register",packageStr+ "register.fxml","Javaverse | Register");
+        FXRouter.when("signIn",packageStr+"signIn.fxml","Javaverse | Login");
+        FXRouter.when("main",packageStr+"main.fxml","Javaverse | main",1024,746);
     }
 
     public static void main(String[] args) {

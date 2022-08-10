@@ -32,4 +32,11 @@ public class SignInController {
         }
     }
 
+    @FXML
+    public void handleCreatorButton(ActionEvent actionEvent) {try
+    {
+        FXRouter.goTo("creator");}
+    catch (IOException e) {
+        System.err.println("err");}
+    }
 }

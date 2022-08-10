@@ -35,4 +35,11 @@ public class RegisterController {
         }
     }
 
+    @FXML
+    public void handleBackButton(ActionEvent actionEvent) {try
+    {
+        FXRouter.goTo("signIn");}
+    catch (IOException e) {
+        System.err.println("error");}
+    }
 }
