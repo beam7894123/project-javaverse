@@ -47,11 +47,17 @@ public class CreatorController {
         nameLabel3.setText("Chitipat Changjeraja");
         nicknameLabel3.setText("Boss");
         idLabel3.setText("6210451136");
+
+//        image4.setImage(new Image(url4));
+        nameLabel.setText("Susit Tamamoon");
+        nicknameLabel4.setText("Beam");
+        idLabel4.setText("6410451504");
     }
     String url2 = getClass().getResource("/images/euro.jpg").toExternalForm();
     String url = getClass().getResource("/images/joy.jpg").toExternalForm();
 
     //String url3 = getClass().getResource("/images/boss.jpg").toExternalForm();
+//    String url4 = getClass().getResource("/images/joy.jpg").toExternalForm();
     @FXML
     public void handleBackButton(ActionEvent actionEvent) {try
     {
