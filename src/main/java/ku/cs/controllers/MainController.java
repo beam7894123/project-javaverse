@@ -8,20 +8,20 @@ import java.io.IOException;
 public class MainController {
 
     @FXML
-    public void handleNisitButtonClick(ActionEvent actionEvent){
+    public void handleAddReportButton(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("register");
+            com.github.saacsos.FXRouter.goTo("addreport");
         } catch (IOException e) {
             System.err.println("ไปที่หน้าhome ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
     @FXML
-    public void handleStaffButtonClick(ActionEvent actionEvent){
+    public void handleLogOutButton(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("register");
+            com.github.saacsos.FXRouter.goTo("signIn");
         } catch (IOException e) {
-            System.err.println("ไปที่หน้าhome ไม่ได้");
+            System.err.println("ไปที่หน้า signIn ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }

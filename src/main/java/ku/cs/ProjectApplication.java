@@ -13,7 +13,7 @@ public class ProjectApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXRouter.bind(this, stage);
         configRoute();
-        FXRouter.goTo("admin");
+        FXRouter.goTo("signIn");
     }
 
     private static void configRoute() {
@@ -33,6 +33,7 @@ public class ProjectApplication extends Application {
         FXRouter.when("AdminStudentEdit",packageStr+"AdminStudentEdit.fxml");
         FXRouter.when("AdminStudentList",packageStr+"AdminStudentList.fxml");
         FXRouter.when("AdminChangePassword",packageStr+"AdminChangePassword.fxml");
+        FXRouter.when("addreport",packageStr+"report_form.fxml");
 
     }
 

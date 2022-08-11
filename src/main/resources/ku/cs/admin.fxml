@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.AdminController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.AdminController">
    <children>
       <Label layoutX="338.0" layoutY="14.0" text="Admin">
          <font>
@@ -19,5 +19,6 @@
       <Button layoutX="42.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleChangePassButtonClick" text="ChangePass" />
       <Button layoutX="356.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleStaffButtonClick" text="Staff Manager" />
       <Button layoutX="669.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleStudentButtonClick" text="Student Manager" />
+      <Button layoutX="42.0" layoutY="34.0" mnemonicParsing="false" onAction="#handleLogOutButton" text="Logout" />
    </children>
 </AnchorPane>

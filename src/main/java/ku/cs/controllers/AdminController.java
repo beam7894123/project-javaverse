@@ -34,4 +34,13 @@ public class AdminController {
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
+    @FXML public void handleLogOutButton(ActionEvent actionEvent){
+        try {
+            com.github.saacsos.FXRouter.goTo("signIn");
+        } catch (IOException e) {
+            System.err.println("ไปที่หน้า AdminStudentList.fxml ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกําหนดroute");
+        }
+    }
+
 }

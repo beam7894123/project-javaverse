@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="670.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.ReportFormController">
+<AnchorPane prefHeight="670.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.ReportFormController">
    <children>
       <ImageView fitHeight="670.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -34,7 +33,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="62.0" layoutY="591.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="689.0" style="-fx-background-color: white;" text="Submit" textAlignment="JUSTIFY" textFill="#517af5">
+      <Button layoutX="62.0" layoutY="591.0" mnemonicParsing="false" onAction="#handleSubmitButton" prefHeight="56.0" prefWidth="689.0" style="-fx-background-color: white;" text="Submit" textAlignment="JUSTIFY" textFill="#517af5">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

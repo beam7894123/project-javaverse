@@ -25,7 +25,7 @@ public class AdminChangePasswordController {
     @FXML
     public void handleConfirmButtonClick(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("singIn");
+            com.github.saacsos.FXRouter.goTo("signIn");
         } catch (IOException e) {
             System.err.println("ไปที่หน้าsingIn ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");
