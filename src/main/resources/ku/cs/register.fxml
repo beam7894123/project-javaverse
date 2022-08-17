@@ -32,15 +32,15 @@
          <font>
             <Font size="16.0" />
          </font></TextField>
-      <PasswordField fx:id="passwordPasswordfield" layoutX="571.0" layoutY="398.0" prefHeight="31.0" prefWidth="208.0" promptText="password">
+      <PasswordField fx:id="passwordPasswordfield" layoutX="571.0" layoutY="415.0" prefHeight="31.0" prefWidth="208.0" promptText="password">
          <font>
             <Font size="16.0" />
          </font></PasswordField>
-      <PasswordField fx:id="confirmPasswordfield" layoutX="571.0" layoutY="441.0" prefHeight="31.0" prefWidth="208.0" promptText="confirm password">
+      <PasswordField fx:id="confirmPasswordfield" layoutX="571.0" layoutY="476.0" prefHeight="31.0" prefWidth="208.0" promptText="confirm password">
          <font>
             <Font size="16.0" />
          </font></PasswordField>
-      <Button blendMode="DARKEN" layoutX="63.0" layoutY="406.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="246.0" style="-fx-background-color: #5179f7;" text="upload your image" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button blendMode="DARKEN" layoutX="63.0" layoutY="406.0" mnemonicParsing="false" onAction="#handleUploadButton" prefHeight="47.0" prefWidth="246.0" style="-fx-background-color: #5179f7;" text="upload your image" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -68,7 +68,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="435.0" layoutY="398.0" text="Password : " textAlignment="RIGHT" textFill="WHITE">
+      <Label layoutX="438.0" layoutY="412.0" text="Password : " textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -96,5 +96,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label fx:id="labelUsername" layoutX="590.0" layoutY="397.0" prefHeight="18.0" prefWidth="170.0" />
+      <Label fx:id="labelPassword" layoutX="583.0" layoutY="453.0" prefHeight="18.0" prefWidth="170.0" />
    </children>
 </AnchorPane>

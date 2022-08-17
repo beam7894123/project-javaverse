@@ -22,13 +22,6 @@
             <Image url="@../../images/icon/icon_1.png" />
          </image>
       </ImageView>
-      <PasswordField fx:id="passwordPasswordfield" layoutX="503.0" layoutY="326.0" prefHeight="35.0" prefWidth="256.0" promptText="password">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor></PasswordField>
       <TextField fx:id="usernameTextfield" layoutX="503.0" layoutY="283.0" prefHeight="35.0" prefWidth="256.0" promptText="username" style="-fx-background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'); -fx-background-repeat: no-repeat; -fx-background-image-position: left;">
          <font>
             <Font size="14.0" />
@@ -36,6 +29,13 @@
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
+      <PasswordField fx:id="passwordPasswordfield" layoutX="503.0" layoutY="326.0" prefHeight="35.0" prefWidth="256.0" promptText="password">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></PasswordField>
       <Button blendMode="DARKEN" layoutX="652.0" layoutY="552.0" mnemonicParsing="false" onAction="#handleRegisterButtonClick" prefHeight="35.0" prefWidth="134.0" style="-fx-background-color: #5179f7;" text="Create Profile" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
