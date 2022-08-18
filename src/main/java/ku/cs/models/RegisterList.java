@@ -22,9 +22,9 @@ public class RegisterList  {
         this.registerModelArrayList = registerModelArrayList;
     }
 
-    public Boolean studentCheck(RegisterList registerList, TextField usernameTextField, PasswordField passwordField){ // ใช้กับ login
+    public Boolean studentCheck(RegisterList registerList, TextField usernameTextField, PasswordField passwordPasswordField){ // ใช้กับ login
         for (RegisterModel registerModel: registerList.getAllCards()){
-            if ((usernameTextField.getText().equals(registerModel.getUsername()))&&(passwordField.getText().equals(registerModel.getPassword()))){
+            if ((usernameTextField.getText().equals(registerModel.getUsername()))&&(passwordPasswordField.getText().equals(registerModel.getPassword()))){
                 return true;
             }
         }

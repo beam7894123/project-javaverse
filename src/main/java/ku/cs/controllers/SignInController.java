@@ -3,8 +3,13 @@ package ku.cs.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import com.github.saacsos.FXRouter;
+import ku.cs.models.RegisterList;
+import ku.cs.services.DataSource;
+import ku.cs.services.RegisterWriteFile;
+import ku.cs.services.SignInWriteFile;
 
 import java.io.IOException;
 
@@ -12,6 +17,20 @@ public class SignInController {
     @FXML
     Label usernameLabel,passwordLabel;
     @FXML TextField usernameTextfield,passwordPasswordfield;
+    private RegisterList control;
+    public  String strUserID;
+    public  String strUsername;
+    public  String strPassword;
+    
+
+    private DataSource registerWriteFile;
+    @FXML public void initialize(){
+        control = new RegisterList();
+        registerWriteFile = new RegisterWriteFile("filescsv","register.csv");
+        control.setRegisterModelArrayList(registerWriteFile.readData().getAllCards());
+        System.out.println(control.getAllCards());
+
+    }
 
     @FXML
     public void handleConfirmButtonClick(ActionEvent actionEvent){
@@ -22,8 +41,17 @@ public class SignInController {
                 System.err.println("ไปที่หน้าhome ไม่ได้");
                 System.err.println("ให้ตรวจสอบการกําหนดroute");
             }
-        }
-        else {
+        } else if (control.studentCheck(control,usernameTextfield, (PasswordField) passwordPasswordfield)) {
+            strUsername = usernameTextfield.getText();
+            strPassword = passwordPasswordfield.getText();
+            SignInWriteFile signInWriteFile = new SignInWriteFile("filescsv","register.csv",strUsername,strPassword);
+            try {
+                signInWriteFile.SignInRecieveReadFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        } else {
             try {
                 FXRouter.goTo("main");
             } catch (IOException e) {

@@ -10,32 +10,41 @@ public class RegisterModel {
     private String confirmPassword;
     private String image;
 
+    private String date;
+    private String time;
 
 
 
-    public RegisterModel(String name,String surname,String username,String password,String confirmPassword,String fileName){
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.password = password;
-        this.confirmPassword = confirmPassword;
-        this.image =  fileName;
-    }
-    public RegisterModel(String name,String surname,String username,String password){
+
+//    public RegisterModel(String name,String surname,String username,String password,String confirmPassword,String date, String time ,String fileName){
+//        this.name = name;
+//        this.surname = surname;
+//        this.username = username;
+//        this.password = password;
+//        this.confirmPassword = confirmPassword;
+//        this.date  = date;
+//        this.time = time;
+//        this.image =  fileName;
+//    }
+    public RegisterModel(String name,String surname,String username,String password,String date,String time){
         this.name = name;
         this.surname = surname;
         this.username = username;
         this.password = password;
         this.image =getClass().getResource("/ku/cs/images/default1.png").toExternalForm();
         System.out.println(image);
+        this.date =date;
+        this.time = time;
     }
-    public RegisterModel(String name,String surname,String username,String password,String fileName){
+    public RegisterModel(String name,String surname,String username,String password,String date,String time,String fileName){
         this.name = name;
         this.surname = surname;
         this.username = username;
         this.password = password;
         this.image = fileName;
         System.out.println(image);
+        this.date = date;
+        this.time = time;
     }
     public RegisterModel(String username,String password){
         this.username = username;
@@ -65,6 +74,23 @@ public class RegisterModel {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     @Override

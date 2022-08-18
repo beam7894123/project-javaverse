@@ -55,9 +55,10 @@ public class RegisterController {
 //        image.setImage(new Image(getClass().getResource("/images/default1.png").toExternalForm()));
 //        image.setImage(new Image(url));
     }
-    public  void setList(RegisterList registerList){
-       this.registerList =registerList;
-    }
+//    public  void setList(RegisterList registerList){
+//       this.registerList =registerList;
+//    }
+//    RegisterList registerList1;
     @FXML
     public void handleOkClick(ActionEvent actionEvent){
         System.out.println(registerList.getAllCards());
@@ -68,7 +69,7 @@ public class RegisterController {
             labelPassword.setText("PASSWORD IS NOT MATCH");
         }
         else{
-            RegisterModel registerModel = new RegisterModel(nameTextfield.getText(),surnameTextfield.getText(),usernameTextfield.getText(),passwordPasswordfield.getText(),filename);
+            RegisterModel registerModel = new RegisterModel(nameTextfield.getText(),surnameTextfield.getText(),usernameTextfield.getText(),passwordPasswordfield.getText(),null,null,filename);
 //            System.out.println(registerModel);
             registerList.addStudent(registerModel);
             write.writeData(registerList);
@@ -94,11 +95,11 @@ public class RegisterController {
         return false;
     }
     @FXML
-    public void handleBackButton(ActionEvent actionEvent) {try
-    {
+    public void handleBackButton(ActionEvent actionEvent) {
+        try {
         FXRouter.goTo("signIn");}
-    catch (IOException e) {
-        System.err.println("error");}
+        catch (IOException e) {
+            System.err.println("error");}
     }
     @FXML public void handleUploadButton(ActionEvent event){
         FileChooser chooser = new FileChooser();

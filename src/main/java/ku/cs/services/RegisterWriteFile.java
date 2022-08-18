@@ -47,8 +47,8 @@ public class RegisterWriteFile implements DataSource {
         String line = "";
         while ((line = reader.readLine()) != null) {
             String[] data = line.split(",");
-            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[3].trim(),data[4].trim()); // obj
-            customer.setImage(data[5].trim());
+            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[3].trim(),data[4].trim(),data[5],data[6]); // obj
+            customer.setImage(data[7].trim());
             registerList.addStudent(customer);
         }
         reader.close();
@@ -90,7 +90,9 @@ public class RegisterWriteFile implements DataSource {
                         + registerModel.getSurname() + ","
                         + registerModel.getUsername() + ","
                         + registerModel.getPassword() + ","
-                        + registerModel.getImage();
+                        + registerModel.getImage()+","
+                        +registerModel.getDate()+","
+                        + registerModel.getTime();
                 writer.append(line);
                 writer.newLine();
             }
