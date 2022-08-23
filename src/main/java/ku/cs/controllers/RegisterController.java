@@ -26,8 +26,8 @@ import java.time.LocalDate;
 
 public class RegisterController {
     @FXML
-    private Label nameLabel,surnameLabel,usernameLabel,passwordLabel,confirmPasswordLabel,registerLabel,usernameDuplicate;
-    public Label labelPassword,labelUsername;
+    Label nameLabel,surnameLabel,usernameLabel,passwordLabel,confirmPasswordLabel,registerLabel,usernameDuplicate;
+    Label labelPassword,labelUsername;
     @FXML
     private TextField nameTextfield,surnameTextfield,usernameTextfield;
     @FXML
@@ -35,7 +35,7 @@ public class RegisterController {
     @FXML
     private ImageView image;
     private DataSource<RegisterList> dataSource;
-    private RegisterList registerList;
+    public RegisterList registerList;
     private ObservableList<RegisterList> registerListObservableList;
     private RegisterModel registerModel;
     private String filename;
@@ -45,10 +45,14 @@ public class RegisterController {
 //    String url = getClass().getResource("/images/default1.png").toExternalForm();
     private DataSource write = new RegisterWriteFile("filescsv", "register.csv");
     @FXML public void initialize(){
-//        dataSource = new RegisterWriteFile("filescsv","register.csv");
-        filename = "register.csv";
+        dataSource = new RegisterWriteFile("filescsv","register.csv");
+        filename = "default1.png";
+//        image.setImage(new Image("/images/default1.png"));
         path = getClass().getResource("/images/default1.png").toExternalForm();
         image.setImage(new Image(path));
+        registerList = new RegisterList();
+
+
 //        registerList = dataSource.readData();
 //        System.out.println(registerList.getAllCards());
 //        System.out.println(System.getProperty("user.dir"));
@@ -61,6 +65,7 @@ public class RegisterController {
 //    RegisterList registerList1;
     @FXML
     public void handleOkClick(ActionEvent actionEvent){
+
         System.out.println(registerList.getAllCards());
         if (checkUsername()){
             labelUsername.setText("USERNAME IS DUPLICATE");
@@ -70,7 +75,6 @@ public class RegisterController {
         }
         else{
             RegisterModel registerModel = new RegisterModel(nameTextfield.getText(),surnameTextfield.getText(),usernameTextfield.getText(),passwordPasswordfield.getText(),null,null,filename);
-//            System.out.println(registerModel);
             registerList.addStudent(registerModel);
             write.writeData(registerList);
             try {
@@ -82,12 +86,15 @@ public class RegisterController {
         }
 
     }
-    public Boolean checkUsername(){
-        if (usernameTextfield.equals(registerList.getAllCards())){
-            return true;
+    public Boolean checkUsername() {
+        for (RegisterModel registerModel : registerList.getAllCards()) {
+            if (usernameTextfield.getText().equals(registerModel.getUsername())) {
+                return true;
+            }
         }
         return false;
     }
+
     public Boolean checkPassword(){
         if (!(passwordPasswordfield.getText().equals(confirmPasswordfield.getText()))){
             return true;
@@ -101,7 +108,8 @@ public class RegisterController {
         catch (IOException e) {
             System.err.println("error");}
     }
-    @FXML public void handleUploadButton(ActionEvent event){
+    @FXML
+    public void handleUploadButton(ActionEvent event) {
         FileChooser chooser = new FileChooser();
         // SET FILECHOOSER INITIAL DIRECTORY
         chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
@@ -113,22 +121,34 @@ public class RegisterController {
         if (file != null){
             try {
                 // CREATE FOLDER IF NOT EXIST
-                File destDir = new File("images");
+                File destDir = new File("src/main/resources/picture");
                 if (!destDir.exists()) destDir.mkdirs();
                 // RENAME FILE
                 String[] fileSplit = file.getName().split("\\.");
-                String filename = LocalDate.now() + "_"+System.currentTimeMillis() + "."
+                filename = LocalDate.now() + "_"+System.currentTimeMillis() + "."
                         + fileSplit[fileSplit.length - 1];
                 Path target = FileSystems.getDefault().getPath(
                         destDir.getAbsolutePath()+System.getProperty("file.separator")+filename
                 );
                 // COPY WITH FLAG REPLACE FILE IF FILE IS EXIST
                 Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING );
+//                File destDir = new File("picture");
+//                if (!destDir.exists()) destDir.mkdirs();
+//                // RENAME FILE
+//                String[] fileSplit = file.getName().split("\\.");
+//                String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
+//                        + fileSplit[fileSplit.length - 1];
+//                Path target = FileSystems.getDefault().getPath(
+//                        destDir.getPath() + System.getProperty("file.separator") + target2
+//                );
+//                Path temp = Files.move(Paths.get(String.valueOf(target)), Paths.get(String.valueOf(target2)));
+                // COPY WITH FLAG REPLACE FILE IF FILE IS EXIST
+//                Files.copy(file.toPath(), target2, StandardCopyOption.REPLACE_EXISTING);
                 // SET NEW FILE PATH TO IMAGE
                 image.setImage(new Image(target.toUri().toString()));
-//                registerModel.setImage(destDir + "/" + filename);
-                dataSource.writeData(registerList);
-            } catch (IOException e) {
+//                purchase.setImagePath(destDir + "/" + filename);
+//                write.writeData(control);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

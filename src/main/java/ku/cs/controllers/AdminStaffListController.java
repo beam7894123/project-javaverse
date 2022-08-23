@@ -5,13 +5,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
+import com.github.saacsos.FXRouter;
 import java.io.IOException;
 
 public class AdminStaffListController {
     @FXML public void handleBackButtonClick(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("admin");
+           FXRouter.goTo("admin");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า admin.fxml ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");

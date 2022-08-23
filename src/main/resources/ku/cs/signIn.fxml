@@ -17,7 +17,7 @@
             <Image url="@../../images/background_1.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="556.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="552.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/icon/icon_1.png" />
          </image>
@@ -84,5 +84,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label fx:id="loginChecker" layoutX="514.0" layoutY="253.0" prefHeight="18.0" prefWidth="231.0" />
    </children>
 </AnchorPane>

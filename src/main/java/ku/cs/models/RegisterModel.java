@@ -2,6 +2,8 @@ package ku.cs.models;
 
 import javafx.fxml.FXML;
 
+import java.util.ArrayList;
+
 public class RegisterModel {
     private String name;
     private String surname;
@@ -16,23 +18,23 @@ public class RegisterModel {
 
 
 
-//    public RegisterModel(String name,String surname,String username,String password,String confirmPassword,String date, String time ,String fileName){
-//        this.name = name;
-//        this.surname = surname;
-//        this.username = username;
-//        this.password = password;
-//        this.confirmPassword = confirmPassword;
-//        this.date  = date;
-//        this.time = time;
-//        this.image =  fileName;
-//    }
+    public RegisterModel(String name,String surname,String username,String password,String confirmPassword,String date, String time ,String fileName){
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+        this.date  = date;
+        this.time = time;
+        this.image =  fileName;
+    }
     public RegisterModel(String name,String surname,String username,String password,String date,String time){
         this.name = name;
         this.surname = surname;
         this.username = username;
         this.password = password;
-        this.image =getClass().getResource("/ku/cs/images/default1.png").toExternalForm();
-        System.out.println(image);
+        this.image = image;
+//        System.out.println(image);
         this.date =date;
         this.time = time;
     }
@@ -57,6 +59,10 @@ public class RegisterModel {
 
     public String getSurname() {
         return surname;
+    }
+    private ArrayList<RegisterModel> registerModelArrayList;
+    public RegisterModel(){
+        registerModelArrayList = new ArrayList<>();
     }
 
 
@@ -100,8 +106,8 @@ public class RegisterModel {
                 ", surname='" + surname + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", confirmPassword='" + confirmPassword + '\'' +
-                ", image='" + image + '\'' +
+                ", Date ='" + time + '\'' +
+                ", time='" + image + '\'' +
                 '}';
     }
 }

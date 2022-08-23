@@ -16,19 +16,19 @@ public class RegisterList  {
         // เรียกmethod add จากArrayList เพื'อเพิ'มข้อมูล
         registerModelArrayList.add(registerList);
     }
-    public ArrayList<RegisterModel> getAllCards() {return registerModelArrayList;}
+    public ArrayList<RegisterModel> getAllCards() {
+        return registerModelArrayList;}
 
     public void setRegisterModelArrayList(ArrayList<RegisterModel> registerModelArrayList) { // login
         this.registerModelArrayList = registerModelArrayList;
     }
 
-    public Boolean studentCheck(RegisterList registerList, TextField usernameTextField, PasswordField passwordPasswordField){ // ใช้กับ login
-        for (RegisterModel registerModel: registerList.getAllCards()){
-            if ((usernameTextField.getText().equals(registerModel.getUsername()))&&(passwordPasswordField.getText().equals(registerModel.getPassword()))){
+    public Boolean UserCheck(RegisterList registerList,TextField username, PasswordField password) {
+        for (RegisterModel p : registerList.getAllCards()) {
+            if ((username.getText().equals(p.getUsername())) && password.getText().equals(p.getPassword())) {
                 return true;
             }
         }
         return false;
     }
-
 }

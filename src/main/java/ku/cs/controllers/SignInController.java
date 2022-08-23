@@ -15,21 +15,24 @@ import java.io.IOException;
 
 public class SignInController {
     @FXML
-    Label usernameLabel,passwordLabel;
-    @FXML TextField usernameTextfield,passwordPasswordfield;
+    Label usernameLabel,passwordLabel,loginChecker;
+    @FXML TextField usernameTextfield;
+
+    @FXML PasswordField passwordPasswordfield;
     private RegisterList control;
     public  String strUserID;
-    public  String strUsername;
+    public  static String strUsername;
     public  String strPassword;
+    private RegisterList registerList;
+    public static String StrUserID;
     
 
     private DataSource registerWriteFile;
     @FXML public void initialize(){
-        control = new RegisterList();
+        registerList = new RegisterList();
         registerWriteFile = new RegisterWriteFile("filescsv","register.csv");
-        control.setRegisterModelArrayList(registerWriteFile.readData().getAllCards());
-        System.out.println(control.getAllCards());
-
+        registerList.setRegisterModelArrayList(registerWriteFile.readData().getAllCards());
+        System.out.println(registerList.getAllCards());
     }
 
     @FXML
@@ -41,17 +44,22 @@ public class SignInController {
                 System.err.println("ไปที่หน้าhome ไม่ได้");
                 System.err.println("ให้ตรวจสอบการกําหนดroute");
             }
-        } else if (control.studentCheck(control,usernameTextfield, (PasswordField) passwordPasswordfield)) {
+        }if (registerList.UserCheck(registerList,usernameTextfield,passwordPasswordfield)) {
             strUsername = usernameTextfield.getText();
             strPassword = passwordPasswordfield.getText();
             SignInWriteFile signInWriteFile = new SignInWriteFile("filescsv","register.csv",strUsername,strPassword);
             try {
                 signInWriteFile.SignInRecieveReadFile();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                FXRouter.goTo("main");
+          } catch (IOException e) {
+//                throw new RuntimeException(e);
+                System.err.println("ไปที่หน้า main ไม่ได้");
+                System.err.println("ให้ตรวจสอบการกําหนดroute");
             }
 
-        } else {
+        }
+
+         else {
             try {
                 FXRouter.goTo("main");
             } catch (IOException e) {

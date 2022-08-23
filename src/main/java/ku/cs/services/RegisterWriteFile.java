@@ -10,12 +10,16 @@ public class RegisterWriteFile implements DataSource {
     private String fileDirectoryName;
     private String fileName;
     private RegisterList registerList;
+    private RegisterModel registerModel;
 
+    private String image;
 
 //    public RegisterWriteFile() {
 //        this("filescsv", "register.csv");
 //    }
-
+    public void initialize(){
+        image = registerModel.getImage();
+    }
     public RegisterWriteFile(String fileDirectoryName, String fileName) {
         this.fileDirectoryName = fileDirectoryName;
         this.fileName = fileName;
@@ -47,8 +51,8 @@ public class RegisterWriteFile implements DataSource {
         String line = "";
         while ((line = reader.readLine()) != null) {
             String[] data = line.split(",");
-            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[3].trim(),data[4].trim(),data[5],data[6]); // obj
-            customer.setImage(data[7].trim());
+            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4],data[5]); // obj
+            customer.setImage(data[6].trim());
             registerList.addStudent(customer);
         }
         reader.close();
@@ -83,7 +87,7 @@ public class RegisterWriteFile implements DataSource {
         File file = new File(filePath);
         FileWriter fileWriter = null;
         try {
-            fileWriter = new FileWriter(file);
+            fileWriter = new FileWriter(file,true);
             BufferedWriter writer = new BufferedWriter(fileWriter);
             for (RegisterModel registerModel : write.getAllCards()) {
                 String line = registerModel.getName() + ","
@@ -91,9 +95,9 @@ public class RegisterWriteFile implements DataSource {
                         + registerModel.getUsername() + ","
                         + registerModel.getPassword() + ","
                         + registerModel.getImage()+","
-                        +registerModel.getDate()+","
+                        + registerModel.getDate()+","
                         + registerModel.getTime();
-                writer.append(line);
+                        writer.append(line);
                 writer.newLine();
             }
 

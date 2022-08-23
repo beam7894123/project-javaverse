@@ -23,22 +23,22 @@ public class SignInWriteFile {
     }
 
     public void SignInRecieveReadFile() throws IOException {
-        StringBuilder newStudent = new StringBuilder();
+        StringBuilder newPurchaseCsv = new StringBuilder();
         File file = new File("filescsv/register.csv");
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String line = "";
         while ((line = bufferedReader.readLine()) != null) {
-            if (newStudent.length()>0){
-                newStudent.append(System.getProperty("line.separator"));
+            if (newPurchaseCsv.length()>0){
+                newPurchaseCsv.append(System.getProperty("line.separator"));
             }
             String[] data = line.split(",");
             if (username.equals(data[1]) && password.equals(data[2])) {
-//                SignInController.StrUserID = data[6];
+                SignInController.StrUserID = data[6];
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyy ");
                 SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm:ss");
                 Date d = new Date(System.currentTimeMillis());
-                newStudent.append(data[0]).append(",").append(data[1])
+                newPurchaseCsv.append(data[0]).append(",").append(data[1])
                         .append(",").append(data[2])
                         .append(",").append(data[3])
                         .append(",").append(data[4])
@@ -47,13 +47,13 @@ public class SignInWriteFile {
 //                    break;
             }
             else {
-                newStudent.append(line);
+                newPurchaseCsv.append(line);
             }
         }
         bufferedReader.close();
         FileOutputStream fos = new FileOutputStream(file);
         OutputStreamWriter osw =new OutputStreamWriter(fos);
-        osw.write(newStudent.toString());
+        osw.write(newPurchaseCsv.toString());
         osw.close();
     }
 }

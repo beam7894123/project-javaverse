@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import java.io.IOException;
-
+import com.github.saacsos.FXRouter;
 public class AdminChangePasswordController {
 
     @FXML private PasswordField OldPasswordfield,NewPasswordfield;
@@ -16,7 +16,7 @@ public class AdminChangePasswordController {
     @FXML
     public void handleBackButtonClick(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("admin");
+            FXRouter.goTo("admin");
         } catch (IOException e) {
             System.err.println("ไปที่หน้าhome ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");
@@ -25,7 +25,7 @@ public class AdminChangePasswordController {
     @FXML
     public void handleConfirmButtonClick(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("signIn");
+            FXRouter.goTo("signIn");
         } catch (IOException e) {
             System.err.println("ไปที่หน้าsingIn ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");
