@@ -2,6 +2,7 @@ package ku.cs.services;
 
 import ku.cs.models.RegisterList;
 import ku.cs.models.RegisterModel;
+import ku.cs.models.ReportList;
 
 import java.io.*;
 
@@ -82,6 +83,11 @@ public class RegisterWriteFile implements DataSource {
     }
 
     @Override
+    public ReportList readData1() {
+        return null;
+    }
+
+    @Override
     public void writeData(RegisterList write) {
         String filePath = fileDirectoryName + File.separator + fileName;
         File file = new File(filePath);
@@ -105,6 +111,11 @@ public class RegisterWriteFile implements DataSource {
         } catch (IOException e) {
             System.err.println("Cannot write " + filePath);
         }
+    }
+
+    @Override
+    public void writeData1(ReportList write) {
+
     }
 }
 

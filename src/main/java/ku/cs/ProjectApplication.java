@@ -33,7 +33,7 @@ public class ProjectApplication extends Application {
         FXRouter.when("AdminStudentEdit",packageStr+"AdminStudentEdit.fxml");
         FXRouter.when("AdminStudentList",packageStr+"AdminStudentList.fxml");
         FXRouter.when("AdminChangePassword",packageStr+"AdminChangePassword.fxml");
-        FXRouter.when("addreport",packageStr+"report_form.fxml");
+        FXRouter.when("addreport",packageStr+"report_form.fxml","Javavaerse | Report",800,670);
 
     }
 

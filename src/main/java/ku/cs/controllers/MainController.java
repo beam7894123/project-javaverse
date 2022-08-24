@@ -2,10 +2,26 @@ package ku.cs.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TreeTableView;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.image.Image;
+import ku.cs.models.RegisterList;
+import ku.cs.services.DataSource;
+import ku.cs.services.RegisterWriteFile;
 
 import java.io.IOException;
 
 public class MainController {
+    @FXML
+    private TreeTableView reportTable = new TreeTableView();
+//    reportTable.setEditable(true);
+
+    TreeTableColumn firstCol = new TreeTableColumn<>("หัวข้อเรื่อง");
+    TreeTableColumn secondCol = new TreeTableColumn<>("Status");
+    TreeTableColumn thirdCol = new TreeTableColumn<>("คะแนน");
+//    reportTable.getColumns().addAll(firstCol, secondCol, thirdCol);
+
+
 
     @FXML
     public void handleAddReportButton(ActionEvent actionEvent){
@@ -34,5 +50,8 @@ public class MainController {
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
+
+
+
 
 }

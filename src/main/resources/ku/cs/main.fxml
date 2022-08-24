@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="746.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.MainController">
+<AnchorPane prefHeight="746.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.MainController">
    <children>
       <ImageView fitHeight="746.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -34,7 +34,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <TreeTableView fixedCellSize="0.0" layoutX="420.0" layoutY="61.0" prefHeight="619.0" prefWidth="593.0">
+      <TreeTableView fx:id="reportTable" fixedCellSize="0.0" layoutX="420.0" layoutY="61.0" prefHeight="619.0" prefWidth="593.0">
         <columns>
           <TreeTableColumn editable="false" prefWidth="410.0" resizable="false" text="หัวข้อเรื่อง" />
             <TreeTableColumn editable="false" prefWidth="116.0" text="สถานะ" />
