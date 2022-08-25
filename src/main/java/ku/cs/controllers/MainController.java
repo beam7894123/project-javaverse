@@ -14,7 +14,7 @@ import java.io.IOException;
 public class MainController {
     @FXML
     private TreeTableView reportTable = new TreeTableView();
-//    reportTable.setEditable(true);
+
 
     TreeTableColumn firstCol = new TreeTableColumn<>("หัวข้อเรื่อง");
     TreeTableColumn secondCol = new TreeTableColumn<>("Status");
