@@ -19,21 +19,19 @@ public class ProjectApplication extends Application {
     private static void configRoute() {
         String packageStr = "ku/cs/";
         FXRouter.when("home", packageStr + "home.fxml");
-        FXRouter.when("creator", packageStr + "creator.fxml");
-        FXRouter.when("register",packageStr+ "register.fxml");
-        FXRouter.when("signIn",packageStr+"signIn.fxml");
         FXRouter.when("creator", packageStr + "creator.fxml","Javaverse | Creator",542,759);
         FXRouter.when("register",packageStr+ "register.fxml","Javaverse | Register");
         FXRouter.when("signIn",packageStr+"signIn.fxml","Javaverse | Login");
         FXRouter.when("main",packageStr+"main.fxml","Javaverse | main",1024,746);
-        FXRouter.when("ChangePassword",packageStr+"ChangePassword.fxml");
-        FXRouter.when("admin",packageStr+"admin.fxml");
-        FXRouter.when("AdminStaffEdit",packageStr+"AdminStaffEdit.fxml");
-        FXRouter.when("AdminStaffList",packageStr+"AdminStaffList.fxml");
-        FXRouter.when("AdminStudentEdit",packageStr+"AdminStudentEdit.fxml");
-        FXRouter.when("AdminStudentList",packageStr+"AdminStudentList.fxml");
-        FXRouter.when("AdminChangePassword",packageStr+"AdminChangePassword.fxml");
         FXRouter.when("addreport",packageStr+"report_form.fxml","Javavaerse | Report",800,670);
+
+        //ADMIN
+        FXRouter.when("admin",packageStr+"admin.fxml","Javaverse | ADMIN ONLY | Main");
+        FXRouter.when("AdminStaffEdit",packageStr+"AdminStaffEdit.fxml","Javaverse | ADMIN ONLY | Edit Staff");
+        FXRouter.when("AdminStaffList",packageStr+"AdminStaffList.fxml","Javaverse | ADMIN ONLY | Staff List");
+        FXRouter.when("AdminStudentEdit",packageStr+"AdminStudentEdit.fxml","Javaverse | ADMIN ONLY | Edit Student");
+        FXRouter.when("AdminStudentList",packageStr+"AdminStudentList.fxml", "Javaverse | ADMIN ONLY | Student List");
+        FXRouter.when("AdminChangePassword",packageStr+"AdminChangePassword.fxml", "Javaverse | ADMIN ONLY | Change Password");
 
     }
 

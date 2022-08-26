@@ -12,13 +12,12 @@ public class AdminChangePasswordController {
     @FXML private PasswordField OldPasswordfield,NewPasswordfield;
     @FXML private TextField usernameTextfield;
 
-    //อย่าลืมใส่ Code ส่งค่าต่อ
     @FXML
     public void handleBackButtonClick(ActionEvent actionEvent){
         try {
             FXRouter.goTo("admin");
         } catch (IOException e) {
-            System.err.println("ไปที่หน้าhome ไม่ได้");
+            System.err.println("ไปที่หน้า admin ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
@@ -27,7 +26,7 @@ public class AdminChangePasswordController {
         try {
             FXRouter.goTo("signIn");
         } catch (IOException e) {
-            System.err.println("ไปที่หน้าsingIn ไม่ได้");
+            System.err.println("ไปที่หน้า singIn ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
