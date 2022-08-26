@@ -44,7 +44,7 @@ public class SignInController {
                 System.err.println("ไปที่หน้าhome ไม่ได้");
                 System.err.println("ให้ตรวจสอบการกําหนดroute");
             }
-        }if (registerList.UserCheck(registerList,usernameTextfield,passwordPasswordfield)) {
+        }else if (registerList.UserCheck(registerList,usernameTextfield,passwordPasswordfield)) {
             strUsername = usernameTextfield.getText();
             strPassword = passwordPasswordfield.getText();
             SignInWriteFile signInWriteFile = new SignInWriteFile("filescsv","register.csv",strUsername,strPassword);
@@ -60,12 +60,7 @@ public class SignInController {
         }
 
          else {
-            try {
-                FXRouter.goTo("main");
-            } catch (IOException e) {
-                System.err.println("ไปที่หน้าhome ไม่ได้");
-                System.err.println("ให้ตรวจสอบการกําหนดroute");
-            }
+            System.out.println("Error");;
         }
 
     }
