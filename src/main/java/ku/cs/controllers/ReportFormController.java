@@ -42,9 +42,10 @@ public class ReportFormController {
     @FXML
     public void handleSubmitButton(ActionEvent actionEvent){
         try {
-            dataSource = new RegisterWriteFile("filescsv","report.csv");
-//        image.setImage(new Image("/images/default1.png"));
-            reportList = new ReportList();
+            ReportModel reportModel = new ReportModel(topicField.getText(),detailField.getText(),null,null,null);
+            reportList.addReport(reportModel);
+            write.writeData1(reportList);
+            System.out.println("Do write file");
             FXRouter.goTo("main");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า main ไม่ได้");

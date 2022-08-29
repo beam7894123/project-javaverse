@@ -5,20 +5,33 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.image.Image;
-import ku.cs.models.RegisterList;
+import ku.cs.models.ReportList;
+import ku.cs.models.ReportModel;
 import ku.cs.services.DataSource;
-import ku.cs.services.RegisterWriteFile;
+import ku.cs.services.ReportWriteFile;
 
 import java.io.IOException;
 
 public class MainController {
-    @FXML
-    private TreeTableView reportTable = new TreeTableView();
+    private DataSource<ReportList> dataSource;
+    private ReportList reportList;
 
-
+    @FXML public void initialize() {
+        dataSource = new ReportWriteFile("filescsv", "report.csv");
+        reportList = dataSource.readData1();
+        showReportView();
+    }
+    @FXML private TreeTableView<ReportModel> reportTable;
     TreeTableColumn firstCol = new TreeTableColumn<>("หัวข้อเรื่อง");
     TreeTableColumn secondCol = new TreeTableColumn<>("Status");
     TreeTableColumn thirdCol = new TreeTableColumn<>("คะแนน");
+    private void showReportView() {
+//        reportTable.getColumns().addAll();
+//        reportTable.refresh();
+    }
+
+
+
 //    reportTable.getColumns().addAll(firstCol, secondCol, thirdCol);
 
 

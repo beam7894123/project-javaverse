@@ -7,11 +7,10 @@ import ku.cs.models.ReportModel;
 
 import java.io.*;
 
-public class ReportWriteFile implements DataSource {
+public class ReportWriteFile implements DataSource<ReportList> {
     private String fileDirectoryName;
     private String fileName;
-    private ReportList reportList;
-    private ReportModel reportModel;
+
 
     private String image;
 
@@ -19,7 +18,6 @@ public class ReportWriteFile implements DataSource {
         this.fileDirectoryName = fileDirectoryName;
         this.fileName = fileName;
         checkFileIsExisted();
-        reportList = new ReportList();
     }
 
     private void checkFileIsExisted() {
@@ -38,30 +36,6 @@ public class ReportWriteFile implements DataSource {
         }
     }
 
-    private void readCustomer() throws IOException {
-        String filePath = fileDirectoryName + File.separator + fileName;
-        File file = new File(filePath);
-        FileReader fileReader = new FileReader(file);
-        BufferedReader reader = new BufferedReader(fileReader);
-        String line = "";
-        while ((line = reader.readLine()) != null) {
-            String[] data = line.split(",");
-            ReportModel reportModel = new ReportModel(data[0].trim(),data[1].trim(),Integer.parseInt(data[2].trim()),data[3].trim(),data[4]); // obj
-            ReportList.addReport(reportModel);
-        }
-        reader.close();
-    }
-
-    public ReportList Read() {
-        try {
-            readCustomer();
-        } catch (FileNotFoundException e) {
-            System.err.println(this.fileName + " not found");
-        } catch (IOException e) {
-            System.err.println("IOException from reading " + this.fileName);
-        }
-        return reportList;
-    }
 
     @Override
     public RegisterList readData() {
@@ -70,12 +44,31 @@ public class ReportWriteFile implements DataSource {
 
     @Override
     public ReportList readData1() {
+        ReportList reportList = new ReportList();
+        String filePath = fileDirectoryName + File.separator + fileName;
+        File file = new File(filePath);
+        FileReader reader = null;
+        BufferedReader buffer = null;
         try {
-            readCustomer();
+            reader = new FileReader(file);
+            buffer = new BufferedReader(reader);
+            String line = "";
+            while ((line = buffer.readLine()) != null) {
+                String[] data = line.split(",");
+                ReportModel reportModel = new ReportModel(data[0].trim(),data[1].trim(),Integer.parseInt(data[2].trim()),data[3].trim(),data[4]); // obj
+                ReportList.addReport(reportModel);
+            }
         } catch (FileNotFoundException e) {
             System.err.println(this.fileName + " not found");
         } catch (IOException e) {
             System.err.println("IOException from reading " + this.fileName);
+        }finally {
+            try {
+                buffer.close();
+                reader.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         return reportList;
     }
@@ -86,26 +79,32 @@ public class ReportWriteFile implements DataSource {
     }
 
     @Override
-    public void writeData1(ReportList write) {
+    public void writeData1(ReportList reportList) {
         String filePath = fileDirectoryName + File.separator + fileName;
         File file = new File(filePath);
-        FileWriter fileWriter = null;
+        FileWriter writer = null;
+        BufferedWriter buffer = null;
         try {
-            fileWriter = new FileWriter(file,true);
-            BufferedWriter writer = new BufferedWriter(fileWriter);
-            for (ReportModel reportModel : write.getReports()) {
+            writer = new FileWriter(file,true);
+             buffer = new BufferedWriter(writer);
+            for (ReportModel reportModel : reportList.getReports()) {
                 String line = reportModel.getTopic() + ","
                         + reportModel.getDetail() + ","
                         + reportModel.getVoteScore() + ","
                         + reportModel.getDateTime() + ","
                         + reportModel.getCategory();
-                writer.append(line);
-                writer.newLine();
+                buffer.append(line);
+                buffer.newLine();
             }
-
-            writer.close();
         } catch (IOException e) {
             System.err.println("Cannot write " + filePath);
+        }finally {
+            try {
+                buffer.close();
+                writer.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
