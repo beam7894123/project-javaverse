@@ -1,48 +1,44 @@
 package ku.cs.controllers;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
-import ku.cs.models.RegisterList;
-import ku.cs.models.RegisterModel;
-import ku.cs.models.ReportList;
-import ku.cs.models.ReportModel;
+import ku.cs.models.*;
 import ku.cs.services.DataSource;
 import ku.cs.services.RegisterWriteFile;
 import ku.cs.services.ReportWriteFile;
 import com.github.saacsos.FXRouter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ReportFormController {
     @FXML
-    private TextField topicField,detailField;
+    private TextField topicField,detailField,authorField;
     private DataSource<ReportList> dataSource;
     public ReportList reportList;
-    private ObservableList<ReportList> reportListObservableList;
+    private ObservableList<ReportList> reportLists;
+    private ArrayList<CategoryList> categoryLists;
     private ReportModel reportModel;
-    @FXML
-    ChoiceBox categoryButton = new ChoiceBox();
-    HBox hbox = new HBox(categoryButton);
-    private DataSource write = new ReportWriteFile("filescsv", "report.csv");
-//    categoryButton
-//    choiceBox.getItems().add("Choice 2");
-//    choiceBox.getItems().add("Choice 3");
+    @FXML ComboBox categoryBox;
+    
 
-    String value = ("String");
-//    categoryButton.g
+
+    private DataSource write = new ReportWriteFile("filescsv", "report.csv");
+
+    @FXML public void initialize() {
+        authorField.setText("your name");
+    }
 
 
     @FXML
     public void handleSubmitButton(ActionEvent actionEvent){
         try {
-            ReportModel reportModel = new ReportModel(topicField.getText(),detailField.getText(),null,null,null);
+            ReportModel reportModel = new ReportModel(topicField.getText(),detailField.getText(),0,categoryBox.getAccessibleText(),null,authorField.getText());
             reportList.addReport(reportModel);
             write.writeData1(reportList);
             System.out.println("Do write file");
