@@ -1,5 +1,7 @@
 package ku.cs.controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,8 +27,7 @@ public class AdminStudentListController {
     @FXML private ImageView image;
     String url = getClass().getResource("/images/default1.png").toExternalForm();
     private DataSource<RegisterList> dataSource;
-    private RegisterList list;
-    private RegisterList temp;
+    private RegisterList list, temp;
 
 // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE //
     @FXML public void initialize(){
@@ -37,11 +38,10 @@ public class AdminStudentListController {
         list = dataSource.readData();
         //READ FILE END
 
-//        admin_List = FXCollections.observableArrayList();
         initStudentListView(list);
         showStudentListView(temp);
         clearSelectedStudent();
-//        handleSelectedListView();
+        handleSelectedListView();
     }
 // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE //
 
@@ -104,15 +104,15 @@ public class AdminStudentListController {
 
     private void handleSelectedListView() {
         //OLD CODE (LISTVIEW)
-//        studentListView.getSelectionModel().selectedItemProperty().addListener(
-//                new ChangeListener<RegisterModel>() {
-//                    @Override
-//                    public void changed(ObservableValue<? extends RegisterModel> observable,
-//                                        RegisterModel oldValue, RegisterModel newValue) {
-//                        System.out.println(newValue + " is selected");
-//                        showSelectedStudent(newValue);
-//                    }
-//                });
+        listTable.getSelectionModel().selectedItemProperty().addListener(
+                new ChangeListener<RegisterModel>() {
+                    @Override
+                    public void changed(ObservableValue<? extends RegisterModel> observable,
+                                        RegisterModel oldValue, RegisterModel newValue) {
+                        System.out.println(newValue + " is selected");
+                        showSelectedStudent(newValue);
+                    }
+                });
     }
 
     private void showSelectedStudent(RegisterModel card) {
