@@ -9,6 +9,7 @@ import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
 import ku.cs.services.DataSource;
 import ku.cs.services.ReportWriteFile;
+import com.github.saacsos.FXRouter;
 
 import java.io.IOException;
 
@@ -39,7 +40,7 @@ public class MainController {
     @FXML
     public void handleAddReportButton(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("addreport");
+            FXRouter.goTo("addreport");
         } catch (IOException e) {
             System.err.println("ไปที่หน้าhome ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");
@@ -48,7 +49,7 @@ public class MainController {
     @FXML
     public void handleLogOutButton(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("signIn");
+            FXRouter.goTo("signIn");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า signIn ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");
@@ -57,7 +58,7 @@ public class MainController {
     @FXML
     public void handleAdminButtonClick(ActionEvent actionEvent){
         try {
-            com.github.saacsos.FXRouter.goTo("register");
+            FXRouter.goTo("register");
         } catch (IOException e) {
             System.err.println("ไปที่หน้าhome ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");

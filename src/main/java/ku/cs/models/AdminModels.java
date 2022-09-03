@@ -1,37 +1,39 @@
 package ku.cs.models;
 
-public class AdminModels {
+public class AdminModels extends RegisterModel{
 
-    private String username = "Admin";
-    private String password;
-    private String Inputpassword;
-    private String Newpassword;
+    private String ban;
 
-    public AdminModels(String username, String password, String Inputpassword, String Newpassword){
-        this.username = username;
-        this.password = password;
-        this.Inputpassword = Inputpassword;
-        this.Newpassword = Newpassword;
+    public AdminModels(String name, String surname, String username, String password, String confirmPassword, String date, String time, String fileName, String ban) {
+        super(name, surname, username, password, confirmPassword, date, time, fileName);
+        this.ban = ban;
+    }
 
+    public AdminModels(String name, String surname, String username, String password, String date, String time, String ban) {
+        super(name, surname, username, password, date, time);
+        this.ban = ban;
+    }
+
+    public String getBan() {
+        return ban;
+    }
+
+    public void setBan(String ban) {
+        this.ban = ban;
     }
 
 
-    public String getUsername() {
-        return username;
+    @Override
+    public String toString() {
+        return "RegisterModel{" +
+                "name='" + getName() + '\'' +
+                ", surname='" + getSurname() + '\'' +
+                ", username='" + getUsername() + '\'' +
+                ", password='" + getPassword() + '\'' +
+                ", Date ='" + getTime() + '\'' +
+                ", time='" + getImage() + '\'' +
+                '}';
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-//    public class SetPassword{
-//        if(password = password){
-//            return 0;
-//        }
-//        else{
-//            return 1;
-//        }
-//
-//    }
 
 }
