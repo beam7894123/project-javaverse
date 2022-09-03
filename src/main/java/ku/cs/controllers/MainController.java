@@ -17,8 +17,8 @@ public class MainController {
     private ReportList reportList;
 
     @FXML public void initialize() {
-        dataSource = new ReportWriteFile("filescsv", "report.csv");
-        reportList = dataSource.readData1();
+//        dataSource = new ReportWriteFile("filescsv", "report.csv");
+//        reportList = dataSource.readData1();
         showReportView();
     }
     @FXML private TreeTableView<ReportModel> reportTable;
