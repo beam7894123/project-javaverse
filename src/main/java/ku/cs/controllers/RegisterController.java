@@ -14,6 +14,7 @@ import ku.cs.services.RegisterWriteFile;
 
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 public class RegisterController {
     Label nameLabel,surnameLabel,usernameLabel,passwordLabel,confirmPasswordLabel,registerLabel,usernameDuplicate;
@@ -43,6 +44,7 @@ public class RegisterController {
         registerList = new RegisterList();
     }
     public void handleOkClick(ActionEvent actionEvent){
+
         registerList = writeFile.readData();
         writeFile.checkUserNameAndPassword(registerList,usernameTextfield.getText(),labelUsername,labelPassword,passwordPasswordfield.getText(),confirmPasswordfield.getText(),nameTextfield.getText(),surnameTextfield.getText(),fileNameImage);
     }
@@ -52,9 +54,9 @@ public class RegisterController {
         catch (IOException e) {
             System.err.println("error");}
     }
-    public void handleUploadButton(ActionEvent actionEvent){
+    public void handleUploadButton(ActionEvent actionEvent) throws MalformedURLException {
 
-        writeFile.uploadImageFromFile(actionEvent,image);
+        fileNameImage = writeFile.uploadImageFromFile(actionEvent,image);
     }
 
 }

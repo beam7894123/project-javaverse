@@ -11,6 +11,7 @@ import javafx.stage.FileChooser;
 import ku.cs.models.RegisterList;
 import ku.cs.models.RegisterModel;
 import java.io.*;
+import java.net.MalformedURLException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -93,6 +94,7 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
         FileReader fileReader = new FileReader(file);
         BufferedReader reader = new BufferedReader(fileReader);
         String line = "";
+        registerList = new RegisterList();
         while ((line = reader.readLine()) != null) {
             String[] data = line.split(",");
             RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[5].trim(),data[6].trim());
@@ -158,7 +160,7 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
             }
         }
     }
-    public void uploadImageFromFile(ActionEvent event,ImageView image){
+    public String uploadImageFromFile(ActionEvent event,ImageView image) throws MalformedURLException {
         FileChooser chooser = new FileChooser();
         // SET FILECHOOSER INITIAL DIRECTORY
         chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
@@ -167,7 +169,9 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
         // GET FILE FROM FILECHOOSER WITH JAVAFX COMPONENT WINDOW
         Node source = (Node) event.getSource();
         File file = chooser.showOpenDialog(source.getScene().getWindow());
+        String fileName = "";
         if (file != null){
+            fileName = file.getName();
             try {
                 // CREATE FOLDER IF NOT EXIST
                 File destDir = new File("src/main/resources/images");
@@ -201,6 +205,7 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
                 e.printStackTrace();
             }
         }
+        return fileName;
     }
 
 }
