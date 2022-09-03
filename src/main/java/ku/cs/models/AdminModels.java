@@ -14,20 +14,6 @@ public class AdminModels extends RegisterModel{
         this.ban = ban;
     }
 
-
-    public AdminModels(String name, String surname) {
-        super(name, surname);
-    }
-
-    public AdminModels(String username, String password, String ban) {
-        super(username, password);
-        this.ban = ban;
-    }
-
-    public AdminModels(String ban) {
-        this.ban = ban;
-    }
-
     public String getBan() {
         return ban;
     }
