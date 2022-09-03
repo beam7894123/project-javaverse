@@ -27,7 +27,7 @@ public class SignInController {
     public static String StrUserID;
     
 
-    private DataSource registerWriteFile;
+    private DataSource<RegisterList> registerWriteFile;
     @FXML public void initialize(){
         registerList = new RegisterList();
         registerWriteFile = new RegisterWriteFile("filescsv","register.csv");

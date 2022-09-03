@@ -41,7 +41,7 @@ public class ReportFormController {
             ReportModel reportModel = new ReportModel(topicField.getText(),detailField.getText(),1,
                     categoryBox.getValue(),String.valueOf(LocalDateTime.now()),authorField.getText());
             reportList.addReport(reportModel);
-            write.writeData1(reportList);
+            write.writeData(reportList);
             System.out.println("Do write file");
             FXRouter.goTo("main");
         } catch (IOException e) {

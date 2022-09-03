@@ -15,7 +15,7 @@ public class HomeController {
     public void setRegisterList(RegisterList registerList){
         this.registerList =  registerList;
     }
-    private DataSource registerWriteFile;
+    private DataSource<RegisterList> registerWriteFile;
 
     public void initialize(){
         registerList = new RegisterList();

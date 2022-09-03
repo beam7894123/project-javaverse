@@ -83,18 +83,12 @@ public class AdminReadFile implements DataSource<RegisterList>{
         return list;
     }
 
-    @Override
-    public ReportList readData1() {
-        return null;
-    }
+
 
     @Override
     public void writeData(RegisterList write) {
 
     }
 
-    @Override
-    public void writeData1(ReportList write) {
 
-    }
 }

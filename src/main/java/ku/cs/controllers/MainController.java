@@ -22,7 +22,7 @@ public class MainController {
 
     @FXML public void initialize() {
         dataSource = new ReportWriteFile("filescsv", "report.csv");
-        reportList = dataSource.readData1();
+        reportList = dataSource.readData();
         showReportView();
     }
 

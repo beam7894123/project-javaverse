@@ -37,13 +37,10 @@ public class ReportWriteFile implements DataSource<ReportList> {
     }
 
 
-    @Override
-    public RegisterList readData() {
-        return null;
-    }
+
 
     @Override
-    public ReportList readData1() {
+    public ReportList readData() {
         ReportList reportList = new ReportList();
         String filePath = fileDirectoryName + File.separator + fileName;
         File file = new File(filePath);
@@ -58,7 +55,7 @@ public class ReportWriteFile implements DataSource<ReportList> {
                 ReportModel reportModel = new ReportModel(data[0].trim(),
                         data[1].trim(),Integer.parseInt(data[2].trim()),
                         data[3].trim(),data[4].trim(),data[5]); // obj
-                ReportList.addReport(reportModel);
+                reportList.addReport(reportModel);
             }
         } catch (FileNotFoundException e) {
             System.err.println(this.fileName + " not found");
@@ -75,13 +72,9 @@ public class ReportWriteFile implements DataSource<ReportList> {
         return reportList;
     }
 
-    @Override
-    public void writeData(RegisterList write) {
-
-    }
 
     @Override
-    public void writeData1(ReportList reportList) {
+    public void writeData(ReportList reportList) {
         String filePath = fileDirectoryName + File.separator + fileName;
         File file = new File(filePath);
         FileWriter writer = null;
@@ -94,7 +87,8 @@ public class ReportWriteFile implements DataSource<ReportList> {
                         + reportModel.getDetail() + ","
                         + reportModel.getVoteScore() + ","
                         + reportModel.getDateTime() + ","
-                        + reportModel.getCategory();
+                        + reportModel.getCategory() + ","
+                        + reportModel.getAuthorName();
                 buffer.append(line);
                 buffer.newLine();
             }
@@ -109,4 +103,6 @@ public class ReportWriteFile implements DataSource<ReportList> {
             }
         }
     }
+
+
 }

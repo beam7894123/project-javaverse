@@ -6,7 +6,7 @@ import ku.cs.models.ReportList;
 
 import java.io.*;
 
-public class RegisterWriteFile implements DataSource {
+public class RegisterWriteFile implements DataSource<RegisterList> {
 
     private String fileDirectoryName;
     private String fileName;
@@ -82,10 +82,6 @@ public class RegisterWriteFile implements DataSource {
         return registerList;
     }
 
-    @Override
-    public ReportList readData1() {
-        return null;
-    }
 
     @Override
     public void writeData(RegisterList write) {
@@ -113,10 +109,7 @@ public class RegisterWriteFile implements DataSource {
         }
     }
 
-    @Override
-    public void writeData1(ReportList write) {
 
-    }
 }
 
 //    private void checkFileIsExisted() {
