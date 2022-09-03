@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.image.Image;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
@@ -16,24 +17,32 @@ import java.io.IOException;
 public class MainController {
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
+    @FXML private TreeTableView<ReportModel> reportTable;
+    @FXML private TreeTableColumn<ReportModel,ReportList> firstCol,secondCol,thirdCol;
 
     @FXML public void initialize() {
         dataSource = new ReportWriteFile("filescsv", "report.csv");
         reportList = dataSource.readData1();
         showReportView();
     }
-    @FXML private TreeTableView<ReportModel> reportTable;
-    TreeTableColumn firstCol = new TreeTableColumn<>("หัวข้อเรื่อง");
-    TreeTableColumn secondCol = new TreeTableColumn<>("Status");
-    TreeTableColumn thirdCol = new TreeTableColumn<>("คะแนน");
+
+
     private void showReportView() {
-//        reportTable.getColumns().addAll();
-//        reportTable.refresh();
+        reportTable = new TreeTableView<>();
+        firstCol = new TreeTableColumn<>("Topic");
+        secondCol = new TreeTableColumn<>("Status");
+        thirdCol = new TreeTableColumn<>("Score");
+        firstCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("topic"));
+        secondCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("status"));
+        thirdCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("score"));
+        reportTable.getColumns().add(firstCol);
+        reportTable.getColumns().add(secondCol);
+        reportTable.getColumns().add(thirdCol);
+
     }
 
 
 
-//    reportTable.getColumns().addAll(firstCol, secondCol, thirdCol);
 
 
 

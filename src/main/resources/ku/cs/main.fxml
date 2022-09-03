@@ -34,11 +34,14 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <TreeTableView fx:id="reportTable" fixedCellSize="0.0" layoutX="420.0" layoutY="61.0" prefHeight="619.0" prefWidth="593.0">
+      <TreeTableView fx:id="reportTable" fixedCellSize="0.0" layoutX="409.0" layoutY="55.0" prefHeight="626.0" prefWidth="602.0">
         <columns>
-          <TreeTableColumn editable="false" prefWidth="410.0" resizable="false" text="หัวข้อเรื่อง" />
-            <TreeTableColumn editable="false" prefWidth="116.0" text="สถานะ" />
-            <TreeTableColumn editable="false" prefWidth="66.0" resizable="false" text="คะแนน" />
+          <TreeTableColumn fx:id="firstCol" editable="false" prefWidth="287.2000427246094" resizable="false" text="หัวข้อเรื่อง" />
+            <TreeTableColumn fx:id="secondCol" editable="false" prefWidth="89.60000610351562" text="สถานะ" />
+            <TreeTableColumn fx:id="thirdCol" editable="false" prefWidth="109.60003662109375" resizable="false" text="คะแนน" />
+            <TreeTableColumn fx:id="forthCol" editable="false" prefWidth="117.5999755859375" resizable="false" text="หมวดหมู่" />
+            <TreeTableColumn fx:id="thirdCol11" editable="false" prefWidth="92.0" resizable="false" text="เวลา" />
+            <TreeTableColumn fx:id="thirdCol12" editable="false" prefWidth="115.20001220703125" resizable="false" text="ผู้เขียน" />
         </columns>
       </TreeTableView>
       <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="771.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleAddReportButton" prefHeight="35.0" prefWidth="128.0" style="-fx-background-color: #5179f7;" text="add report" textAlignment="RIGHT" textFill="WHITE">

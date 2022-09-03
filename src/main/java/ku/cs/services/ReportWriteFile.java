@@ -57,7 +57,7 @@ public class ReportWriteFile implements DataSource<ReportList> {
                 String[] data = line.split(",");
                 ReportModel reportModel = new ReportModel(data[0].trim(),
                         data[1].trim(),Integer.parseInt(data[2].trim()),
-                        data[3].trim(),data[4].trim(),data[5].trim()); // obj
+                        data[3].trim(),data[4].trim(),data[5]); // obj
                 ReportList.addReport(reportModel);
             }
         } catch (FileNotFoundException e) {

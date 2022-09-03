@@ -22,12 +22,13 @@ public class ReportFormController {
     private TextField topicField,detailField,authorField;
     private DataSource<ReportList> dataSource;
     public ReportList reportList;
-    private ObservableList<ReportList> reportLists;
     private ReportModel reportModel;
     @FXML ComboBox<String> categoryBox;
     private DataSource write = new ReportWriteFile("filescsv", "report.csv");
 
     @FXML public void initialize() {
+        dataSource = new ReportWriteFile("filescsv", "report.csv");
+        reportList = new ReportList();
         categoryBox.setItems(FXCollections.observableArrayList("Person","Facilities","Building",
                 "Learning/Lesson","Traffic/Transport"));
         authorField.setText("your name");
