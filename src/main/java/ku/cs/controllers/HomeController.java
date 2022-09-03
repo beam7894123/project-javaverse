@@ -20,7 +20,7 @@ public class HomeController {
     public void initialize(){
         registerList = new RegisterList();
         registerWriteFile = new RegisterWriteFile("filecsv","register.csv");
-        registerList.setRegisterModelArrayList(registerWriteFile.readData().getAllCards());
+//        registerList.setRegisterModelArrayList(registerWriteFile.readData().getAllCards());
         System.out.println(registerList.getAllCards());
     }
     @FXML

@@ -30,7 +30,7 @@ public class ReportFormController {
     @FXML
     ChoiceBox categoryButton = new ChoiceBox();
     HBox hbox = new HBox(categoryButton);
-    private DataSource write = new ReportWriteFile("filescsv", "report.csv");
+//    private DataSource write = new ReportWriteFile("filescsv", "report.csv");
 //    categoryButton
 //    choiceBox.getItems().add("Choice 2");
 //    choiceBox.getItems().add("Choice 3");
@@ -39,18 +39,18 @@ public class ReportFormController {
 //    categoryButton.g
 
 
-    @FXML
-    public void handleSubmitButton(ActionEvent actionEvent){
-        try {
-            ReportModel reportModel = new ReportModel(topicField.getText(),detailField.getText(),null,null,null);
-            reportList.addReport(reportModel);
-            write.writeData1(reportList);
-            System.out.println("Do write file");
-            FXRouter.goTo("main");
-        } catch (IOException e) {
-            System.err.println("ไปที่หน้า main ไม่ได้");
-            System.err.println("ให้ตรวจสอบการกําหนดroute");
-        }
-    }
+//    @FXML
+//    public void handleSubmitButton(ActionEvent actionEvent){
+//        try {
+//            ReportModel reportModel = new ReportModel(topicField.getText(),detailField.getText(),null,null,null);
+//            reportList.addReport(reportModel);
+//            write.writeData1(reportList);
+//            System.out.println("Do write file");
+//            FXRouter.goTo("main");
+//        } catch (IOException e) {
+//            System.err.println("ไปที่หน้า main ไม่ได้");
+//            System.err.println("ให้ตรวจสอบการกําหนดroute");
+//        }
+//    }
 
 }
