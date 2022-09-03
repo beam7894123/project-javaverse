@@ -27,7 +27,7 @@ public class AdminStudentListController {
     @FXML private ImageView image;
     String url = getClass().getResource("/images/default1.png").toExternalForm();
     private DataSource<RegisterList> dataSource;
-    private RegisterList list, temp;
+    private RegisterList list;
 
 // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE //
     @FXML public void initialize(){
@@ -37,9 +37,7 @@ public class AdminStudentListController {
         dataSource = new AdminReadFile("filescsv","register.csv");
         list = dataSource.readData();
         //READ FILE END
-
-        initStudentListView(list);
-        showStudentListView(temp);
+        showStudentListView(list);
         clearSelectedStudent();
         handleSelectedListView();
     }
@@ -68,33 +66,22 @@ public class AdminStudentListController {
     @FXML private TableColumn<RegisterModel , String> listTable_Name;
     @FXML private TableColumn<RegisterModel , String> listTable_Surname;
 
-    private void initStudentListView(RegisterList list){ //Build TEMP list
-        temp = new RegisterList();
-        for (int i=0 ; i < list.getAllCards().size() ; ++i){
-            temp.addStudent(list.getAllCards().get(i));
-        }
-    }
-
     private void showStudentListView(RegisterList list) {
         //OLD CODE (LISTVIEW)
 //        studentListView.getItems().addAll(list.getAllCards());
 //        studentListView.refresh();
 
-//        for (int i = 1 ; i<3 ; i++){
-//            admin_List.add(new AdminModels("name" + i , "surname" + i));
-//        }
-
         // ArrayList >> ObservableList
-        ObservableList<RegisterModel> list2 = FXCollections.observableArrayList(
+        ObservableList<RegisterModel> TEMP = FXCollections.observableArrayList(
 //                new RegisterModel("aaaa","dsd","sdasd") //test list
-                temp.getAllCards()
+                list.getAllCards()
         );
 
         listTable_Name.setCellValueFactory(new PropertyValueFactory<>("name"));
         listTable_Surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         listTable_LastLogin.setCellValueFactory(new PropertyValueFactory<>("time"));
 
-        listTable.setItems(list2);
+        listTable.setItems(TEMP);
         listTable.refresh();
 
     }
