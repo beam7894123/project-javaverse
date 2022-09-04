@@ -2,7 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="670.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.ReportFormController">
+<AnchorPane prefHeight="670.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.ReportFormController">
    <children>
       <ImageView fitHeight="670.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -42,6 +42,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ChoiceBox fx:id="categoryButton" layoutX="188.0" layoutY="545.0" prefWidth="150.0" />
+      <TextField fx:id="authorField" layoutX="637.0" layoutY="538.0" prefHeight="38.0" prefWidth="116.0" />
+      <Label layoutX="544.0" layoutY="539.0" text="Author :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="categoryBox" layoutX="187.0" layoutY="545.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

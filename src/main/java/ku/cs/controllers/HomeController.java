@@ -15,12 +15,12 @@ public class HomeController {
     public void setRegisterList(RegisterList registerList){
         this.registerList =  registerList;
     }
-    private DataSource registerWriteFile;
+    private DataSource<RegisterList> registerWriteFile;
 
     public void initialize(){
         registerList = new RegisterList();
         registerWriteFile = new RegisterWriteFile("filecsv","register.csv");
-        registerList.setRegisterModelArrayList(registerWriteFile.readData().getAllCards());
+//        registerList.setRegisterModelArrayList(registerWriteFile.readData().getAllCards());
         System.out.println(registerList.getAllCards());
     }
     @FXML

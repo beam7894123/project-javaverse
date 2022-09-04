@@ -1,6 +1,8 @@
 package ku.cs.services;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import ku.cs.models.RegisterList;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
@@ -10,6 +12,8 @@ import java.io.*;
 public class ReportWriteFile implements DataSource<ReportList> {
     private String fileDirectoryName;
     private String fileName;
+
+    private ReportList temp;
 
 
     private String image;
@@ -37,13 +41,10 @@ public class ReportWriteFile implements DataSource<ReportList> {
     }
 
 
-    @Override
-    public RegisterList readData() {
-        return null;
-    }
+
 
     @Override
-    public ReportList readData1() {
+    public ReportList readData() {
         ReportList reportList = new ReportList();
         String filePath = fileDirectoryName + File.separator + fileName;
         File file = new File(filePath);
@@ -55,8 +56,10 @@ public class ReportWriteFile implements DataSource<ReportList> {
             String line = "";
             while ((line = buffer.readLine()) != null) {
                 String[] data = line.split(",");
-                ReportModel reportModel = new ReportModel(data[0].trim(),data[1].trim(),Integer.parseInt(data[2].trim()),data[3].trim(),data[4]); // obj
-                ReportList.addReport(reportModel);
+                ReportModel reportModel = new ReportModel(data[0].trim(),
+                        data[1].trim(),Integer.parseInt(data[2].trim()),
+                        data[3].trim(),data[4].trim(),data[5]); // obj
+                reportList.addReport(reportModel);
             }
         } catch (FileNotFoundException e) {
             System.err.println(this.fileName + " not found");
@@ -73,13 +76,11 @@ public class ReportWriteFile implements DataSource<ReportList> {
         return reportList;
     }
 
-    @Override
-    public void writeData(RegisterList write) {
 
-    }
+
 
     @Override
-    public void writeData1(ReportList reportList) {
+    public void writeData(ReportList reportList) {
         String filePath = fileDirectoryName + File.separator + fileName;
         File file = new File(filePath);
         FileWriter writer = null;
@@ -92,7 +93,8 @@ public class ReportWriteFile implements DataSource<ReportList> {
                         + reportModel.getDetail() + ","
                         + reportModel.getVoteScore() + ","
                         + reportModel.getDateTime() + ","
-                        + reportModel.getCategory();
+                        + reportModel.getCategory() + ","
+                        + reportModel.getAuthorName();
                 buffer.append(line);
                 buffer.newLine();
             }
@@ -107,4 +109,6 @@ public class ReportWriteFile implements DataSource<ReportList> {
             }
         }
     }
+
+
 }
