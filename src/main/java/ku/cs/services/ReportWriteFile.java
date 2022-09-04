@@ -1,22 +1,76 @@
 package ku.cs.services;
 
 
+import ku.cs.controllers.ReportFormController;
 import ku.cs.models.RegisterList;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
 
 import java.io.*;
 
-public class ReportWriteFile  {
+public class ReportWriteFile extends ReportFormController {
     private String fileDirectoryName;
     private String fileName;
-
-    private String image;
+    private ReportList reportList;
 
     public ReportWriteFile(String fileDirectoryName, String fileName) {
         this.fileDirectoryName = fileDirectoryName;
         this.fileName = fileName;
         checkFileIsExisted();
+    }
+
+    public ReportList readData(){
+        ReportList reportList = new ReportList();
+        String filePath = fileDirectoryName + File.separator + fileName;
+        File file = new File(filePath);
+        FileReader reader = null;
+        BufferedReader buffer = null;
+
+        try {
+            reader = new FileReader(file);
+            buffer = new BufferedReader(reader);
+            String line = "";
+            while ((line = buffer.readLine()) != null) {
+                String[] data = line.split(",");
+                ReportModel reportModel = new ReportModel(data[0], data[1], Integer.parseInt(data[2]) ,data[3] ,data[4]);
+                ReportList.addReport(reportModel);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                buffer.close();
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+            return reportList;
+    }
+
+    public void writeData(ReportList reportList){
+        String filePath = fileDirectoryName + File.separator + fileName;
+        File file = new File(filePath);
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(file);
+            BufferedWriter writer = new BufferedWriter(fileWriter);
+
+            for (ReportModel reportModel: ReportList.getReports()){
+                String line = reportModel.getTopic() + ","
+                        + reportModel.getDetail() + ","
+                        + reportModel.getCategory() + ","
+                        + reportModel.getDateTime() + ","
+                        + reportModel.getVoteScore();
+                writer.append(line);
+                writer.newLine();
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.err.println("Cannot write " + filePath);
+        }
     }
 
     private void checkFileIsExisted() {
@@ -35,8 +89,7 @@ public class ReportWriteFile  {
         }
     }
 
-
-//    @Override
+    //    @Override
 //    public RegisterList readData() {
 //        return null;
 //    }

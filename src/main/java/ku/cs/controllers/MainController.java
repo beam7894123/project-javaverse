@@ -2,6 +2,7 @@ package ku.cs.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.image.Image;
@@ -12,30 +13,37 @@ import ku.cs.services.ReportWriteFile;
 import com.github.saacsos.FXRouter;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MainController {
+public class MainController implements Initializable {
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
+    private ReportModel selectReport;
 
-    @FXML public void initialize() {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 //        dataSource = new ReportWriteFile("filescsv", "report.csv");
 //        reportList = dataSource.readData1();
         showReportView();
     }
+
     @FXML private TreeTableView<ReportModel> reportTable;
     TreeTableColumn firstCol = new TreeTableColumn<>("หัวข้อเรื่อง");
     TreeTableColumn secondCol = new TreeTableColumn<>("Status");
     TreeTableColumn thirdCol = new TreeTableColumn<>("คะแนน");
+
     private void showReportView() {
 //        reportTable.getColumns().addAll();
 //        reportTable.refresh();
     }
 
-
-
 //    reportTable.getColumns().addAll(firstCol, secondCol, thirdCol);
 
+    private void showSelectedReport(ReportModel reportModel){
+        selectReport = reportModel;
 
+    }
 
     @FXML
     public void handleAddReportButton(ActionEvent actionEvent){
@@ -64,8 +72,5 @@ public class MainController {
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
-
-
-
 
 }

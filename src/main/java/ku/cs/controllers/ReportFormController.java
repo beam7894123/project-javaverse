@@ -27,6 +27,13 @@ public class ReportFormController {
     public ReportList reportList;
     private ObservableList<ReportList> reportListObservableList;
     private ReportModel reportModel;
+
+    @FXML
+    public void initialize(){
+        dataSource = (DataSource<ReportList>) new ReportWriteFile("data","reportList.csv");
+        reportList = dataSource.readData();
+    }
+
     @FXML
     ChoiceBox categoryButton = new ChoiceBox();
     HBox hbox = new HBox(categoryButton);
