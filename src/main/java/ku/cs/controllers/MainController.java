@@ -2,6 +2,7 @@ package ku.cs.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
@@ -13,6 +14,7 @@ import ku.cs.services.ReportWriteFile;
 import com.github.saacsos.FXRouter;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class MainController {
     private DataSource<ReportList> dataSource;
@@ -38,6 +40,12 @@ public class MainController {
         reportTable.getColumns().add(firstCol);
         reportTable.getColumns().add(secondCol);
         reportTable.getColumns().add(thirdCol);
+//        TreeItem mercedes = new TreeItem(new ReportModel("Mercedes","SL500",1,"test",
+//                String.valueOf(LocalDateTime.now()) ,"Test"));
+//        mercedes.getChildren().add(mercedes);
+
+        reportTable.setTreeColumn(firstCol);
+        reportTable.refresh();
 
     }
 

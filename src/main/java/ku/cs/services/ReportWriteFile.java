@@ -1,6 +1,8 @@
 package ku.cs.services;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import ku.cs.models.RegisterList;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
@@ -10,6 +12,8 @@ import java.io.*;
 public class ReportWriteFile implements DataSource<ReportList> {
     private String fileDirectoryName;
     private String fileName;
+
+    private ReportList temp;
 
 
     private String image;
@@ -71,6 +75,8 @@ public class ReportWriteFile implements DataSource<ReportList> {
         }
         return reportList;
     }
+
+
 
 
     @Override
