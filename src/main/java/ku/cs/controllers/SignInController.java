@@ -25,28 +25,43 @@ public class SignInController {
     public  String strPassword;
     private RegisterList registerList;
     public static String StrUserID;
-    private String receive;
-    private SignInWriteFile signInWriteFile;
-
     
 
-    private DataSource registerWriteFile;
-    private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","register.csv");
+    private DataSource<RegisterList> registerWriteFile;
     @FXML public void initialize(){
-//        registerWriteFile = new RegisterWriteFile("filescsv","register.csv");
         registerList = new RegisterList();
         registerWriteFile = new RegisterWriteFile("filescsv","register.csv");
+        registerList.setRegisterModelArrayList(registerWriteFile.readData().getAllCards());
         System.out.println(registerList.getAllCards());
-
-
     }
 
     @FXML
-    public void handleConfirmButtonClick(ActionEvent actionEvent) throws IOException {
-//        registerList = writeFile.readData();
-        signInWriteFile = new SignInWriteFile("filescsv","register.csv",usernameTextfield.getText(),passwordPasswordfield.getText());
-//        signInWriteFile.SignInRecieveReadFile();
-        signInWriteFile.checkConfirmsignIn(registerList,usernameTextfield,passwordPasswordfield,loginChecker);
+    public void handleConfirmButtonClick(ActionEvent actionEvent){
+        if(usernameTextfield.getText().equals("admin")&&passwordPasswordfield.getText().equals("admin")){
+            try {
+                FXRouter.goTo("admin");
+            } catch (IOException e) {
+                System.err.println("ไปที่หน้าhome ไม่ได้");
+                System.err.println("ให้ตรวจสอบการกําหนดroute");
+            }
+        }else if (registerList.UserCheck(registerList,usernameTextfield,passwordPasswordfield)) {
+            strUsername = usernameTextfield.getText();
+            strPassword = passwordPasswordfield.getText();
+            SignInWriteFile signInWriteFile = new SignInWriteFile("filescsv","register.csv",strUsername,strPassword);
+            try {
+                signInWriteFile.SignInRecieveReadFile();
+                FXRouter.goTo("main");
+          } catch (IOException e) {
+//                throw new RuntimeException(e);
+                System.err.println("ไปที่หน้า main ไม่ได้");
+                System.err.println("ให้ตรวจสอบการกําหนดroute");
+            }
+
+        }
+
+         else {
+            System.out.println("Error");;
+        }
 
     }
     @FXML
@@ -60,10 +75,10 @@ public class SignInController {
     }
 
     @FXML
-    public void handleCreatorButton(ActionEvent actionEvent) {
-        try {
+    public void handleCreatorButton(ActionEvent actionEvent) {try
+    {
         FXRouter.goTo("creator");}
-        catch (IOException e) {
+    catch (IOException e) {
         System.err.println("err");}
     }
 }
