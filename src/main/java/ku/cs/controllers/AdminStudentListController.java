@@ -12,29 +12,27 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import ku.cs.models.AdminModels;
 import ku.cs.models.RegisterList;
 import ku.cs.models.RegisterModel;
 import ku.cs.services.DataSource;
-import ku.cs.services.AdminReadFile;
+import ku.cs.services.RegisterWriteFile;
 
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class AdminStudentListController {
 
     @FXML private Label nameLabel, surnameLabel, usernameLabel, lastloginLabel, banLabel;
     @FXML private ImageView image;
-    String url = getClass().getResource("/images/default1.png").toExternalForm();
     private DataSource<RegisterList> dataSource;
     private RegisterList list;
 
 // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE //
     @FXML public void initialize(){
-        image.setImage(new Image(url)); //Set image url
 
-        //READ FILE
-        dataSource = new AdminReadFile("filescsv","register.csv");
+        //READ FILE (Borrow RegisterWriteFile)
+        dataSource = new RegisterWriteFile("filescsv","register.csv");
         list = dataSource.readData();
         //READ FILE END
 
@@ -43,14 +41,6 @@ public class AdminStudentListController {
         handleSelectedListView();
     }
 // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE //
-
-    private void clearSelectedStudent() {
-        nameLabel.setText("");
-        surnameLabel.setText("");
-        usernameLabel.setText("");
-        lastloginLabel.setText("");
-        banLabel.setText("N/A");
-    }
 
     @FXML public void handleBackButtonClick(ActionEvent actionEvent){
         try {
@@ -63,9 +53,9 @@ public class AdminStudentListController {
 // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE //
 //    @FXML private ListView<RegisterModel> studentListView; //OLD CODE (LISTVIEW)
     @FXML private TableView<RegisterModel> listTable;
-    @FXML private TableColumn<AdminModels , String> listTable_LastLogin;
-    @FXML private TableColumn<AdminModels , String> listTable_Name;
-    @FXML private TableColumn<AdminModels , String> listTable_Surname;
+    @FXML private TableColumn<RegisterModel , String> listTable_LastLogin;
+    @FXML private TableColumn<RegisterModel , String> listTable_Name;
+    @FXML private TableColumn<RegisterModel , String> listTable_Surname;
 
     private void showStudentListView(RegisterList list) {
         //OLD CODE (LISTVIEW)
@@ -79,7 +69,7 @@ public class AdminStudentListController {
 
         listTable_Name.setCellValueFactory(new PropertyValueFactory<>("name"));
         listTable_Surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
-        listTable_LastLogin.setCellValueFactory(new PropertyValueFactory<>("image"));
+        listTable_LastLogin.setCellValueFactory(new PropertyValueFactory<>("date"));
 
         listTable_Name.setReorderable(false);
         listTable_Surname.setReorderable(false);
@@ -88,6 +78,11 @@ public class AdminStudentListController {
         listTable_Surname.setSortable(false);
 
         listTable.setItems(TEMP);
+
+        //Sort
+        listTable_LastLogin.setSortType(TableColumn.SortType.DESCENDING);
+        listTable.getSortOrder().add(listTable_LastLogin);
+
         listTable.refresh();
 
     }
@@ -96,7 +91,7 @@ public class AdminStudentListController {
 
 
     private void handleSelectedListView() {
-        //OLD CODE (LISTVIEW)
+        //OLD CODE + New Code (LISTVIEW)
         listTable.getSelectionModel().selectedItemProperty().addListener(
                 new ChangeListener<RegisterModel>() {
                     @Override
@@ -108,11 +103,24 @@ public class AdminStudentListController {
                 });
     }
 
-    private void showSelectedStudent(RegisterModel card) {
-        nameLabel.setText(card.getName());
-        surnameLabel.setText(card.getSurname());
-        usernameLabel.setText(card.getUsername());
-        lastloginLabel.setText(card.getTime());
+    private void clearSelectedStudent() {
+        String url = getClass().getResource("/images/default1.png").toExternalForm();
+        image.setImage(new Image(url)); //Set image url
+
+        nameLabel.setText("------");
+        surnameLabel.setText("------");
+        usernameLabel.setText("------");
+        lastloginLabel.setText("------");
+        banLabel.setText("N/A");
+    }
+    private void showSelectedStudent(RegisterModel registerModel) {
+        String url = Objects.requireNonNull(getClass().getResource("/images/" + registerModel.getImage())).toExternalForm();
+        image.setImage(new Image(url)); //Set image url
+
+        nameLabel.setText(registerModel.getName());
+        surnameLabel.setText(registerModel.getSurname());
+        usernameLabel.setText(registerModel.getUsername());
+        lastloginLabel.setText(registerModel.getTime());
 //        image.setImage(card.setImage());
 //        banLabel.setText(card);
 //        usernameLabel.setText(String.format("%.2f", card.getCumulativePurchase()));
