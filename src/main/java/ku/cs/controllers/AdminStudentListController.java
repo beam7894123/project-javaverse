@@ -37,6 +37,7 @@ public class AdminStudentListController {
         dataSource = new AdminReadFile("filescsv","register.csv");
         list = dataSource.readData();
         //READ FILE END
+
         showStudentListView(list);
         clearSelectedStudent();
         handleSelectedListView();
@@ -62,9 +63,9 @@ public class AdminStudentListController {
 // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE //
 //    @FXML private ListView<RegisterModel> studentListView; //OLD CODE (LISTVIEW)
     @FXML private TableView<RegisterModel> listTable;
-    @FXML private TableColumn<RegisterModel , String> listTable_LastLogin;
-    @FXML private TableColumn<RegisterModel , String> listTable_Name;
-    @FXML private TableColumn<RegisterModel , String> listTable_Surname;
+    @FXML private TableColumn<AdminModels , String> listTable_LastLogin;
+    @FXML private TableColumn<AdminModels , String> listTable_Name;
+    @FXML private TableColumn<AdminModels , String> listTable_Surname;
 
     private void showStudentListView(RegisterList list) {
         //OLD CODE (LISTVIEW)
@@ -73,13 +74,18 @@ public class AdminStudentListController {
 
         // ArrayList >> ObservableList
         ObservableList<RegisterModel> TEMP = FXCollections.observableArrayList(
-//                new RegisterModel("aaaa","dsd","sdasd") //test list
                 list.getAllCards()
         );
 
         listTable_Name.setCellValueFactory(new PropertyValueFactory<>("name"));
         listTable_Surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
-        listTable_LastLogin.setCellValueFactory(new PropertyValueFactory<>("time"));
+        listTable_LastLogin.setCellValueFactory(new PropertyValueFactory<>("image"));
+
+        listTable_Name.setReorderable(false);
+        listTable_Surname.setReorderable(false);
+        listTable_LastLogin.setReorderable(false);
+        listTable_Name.setSortable(false);
+        listTable_Surname.setSortable(false);
 
         listTable.setItems(TEMP);
         listTable.refresh();
