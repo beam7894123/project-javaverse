@@ -77,8 +77,6 @@ public class ReportWriteFile implements DataSource<ReportList> {
     }
 
 
-
-
     @Override
     public void writeData(ReportList reportList) {
         String filePath = fileDirectoryName + File.separator + fileName;
@@ -87,7 +85,7 @@ public class ReportWriteFile implements DataSource<ReportList> {
         BufferedWriter buffer = null;
         try {
             writer = new FileWriter(file,true);
-             buffer = new BufferedWriter(writer);
+            buffer = new BufferedWriter(writer);
             for (ReportModel reportModel : reportList.getReports()) {
                 String line = reportModel.getTopic() + ","
                         + reportModel.getDetail() + ","
