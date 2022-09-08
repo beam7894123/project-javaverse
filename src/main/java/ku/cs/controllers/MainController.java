@@ -37,14 +37,15 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        dataSource = new ReportWriteFile("data", "report.csv");
-//        reportList = dataSource.readData1();
+        dataSource = new ReportWriteFile("data", "report.csv");
+        reportList = dataSource.readData();
         showReportView();
         reportTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 showSelectedReport(newValue);
             }
-        });
+        }
+        );
     }
 
     private void showReportView() {
@@ -55,17 +56,19 @@ public class MainController implements Initializable {
         configs.add(new StringConfig("title:Topic","field:topic"));
         configs.add(new StringConfig("title:Status","field:status"));
         configs.add(new StringConfig("title:Score","field:voteScore"));
+        configs.add(new StringConfig("title:Date","field:date"));
 
         for (StringConfig conf: configs){
             TableColumn col = new TableColumn(conf.get("title"));
             col.setCellValueFactory(new PropertyValueFactory<>(conf.get("field")));
             reportTable.getColumns().add(col);
-        }
+
+        };
     }
 
     private void showSelectedReport(ReportModel reportModel){
 //        ไปหน้าใหม่และโชว์ detail ของ report (´;ω;)
-//        selectReport = reportModel;
+        selectReport = reportModel;
     }
 
     @FXML
