@@ -1,39 +1,76 @@
 package ku.cs.models;
 
-public class AdminModels extends RegisterModel{
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
-    private String ban;
+public class AdminModels extends RegisterModel implements Comparable<AdminModels> {
 
-    public AdminModels(String name, String surname, String username, String password, String confirmPassword, String date, String time, String fileName, String ban) {
-        super(name, surname, username, password, confirmPassword, date, time, fileName);
-        this.ban = ban;
+//    private String ban;
+    private String takeDateTime = getDate() + " " + getTime();
+    Locale locale = new Locale("en","en"); //SET LOCALE (if u sys is พศ. it will auto set to คศ. yay~ \^w^/ )
+    //(ps. this wont do the "M A G I C" if u CSV is พศ. sooo... not fixed? 'm')
+    //(ps2. so ok i know what to do now, just let SignIn page use this locale thing too! fixed! No more pollution data! 'w'b)
+    // https://nahmkahw.wordpress.com/2010/07/15/%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B8%81%E0%B8%B1%E0%B8%9A-date-%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87-java/
+    // ^^ useful when time are f up 'w'b
+    SimpleDateFormat timeFormat1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", locale);
+    private Date dateTime; // String --> Date
+    {
+        try {
+            dateTime = timeFormat1.parse(takeDateTime);
+        } catch (ParseException e) {
+            System.err.println("Time, Dr. Freeman?\n");
+            System.err.println("(look like your date is \"null\" or is mess up -w-)\n");
+            throw new RuntimeException(e);
+        }
     }
 
-    public AdminModels(String name, String surname, String username, String password, String date, String time, String ban) {
+    private String stringDateTime = timeFormat1.format(dateTime); //Date --> String
+    public String getStringDateTime() {
+        return stringDateTime;
+    }
+
+    public Date getDateTime() {
+        return dateTime;
+    }
+    public void setDateTime(Date datetime) {
+        this.dateTime = datetime;
+    }
+    @Override
+    public int compareTo(AdminModels o) {
+        if (getDateTime() == null || o.getDateTime() == null)
+            return 0;
+        return getDateTime().compareTo(o.getDateTime());
+    }
+
+
+    public AdminModels(String name, String surname, String username, String password, String confirmPassword, String date, String time, String fileNameImage) {
+        super(name, surname, username, password, confirmPassword, date, time, fileNameImage);
+    }
+    public AdminModels(String name, String surname, String username, String password, String date, String time) {
         super(name, surname, username, password, date, time);
-        this.ban = ban;
     }
 
-    public String getBan() {
-        return ban;
-    }
-
-    public void setBan(String ban) {
-        this.ban = ban;
-    }
+//    public AdminModels(String name, String surname, String username, String password, String confirmPassword, String image, String date, String time, Date datetime) {
+//        super(name, surname, username, password, confirmPassword, date, time, image);
+//        this.dateTime = datetime;
+//    }
 
 
     @Override
     public String toString() {
-        return "RegisterModel{" +
+        return "AdminModels{" +
                 "name='" + getName() + '\'' +
                 ", surname='" + getSurname() + '\'' +
                 ", username='" + getUsername() + '\'' +
                 ", password='" + getPassword() + '\'' +
-                ", Date ='" + getTime() + '\'' +
-                ", time='" + getImage() + '\'' +
+                ", image='" + getImage() + '\'' +
+                ", date='" + getDate() + '\'' +
+                ", time='" + getTime() + '\'' +
+                "takeDateTime='" + takeDateTime + '\'' +
+                ", locale=" + locale +
+                ", dateTime=" + dateTime +
+                ", stringDateTime='" + stringDateTime + '\'' +
                 '}';
     }
-
-
 }

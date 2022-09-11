@@ -12,29 +12,33 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import ku.cs.models.RegisterList;
-import ku.cs.models.RegisterModel;
+import ku.cs.models.AdminList;
+import ku.cs.models.AdminModels;
+import ku.cs.services.AdminReadFile;
 import ku.cs.services.DataSource;
-import ku.cs.services.RegisterWriteFile;
 
 
 import java.io.IOException;
-import java.util.Objects;
+import java.util.*;
 
 public class AdminStudentListController {
 
     @FXML private Label nameLabel, surnameLabel, usernameLabel, lastloginLabel, banLabel;
     @FXML private ImageView image;
-    private DataSource<RegisterList> dataSource;
-    private RegisterList list;
+    private DataSource<AdminList> dataSource;
+    private AdminList list;
+
 
 // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE //
     @FXML public void initialize(){
-
-        //READ FILE (Borrow RegisterWriteFile)
-        dataSource = new RegisterWriteFile("filescsv","register.csv");
+        //READ FILE
+        dataSource = new AdminReadFile("filescsv","register.csv");
         list = dataSource.readData();
         //READ FILE END
+
+//        System.out.println(list.getAllCards().get(1)); //Test read
+//        System.out.println(list.getAllCards().get(1).getdate() + list.getAllCards().get(1).getTime()); //Test day+time read
+//        System.out.println(list.getAllCards().get(1).getDateTime()); //Test datetime read
 
         showStudentListView(list);
         clearSelectedStudent();
@@ -50,40 +54,44 @@ public class AdminStudentListController {
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
-// TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE //
+    // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE //
 //    @FXML private ListView<RegisterModel> studentListView; //OLD CODE (LISTVIEW)
-    @FXML private TableView<RegisterModel> listTable;
-    @FXML private TableColumn<RegisterModel , String> listTable_LastLogin;
-    @FXML private TableColumn<RegisterModel , String> listTable_Name;
-    @FXML private TableColumn<RegisterModel , String> listTable_Surname;
+    @FXML private TableView<AdminModels> listTable;
+    @FXML private TableColumn<AdminModels, String> listTable_LastLogin;
+    @FXML private TableColumn<AdminModels , String> listTable_Name;
+    @FXML private TableColumn<AdminModels , String> listTable_Surname;
 
-    private void showStudentListView(RegisterList list) {
+    private void showStudentListView(AdminList list) {
         //OLD CODE (LISTVIEW)
 //        studentListView.getItems().addAll(list.getAllCards());
 //        studentListView.refresh();
 
         // ArrayList >> ObservableList
-        ObservableList<RegisterModel> TEMP = FXCollections.observableArrayList(
+        ObservableList<AdminModels> TEMP = FXCollections.observableArrayList(
                 list.getAllCards()
         );
 
-        listTable_Name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        listTable_Surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
-        listTable_LastLogin.setCellValueFactory(new PropertyValueFactory<>("date"));
+        listTable_Name.setCellValueFactory(new PropertyValueFactory("name"));
+        listTable_Surname.setCellValueFactory(new PropertyValueFactory("surname"));
+        listTable_LastLogin.setCellValueFactory(new PropertyValueFactory("stringDateTime"));
+        listTable.setItems(TEMP);
 
+        //Anti Tamper code XD // Anti Tamper code XD // Anti Tamper code XD //
         listTable_Name.setReorderable(false);
         listTable_Surname.setReorderable(false);
         listTable_LastLogin.setReorderable(false);
         listTable_Name.setSortable(false);
         listTable_Surname.setSortable(false);
+        //Anti Tamper code END // Anti Tamper code END // Anti Tamper code END //
 
-        listTable.setItems(TEMP);
+        //Sorter @m@" //Sorter @m@" //Sorter @m@" //Sorter @m@" //
+        Collections.sort(TEMP); //Sort small --> big
+        Collections.reverse(TEMP);//reverse from "small --> big" --> "big --> small"
+//      listTable_LastLogin.setSortType(TableColumn.SortType.DESCENDING);
+//      listTable.getSortOrder().add(listTable_LastLogin);
+        //Sorter END //Sorter END //Sorter END //Sorter END
 
-        //Sort
-        listTable_LastLogin.setSortType(TableColumn.SortType.DESCENDING);
-        listTable.getSortOrder().add(listTable_LastLogin);
-
-        listTable.refresh();
+        listTable.refresh(); //Fix every unexpected error ^w^b 555
 
     }
 
@@ -93,10 +101,10 @@ public class AdminStudentListController {
     private void handleSelectedListView() {
         //OLD CODE + New Code (LISTVIEW)
         listTable.getSelectionModel().selectedItemProperty().addListener(
-                new ChangeListener<RegisterModel>() {
+                new ChangeListener<AdminModels>() {
                     @Override
-                    public void changed(ObservableValue<? extends RegisterModel> observable,
-                                        RegisterModel oldValue, RegisterModel newValue) {
+                    public void changed(ObservableValue<? extends AdminModels> observable,
+                                        AdminModels oldValue, AdminModels newValue) {
                         System.out.println(newValue + " is selected");
                         showSelectedStudent(newValue);
                     }
@@ -113,14 +121,14 @@ public class AdminStudentListController {
         lastloginLabel.setText("------");
         banLabel.setText("N/A");
     }
-    private void showSelectedStudent(RegisterModel registerModel) {
-        String url = Objects.requireNonNull(getClass().getResource("/images/" + registerModel.getImage())).toExternalForm();
+    private void showSelectedStudent(AdminModels adminModels) {
+        String url = Objects.requireNonNull(getClass().getResource("/images/" + adminModels.getImage())).toExternalForm();
         image.setImage(new Image(url)); //Set image url
 
-        nameLabel.setText(registerModel.getName());
-        surnameLabel.setText(registerModel.getSurname());
-        usernameLabel.setText(registerModel.getUsername());
-        lastloginLabel.setText(registerModel.getTime());
+        nameLabel.setText(adminModels.getName());
+        surnameLabel.setText(adminModels.getSurname());
+        usernameLabel.setText(adminModels.getUsername());
+        lastloginLabel.setText(adminModels.getTime());
 //        image.setImage(card.setImage());
 //        banLabel.setText(card);
 //        usernameLabel.setText(String.format("%.2f", card.getCumulativePurchase()));
