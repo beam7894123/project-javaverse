@@ -106,6 +106,7 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
         reader.close();
     }
 
+
     public RegisterList Read() {
         try {
             readCustomer();

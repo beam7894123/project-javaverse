@@ -1,10 +1,8 @@
 package ku.cs.services;
 
-import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import ku.cs.controllers.SignInController;
 import ku.cs.models.RegisterList;
 import com.github.saacsos.FXRouter;
 import java.io.*;
@@ -19,6 +17,7 @@ public class SignInWriteFile {
     private String password;
     private String strUsername;
     private String strPassword;
+    private String usernameText;
 
     public SignInWriteFile(String directory, String fileName, String username, String password) {
         this.directory = directory;
@@ -70,7 +69,7 @@ public class SignInWriteFile {
                 System.err.println("ไปที่หน้าhome ไม่ได้");
                 System.err.println("ให้ตรวจสอบการกําหนดroute");
             }
-        }else if (registerList.UserCheck(registerList,usernameTextfield,passwordPasswordfield)) {
+        }else if (registerList.userCheck(registerList,usernameTextfield,passwordPasswordfield)) {
             strUsername = usernameTextfield.getText();
             strPassword = passwordPasswordfield.getText();
             SignInWriteFile signInWriteFile = new SignInWriteFile("filescsv","register.csv",strUsername,strPassword);
@@ -83,6 +82,8 @@ public class SignInWriteFile {
                 System.err.println("ไปที่หน้า main ไม่ได้");
                 System.err.println("ให้ตรวจสอบการกําหนดroute");
             }
+            usernameText =  usernameTextfield.getText();
+            System.out.println(usernameText);
 
         }
 
