@@ -22,39 +22,12 @@ import java.io.IOException;
 import java.util.*;
 
 public class AdminStudentListController {
-
     @FXML private Label nameLabel, surnameLabel, usernameLabel, lastloginLabel, banLabel;
     @FXML private ImageView image;
     private DataSource<AdminList> dataSource;
     private AdminList list;
 
-
-// INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE //
-    @FXML public void initialize(){
-        //READ FILE
-        dataSource = new AdminReadFile("filescsv","register.csv");
-        list = dataSource.readData();
-        //READ FILE END
-
-//        System.out.println(list.getAllCards().get(1)); //Test read
-//        System.out.println(list.getAllCards().get(1).getdate() + list.getAllCards().get(1).getTime()); //Test day+time read
-//        System.out.println(list.getAllCards().get(1).getDateTime()); //Test datetime read
-
-        showStudentListView(list);
-        clearSelectedStudent();
-        handleSelectedListView();
-    }
-// INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE //
-
-    @FXML public void handleBackButtonClick(ActionEvent actionEvent){
-        try {
-            com.github.saacsos.FXRouter.goTo("admin");
-        } catch (IOException e) {
-            System.err.println("ไปที่หน้า admin.fxml ไม่ได้");
-            System.err.println("ให้ตรวจสอบการกําหนดroute");
-        }
-    }
-    // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE //
+// TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE //
 //    @FXML private ListView<RegisterModel> studentListView; //OLD CODE (LISTVIEW)
     @FXML private TableView<AdminModels> listTable;
     @FXML private TableColumn<AdminModels, String> listTable_LastLogin;
@@ -97,7 +70,14 @@ public class AdminStudentListController {
 
 // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE //
 
-
+    @FXML public void handleBackButtonClick(ActionEvent actionEvent){
+        try {
+            com.github.saacsos.FXRouter.goTo("admin");
+        } catch (IOException e) {
+            System.err.println("ไปที่หน้า admin.fxml ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกําหนดroute");
+        }
+    }
     private void handleSelectedListView() {
         //OLD CODE + New Code (LISTVIEW)
         listTable.getSelectionModel().selectedItemProperty().addListener(
@@ -133,4 +113,22 @@ public class AdminStudentListController {
 //        banLabel.setText(card);
 //        usernameLabel.setText(String.format("%.2f", card.getCumulativePurchase()));
     }
+
+
+// INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE //
+    @FXML public void initialize(){
+        //READ FILE
+        dataSource = new AdminReadFile("filescsv","register.csv");
+        list = dataSource.readData();
+        //READ FILE END
+
+//        System.out.println(list.getAllCards().get(1)); //Test read
+//        System.out.println(list.getAllCards().get(1).getdate() + list.getAllCards().get(1).getTime()); //Test day+time read
+//        System.out.println(list.getAllCards().get(1).getDateTime()); //Test datetime read
+
+        showStudentListView(list);
+        clearSelectedStudent();
+        handleSelectedListView();
+    }
+// INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE //
 }
