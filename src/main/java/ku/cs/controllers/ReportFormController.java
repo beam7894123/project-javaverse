@@ -1,37 +1,36 @@
 package ku.cs.controllers;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.layout.HBox;
 import ku.cs.models.*;
 import ku.cs.services.DataSource;
-import ku.cs.services.RegisterWriteFile;
 import ku.cs.services.ReportWriteFile;
 import com.github.saacsos.FXRouter;
+import ku.cs.models.ReportModel;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
 
 public class ReportFormController {
+    LocalDateTime localDateTime = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy hh:mm:ss");
+    String timeReport = localDateTime.format(formatter);
     @FXML
-    private TextField topicField,detailField,authorField;
+    private TextField topicField,detailField;
     private DataSource<ReportList> dataSource;
     public ReportList reportList;
     private ReportModel reportModel;
-    @FXML ComboBox<String> categoryBox;
+    @FXML ChoiceBox<String> categoryButton;
     private DataSource write = new ReportWriteFile("filescsv", "report.csv");
 
     @FXML public void initialize() {
         dataSource = new ReportWriteFile("filescsv", "report.csv");
         reportList = new ReportList();
-        categoryBox.setItems(FXCollections.observableArrayList("Person","Facilities","Building",
+        categoryButton.setItems(FXCollections.observableArrayList("Person","Facilities","Building",
                 "Learning/Lesson","Traffic/Transport"));
-        authorField.setText("your name");
     }
 
 
@@ -39,7 +38,7 @@ public class ReportFormController {
     public void handleSubmitButton(ActionEvent actionEvent){
         try {
             ReportModel reportModel = new ReportModel(topicField.getText(),detailField.getText(),1,
-                    categoryBox.getValue(),String.valueOf(LocalDateTime.now()),authorField.getText());
+                    categoryButton.getValue(),timeReport,null);
             reportList.addReport(reportModel);
             write.writeData(reportList);
             System.out.println("Do write file");

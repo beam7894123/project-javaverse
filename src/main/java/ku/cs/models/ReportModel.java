@@ -18,7 +18,7 @@ public class ReportModel {
     public ReportModel(String topic, String detail, Integer voteScore, String category, String dateTime, String authorName) {
         this.topic = topic;
         this.detail = detail;
-        this.voteScore = 0;
+        this.voteScore = voteScore;
         this.category = category;
         this.dateTime = dateTime;
         this.authorName =  authorName;
