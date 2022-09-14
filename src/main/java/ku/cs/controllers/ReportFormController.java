@@ -17,7 +17,7 @@ import java.time.format.DateTimeFormatter;
 
 public class ReportFormController {
     LocalDateTime localDateTime = LocalDateTime.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     String timeReport = localDateTime.format(formatter);
     @FXML
     private TextField topicField,detailField;
