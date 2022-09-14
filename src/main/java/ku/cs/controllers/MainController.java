@@ -1,5 +1,6 @@
 package ku.cs.controllers;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,42 +31,49 @@ public class MainController implements Initializable {
     @FXML private TableColumn<ReportModel,String> topicName;
     @FXML private TableColumn<ReportModel, String> status;
     @FXML private TableColumn<ReportModel, Integer> voteScore;
+    @FXML private TableColumn<ReportModel, String> dateTime;
+
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
     private ObservableList<ReportModel> reportObservableList;
     private ReportModel selectReport;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        dataSource = new ReportWriteFile("data", "report.csv");
-//        reportList = dataSource.readData1();
+        dataSource = new ReportWriteFile("filescsv", "report.csv");
+        reportList = dataSource.readData();
         showReportView();
         reportTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 showSelectedReport(newValue);
             }
-        });
+        }
+        );
+
     }
 
     private void showReportView() {
         reportObservableList = FXCollections.observableArrayList(reportList.getReports());
         reportTable.setItems(reportObservableList);
-
         ArrayList<StringConfig> configs = new ArrayList<>();
         configs.add(new StringConfig("title:Topic","field:topic"));
-        configs.add(new StringConfig("title:Status","field:status"));
+        configs.add(new StringConfig("title:Detail","field:detail"));
         configs.add(new StringConfig("title:Score","field:voteScore"));
-
+        configs.add(new StringConfig("title:Category","field:category"));
+        configs.add(new StringConfig("title:Date","field:dateTime"));
+        configs.add(new StringConfig("title:Author","field:authorName"));
+        configs.add(new StringConfig("title:Status","field:status"));
         for (StringConfig conf: configs){
             TableColumn col = new TableColumn(conf.get("title"));
             col.setCellValueFactory(new PropertyValueFactory<>(conf.get("field")));
             reportTable.getColumns().add(col);
-        }
+        };
     }
 
     private void showSelectedReport(ReportModel reportModel){
 //        ไปหน้าใหม่และโชว์ detail ของ report (´;ω;)
-//        selectReport = reportModel;
+        selectReport = reportModel;
     }
 
     @FXML
@@ -73,7 +81,7 @@ public class MainController implements Initializable {
         try {
             FXRouter.goTo("addreport");
         } catch (IOException e) {
-            System.err.println("ไปที่หน้าhome ไม่ได้");
+            System.err.println("ไปที่หน้า report ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
@@ -107,7 +115,8 @@ public class MainController implements Initializable {
 
     @FXML
     public void sortByDate(ActionEvent actionEvent){
-//        Collections.sort(allDate,new sortItems()); รอสร้าง allDate เป็น list ของวันทั้งหมด (´;ω;)
+//        Collections.sort(allDate,new sortItems());
+//        รอสร้าง allDate เป็น list ของวันทั้งหมด (´;ω;)
     }
 
     @FXML

@@ -10,6 +10,7 @@ public class ReportModel {
     private String category;
     private String dateTime;
     private String authorName;
+    private ReportModel reportModel;
 
     LocalDateTime localDateTime = LocalDateTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy hh:mm:ss");
@@ -18,7 +19,7 @@ public class ReportModel {
     public ReportModel(String topic, String detail, Integer voteScore, String category, String dateTime, String authorName) {
         this.topic = topic;
         this.detail = detail;
-        this.voteScore = 0;
+        this.voteScore = voteScore;
         this.category = category;
         this.dateTime = dateTime;
         this.authorName =  authorName;
