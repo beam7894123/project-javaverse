@@ -9,7 +9,7 @@ import ku.cs.services.DataSource;
 import ku.cs.services.ReportWriteFile;
 import com.github.saacsos.FXRouter;
 import ku.cs.models.ReportModel;
-
+import ku.cs.services.SignInWriteFile;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,6 +25,7 @@ public class ReportFormController {
     private ReportModel reportModel;
     @FXML ChoiceBox<String> categoryButton;
     private DataSource write = new ReportWriteFile("filescsv", "report.csv");
+    String usernameText = "";
 
     @FXML public void initialize() {
         dataSource = new ReportWriteFile("filescsv", "report.csv");
@@ -37,8 +38,9 @@ public class ReportFormController {
     @FXML
     public void handleSubmitButton(ActionEvent actionEvent){
         try {
+
             ReportModel reportModel = new ReportModel(topicField.getText(),detailField.getText(),1,
-                    categoryButton.getValue(),timeReport,null);
+                    timeReport,categoryButton.getValue(),"null");
             reportList.addReport(reportModel);
             write.writeData(reportList);
             System.out.println("Do write file");

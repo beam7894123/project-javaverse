@@ -31,14 +31,17 @@ public class MainController implements Initializable {
     @FXML private TableColumn<ReportModel,String> topicName;
     @FXML private TableColumn<ReportModel, String> status;
     @FXML private TableColumn<ReportModel, Integer> voteScore;
+    @FXML private TableColumn<ReportModel, String> dateTime;
+
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
     private ObservableList<ReportModel> reportObservableList;
     private ReportModel selectReport;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        dataSource = new ReportWriteFile("data", "report.csv");
+        dataSource = new ReportWriteFile("filescsv", "report.csv");
         reportList = dataSource.readData();
         showReportView();
         reportTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -47,6 +50,7 @@ public class MainController implements Initializable {
             }
         }
         );
+
     }
 
     private void showReportView() {
@@ -54,10 +58,13 @@ public class MainController implements Initializable {
         reportTable.setItems(reportObservableList);
 
         ArrayList<StringConfig> configs = new ArrayList<>();
-        configs.add(new StringConfig("title:Topic","field:topic"));
-        configs.add(new StringConfig("title:Status","field:status"));
-        configs.add(new StringConfig("title:Score","field:voteScore"));
-        configs.add(new StringConfig("title:Date","field:date"));
+        configs.add(new StringConfig("title:Topic","field:reportTopic"));
+        configs.add(new StringConfig("title:Detail","field:reportDetail"));
+        configs.add(new StringConfig("title:Score","field:reportVoteScore"));
+        configs.add(new StringConfig("title:Category","field:reportCategory"));
+        configs.add(new StringConfig("title:Date","field:dateTime"));
+        configs.add(new StringConfig("title:Author","field:authorName"));
+        configs.add(new StringConfig("title:Status","field:reportStatus"));
         for (StringConfig conf: configs){
             TableColumn col = new TableColumn(conf.get("title"));
             col.setCellValueFactory(new PropertyValueFactory<>(conf.get("field")));

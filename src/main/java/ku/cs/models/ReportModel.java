@@ -10,6 +10,7 @@ public class ReportModel {
     private String category;
     private String dateTime;
     private String authorName;
+    private ReportModel reportModel;
 
     LocalDateTime localDateTime = LocalDateTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy hh:mm:ss");
