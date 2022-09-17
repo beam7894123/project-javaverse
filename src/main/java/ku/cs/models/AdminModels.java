@@ -14,18 +14,24 @@ public class AdminModels extends RegisterModel implements Comparable<AdminModels
     // https://nahmkahw.wordpress.com/2010/07/15/%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B8%81%E0%B8%B1%E0%B8%9A-date-%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87-java/
     // ^^ useful when time are f up 'w'b
     SimpleDateFormat timeFormat1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", locale);
+    private final Date defaultdateTime; {try {defaultdateTime = timeFormat1.parse("01-01-2000 00:00:00");} catch (ParseException e) {throw new RuntimeException(e);}}
     private Date dateTime; // String --> Date
     {
         try {
             dateTime = timeFormat1.parse(takeDateTime);
         } catch (ParseException e) {
-            System.err.println("Time, Dr. Freeman?\n");
-            System.err.println("(look like your date is \"null\" or is mess up -w-)\n");
-            throw new RuntimeException(e);
+            System.err.println("\n!!TIME CONVERTER(v.2) ERROR!!");
+            System.err.println("Time, Dr. Freeman?");
+            System.err.println("Look like user date " + "\"" + getName()+ " " + getSurname() + "\"" + " is mess up -w-");
+            System.err.println("Here input is: " + takeDateTime + "");
+//          takeDateTime = "00-00-0000 00:00:00";
+            dateTime = defaultdateTime;
+            System.out.println("Continue running...\n");
+//          dateTime = new GregorianCalendar(2000, 2, 1).getTime();
+//          throw new RuntimeException(e);
         }
     }
-
-    private String stringDateTime = timeFormat1.format(dateTime); //Date --> String
+    private final String stringDateTime = timeFormat1.format(dateTime); //Date --> String
     public String getStringDateTime() {
         return stringDateTime;
     }
