@@ -24,6 +24,7 @@ public class ProjectApplication extends Application {
         FXRouter.when("signIn",packageStr+"signIn.fxml","Javaverse | Login");
         FXRouter.when("main",packageStr+"main.fxml","Javaverse | main",1024,746);
         FXRouter.when("addreport",packageStr+"report_form.fxml","Javaverse | Report",800,670);
+        FXRouter.when("profile",packageStr+"profile.fxml","Javaverse | Profile");
 
         //ADMIN
         FXRouter.when("admin",packageStr+"admin.fxml","Javaverse | ADMIN ONLY | Main");

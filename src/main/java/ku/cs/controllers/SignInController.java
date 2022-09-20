@@ -27,6 +27,7 @@ public class SignInController {
     public static String StrUserID;
     private String receive;
     private SignInWriteFile signInWriteFile;
+    public static String loginUser;
 
     
 
@@ -36,7 +37,7 @@ public class SignInController {
 //        registerWriteFile = new RegisterWriteFile("filescsv","register.csv");
         registerList = new RegisterList();
         registerWriteFile = new RegisterWriteFile("filescsv","register.csv");
-        System.out.println(registerList.getAllCards());
+//        System.out.println(registerList.getAllCards());
 
 
     }
@@ -47,6 +48,7 @@ public class SignInController {
         signInWriteFile = new SignInWriteFile("filescsv","register.csv",usernameTextfield.getText(),passwordPasswordfield.getText());
 //        signInWriteFile.SignInRecieveReadFile();
         signInWriteFile.checkConfirmsignIn(registerList,usernameTextfield,passwordPasswordfield,loginChecker);
+        loginUser = usernameTextfield.getText();
 
     }
     @FXML

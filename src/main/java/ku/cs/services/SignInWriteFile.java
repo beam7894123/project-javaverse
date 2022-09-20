@@ -19,6 +19,7 @@ public class SignInWriteFile {
     private String password;
     private String strUsername;
     private String strPassword;
+    String usernameText;
 
     public SignInWriteFile(String directory, String fileName, String username, String password) {
         this.directory = directory;
@@ -83,6 +84,8 @@ public class SignInWriteFile {
                 System.err.println("ไปที่หน้า main ไม่ได้");
                 System.err.println("ให้ตรวจสอบการกําหนดroute");
             }
+            usernameText =  usernameTextfield.getText();
+            System.out.println(usernameText);
 
         }
 

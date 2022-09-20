@@ -27,5 +27,5 @@ public class AdminStaffListController {
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    private Label nameLable, surnameLable, usernameLable, lastloginLable, departmentLable;
+    @FXML private Label nameLable, surnameLable, usernameLable, lastloginLable, departmentLable;
 }

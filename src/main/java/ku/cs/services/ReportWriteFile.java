@@ -58,7 +58,7 @@ public class ReportWriteFile implements DataSource<ReportList> {
                 String[] data = line.split(",");
                 ReportModel reportModel = new ReportModel(data[0].trim(),
                         data[1].trim(),Integer.parseInt(data[2].trim()),
-                        data[3].trim(),data[4].trim(),data[5]); // obj
+                        data[3].trim(),data[4].trim(),data[5].trim()); // obj
                 reportList.addReport(reportModel);
             }
         } catch (FileNotFoundException e) {
@@ -77,8 +77,6 @@ public class ReportWriteFile implements DataSource<ReportList> {
     }
 
 
-
-
     @Override
     public void writeData(ReportList reportList) {
         String filePath = fileDirectoryName + File.separator + fileName;
@@ -87,7 +85,7 @@ public class ReportWriteFile implements DataSource<ReportList> {
         BufferedWriter buffer = null;
         try {
             writer = new FileWriter(file,true);
-             buffer = new BufferedWriter(writer);
+            buffer = new BufferedWriter(writer);
             for (ReportModel reportModel : reportList.getReports()) {
                 String line = reportModel.getTopic() + ","
                         + reportModel.getDetail() + ","
