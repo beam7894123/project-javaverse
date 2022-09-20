@@ -64,7 +64,7 @@ public class SignInWriteFile {
     }
 
     public void checkConfirmsignIn(RegisterList registerList,TextField usernameTextfield,PasswordField passwordPasswordfield,Label loginChecker){
-        if(usernameTextfield.equals("admin")&&passwordPasswordfield.equals("admin")){
+        if(username.equals("admin")&&password.equals("admin")){
             try {
                 FXRouter.goTo("admin");
             } catch (IOException e) {
