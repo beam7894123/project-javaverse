@@ -115,7 +115,12 @@ public class MainController implements Initializable {
 
     @FXML
     public void sortByDate(ActionEvent actionEvent){
-//        Collections.sort(allDate,new sortItems());
+        Collections.sort(reportObservableList, new Comparator<ReportModel>() {
+            @Override
+            public int compare(ReportModel o1, ReportModel o2) {
+                return o1.getDateTime().compareTo(o2.getDateTime());
+            }
+        });
 //        รอสร้าง allDate เป็น list ของวันทั้งหมด (´;ω;)
     }
 
@@ -129,4 +134,8 @@ public class MainController implements Initializable {
                 return score1.compareTo(score2);
             }});
     }
+    @FXML
+    public boolean sortByLesson(ActionEvent actionEvent) {
+        return reportObservableList.contains((String)"Learning/Lesson");
+}
 }
