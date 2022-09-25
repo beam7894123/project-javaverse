@@ -19,7 +19,6 @@ public class RegisterList  {
     }
     public ArrayList<RegisterModel> getAllCards() {
         return registerModelArrayList;}
-
     public void setRegisterModelArrayList(ArrayList<RegisterModel> registerModelArrayList) { // login
         this.registerModelArrayList = registerModelArrayList;
     }
@@ -35,4 +34,5 @@ public class RegisterList  {
         }
         return false;
     }
+
 }

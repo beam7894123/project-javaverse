@@ -31,11 +31,11 @@
             <TableColumn prefWidth="217.0" text="รายชื่อ" />
          </columns>
       </TableView>
-      <Label fx:id="nameLable" layoutX="292.0" layoutY="231.0" text="nameLable" />
-      <Label fx:id="surnameLable" layoutX="604.0" layoutY="231.0" text="surnameLable" />
-      <Label fx:id="usernameLable" layoutX="349.0" layoutY="292.0" text="usernameLable" />
-      <Label fx:id="lastloginLable" layoutX="643.0" layoutY="292.0" text="lastloginLable" />
+      <Label fx:id="nameLabel" layoutX="292.0" layoutY="231.0" text="nameLable" />
+      <Label fx:id="surnameLabel" layoutX="604.0" layoutY="231.0" text="surnameLable" />
+      <Label fx:id="usernameLabel" layoutX="349.0" layoutY="292.0" text="usernameLable" />
+      <Label fx:id="lastloginLabel" layoutX="643.0" layoutY="292.0" text="lastloginLable" />
       <Label layoutX="425.0" layoutY="373.0" text="หน่วยงาน" />
-      <Label fx:id="departmentLable" layoutX="505.0" layoutY="373.0" text="departmentLable" />
+      <Label fx:id="departmentLabel" layoutX="505.0" layoutY="373.0" text="departmentLable" />
    </children>
 </AnchorPane>

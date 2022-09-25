@@ -55,10 +55,10 @@ public class AdminReadFile implements DataSource<RegisterList>{
                 RegisterModel card = new RegisterModel(
                         data[0].trim(),
                         data[1].trim(),
-                        data[2].trim(),
-                        data[3].trim(),
-                        data[4].trim(),
-                        data[5].trim()
+                        data[2].trim()
+//                        data[3].trim(),
+//                        data[4].trim(),
+//                        data[5].trim()
 
                 );
                 list.addStudent(card);
