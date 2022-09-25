@@ -36,6 +36,11 @@ public class RegisterModel {
         this.image = fileNameImage;
         System.out.println(image);
     }
+    public RegisterModel(String name ,String surname,String time){
+        this.name = name;
+        this.surname = surname;
+        this.time = time;
+    }
     public RegisterModel(String name, String surname, String username, String password,String date,String time,String fileNameImage) {
         this.name = name;
         this.surname = surname;

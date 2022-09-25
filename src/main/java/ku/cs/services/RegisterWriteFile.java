@@ -36,25 +36,25 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
     public RegisterWriteFile(String directoryName, String fileName) {
       this.directoryName = directoryName;
       this.fileName = fileName;
-      checkFileIsExisted();
+//      checkFileIsExisted();
       registerList = new RegisterList();
     }
-    private void checkFileIsExisted(){
-        // ถูกเรียกตอน constructor
-        File file = new File(directoryName);
-        if (!file.exists()){// exist ใช้บอกว่าเช็คว่ามีไฟลื
-            file.mkdirs(); // mkdir คือจะสร้าง folder เดียวไม่สร้าง parent ให้ เเต่ถ้าเป็น mkdires มันจะสร้างให้
-        }
-        String filePath = directoryName+fileName;
-        file = new File(filePath);
-        if (!file.exists()){
-            try { // เราจัดการเองเลย
-                file.createNewFile(); // ถ้าไม่มีให้สร้างไฟล์ใหม่
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
+//    private void checkFileIsExisted(){
+//        // ถูกเรียกตอน constructor
+//        File file = new File(directoryName);
+//        if (!file.exists()){// exist ใช้บอกว่าเช็คว่ามีไฟลื
+//            file.mkdirs(); // mkdir คือจะสร้าง folder เดียวไม่สร้าง parent ให้ เเต่ถ้าเป็น mkdires มันจะสร้างให้
+//        }
+//        String filePath = directoryName+fileName;
+//        file = new File(filePath);
+//        if (!file.exists()){
+//            try { // เราจัดการเองเลย
+//                file.createNewFile(); // ถ้าไม่มีให้สร้างไฟล์ใหม่
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+//    }
     public Boolean checkUserName(RegisterList registerList,String usernameTextfield){
         for (RegisterModel registerModel: registerList.getAllCards()){
             if (registerModel.getUsername().equals(usernameTextfield)){
@@ -105,6 +105,7 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
         }
         reader.close();
     }
+
 
     public RegisterList Read() {
         try {
