@@ -4,10 +4,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class AdminModels extends RegisterModel implements Comparable<AdminModels> {
+public class AdminModels extends RegisterModel {
 
 //    private String ban;
-    private String takeDateTime = getDate() + " " + getTime();
+    private final String takeDateTime = getDate() + " " + getTime();
     Locale locale = new Locale("en","en"); //SET LOCALE (if u sys is พศ. it will auto set to คศ. yay~ \^w^/ )
     //(ps. this wont do the "M A G I C" if u CSV is พศ. sooo... not fixed? 'm')
     //(ps2. so ok i know what to do now, just let SignIn page use this locale thing too! fixed! No more pollution data! 'w'b)
@@ -42,13 +42,6 @@ public class AdminModels extends RegisterModel implements Comparable<AdminModels
     public void setDateTime(Date datetime) {
         this.dateTime = datetime;
     }
-    @Override
-    public int compareTo(AdminModels o) {
-        if (getDateTime() == null || o.getDateTime() == null)
-            return 0;
-        return getDateTime().compareTo(o.getDateTime());
-    }
-
 
     public AdminModels(String name, String surname, String username, String password, String confirmPassword, String date, String time, String fileNameImage) {
         super(name, surname, username, password, confirmPassword, date, time, fileNameImage);
@@ -73,7 +66,7 @@ public class AdminModels extends RegisterModel implements Comparable<AdminModels
                 ", image='" + getImage() + '\'' +
                 ", date='" + getDate() + '\'' +
                 ", time='" + getTime() + '\'' +
-                "takeDateTime='" + takeDateTime + '\'' +
+                ", takeDateTime='" + takeDateTime + '\'' +
                 ", locale=" + locale +
                 ", dateTime=" + dateTime +
                 ", stringDateTime='" + stringDateTime + '\'' +
