@@ -14,7 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import ku.cs.models.AdminList;
 import ku.cs.models.AdminModels;
-import ku.cs.models.SortList;
+import ku.cs.services.SortList;
 import ku.cs.services.AdminReadFile;
 import ku.cs.services.DataSource;
 

@@ -1,4 +1,6 @@
-package ku.cs.models;
+package ku.cs.services;
+
+import ku.cs.models.AdminModels;
 
 import java.util.Comparator;
 
