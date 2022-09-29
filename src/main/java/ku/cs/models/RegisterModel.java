@@ -5,13 +5,13 @@ import javafx.fxml.FXML;
 import java.util.ArrayList;
 
 public class RegisterModel {
-    private String name;
-    private String surname;
-    private String username;
+    private static String name;
+    private static String surname;
+    private static String username;
     private String password;
     private String confirmPassword;
     private String  image;
-    private String date;
+    private static String date;
     private String time;
 
 //    public RegisterModel(String name,String surname,String username,String password,String confirmPassword,String date,String time,String fileName){
@@ -56,7 +56,7 @@ public class RegisterModel {
         this.time = time;
     }
 
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
@@ -64,7 +64,7 @@ public class RegisterModel {
         this.name = name;
     }
 
-    public String getSurname() {
+    public static String getSurname() {
         return surname;
     }
 
@@ -72,7 +72,7 @@ public class RegisterModel {
         this.surname = surname;
     }
 
-    public String getUsername() {
+    public static String getUsername() {
         return username;
     }
 
@@ -96,7 +96,7 @@ public class RegisterModel {
         this.image = image;
     }
 
-    public String getDate() {
+    public static String getDate() {
         return date;
     }
 
