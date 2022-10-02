@@ -40,7 +40,7 @@ public class ReportFormController {
     public void handleSubmitButton(ActionEvent actionEvent){
         if(topicField.getText() != "" & detailField.getText() != "") {
             try {
-                ReportModel reportModel = new ReportModel(topicField.getText(), detailField.getText(), 1,
+                ReportModel reportModel = new ReportModel(topicField.getText(), detailField.getText(),1,
                         timeReport, categoryButton.getValue(), usernameText);
                 reportList.addReport(reportModel);
                 write.writeData(reportList);

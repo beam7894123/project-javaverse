@@ -14,7 +14,7 @@ public class AdminModels extends RegisterModel implements Comparable<AdminModels
     // https://nahmkahw.wordpress.com/2010/07/15/%E0%B8%9B%E0%B8%B1%E0%B8%8D%E0%B8%AB%E0%B8%B2%E0%B9%80%E0%B8%81%E0%B8%B5%E0%B9%88%E0%B8%A2%E0%B8%A7%E0%B8%81%E0%B8%B1%E0%B8%9A-date-%E0%B8%A3%E0%B8%B0%E0%B8%AB%E0%B8%A7%E0%B9%88%E0%B8%B2%E0%B8%87-java/
     // ^^ useful when time are f up 'w'b
     SimpleDateFormat timeFormat1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", locale);
-    private final Date defaultdateTime; {try {defaultdateTime = timeFormat1.parse("01-01-2000 00:00:00");} catch (ParseException e) {throw new RuntimeException(e);}}
+    private final Date defaultdateTime; {try {defaultdateTime = timeFormat1.parse("dd-MM-yyyy HH:mm:ss");} catch (ParseException e) {throw new RuntimeException(e);}}
     private Date dateTime; // String --> Date
     {
         try {
@@ -32,6 +32,11 @@ public class AdminModels extends RegisterModel implements Comparable<AdminModels
         }
     }
     private final String stringDateTime = timeFormat1.format(dateTime); //Date --> String
+
+    public AdminModels(String name, String surname, String username, String password, String date, String time, String fileNameImage) {
+        super(name, surname, username, password, date, time, fileNameImage);
+    }
+
     public String getStringDateTime() {
         return stringDateTime;
     }
@@ -50,12 +55,6 @@ public class AdminModels extends RegisterModel implements Comparable<AdminModels
     }
 
 
-    public AdminModels(String name, String surname, String username, String password, String confirmPassword, String date, String time, String fileNameImage) {
-        super(name, surname, username, password, confirmPassword, date, time, fileNameImage);
-    }
-    public AdminModels(String name, String surname, String username, String password, String date, String time) {
-        super(name, surname, username, password, date, time);
-    }
 
 //    public AdminModels(String name, String surname, String username, String password, String confirmPassword, String image, String date, String time, Date datetime) {
 //        super(name, surname, username, password, confirmPassword, date, time, image);

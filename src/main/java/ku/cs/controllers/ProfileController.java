@@ -21,7 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 
-public class ProfileController {
+public class ProfileController extends RegisterModel {
     @FXML private Label allName;
     @FXML private Label username;
     @FXML private Label date;
@@ -29,11 +29,25 @@ public class ProfileController {
     private RegisterList registerList;
     private RegisterModel register;
 
+    String usernameText = SignInController.loginUser;
+   String loginName = "name";
+   String loginSurname = "surname";
+
+
+
+    public ProfileController(String name, String surname, String username) {
+        super(name, surname, username);
+    }
+
+
+
+
+
     public void initialize(){
         dataSource = new RegisterWriteFile("filescsv","register.csv");
         registerList = dataSource.readData();
-        allName.setText(RegisterModel.getName() + " " + RegisterModel.getSurname());
-        username.setText(RegisterModel.getUsername());
+        allName.setText(loginName + " " + loginSurname);
+        username.setText(usernameText);
         date.setText(RegisterModel.getDate());
     }
 

@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class ReportModel {
-    private static String topic;
-    private static String detail;
-    private static Integer voteScore;
+    private String topic;
+    private String detail;
+    private Integer voteScore;
     private String category;
     private String dateTime;
     private String authorName;
@@ -33,7 +33,7 @@ public class ReportModel {
         this.authorName = authorName;
     }
 
-    public static String getTopic() {
+    public String getTopic() {
         return topic;
     }
 
@@ -41,7 +41,7 @@ public class ReportModel {
         this.topic = topic;
     }
 
-    public static String getDetail() {
+    public String getDetail() {
         return detail;
     }
 
@@ -49,7 +49,7 @@ public class ReportModel {
         this.detail = detail;
     }
 
-    public static Integer getVoteScore() {
+    public Integer getVoteScore() {
         return voteScore;
     }
 

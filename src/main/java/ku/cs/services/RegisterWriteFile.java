@@ -81,7 +81,7 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
             registerList.addStudent(registerModel);
             writeData(registerList);
             try {
-                FXRouter.goTo("main");
+                FXRouter.goTo("signIn");
             } catch (IOException e) {
                 System.err.println("ไปที่หน้าhome ไม่ได้");
                 System.err.println("ให้ตรวจสอบการกําหนดroute");
@@ -97,8 +97,8 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
         registerList = new RegisterList();
         while ((line = reader.readLine()) != null) {
             String[] data = line.split(",");
-            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[5].trim(),data[6].trim());
-            customer.setImage(data[4]);
+            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[5].trim(),data[6].trim());
+            customer.setImage(data[6].trim());
 //            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[5].trim()); // obj
 //            customer.setImage(data[6].trim());
             registerList.addStudent(customer);

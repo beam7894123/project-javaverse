@@ -7,6 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import com.github.saacsos.FXRouter;
 import ku.cs.models.RegisterList;
+import ku.cs.models.RegisterModel;
 import ku.cs.services.DataSource;
 import ku.cs.services.RegisterWriteFile;
 import ku.cs.services.SignInWriteFile;
@@ -21,13 +22,15 @@ public class SignInController {
     @FXML PasswordField passwordPasswordfield;
     private RegisterList control;
     public  String strUserID;
-    public  static String strUsername;
+    public  String strUsername;
     public  String strPassword;
     private RegisterList registerList;
-    public static String StrUserID;
+    public  String StrUserID;
     private String receive;
     private SignInWriteFile signInWriteFile;
     public static String loginUser;
+    public  String currentUserName;
+    public  String currentUserSurname;
 
     
 
@@ -49,6 +52,8 @@ public class SignInController {
 //        signInWriteFile.SignInRecieveReadFile();
         signInWriteFile.checkConfirmsignIn(registerList,usernameTextfield,passwordPasswordfield,loginChecker);
         loginUser = usernameTextfield.getText();
+//        currentUserName = RegisterModel.getName();
+//        currentUserSurname = RegisterModel.getSurname();
 
     }
     @FXML

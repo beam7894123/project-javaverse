@@ -36,8 +36,8 @@ public class AdminReadFile implements DataSource<AdminList>{
         adminList = new AdminList();
         while ((line = reader.readLine()) != null) {
             String[] data = line.split(",");
-            AdminModels customer = new AdminModels(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[5].trim(), data[6].trim());
-            customer.setImage(data[4]);
+            AdminModels customer = new AdminModels(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[5].trim(),data[6].trim());
+            customer.setImage(data[6].trim());
 //            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[5].trim()); // obj
 //            customer.setImage(data[6].trim());
             adminList.addStudent(customer);

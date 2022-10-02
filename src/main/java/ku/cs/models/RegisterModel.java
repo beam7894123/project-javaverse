@@ -5,9 +5,9 @@ import javafx.fxml.FXML;
 import java.util.ArrayList;
 
 public class RegisterModel {
-    private static String name;
-    private static String surname;
-    private static String username;
+    private String name;
+    private String surname;
+    private String username;
     private String password;
     private String confirmPassword;
     private String  image;
@@ -25,17 +25,6 @@ public class RegisterModel {
 //        this.image = fileName;
 //        System.out.println(image);
 //    }
-    public RegisterModel(String name, String surname, String username, String password,String confirmPassword,String date,String time,String fileNameImage) {
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.password = password;
-        this.confirmPassword = confirmPassword;
-        this.date = date;
-        this.time = time;
-        this.image = fileNameImage;
-        System.out.println(image);
-    }
     public RegisterModel(String name, String surname, String username, String password,String date,String time,String fileNameImage) {
         this.name = name;
         this.surname = surname;
@@ -47,16 +36,10 @@ public class RegisterModel {
         System.out.println(image);
     }
 
-    public RegisterModel(String name, String surname, String username, String password,String date,String time) {
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.password = password;
-        this.date = date;
-        this.time = time;
+    public RegisterModel(String name,String surname,String username) {
     }
 
-    public static String getName() {
+    public String getName() {
         return name;
     }
 
@@ -64,7 +47,7 @@ public class RegisterModel {
         this.name = name;
     }
 
-    public static String getSurname() {
+    public String getSurname() {
         return surname;
     }
 
@@ -72,7 +55,7 @@ public class RegisterModel {
         this.surname = surname;
     }
 
-    public static String getUsername() {
+    public  String getUsername() {
         return username;
     }
 
