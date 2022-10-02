@@ -23,7 +23,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="detailField" layoutX="56.0" layoutY="289.0" prefHeight="273.0" prefWidth="689.0" />
+      <TextField fx:id="detailField" alignment="TOP_LEFT" layoutX="56.0" layoutY="289.0" prefHeight="273.0" prefWidth="689.0" />
       <Label layoutX="56.0" layoutY="252.0" text="Details :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -34,7 +34,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="645.0" layoutY="609.0" mnemonicParsing="false" onAction="#handleSubmitButton" prefHeight="39.0" prefWidth="101.0" style="-fx-background-color: white;" text="Submit" textAlignment="JUSTIFY" textFill="#517af5">
+      <Button layoutX="695.0" layoutY="617.0" mnemonicParsing="false" onAction="#handleSubmitButton" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: white;" text="Submit" textAlignment="JUSTIFY" textFill="#517af5">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -42,7 +42,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ChoiceBox fx:id="categoryButton" layoutX="182.0" layoutY="579.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="categoryButton" centerShape="false" focusTraversable="false" layoutX="182.0" layoutY="579.0" pickOnBounds="false" prefHeight="25.0" prefWidth="172.0" scaleShape="false" style="-fx-background-color: white; -fx-mark-color: #5179f7;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ChoiceBox>
       <Label layoutX="323.0" layoutY="21.0" text="Report Form" textFill="#5179f7">
          <font>
             <Font name="System Bold" size="36.0" />
@@ -56,7 +59,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Button layoutX="537.0" layoutY="609.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="101.0" style="-fx-background-color: white;" text="Back" textAlignment="JUSTIFY" textFill="#517af5">
+      <Button layoutX="597.0" layoutY="617.0" mnemonicParsing="false" onAction="#handleBackButtonClick" prefHeight="39.0" prefWidth="91.0" style="-fx-background-color: white;" text="Back" textAlignment="JUSTIFY" textFill="#517af5">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

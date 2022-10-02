@@ -38,18 +38,30 @@ public class ReportFormController {
 
     @FXML
     public void handleSubmitButton(ActionEvent actionEvent){
-        try {
-
-            ReportModel reportModel = new ReportModel(topicField.getText(),detailField.getText(),1,
-                    timeReport,categoryButton.getValue(),usernameText);
-            reportList.addReport(reportModel);
-            write.writeData(reportList);
-            System.out.println("Do write file");
-            FXRouter.goTo("main");
-        } catch (IOException e) {
-            System.err.println("ไปที่หน้า main ไม่ได้");
-            System.err.println("ให้ตรวจสอบการกําหนดroute");
+        if(topicField.getText() != "" & detailField.getText() != "") {
+            try {
+                ReportModel reportModel = new ReportModel(topicField.getText(), detailField.getText(), 1,
+                        timeReport, categoryButton.getValue(), usernameText);
+                reportList.addReport(reportModel);
+                write.writeData(reportList);
+                System.out.println("Do write file");
+                FXRouter.goTo("main");
+            } catch (IOException e) {
+                System.err.println("ไปที่หน้า main ไม่ได้");
+                System.err.println("ให้ตรวจสอบการกําหนดroute");
+            }
+        }
+        else {
+            Alert text = new Alert(Alert.AlertType.WARNING,"PLEASE FILL THE FORM!!!"); text.show();
         }
     }
 
+    @FXML
+    public void handleBackButtonClick(ActionEvent actionEvent){
+        try {
+            FXRouter.goTo("main");
+        } catch (IOException e) {
+            System.err.println("ให้ตรวจสอบการกําหนดroute");
+        }
+    }
 }

@@ -12,44 +12,63 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import ku.cs.models.AdminList;
 import ku.cs.models.AdminModels;
-import ku.cs.models.RegisterList;
-import ku.cs.models.RegisterModel;
-import ku.cs.services.DataSource;
 import ku.cs.services.AdminReadFile;
+import ku.cs.services.DataSource;
 
 
 import java.io.IOException;
+import java.util.*;
 
 public class AdminStudentListController {
-
     @FXML private Label nameLabel, surnameLabel, usernameLabel, lastloginLabel, banLabel;
     @FXML private ImageView image;
-    String url = getClass().getResource("/images/default1.png").toExternalForm();
-    private DataSource<RegisterList> dataSource;
-    private RegisterList list;
+    private DataSource<AdminList> dataSource;
+    private AdminList list;
 
-// INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE //
-    @FXML public void initialize(){
-        image.setImage(new Image(url)); //Set image url
+// TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE //
+//    @FXML private ListView<RegisterModel> studentListView; //OLD CODE (LISTVIEW)
+    @FXML private TableView<AdminModels> listTable;
+    @FXML private TableColumn<AdminModels, String> listTable_LastLogin;
+    @FXML private TableColumn<AdminModels , String> listTable_Name;
+    @FXML private TableColumn<AdminModels , String> listTable_Surname;
 
-        //READ FILE
-        dataSource = new AdminReadFile("filescsv","register.csv");
-        list = dataSource.readData();
-        //READ FILE END
-        showStudentListView(list);
-        clearSelectedStudent();
-        handleSelectedListView();
+    private void showStudentListView(AdminList list) {
+        //OLD CODE (LISTVIEW)
+//        studentListView.getItems().addAll(list.getAllCards());
+//        studentListView.refresh();
+
+        // ArrayList >> ObservableList
+        ObservableList<AdminModels> TEMP = FXCollections.observableArrayList(
+                list.getAllCards()
+        );
+
+        listTable_Name.setCellValueFactory(new PropertyValueFactory("name"));
+        listTable_Surname.setCellValueFactory(new PropertyValueFactory("surname"));
+        listTable_LastLogin.setCellValueFactory(new PropertyValueFactory("stringDateTime"));
+        listTable.setItems(TEMP);
+
+        //Anti Tamper code XD // Anti Tamper code XD // Anti Tamper code XD //
+        listTable_Name.setReorderable(false);
+        listTable_Surname.setReorderable(false);
+        listTable_LastLogin.setReorderable(false);
+        listTable_Name.setSortable(false);
+        listTable_Surname.setSortable(false);
+        //Anti Tamper code END // Anti Tamper code END // Anti Tamper code END //
+
+        //Sorter @m@" //Sorter @m@" //Sorter @m@" //Sorter @m@" //
+        Collections.sort(TEMP); //Sort small --> big
+        Collections.reverse(TEMP);//reverse from "small --> big" --> "big --> small"
+//      listTable_LastLogin.setSortType(TableColumn.SortType.DESCENDING);
+//      listTable.getSortOrder().add(listTable_LastLogin);
+        //Sorter END //Sorter END //Sorter END //Sorter END
+
+        listTable.refresh(); //Fix every unexpected error ^w^b 555
+
     }
-// INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE //
 
-    private void clearSelectedStudent() {
-        nameLabel.setText("");
-        surnameLabel.setText("");
-        usernameLabel.setText("");
-        lastloginLabel.setText("");
-        banLabel.setText("N/A");
-    }
+// END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE //
 
     @FXML public void handleBackButtonClick(ActionEvent actionEvent){
         try {
@@ -59,56 +78,57 @@ public class AdminStudentListController {
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
-// TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE //
-//    @FXML private ListView<RegisterModel> studentListView; //OLD CODE (LISTVIEW)
-    @FXML private TableView<RegisterModel> listTable;
-    @FXML private TableColumn<RegisterModel , String> listTable_LastLogin;
-    @FXML private TableColumn<RegisterModel , String> listTable_Name;
-    @FXML private TableColumn<RegisterModel , String> listTable_Surname;
-
-    private void showStudentListView(RegisterList list) {
-        //OLD CODE (LISTVIEW)
-//        studentListView.getItems().addAll(list.getAllCards());
-//        studentListView.refresh();
-
-        // ArrayList >> ObservableList
-        ObservableList<RegisterModel> TEMP = FXCollections.observableArrayList(
-//                new RegisterModel("aaaa","dsd","sdasd") //test list
-                list.getAllCards()
-        );
-
-        listTable_Name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        listTable_Surname.setCellValueFactory(new PropertyValueFactory<>("surname"));
-        listTable_LastLogin.setCellValueFactory(new PropertyValueFactory<>("time"));
-
-        listTable.setItems(TEMP);
-        listTable.refresh();
-
-    }
-
-// END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE //
-
-
     private void handleSelectedListView() {
-        //OLD CODE (LISTVIEW)
+        //OLD CODE + New Code (LISTVIEW)
         listTable.getSelectionModel().selectedItemProperty().addListener(
-                new ChangeListener<RegisterModel>() {
+                new ChangeListener<AdminModels>() {
                     @Override
-                    public void changed(ObservableValue<? extends RegisterModel> observable,
-                                        RegisterModel oldValue, RegisterModel newValue) {
+                    public void changed(ObservableValue<? extends AdminModels> observable,
+                                        AdminModels oldValue, AdminModels newValue) {
                         System.out.println(newValue + " is selected");
                         showSelectedStudent(newValue);
                     }
                 });
     }
 
-    private void showSelectedStudent(RegisterModel card) {
-        nameLabel.setText(card.getName());
-        surnameLabel.setText(card.getSurname());
-        usernameLabel.setText(card.getUsername());
-        lastloginLabel.setText(card.getTime());
+    private void clearSelectedStudent() {
+        String url = getClass().getResource("/images/default1.png").toExternalForm();
+        image.setImage(new Image(url)); //Set image url
+
+        nameLabel.setText("------");
+        surnameLabel.setText("------");
+        usernameLabel.setText("------");
+        lastloginLabel.setText("------");
+        banLabel.setText("N/A");
+    }
+    private void showSelectedStudent(AdminModels adminModels) {
+        String url = Objects.requireNonNull(getClass().getResource("/images/" + adminModels.getImage())).toExternalForm();
+        image.setImage(new Image(url)); //Set image url
+
+        nameLabel.setText(adminModels.getName());
+        surnameLabel.setText(adminModels.getSurname());
+        usernameLabel.setText(adminModels.getUsername());
+        lastloginLabel.setText(adminModels.getTime());
 //        image.setImage(card.setImage());
 //        banLabel.setText(card);
 //        usernameLabel.setText(String.format("%.2f", card.getCumulativePurchase()));
     }
+
+
+// INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE //
+    @FXML public void initialize(){
+        //READ FILE
+        dataSource = new AdminReadFile("filescsv","register.csv");
+        list = dataSource.readData();
+        //READ FILE END
+
+//        System.out.println(list.getAllCards().get(1)); //Test read
+//        System.out.println(list.getAllCards().get(1).getdate() + list.getAllCards().get(1).getTime()); //Test day+time read
+//        System.out.println(list.getAllCards().get(1).getDateTime()); //Test datetime read
+
+        showStudentListView(list);
+        clearSelectedStudent();
+        handleSelectedListView();
+    }
+// INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE //
 }
