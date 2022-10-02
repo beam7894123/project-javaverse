@@ -1,5 +1,6 @@
 package ku.cs.models;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import ku.cs.services.RegisterWriteFile;
@@ -7,6 +8,8 @@ import ku.cs.services.RegisterWriteFile;
 import java.util.ArrayList;
 
 public class RegisterList  {
+    @FXML TextField usernameTextField;
+    @FXML PasswordField passwordPasswodfield;
     private RegisterWriteFile registerWriteFile;
     private ArrayList<RegisterModel> registerModelArrayList;
     public RegisterList() {
@@ -23,12 +26,12 @@ public class RegisterList  {
         this.registerModelArrayList = registerModelArrayList;
     }
 
-    public Boolean userCheck(RegisterList registerList, TextField username, PasswordField password) {
+    public Boolean userCheck(RegisterList registerList, String usernameTextField, String passwordPasswordField) {
         registerWriteFile = new RegisterWriteFile("filescsv","register.csv");
         registerList = registerWriteFile.readData();
         for (RegisterModel registerModel : registerList.getAllCards()) {
             System.out.println(registerList.getAllCards());
-            if ((registerModel.getUsername().equals(username.getText())) && registerModel.getPassword().equals(password.getText())) {
+            if ((registerModel.getUsername().equals(usernameTextField)) && registerModel.getPassword().equals(passwordPasswordField)) {
                 return true;
             }
         }

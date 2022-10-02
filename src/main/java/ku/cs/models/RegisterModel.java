@@ -14,7 +14,10 @@ public class RegisterModel {
     private String date;
     private String time;
 
-//    public RegisterModel(String name,String surname,String username,String password,String confirmPassword,String date,String time,String fileName){
+
+
+
+    //    public RegisterModel(String name,String surname,String username,String password,String confirmPassword,String date,String time,String fileName){
 //        this(name,surname,username,password,date,time);
 //        this.image = fileName;
 //        System.out.println(image);
@@ -25,22 +28,25 @@ public class RegisterModel {
 //        this.image = fileName;
 //        System.out.println(image);
 //    }
-    public RegisterModel(String name, String surname, String username, String password,String confirmPassword,String date,String time,String fileNameImage) {
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.password = password;
-        this.confirmPassword = confirmPassword;
-        this.date = date;
-        this.time = time;
-        this.image = fileNameImage;
-        System.out.println(image);
+    public void initialize(){
+        String fileNameImage =  "dafault1.png";
     }
-    public RegisterModel(String name ,String surname,String time){
-        this.name = name;
-        this.surname = surname;
-        this.time = time;
-    }
+//    public RegisterModel(String name, String surname, String username, String password,String confirmPassword,String date,String time,String fileNameImage) {
+//        this.name = name;
+//        this.surname = surname;
+//        this.username = username;
+//        this.confirmPassword =confirmPassword;
+//        this.password = password;
+//        this.date = date;
+//        this.time = time;
+//        this.image = fileNameImage;
+//        System.out.println(image);
+//    }
+//    public RegisterModel(String name ,String surname,String time){
+//        this.name = name;
+//        this.surname = surname;
+//        this.time = time;
+//    }
     public RegisterModel(String name, String surname, String username, String password,String date,String time,String fileNameImage) {
         this.name = name;
         this.surname = surname;
@@ -59,6 +65,15 @@ public class RegisterModel {
         this.password = password;
         this.date = date;
         this.time = time;
+    }
+
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public String getName() {

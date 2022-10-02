@@ -45,8 +45,11 @@ public class SignInController {
     public void handleConfirmButtonClick(ActionEvent actionEvent) throws IOException {
 //        registerList = writeFile.readData();
         signInWriteFile = new SignInWriteFile("filescsv","register.csv",usernameTextfield.getText(),passwordPasswordfield.getText());
+        if (!(signInWriteFile.checkConfirmsignIn(registerList,usernameTextfield.getText(),passwordPasswordfield.getText()))){
+            loginChecker.setText("Username or Password is incorrect");
+        }
 //        signInWriteFile.SignInRecieveReadFile();
-        signInWriteFile.checkConfirmsignIn(registerList,usernameTextfield,passwordPasswordfield,loginChecker);
+//        signInWriteFile.checkConfirmsignIn(registerList,usernameTextfield.getText(),passwordPasswordfield.getText(),loginChecker);
 
     }
     @FXML

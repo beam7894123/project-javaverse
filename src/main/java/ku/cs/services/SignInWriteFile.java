@@ -1,8 +1,5 @@
 package ku.cs.services;
 
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import ku.cs.models.RegisterList;
 import com.github.saacsos.FXRouter;
 import java.io.*;
@@ -13,21 +10,20 @@ public class SignInWriteFile {
     private String directory;
     private String fileName;
     private RegisterList registerList;
-    private String username;
-    private String password;
     private String strUsername;
     private String strPassword;
     private String usernameText;
+    private String username;
+    private String password;
 
     public SignInWriteFile(String directory, String fileName, String username, String password) {
         this.directory = directory;
         this.fileName = fileName;
         this.username = username;
         this.password = password;
-//        StrUserID = strUserID;
     }
 
-    public void SignInRecieveReadFile() throws IOException {
+    public void SignInRecieveReadFile(String usernameTextField,String passwordPasswordField) throws IOException {
         StringBuilder newPurchaseCsv = new StringBuilder();
         File file = new File("filescsv/register.csv");
         FileReader fileReader = new FileReader(file);
@@ -38,7 +34,7 @@ public class SignInWriteFile {
                 newPurchaseCsv.append(System.getProperty("line.separator"));
             }
             String[] data = line.split(",");
-            if (username.equals(data[2]) && password.equals(data[3])) {
+            if (usernameTextField.equals(data[2]) && passwordPasswordField.equals(data[3])) {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyy ");
                 SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm:ss");
                 Date d = new Date(System.currentTimeMillis());
@@ -61,41 +57,44 @@ public class SignInWriteFile {
         osw.close();
     }
 
-    public void checkConfirmsignIn(RegisterList registerList,TextField usernameTextfield,PasswordField passwordPasswordfield,Label loginChecker){
+    public boolean checkConfirmsignIn(RegisterList registerList, String usernameTextfield, String passwordPasswordfield){
         if(usernameTextfield.equals("admin")&&passwordPasswordfield.equals("admin")){
             try {
                 FXRouter.goTo("admin");
+                return true;
             } catch (IOException e) {
                 System.err.println("ไปที่หน้าhome ไม่ได้");
                 System.err.println("ให้ตรวจสอบการกําหนดroute");
             }
         }else if (registerList.userCheck(registerList,usernameTextfield,passwordPasswordfield)) {
-            strUsername = usernameTextfield.getText();
-            strPassword = passwordPasswordfield.getText();
+            strUsername = usernameTextfield;
+            strPassword = passwordPasswordfield;
             SignInWriteFile signInWriteFile = new SignInWriteFile("filescsv","register.csv",strUsername,strPassword);
             try {
-                signInWriteFile.SignInRecieveReadFile();
+                signInWriteFile.SignInRecieveReadFile(usernameTextfield,passwordPasswordfield);
                 FXRouter.goTo("main");
             } catch (IOException e) {
 //                throw new RuntimeException(e);
-                loginChecker.setText("Username or Password is incorrect");
+//                loginChecker.setText("Username or Password is incorrect");
                 System.err.println("ไปที่หน้า main ไม่ได้");
                 System.err.println("ให้ตรวจสอบการกําหนดroute");
+                return false;
             }
-            usernameText =  usernameTextfield.getText();
+            usernameText =  usernameTextfield;
             System.out.println(usernameText);
-
+            return true;
         }
 
-        else {
-            loginChecker.setText("Username or Password is incorrect");
+//        else {
+//            loginChecker.setText("Username or Password is incorrect");
 //            try {
 //                loginChecker.setText("Username or Password is incorrect");
 //            } catch (IOException e) {
 //                System.err.println("ไปที่หน้าhome ไม่ได้");
 //                System.err.println("ให้ตรวจสอบการกําหนดroute");
 //            }
-        }
+        return false;
+    }
     }
 //    public void checkConfirm(RegisterList registerList,String usernameTextfield,String passwordPasswordfield,Label loginChecker){
 //        if(usernameTextfield.equals("admin")&&passwordPasswordfield.equals("admin")){
@@ -132,4 +131,4 @@ public class SignInWriteFile {
 //        }
 //
 //    }
-}
+

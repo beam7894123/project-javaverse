@@ -16,9 +16,9 @@ public class AdminController {
 
     @FXML
     public void initialize(){
-        john = new RegisterModel("John ", "Smith","john","123",null,null);
-        anna = new RegisterModel("Anna ", "Frost","anna","ann",null,null);
-        harry = new RegisterModel("Harry Potter","Potter","harry","999",null,null );
+//        john = new RegisterModel("John ", "Smith","john","123",null,null,);
+//        anna = new RegisterModel("Anna ", "Frost","anna","ann",null,null);
+//        harry = new RegisterModel("Harry Potter","Potter","harry","999",null,null );
 
 
     }

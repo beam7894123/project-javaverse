@@ -98,5 +98,6 @@
       </Button>
       <Label fx:id="labelUsername" layoutX="590.0" layoutY="397.0" prefHeight="18.0" prefWidth="170.0" />
       <Label fx:id="labelPassword" layoutX="583.0" layoutY="453.0" prefHeight="18.0" prefWidth="170.0" />
+      <Label fx:id="usernameAndpasswordLabel" layoutX="569.0" layoutY="251.0" prefHeight="18.0" prefWidth="203.0" />
    </children>
 </AnchorPane>

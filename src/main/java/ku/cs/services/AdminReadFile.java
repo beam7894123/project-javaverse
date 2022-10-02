@@ -37,56 +37,61 @@ public class AdminReadFile implements DataSource<RegisterList>{
 //        }
 //    }
 
-    @Override
-    public RegisterList readData() {
-        RegisterList list = new RegisterList();
-        String filePath = fileDirectoryName + File.separator + fileName;
-        File file = new File(filePath);
-        FileReader reader = null;
-        BufferedReader buffer = null;
-
-        try {
-            reader = new FileReader(file);
-            buffer = new BufferedReader(reader);
-
-            String line = "";
-            while ((line = buffer.readLine()) != null){
-                String[] data = line.split(",");
-                RegisterModel card = new RegisterModel(
-                        data[0].trim(),
-                        data[1].trim(),
-                        data[2].trim()
-//                        data[3].trim(),
-//                        data[4].trim(),
-//                        data[5].trim()
-
-                );
-                list.addStudent(card);
-            }
-
-        } catch (FileNotFoundException e) {
-            System.err.println(this.fileName + " not found");
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            System.err.println("IOException from reading " + this.fileName);
-            throw new RuntimeException(e);
-        } finally {
-            try{
-                buffer.close();
-                reader.close();
-            } catch (IOException e){
-                throw new RuntimeException(e);
-            }
-        }
-
-
-        return list;
-    }
+//    @Override
+//    public RegisterList readData() {
+//        RegisterList list = new RegisterList();
+//        String filePath = fileDirectoryName + File.separator + fileName;
+//        File file = new File(filePath);
+//        FileReader reader = null;
+//        BufferedReader buffer = null;
+//
+//        try {
+//            reader = new FileReader(file);
+//            buffer = new BufferedReader(reader);
+//
+//            String line = "";
+//            while ((line = buffer.readLine()) != null){
+//                String[] data = line.split(",");
+//                RegisterModel card = new RegisterModel(
+////                        data[0].trim(),
+////                        data[1].trim(),
+////                        data[2].trim()
+//////                        data[3].trim(),
+//////                        data[4].trim(),
+//////                        data[5].trim()
+//
+//                );
+//                list.addStudent(card);
+//            }
+//
+//        } catch (FileNotFoundException e) {
+//            System.err.println(this.fileName + " not found");
+//            throw new RuntimeException(e);
+//        } catch (IOException e) {
+//            System.err.println("IOException from reading " + this.fileName);
+//            throw new RuntimeException(e);
+//        } finally {
+//            try{
+//                buffer.close();
+//                reader.close();
+//            } catch (IOException e){
+//                throw new RuntimeException(e);
+//            }
+//        }
+//
+//
+//        return list;
+//    }
 
 //    @Override
 //    public ReportList readData1() {
 //        return null;
 //    }
+
+    @Override
+    public RegisterList readData() {
+        return null;
+    }
 
     @Override
     public void writeData(RegisterList write) {

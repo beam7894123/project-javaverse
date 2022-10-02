@@ -26,9 +26,9 @@
       <Label layoutX="543.0" layoutY="231.0" text="นามสกุล" />
       <Label layoutX="265.0" layoutY="292.0" text="Username" />
       <Label layoutX="530.0" layoutY="292.0" text="เข้าใช้ครั่งล่าสุดเมื่อ" />
-      <TableView layoutX="25.0" layoutY="111.0" prefHeight="470.0" prefWidth="218.0">
+      <TableView fx:id="listStaff" layoutX="25.0" layoutY="111.0" prefHeight="470.0" prefWidth="218.0">
          <columns>
-            <TableColumn prefWidth="217.0" text="รายชื่อ" />
+            <TableColumn fx:id="nameStaff" prefWidth="217.0" text="nameStaff" />
          </columns>
       </TableView>
       <Label fx:id="nameLabel" layoutX="292.0" layoutY="231.0" text="nameLable" />

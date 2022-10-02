@@ -2,62 +2,67 @@ package ku.cs.controllers;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import com.github.saacsos.FXRouter;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import ku.cs.models.RegisterList;
 import ku.cs.models.RegisterModel;
+import ku.cs.models.RegistersimpleStringproperty;
 import ku.cs.services.StaffHardCodeDataSource;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.ResourceBundle;
 
-public class AdminStaffListController{
-    @FXML private ListView<RegisterModel> cardsListView; //
+public class AdminStaffListController implements Initializable {
+    @FXML
+    public TableView<RegistersimpleStringproperty> listStaff; //
+    public TableColumn<RegistersimpleStringproperty,String> nameStaff;
     @FXML private Label nameLabel;
     @FXML private Label surnameLabel;
     @FXML private Label usernameLabel;
-    @FXML private Label ptLabel;
-    private StaffHardCodeDataSource dataSource;
-    private RegisterList model;
-    @FXML
-    public void initialize() {
-        dataSource = new StaffHardCodeDataSource(); // สร้าง obj เเพื่อใช้ดึงข้อมูล
-        model = dataSource.getCardList();
-        showListView();
-        System.out.println(2);
-//        clearSelectedMemberCard();
-        handleSelectedListView();
+    @FXML private Label lastloginLabel;
+    @FXML private Label departmentLabel;
+//    'private StaffHardCodeDataSource dataSource;
+    private RegistersimpleStringproperty registersimpleStringproperty;
+    public void readData(RegistersimpleStringproperty tableView){
+        StaffHardCodeDataSource dataSource = new StaffHardCodeDataSource();
+        dataSource.readData(tableView);
     }
-    private void showListView() {
-        System.out.println(1);
-        cardsListView.getItems().addAll(model.getAllCards());
-        cardsListView.refresh();
-//        System.out.println(cardsListView);
-//        cardsListView.getItems().addAll(cardList.getAllCards()); // ได้ item ทั้งหมดจาก listview เป็นรับ obj ของ collection
-//        cardsListView.refresh(); // refresh ของ listview
-    }
-    private void handleSelectedListView() {  // ขึ้นว่าเรากดคลิกอะไร
-        System.out.println(3);
-        cardsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<RegisterModel>() {
-            @Override
-            public void changed(ObservableValue<? extends RegisterModel> observableValue, RegisterModel model, RegisterModel t1) {
-                System.out.println(t1+"is selected");
-                System.out.println(4);
-                showSelectedRegister(t1);
-
-            }
-        });
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        nameStaff.setCellValueFactory(new PropertyValueFactory<>("nameStaff"));
+//        listStaff.setItems(list);
+        try {
+            readData(registersimpleStringproperty);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        ObservableList<RegistersimpleStringproperty> observableList = (ObservableList<RegistersimpleStringproperty>) FXCollections.observableArrayList(
+                new RegistersimpleStringproperty("A")
+        );
     }
     public  void showSelectedRegister(RegisterModel registerModel) {
         nameLabel.setText(registerModel.getName());
         surnameLabel.setText(registerModel.getSurname());
         usernameLabel.setText(registerModel.getUsername());
-        ptLabel.setText(registerModel.getTime());
+        lastloginLabel.setText(registerModel.getTime());
     }
-
+    public void clearSelectedRegister(){
+        nameLabel.setText("");
+        surnameLabel.setText("");
+        usernameLabel.setText("");
+        lastloginLabel.setText("");
+        departmentLabel.setText("N/A");
+    }
    @FXML public void handleBackButtonClick() {
        try {
            FXRouter.goTo("admin");
@@ -66,5 +71,6 @@ public class AdminStaffListController{
            System.err.println("ให้ตรวจสอบการกําหนดroute");
        }
    }
+
 
 }

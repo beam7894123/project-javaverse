@@ -19,7 +19,7 @@ import java.net.MalformedURLException;
 public class RegisterController {
     Label nameLabel,surnameLabel,usernameLabel,passwordLabel,confirmPasswordLabel,registerLabel,usernameDuplicate;
     @FXML
-    private Label labelUsername,labelPassword;
+    private Label labelUsername,labelPassword,usernameAndpasswordLabel;
 
     @FXML
     private TextField nameTextfield,surnameTextfield,usernameTextfield;
@@ -44,9 +44,22 @@ public class RegisterController {
         registerList = new RegisterList();
     }
     public void handleOkClick(ActionEvent actionEvent){
-
+        System.out.println(usernameTextfield.getText());
         registerList = writeFile.readData();
-        writeFile.checkUserNameAndPassword(registerList,usernameTextfield.getText(),labelUsername,labelPassword,passwordPasswordfield.getText(),confirmPasswordfield.getText(),nameTextfield.getText(),surnameTextfield.getText(),fileNameImage);
+        if (writeFile.checkUserName(registerList,usernameTextfield.getText())){
+            System.out.println(1);
+            labelUsername.setText("USERNAME IS NOT ALREADY");
+        }
+        else if (writeFile.checkPassword(passwordPasswordfield.getText(),confirmPasswordfield.getText())){
+            labelPassword.setText("PASSWORD IS NOT MATCH");
+        }
+//        if (writeFile.checkUsernameAndpassword(usernameTextfield.getText(),passwordPasswordfield.getText(),confirmPasswordfield.getText())) {
+//            usernameAndpasswordLabel.setText("USERNAME OR PASSWORD IS NOT ALREADY");
+//        }
+        else {
+            System.out.println(fileNameImage);
+            writeFile.checkUserNameAndPassword(registerList,usernameTextfield.getText(),passwordPasswordfield.getText(),nameTextfield.getText(),surnameTextfield.getText(),fileNameImage);
+        }
     }
     public void handleBackButton(ActionEvent actionEvent){
         try {
