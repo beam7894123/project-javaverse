@@ -43,7 +43,7 @@ public class CreatorController {
         nicknameLabel.setText("Joy");
         idLabel.setText("6210451217");
 
-        //image3.setImage(new Image(url3));
+        image3.setImage(new Image(url3));
         nameLabel3.setText("Chitipat Changjeraja");
         nicknameLabel3.setText("Boss");
         idLabel3.setText("6210451136");
@@ -56,12 +56,12 @@ public class CreatorController {
     String url2 = getClass().getResource("/images/euro.jpg").toExternalForm();
     String url = getClass().getResource("/images/joy.jpg").toExternalForm();
 
-    //String url3 = getClass().getResource("/images/boss.jpg").toExternalForm();
+    String url3 = getClass().getResource("/images/boss.jpg").toExternalForm();
     String url4 = getClass().getResource("/images/beam.jpg").toExternalForm();
     @FXML
     public void handleBackButton(ActionEvent actionEvent) {try
     {
-        com.github.saacsos.FXRouter.goTo("home");}
+        com.github.saacsos.FXRouter.goTo("signIn");}
     catch (IOException e) {
         System.err.println("ไปที่หน้าhome ไม่ได้");System.err.println("ให้ตรวจสอบการกําหนดroute");}
     }
