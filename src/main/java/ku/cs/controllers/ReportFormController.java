@@ -1,56 +1,67 @@
 package ku.cs.controllers;
 
-import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.layout.HBox;
-import ku.cs.models.RegisterList;
-import ku.cs.models.RegisterModel;
-import ku.cs.models.ReportList;
-import ku.cs.models.ReportModel;
+import javafx.scene.control.*;
+import ku.cs.models.*;
 import ku.cs.services.DataSource;
-import ku.cs.services.RegisterWriteFile;
 import ku.cs.services.ReportWriteFile;
 import com.github.saacsos.FXRouter;
-
+import ku.cs.models.ReportModel;
+import ku.cs.services.SignInWriteFile;
+import ku.cs.controllers.SignInController;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ReportFormController {
+    LocalDateTime localDateTime = LocalDateTime.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    String timeReport = localDateTime.format(formatter);
     @FXML
     private TextField topicField,detailField;
     private DataSource<ReportList> dataSource;
     public ReportList reportList;
-    private ObservableList<ReportList> reportListObservableList;
     private ReportModel reportModel;
+    @FXML ChoiceBox<String> categoryButton;
+    private DataSource write = new ReportWriteFile("filescsv", "report.csv");
+    String usernameText = SignInController.loginUser;
+
+    @FXML public void initialize() {
+        dataSource = new ReportWriteFile("filescsv", "report.csv");
+        reportList = new ReportList();
+        categoryButton.setItems(FXCollections.observableArrayList("Person","Facilities","Building",
+                "Learning/Lesson","Traffic/Transport"));
+    }
+
+
     @FXML
-    ChoiceBox categoryButton = new ChoiceBox();
-    HBox hbox = new HBox(categoryButton);
-//    private DataSource write = new ReportWriteFile("filescsv", "report.csv");
-//    categoryButton
-//    choiceBox.getItems().add("Choice 2");
-//    choiceBox.getItems().add("Choice 3");
+    public void handleSubmitButton(ActionEvent actionEvent){
+        if(topicField.getText() != "" & detailField.getText() != "") {
+            try {
+                ReportModel reportModel = new ReportModel(topicField.getText(), detailField.getText(), 1,
+                        timeReport, categoryButton.getValue(), usernameText);
+                reportList.addReport(reportModel);
+                write.writeData(reportList);
+                System.out.println("Do write file");
+                FXRouter.goTo("main");
+            } catch (IOException e) {
+                System.err.println("ไปที่หน้า main ไม่ได้");
+                System.err.println("ให้ตรวจสอบการกําหนดroute");
+            }
+        }
+        else {
+            Alert text = new Alert(Alert.AlertType.WARNING,"PLEASE FILL THE FORM!!!"); text.show();
+        }
+    }
 
-    String value = ("String");
-//    categoryButton.g
-
-
-//    @FXML
-//    public void handleSubmitButton(ActionEvent actionEvent){
-//        try {
-//            ReportModel reportModel = new ReportModel(topicField.getText(),detailField.getText(),null,null,null);
-//            reportList.addReport(reportModel);
-//            write.writeData1(reportList);
-//            System.out.println("Do write file");
-//            FXRouter.goTo("main");
-//        } catch (IOException e) {
-//            System.err.println("ไปที่หน้า main ไม่ได้");
-//            System.err.println("ให้ตรวจสอบการกําหนดroute");
-//        }
-//    }
-
+    @FXML
+    public void handleBackButtonClick(ActionEvent actionEvent){
+        try {
+            FXRouter.goTo("main");
+        } catch (IOException e) {
+            System.err.println("ให้ตรวจสอบการกําหนดroute");
+        }
+    }
 }

@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.AdminStudentListController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.AdminStudentListController">
 
     <children>
         <Label layoutX="25.0" layoutY="14.0" text="Student">
@@ -16,21 +21,45 @@
             </font>
         </Label>
         <ChoiceBox layoutX="25.0" layoutY="75.0" prefHeight="25.0" prefWidth="218.0" />
-        <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="410.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true" />
-        <Button layoutX="314.0" layoutY="492.0" mnemonicParsing="false" text="แก้ไข" />
-        <Button layoutX="709.0" layoutY="492.0" mnemonicParsing="false" onAction="#handleBackButtonClick" text="กลับ" />
-        <Label layoutX="269.0" layoutY="231.0" text="ชื่อ" />
-        <Label layoutX="543.0" layoutY="231.0" text="นามสกุล" />
-        <Label layoutX="265.0" layoutY="292.0" text="Username" />
-        <Label layoutX="530.0" layoutY="292.0" text="เข้าใช้ครั่งล่าสุดเมื่อ" />
-      <Button layoutX="490.0" layoutY="492.0" mnemonicParsing="false" text="Ban / Unban" />
-      <Label layoutX="265.0" layoutY="366.0" text="สถาณะการ Ban" />
-      <Label fx:id="nameLabel" layoutX="292.0" layoutY="231.0" text="nameLabel" />
-      <Label fx:id="surnameLabel" layoutX="604.0" layoutY="231.0" text="surnameLabel" />
-      <Label fx:id="usernameLabel" layoutX="349.0" layoutY="292.0" text="usernameLabel" />
-      <Label fx:id="lastloginLabel" layoutX="643.0" layoutY="292.0" text="lastloginLabel" />
-      <TextArea fx:id="banReasontextArea" disable="true" editable="false" layoutX="351.0" layoutY="366.0" prefHeight="96.0" prefWidth="386.0" text="Why?" />
-      <Label fx:id="banLabel" layoutX="279.0" layoutY="397.0" text="banLabel" />
-      <ListView fx:id="studentListView" layoutX="34.0" layoutY="121.0"  prefHeight="452.0" prefWidth="200.0" />
+        <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="542.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" />
+        <Button layoutX="480.0" layoutY="474.0" mnemonicParsing="false" text="แก้ไข" />
+        <Button layoutX="729.0" layoutY="474.0" mnemonicParsing="false" onAction="#handleBackButtonClick" text="กลับ" />
+        <Label layoutX="470.0" layoutY="250.0" text="ชื่อ:">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+        <Label layoutX="603.0" layoutY="250.0" text="นามสกุล:">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+        <Label layoutX="530.0" layoutY="297.0" text="Username:">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+        <Label layoutX="592.0" layoutY="563.0" text="เข้าใช้ครั่งล่าสุดเมื่อ" />
+      <Button layoutX="585.0" layoutY="474.0" mnemonicParsing="false" text="Ban / Unban" />
+      <Label layoutX="453.0" layoutY="341.0" text="สถาณะการ Ban" />
+      <Label fx:id="nameLabel" layoutX="493.0" layoutY="250.0" text="nameLabel" textFill="#1e0080">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="surnameLabel" layoutX="664.0" layoutY="250.0" text="surnameLabel" textFill="#1e0080">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="usernameLabel" layoutX="612.0" layoutY="297.0" text="usernameLabel" textFill="#1e0080">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="lastloginLabel" layoutX="705.0" layoutY="563.0" text="lastloginLabel" textFill="#8d0000" />
+      <TextArea fx:id="banreasonLable" disable="true" editable="false" layoutX="537.0" layoutY="341.0" prefHeight="96.0" prefWidth="200.0" text="Why?" />
+      <Label fx:id="banLabel" layoutX="467.0" layoutY="372.0" text="banLabel" />
+      <TableView fx:id="listTable" layoutX="19.0" layoutY="131.0" prefHeight="450.0" prefWidth="419.0">
+        <columns>
+          <TableColumn fx:id="listTable_LastLogin" prefWidth="121.59997177124023" text="เข้าใช้ครั่งล่าสุดเมื่อ" />
+          <TableColumn fx:id="listTable_Name" minWidth="7.199981689453125" prefWidth="148.00001525878906" text="ชื่อ" />
+            <TableColumn fx:id="listTable_Surname" minWidth="7.199981689453125" prefWidth="149.5999755859375" text="นามสกุล" />
+        </columns>
+      </TableView>
     </children>
 </AnchorPane>

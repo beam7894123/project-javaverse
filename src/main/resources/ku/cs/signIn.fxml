@@ -48,7 +48,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button blendMode="DARKEN" layoutX="552.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleConfirmButtonClick" prefHeight="35.0" prefWidth="159.0" style="-fx-background-color: #5179f7;" text="Login" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button blendMode="DARKEN" layoutX="550.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleConfirmButtonClick" prefHeight="35.0" prefWidth="159.0" style="-fx-background-color: #5179f7;" text="Login" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -85,5 +85,13 @@
          </cursor>
       </Button>
       <Label fx:id="loginChecker" layoutX="514.0" layoutY="253.0" prefHeight="18.0" prefWidth="231.0" />
+      <Label accessibleRole="BUTTON" layoutX="680.0" layoutY="363.0" text="how to use!?" textFill="#7c7c7c" underline="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
    </children>
 </AnchorPane>

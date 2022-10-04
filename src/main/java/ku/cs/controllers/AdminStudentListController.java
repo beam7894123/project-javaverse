@@ -2,133 +2,133 @@ package ku.cs.controllers;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import ku.cs.models.RegisterList;
-import ku.cs.models.RegisterModel;
-import ku.cs.services.DataSource;
+import ku.cs.models.AdminList;
+import ku.cs.models.AdminModels;
 import ku.cs.services.AdminReadFile;
-import com.github.saacsos.FXRouter;
-import ku.cs.services.RegisterWriteFile;
+import ku.cs.services.DataSource;
+
 
 import java.io.IOException;
+import java.util.*;
 
 public class AdminStudentListController {
-    @FXML Label nameLabel, surnameLabel, usernameLabel, lastloginLabel, banLabel;
-    @FXML
-    TextArea banReasontextArea;
-
-    private String fileNameImage,path;
-    RegisterWriteFile writeFile = new RegisterWriteFile("filecsv","register.csv");
-
-//    @FXML
-//    public void initialize(){
-//        fileNameImage = "default1.png";
-////        dataSource = new RegisterWriteFile("filescsv","register.csv");
-//        path = getClass().getResource("/images/default1.png").toExternalForm();
-//        image.setImage(new Image(path));
-//        registerList = writeFile.readData();
-//        handleShowListView();
-//        clearSelectedListView();
-//        handleSelectListView();
-////
-//    }
-//    private void handleShowListView(){
-//        studentListView.getItems().addAll(registerList.getAllCards());
-//        studentListView.refresh();
-//    }
-//    private void handleSelectListView(){
-//        studentListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<RegisterModel>() {
-//            @Override
-//            public void changed(ObservableValue<? extends RegisterModel> observableValue, RegisterModel registerModel, RegisterModel t1) {
-//                System.out.println(t1 + "is selected");
-//                handleSelectView(t1);
-//            }
-//        });
-//    }
-//    public void handleSelectView(RegisterModel model){
-//        RegisterModel registerModel = studentListView.getSelectionModel().getSelectedItem();
-//        nameLabel.setText(model.getName());
-//        surnameLabel.setText(model.getSurname());
-//    }
-//    private void clearSelectedListView(){
-//        nameLabel.setText("");
-//        surnameLabel.setText("");
-//        usernameLabel.setText("");
-//        lastloginLabel.setText("");
-//        banLabel.setText("");
-//
-//    }
-//
-
-
-
+    @FXML private Label nameLabel, surnameLabel, usernameLabel, lastloginLabel, banLabel;
     @FXML private ImageView image;
-    @FXML ListView<RegisterModel> studentListView;
-    String url = getClass().getResource("/images/default1.png").toExternalForm();
-    private DataSource<RegisterList> dataSource;
-    private RegisterList list;
-    @FXML public void initialize(){
-        fileNameImage = "default1.png";
-        path = getClass().getResource("/images/default1.png").toExternalForm();
-//        image.setImage(new Image(getClass().getResource("/ku/cs/images/default1.png").toExternalForm()));
-//        image.setImage(new Image(path));
-        image.setImage(new Image(path));
-        dataSource = new RegisterWriteFile("filescsv","register.csv");
-        list = dataSource.readData();
-        showStudentListView();
-        clearSelectedStudent();
-        handleSelectedListView();
+    private DataSource<AdminList> dataSource;
+    private AdminList list;
+
+// TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE //
+//    @FXML private ListView<RegisterModel> studentListView; //OLD CODE (LISTVIEW)
+    @FXML private TableView<AdminModels> listTable;
+    @FXML private TableColumn<AdminModels, String> listTable_LastLogin;
+    @FXML private TableColumn<AdminModels , String> listTable_Name;
+    @FXML private TableColumn<AdminModels , String> listTable_Surname;
+
+    private void showStudentListView(AdminList list) {
+        //OLD CODE (LISTVIEW)
+//        studentListView.getItems().addAll(list.getAllCards());
+//        studentListView.refresh();
+
+        // ArrayList >> ObservableList
+        ObservableList<AdminModels> TEMP = FXCollections.observableArrayList(
+                list.getAllCards()
+        );
+
+        listTable_Name.setCellValueFactory(new PropertyValueFactory("name"));
+        listTable_Surname.setCellValueFactory(new PropertyValueFactory("surname"));
+        listTable_LastLogin.setCellValueFactory(new PropertyValueFactory("stringDateTime"));
+        listTable.setItems(TEMP);
+
+        //Anti Tamper code XD // Anti Tamper code XD // Anti Tamper code XD //
+        listTable_Name.setReorderable(false);
+        listTable_Surname.setReorderable(false);
+        listTable_LastLogin.setReorderable(false);
+        listTable_Name.setSortable(false);
+        listTable_Surname.setSortable(false);
+        //Anti Tamper code END // Anti Tamper code END // Anti Tamper code END //
+
+        //Sorter @m@" //Sorter @m@" //Sorter @m@" //Sorter @m@" //
+        Collections.sort(TEMP); //Sort small --> big
+        Collections.reverse(TEMP);//reverse from "small --> big" --> "big --> small"
+//      listTable_LastLogin.setSortType(TableColumn.SortType.DESCENDING);
+//      listTable.getSortOrder().add(listTable_LastLogin);
+        //Sorter END //Sorter END //Sorter END //Sorter END
+
+        listTable.refresh(); //Fix every unexpected error ^w^b 555
+
     }
 
-    private void clearSelectedStudent() {
-        nameLabel.setText("");
-        surnameLabel.setText("");
-        usernameLabel.setText("");
-        lastloginLabel.setText("");
-        banLabel.setText("N/A");
-    }
+// END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE //
 
     @FXML public void handleBackButtonClick(ActionEvent actionEvent){
         try {
-            FXRouter.goTo("admin");
+            com.github.saacsos.FXRouter.goTo("admin");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า admin.fxml ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
-
-    public void showStudentListView() {
-        studentListView.getItems().addAll(list.getAllCards() );
-        studentListView.refresh();
-    }
-
-    public void handleSelectedListView() {
-        studentListView.getSelectionModel().selectedItemProperty().addListener(
-                new ChangeListener<RegisterModel>() {
+    private void handleSelectedListView() {
+        //OLD CODE + New Code (LISTVIEW)
+        listTable.getSelectionModel().selectedItemProperty().addListener(
+                new ChangeListener<AdminModels>() {
                     @Override
-                    public void changed(ObservableValue<? extends RegisterModel> observable,
-                                        RegisterModel oldValue, RegisterModel newValue) {
+                    public void changed(ObservableValue<? extends AdminModels> observable,
+                                        AdminModels oldValue, AdminModels newValue) {
                         System.out.println(newValue + " is selected");
                         showSelectedStudent(newValue);
                     }
                 });
     }
 
-    private void showSelectedStudent(RegisterModel card) {
-        nameLabel.setText(card.getName());
-        surnameLabel.setText(card.getSurname());
-        usernameLabel.setText(card.getUsername());
-        lastloginLabel.setText(card.getTime());
-//        image.setImage(card.getImage());
+    private void clearSelectedStudent() {
+        String url = getClass().getResource("/images/default1.png").toExternalForm();
+        image.setImage(new Image(url)); //Set image url
+
+        nameLabel.setText("------");
+        surnameLabel.setText("------");
+        usernameLabel.setText("------");
+        lastloginLabel.setText("------");
+        banLabel.setText("N/A");
+    }
+    private void showSelectedStudent(AdminModels adminModels) {
+        String url = Objects.requireNonNull(getClass().getResource("/images/" + adminModels.getImage())).toExternalForm();
+        image.setImage(new Image(url)); //Set image url
+
+        nameLabel.setText(adminModels.getName());
+        surnameLabel.setText(adminModels.getSurname());
+        usernameLabel.setText(adminModels.getUsername());
+        lastloginLabel.setText(adminModels.getTime());
 //        image.setImage(card.setImage());
 //        banLabel.setText(card);
 //        usernameLabel.setText(String.format("%.2f", card.getCumulativePurchase()));
     }
+
+
+// INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE //
+    @FXML public void initialize(){
+        //READ FILE
+        dataSource = new AdminReadFile("filescsv","register.csv");
+        list = dataSource.readData();
+        //READ FILE END
+
+//        System.out.println(list.getAllCards().get(1)); //Test read
+//        System.out.println(list.getAllCards().get(1).getdate() + list.getAllCards().get(1).getTime()); //Test day+time read
+//        System.out.println(list.getAllCards().get(1).getDateTime()); //Test datetime read
+
+        showStudentListView(list);
+        clearSelectedStudent();
+        handleSelectedListView();
+    }
+// INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE //
 }

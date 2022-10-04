@@ -4,25 +4,36 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class ReportModel {
-    private String topic;
-    private String detail;
-    private Integer voteScore;
+    private static String topic;
+    private static String detail;
+    private static Integer voteScore;
     private String category;
     private String dateTime;
+    private String authorName;
+    private ReportModel reportModel;
 
     LocalDateTime localDateTime = LocalDateTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy hh:mm:ss");
     String timeReport = localDateTime.format(formatter);
 
-    public ReportModel(String topic, String detail, Integer voteScore, String category, String dateTime) {
+    public ReportModel(String topic, String detail, Integer voteScore, String category, String dateTime, String authorName) {
         this.topic = topic;
         this.detail = detail;
         this.voteScore = voteScore;
         this.category = category;
         this.dateTime = dateTime;
+        this.authorName =  authorName;
     }
 
-    public String getTopic() {
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
+
+    public static String getTopic() {
         return topic;
     }
 
@@ -30,7 +41,7 @@ public class ReportModel {
         this.topic = topic;
     }
 
-    public String getDetail() {
+    public static String getDetail() {
         return detail;
     }
 
@@ -38,7 +49,12 @@ public class ReportModel {
         this.detail = detail;
     }
 
-    public Integer getVoteScore() {
+    public static Integer getVoteScore() {
+        return voteScore;
+    }
+
+    public int addScore(int score){
+        voteScore += score;
         return voteScore;
     }
 

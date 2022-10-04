@@ -3,22 +3,179 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="746.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.MainController">
-   <children>
-      <ImageView fitHeight="746.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/background_4.png" />
-         </image>
-      </ImageView>
-      <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="907.0" layoutY="14.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: #5179f7;" text="profile" textAlignment="RIGHT" textFill="WHITE">
+<AnchorPane prefHeight="746.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.MainController">
+    <children>
+        <ImageView fitHeight="746.0" fitWidth="1024.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/background_4.png" />
+            </image>
+        </ImageView>
+        <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="907.0" layoutY="14.0" mnemonicParsing="false" onAction="#profileButton" prefHeight="35.0" prefWidth="103.0" style="-fx-background-color: #5179f7;" text="profile" textAlignment="RIGHT" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <ImageView fitHeight="29.0" fitWidth="28.0" layoutX="918.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/icon/icon_user_2.png" />
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <TableView fx:id="reportTable" layoutX="419.0" layoutY="65.0" prefHeight="616.0" prefWidth="594.0" />
+        <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="771.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleAddReportButton" prefHeight="35.0" prefWidth="128.0" style="-fx-background-color: #5179f7;" text="add report" textAlignment="RIGHT" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <ImageView fitHeight="29.0" fitWidth="28.0" layoutX="777.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/icon/icon_5.png" />
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <Label layoutX="109.0" layoutY="35.0" text="Category" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="36.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="35.0" fitWidth="37.0" layoutX="66.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/icon/icon_6.png" />
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <Line endX="294.5" endY="111.5" layoutX="7.0" layoutY="-2.0" startX="33.29289245605469" startY="111.49998474121094" stroke="WHITE" strokeWidth="4.0" />
+        <Label layoutX="87.0" layoutY="141.0" text="Learning / Lesson" textFill="WHITE" underline="true">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Label>
+        <Label layoutX="87.0" layoutY="184.0" text="Building" textFill="WHITE" underline="true">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Label>
+        <Label layoutX="87.0" layoutY="229.0" text="Traffic / Transport" textFill="WHITE" underline="true">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Label>
+        <Label layoutX="87.0" layoutY="278.0" text="Facilities" textFill="WHITE" underline="true">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Label>
+        <Label layoutX="87.0" layoutY="328.0" text="Personnel" textFill="WHITE" underline="true">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Label>
+        <ImageView fitHeight="29.0" fitWidth="28.0" layoutX="52.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/icon/icon_7.png" />
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fitHeight="29.0" fitWidth="28.0" layoutX="52.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/icon/icon_7.png" />
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fitHeight="29.0" fitWidth="28.0" layoutX="52.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/icon/icon_7.png" />
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fitHeight="29.0" fitWidth="28.0" layoutX="52.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/icon/icon_7.png" />
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fitHeight="29.0" fitWidth="28.0" layoutX="52.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/icon/icon_7.png" />
+            </image>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </ImageView>
+        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="7.0" layoutY="712.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/icon/icon_2.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="44.0" layoutY="715.0" text="Javaverse" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="491.0" layoutY="696.0" text="sort by :" textFill="#5179f7">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="588.0" layoutY="696.0" mnemonicParsing="false" onAction="#sortByDateUp" prefHeight="35.0" prefWidth="73.0" style="-fx-background-color: #5179f7;" text="↑ date" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="674.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="35.0" prefWidth="85.0" style="-fx-background-color: #5179f7;" text="Logout" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="673.0" layoutY="696.0" mnemonicParsing="false" onAction="#sortByDateDown" prefHeight="35.0" prefWidth="73.0" style="-fx-background-color: #5179f7;" text="↓ date" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -26,22 +183,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fitHeight="29.0" fitWidth="28.0" layoutX="918.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/icon/icon_user_2.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <TreeTableView fx:id="reportTable" fixedCellSize="0.0" layoutX="420.0" layoutY="61.0" prefHeight="619.0" prefWidth="593.0">
-        <columns>
-          <TreeTableColumn editable="false" prefWidth="410.0" resizable="false" text="หัวข้อเรื่อง" />
-            <TreeTableColumn editable="false" prefWidth="116.0" text="สถานะ" />
-            <TreeTableColumn editable="false" prefWidth="66.0" resizable="false" text="คะแนน" />
-        </columns>
-      </TreeTableView>
-      <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="771.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleAddReportButton" prefHeight="35.0" prefWidth="128.0" style="-fx-background-color: #5179f7;" text="add report" textAlignment="RIGHT" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="869.0" layoutY="695.0" mnemonicParsing="false" onAction="#sortByVoteDown" prefHeight="35.0" prefWidth="73.0" style="-fx-background-color: #5179f7;" text="↓ vote" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -49,124 +191,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fitHeight="29.0" fitWidth="28.0" layoutX="777.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/icon/icon_5.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <Label layoutX="109.0" layoutY="35.0" text="Category" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="36.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="35.0" fitWidth="37.0" layoutX="66.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/icon/icon_6.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <Line endX="294.5" endY="111.5" layoutX="7.0" layoutY="-2.0" startX="33.29289245605469" startY="111.49998474121094" stroke="WHITE" strokeWidth="4.0" />
-      <Label layoutX="87.0" layoutY="141.0" text="Learning / Lesson" textFill="WHITE" underline="true">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Label>
-      <Label layoutX="87.0" layoutY="184.0" text="Building" textFill="WHITE" underline="true">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Label>
-      <Label layoutX="87.0" layoutY="229.0" text="Traffic / Transport" textFill="WHITE" underline="true">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Label>
-      <Label layoutX="87.0" layoutY="278.0" text="Facilities" textFill="WHITE" underline="true">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Label>
-      <Label layoutX="87.0" layoutY="328.0" text="Personnel" textFill="WHITE" underline="true">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Label>
-      <ImageView fitHeight="29.0" fitWidth="28.0" layoutX="52.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/icon/icon_7.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fitHeight="29.0" fitWidth="28.0" layoutX="52.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/icon/icon_7.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fitHeight="29.0" fitWidth="28.0" layoutX="52.0" layoutY="233.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/icon/icon_7.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fitHeight="29.0" fitWidth="28.0" layoutX="52.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/icon/icon_7.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fitHeight="29.0" fitWidth="28.0" layoutX="52.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/icon/icon_7.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="7.0" layoutY="712.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/icon/icon_2.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="44.0" layoutY="715.0" text="Javaverse" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="791.0" layoutY="695.0" text="sort by :" textFill="#5179f7">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="888.0" layoutY="695.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" style="-fx-background-color: #5179f7;" text="date" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="784.0" layoutY="695.0" mnemonicParsing="false" onAction="#sortByVoteUp" prefHeight="35.0" prefWidth="73.0" style="-fx-background-color: #5179f7;" text="↑ vote" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -174,21 +199,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="955.0" layoutY="695.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="60.0" style="-fx-background-color: #5179f7;" text="vote" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="674.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleLogOutButton" prefHeight="35.0" prefWidth="85.0" style="-fx-background-color: #5179f7;" text="Logout" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-   </children>
+      <Line endX="33.29290771484375" endY="146.0" layoutX="733.0" layoutY="583.0" startX="33.29289245605469" startY="111.49998474121094" stroke="#578efc" strokeWidth="4.0" />
+    </children>
 </AnchorPane>

@@ -6,10 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TreeTableView;
-import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import ku.cs.models.ReportList;
@@ -26,12 +23,17 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+public class StaffController implements Initializable {
     @FXML private TableView<ReportModel> reportTable;
     @FXML private TableColumn<ReportModel,String> topicName;
     @FXML private TableColumn<ReportModel, String> status;
     @FXML private TableColumn<ReportModel, Integer> voteScore;
     @FXML private TableColumn<ReportModel, String> dateTime;
+    @FXML private Label topic;
+    @FXML private Label detail;
+    @FXML private Label score;
+    @FXML private Label category;
+    @FXML private TextField solve;
 
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
@@ -45,12 +47,20 @@ public class MainController implements Initializable {
         reportList = dataSource.readData();
         showReportView();
         reportTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                showSelectedReport(newValue);
-            }
-        }
+                    if (newValue != null) {
+                        showSelectedReport(newValue);
+                    }
+                }
         );
 
+    }
+
+    public void selectReport(ReportModel report){
+        selectReport = report;
+        topic.setText(report.getTopic());
+        detail.setText(report.getDetail());
+//        score.setText(String.valueOf(report.getVoteSore()));
+        category.setText(report.getCategory());
     }
 
     private void showReportView() {
@@ -62,8 +72,6 @@ public class MainController implements Initializable {
         configs.add(new StringConfig("title:Score","field:voteScore"));
         configs.add(new StringConfig("title:Category","field:category"));
         configs.add(new StringConfig("title:Date","field:dateTime"));
-        configs.add(new StringConfig("title:Author","field:authorName"));
-        configs.add(new StringConfig("title:Status","field:status"));
         for (StringConfig conf: configs){
             TableColumn col = new TableColumn(conf.get("title"));
             col.setCellValueFactory(new PropertyValueFactory<>(conf.get("field")));
