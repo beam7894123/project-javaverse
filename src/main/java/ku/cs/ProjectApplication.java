@@ -31,7 +31,6 @@ public class ProjectApplication extends Application {
         FXRouter.when("admin",packageStr+"admin.fxml","Javaverse | ADMIN ONLY | Main");
         FXRouter.when("AdminStaffEdit",packageStr+"AdminStaffEdit.fxml","Javaverse | ADMIN ONLY | Edit Staff");
         FXRouter.when("AdminStaffList",packageStr+"AdminStaffList.fxml","Javaverse | ADMIN ONLY | Staff List");
-        FXRouter.when("AdminStudentEdit",packageStr+"AdminStudentEdit.fxml","Javaverse | ADMIN ONLY | Edit Student");
         FXRouter.when("AdminStudentList",packageStr+"AdminStudentList.fxml", "Javaverse | ADMIN ONLY | Student List");
         FXRouter.when("AdminChangePassword",packageStr+"AdminChangePassword.fxml", "Javaverse | ADMIN ONLY | Change Password");
 

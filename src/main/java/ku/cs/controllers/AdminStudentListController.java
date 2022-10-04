@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import ku.cs.models.AdminList;
 import ku.cs.models.AdminModels;
+import ku.cs.services.SortList;
 import ku.cs.services.AdminReadFile;
 import ku.cs.services.DataSource;
 
@@ -58,8 +59,7 @@ public class AdminStudentListController {
         //Anti Tamper code END // Anti Tamper code END // Anti Tamper code END //
 
         //Sorter @m@" //Sorter @m@" //Sorter @m@" //Sorter @m@" //
-        Collections.sort(TEMP); //Sort small --> big
-        Collections.reverse(TEMP);//reverse from "small --> big" --> "big --> small"
+        Collections.sort(TEMP, SortList.ascendingDateTime());
 //      listTable_LastLogin.setSortType(TableColumn.SortType.DESCENDING);
 //      listTable.getSortOrder().add(listTable_LastLogin);
         //Sorter END //Sorter END //Sorter END //Sorter END
