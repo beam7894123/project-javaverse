@@ -2,12 +2,14 @@ package ku.cs.services;
 
 import ku.cs.models.RegisterList;
 import com.github.saacsos.FXRouter;
+import ku.cs.models.UsercheckRegister;
+
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class SignInWriteFile {
-    private String directory;
+    private String directoryName;
     private String fileName;
     private RegisterList registerList;
     private String strUsername;
@@ -15,9 +17,10 @@ public class SignInWriteFile {
     private String usernameText;
     private String username;
     private String password;
+    private UsercheckRegister usercheckRegister;
 
-    public SignInWriteFile(String directory, String fileName, String username, String password) {
-        this.directory = directory;
+    public SignInWriteFile(String directoryName, String fileName, String username, String password) {
+        this.directoryName = directoryName;
         this.fileName = fileName;
         this.username = username;
         this.password = password;
@@ -25,7 +28,8 @@ public class SignInWriteFile {
 
     public void SignInRecieveReadFile(String usernameTextField,String passwordPasswordField) throws IOException {
         StringBuilder newPurchaseCsv = new StringBuilder();
-        File file = new File("filescsv/register.csv");
+        String filePath = directoryName+File.separator+fileName;
+        File file = new File(filePath);
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String line = "";

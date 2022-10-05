@@ -50,9 +50,9 @@ public class AdminModels extends RegisterModel implements Comparable<AdminModels
     }
 
 
-    public AdminModels(String name, String surname, String username, String password, String confirmPassword, String date, String time, String fileNameImage) {
-        super(name, surname, username, password, confirmPassword, date, time, fileNameImage);
-    }
+//    public AdminModels(String name, String surname, String username, String password, String confirmPassword, String date, String time, String fileNameImage) {
+//        super(name, surname, username, password, confirmPassword, date, time, fileNameImage);
+//    }
     public AdminModels(String name, String surname, String username, String password, String date, String time) {
         super(name, surname, username, password, date, time);
     }

@@ -2,6 +2,7 @@ package ku.cs.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -16,6 +17,8 @@ import java.io.IOException;
 public class SignInController {
     @FXML
     Label usernameLabel,passwordLabel,loginChecker;
+    @FXML
+    Button staffButton;
     @FXML TextField usernameTextfield;
 
     @FXML PasswordField passwordPasswordfield;
@@ -61,6 +64,15 @@ public class SignInController {
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
+    @FXML
+    public void handleStaffbuttonClick(ActionEvent actionEvent){
+        try {
+            FXRouter.goTo("loginStaff");
+        } catch (IOException e) {
+            System.err.println("ไปที่หน้าhome ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกําหนดroute");
+        }
+    }
 
     @FXML
     public void handleCreatorButton(ActionEvent actionEvent) {
@@ -69,4 +81,5 @@ public class SignInController {
         catch (IOException e) {
         System.err.println("err");}
     }
+
 }

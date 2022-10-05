@@ -20,7 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
-
+import com.github.saacsos.FXRouter;
 public class ProfileController {
     @FXML private Label allName;
     @FXML private Label username;
@@ -32,15 +32,15 @@ public class ProfileController {
     public void initialize(){
         dataSource = new RegisterWriteFile("filescsv","register.csv");
         registerList = dataSource.readData();
-        allName.setText(RegisterModel.getName() + " " + RegisterModel.getSurname());
-        username.setText(RegisterModel.getUsername());
-        date.setText(RegisterModel.getDate());
+//        allName.setText(RegisterModel.getName() + " " + RegisterModel.getSurname());
+//        username.setText(RegisterModel.getUsername());
+//        date.setText(RegisterModel.getDate());
     }
 
     @FXML
     public void handleBackButton(ActionEvent actionEvent) {
         try {
-            com.github.saacsos.FXRouter.goTo("main");
+            FXRouter.goTo("main");
         } catch (IOException e) {
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }

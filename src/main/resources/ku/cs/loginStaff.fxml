@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.SignInController">
+<AnchorPane maxHeight="600.0" maxWidth="800.0" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.LoginStaffController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="800.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/background_1.png" />
          </image>
@@ -36,19 +36,19 @@
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></PasswordField>
-      <Button blendMode="DARKEN" layoutX="635.0" layoutY="448.0" mnemonicParsing="false" onAction="#handleRegisterButtonClick" prefHeight="35.0" prefWidth="134.0" style="-fx-background-color: #5179f7;" text="Create Profile" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button blendMode="DARKEN" layoutX="652.0" layoutY="552.0" mnemonicParsing="false" onAction="#handleRegisterButtonClick" prefHeight="35.0" prefWidth="134.0" style="-fx-background-color: #5179f7;" text="Create Profile" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label layoutX="455.0" layoutY="456.0" text="Don't have an account?" textFill="#7c7c7c" underline="true">
+      <Label layoutX="501.0" layoutY="560.0" text="Don't have an account?" textFill="#7c7c7c" underline="true">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Button blendMode="DARKEN" layoutX="547.0" layoutY="392.0" mnemonicParsing="false" onAction="#handleConfirmButtonClick" prefHeight="35.0" prefWidth="159.0" style="-fx-background-color: #5179f7;" text="Login" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button blendMode="DARKEN" layoutX="550.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleConfirmButtonClick" prefHeight="35.0" prefWidth="159.0" style="-fx-background-color: #5179f7;" text="Login" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -76,7 +76,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="20.0" layoutY="561.0" mnemonicParsing="false" onAction="#handleCreatorButton" prefHeight="35.0" prefWidth="185.0" style="-fx-background-color: transparent;" text="Javaverse's creator" textAlignment="JUSTIFY" textFill="WHITE" underline="true">
+      <Button layoutX="20.0" layoutY="561.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="185.0" style="-fx-background-color: transparent;" text="Javaverse's creator" textAlignment="JUSTIFY" textFill="WHITE" underline="true">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -93,13 +93,5 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <Button fx:id="staffButton" blendMode="DARKEN" layoutX="609.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleStaffbuttonClick" prefHeight="35.0" prefWidth="159.0" style="-fx-background-color: #5179f7;" text="Staff" textAlignment="JUSTIFY" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
    </children>
 </AnchorPane>

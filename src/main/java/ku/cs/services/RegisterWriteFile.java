@@ -90,12 +90,12 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
             RegisterModel registerModel = new RegisterModel(nameTextField,surnameTextField,usernameTextfield,passwordPasswordfield,null,null,fileNameImage);
             registerList.addStudent(registerModel);
             writeData(registerList);
-            try {
-                FXRouter.goTo("main");
-            } catch (IOException e) {
-                System.err.println("ไปที่หน้าhome ไม่ได้");
-                System.err.println("ให้ตรวจสอบการกําหนดroute");
-            }
+//            try {
+//                FXRouter.goTo("main");
+//            } catch (IOException e) {
+//                System.err.println("ไปที่หน้าhome ไม่ได้");
+//                System.err.println("ให้ตรวจสอบการกําหนดroute");
+//            }
         }
 
     private void readCustomer() throws IOException {

@@ -13,7 +13,7 @@ public class ProjectApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXRouter.bind(this, stage);
         configRoute();
-        FXRouter.goTo("staff");
+        FXRouter.goTo("signIn");
     }
 
     private static void configRoute() {
@@ -26,7 +26,8 @@ public class ProjectApplication extends Application {
         FXRouter.when("addreport",packageStr+"report_form.fxml","Javaverse | Report",800,670);
         FXRouter.when("profile",packageStr+"profile.fxml","Javaverse | Profile",600,400);
         FXRouter.when("staff",packageStr+"for_staff.fxml","Javaverse | Staff",1024,746);
-
+        FXRouter.when("loginStaff",packageStr+"loginStaff.fxml","Javaverse | Login");
+        FXRouter.when("registerStaff",packageStr+ "registerStaff.fxml","Javaverse | Register");
         //ADMIN
         FXRouter.when("admin",packageStr+"admin.fxml","Javaverse | ADMIN ONLY | Main");
         FXRouter.when("AdminStaffEdit",packageStr+"AdminStaffEdit.fxml","Javaverse | ADMIN ONLY | Edit Staff");
@@ -34,7 +35,6 @@ public class ProjectApplication extends Application {
         FXRouter.when("AdminStudentEdit",packageStr+"AdminStudentEdit.fxml","Javaverse | ADMIN ONLY | Edit Student");
         FXRouter.when("AdminStudentList",packageStr+"AdminStudentList.fxml", "Javaverse | ADMIN ONLY | Student List");
         FXRouter.when("AdminChangePassword",packageStr+"AdminChangePassword.fxml", "Javaverse | ADMIN ONLY | Change Password");
-
     }
 
     public static void main(String[] args) {

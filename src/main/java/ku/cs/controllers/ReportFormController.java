@@ -26,7 +26,7 @@ public class ReportFormController {
     private ReportModel reportModel;
     @FXML ChoiceBox<String> categoryButton;
     private DataSource write = new ReportWriteFile("filescsv", "report.csv");
-    String usernameText = SignInController.loginUser;
+//    String usernameText = SignInController.loginUser;
 
     @FXML public void initialize() {
         dataSource = new ReportWriteFile("filescsv", "report.csv");
@@ -39,17 +39,17 @@ public class ReportFormController {
     @FXML
     public void handleSubmitButton(ActionEvent actionEvent){
         if(topicField.getText() != "" & detailField.getText() != "") {
-            try {
-                ReportModel reportModel = new ReportModel(topicField.getText(), detailField.getText(), 1,
-                        timeReport, categoryButton.getValue(), usernameText);
-                reportList.addReport(reportModel);
-                write.writeData(reportList);
-                System.out.println("Do write file");
-                FXRouter.goTo("main");
-            } catch (IOException e) {
-                System.err.println("ไปที่หน้า main ไม่ได้");
-                System.err.println("ให้ตรวจสอบการกําหนดroute");
-            }
+//            try {
+//                ReportModel reportModel = new ReportModel(topicField.getText(), detailField.getText(), 1,
+////                        timeReport, categoryButton.getValue(), usernameText);
+////                reportList.addReport(reportModel);
+////                write.writeData(reportList);
+////                System.out.println("Do write file");
+////                FXRouter.goTo("main");
+//            } catch (IOException e) {
+//                System.err.println("ไปที่หน้า main ไม่ได้");
+//                System.err.println("ให้ตรวจสอบการกําหนดroute");
+//            }
         }
         else {
             Alert text = new Alert(Alert.AlertType.WARNING,"PLEASE FILL THE FORM!!!"); text.show();
