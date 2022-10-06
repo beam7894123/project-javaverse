@@ -36,14 +36,14 @@
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></PasswordField>
-      <Button blendMode="DARKEN" layoutX="652.0" layoutY="552.0" mnemonicParsing="false" onAction="#handleRegisterButtonClick" prefHeight="35.0" prefWidth="134.0" style="-fx-background-color: #5179f7;" text="Create Profile" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button blendMode="DARKEN" layoutX="642.0" layoutY="541.0" mnemonicParsing="false" onAction="#handleRegisterButtonClick" prefHeight="35.0" prefWidth="134.0" style="-fx-background-color: #5179f7;" text="Create Profile" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label layoutX="501.0" layoutY="560.0" text="Don't have an account?" textFill="#7c7c7c" underline="true">
+      <Label layoutX="637.0" layoutY="509.0" text="Don't have an account?" textFill="#7c7c7c" underline="true">
          <font>
             <Font size="14.0" />
          </font>
@@ -93,5 +93,13 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
+      <Button fx:id="backButton" blendMode="DARKEN" layoutX="461.0" layoutY="542.0" mnemonicParsing="false" onAction="#handleBackbuttonClick" prefHeight="38.0" prefWidth="134.0" style="-fx-background-color: #5179f7;" text="Back" textAlignment="JUSTIFY" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

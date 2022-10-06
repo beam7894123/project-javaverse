@@ -26,9 +26,9 @@ public class LoginStaffWriteFile extends SignInWriteFile{
             SignInWriteFile signInWriteFile = new SignInWriteFile("filescsv", "staff.csv", strUsername, strPassword);
             try {
                 signInWriteFile.SignInRecieveReadFile(usernameTextfield, passwordPasswordfield);
-                FXRouter.goTo("main");
+                FXRouter.goTo("staff");
             } catch (IOException e) {
-                System.err.println("ไปที่หน้า main ไม่ได้");
+                System.err.println("ไปที่หน้า staff ไม่ได้");
                 System.err.println("ให้ตรวจสอบการกําหนดroute");
                 return false;
             }
