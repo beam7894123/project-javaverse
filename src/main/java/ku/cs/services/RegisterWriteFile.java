@@ -36,26 +36,36 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
     public RegisterWriteFile(String directoryName, String fileName) {
       this.directoryName = directoryName;
       this.fileName = fileName;
-      checkFileIsExisted();
+//      checkFileIsExisted();
       registerList = new RegisterList();
     }
-    private void checkFileIsExisted(){
-        // ถูกเรียกตอน constructor
-        File file = new File(directoryName);
-        if (!file.exists()){// exist ใช้บอกว่าเช็คว่ามีไฟลื
-            file.mkdirs(); // mkdir คือจะสร้าง folder เดียวไม่สร้าง parent ให้ เเต่ถ้าเป็น mkdires มันจะสร้างให้
-        }
-        String filePath = directoryName+fileName;
-        file = new File(filePath);
-        if (!file.exists()){
-            try { // เราจัดการเองเลย
-                file.createNewFile(); // ถ้าไม่มีให้สร้างไฟล์ใหม่
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+//    private void checkFileIsExisted(){
+//        // ถูกเรียกตอน constructor
+//        File file = new File(directoryName);
+//        if (!file.exists()){// exist ใช้บอกว่าเช็คว่ามีไฟลื
+//            file.mkdirs(); // mkdir คือจะสร้าง folder เดียวไม่สร้าง parent ให้ เเต่ถ้าเป็น mkdires มันจะสร้างให้
+//        }
+//        String filePath = directoryName+fileName;
+//        file = new File(filePath);
+//        if (!file.exists()){
+//            try { // เราจัดการเองเลย
+//                file.createNewFile(); // ถ้าไม่มีให้สร้างไฟล์ใหม่
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+//    }
+
+    public Boolean checkUsernameAndpassword(String usernameTextField,String passwordPasswordfield,String confirmPassword){
+        for (RegisterModel registerModel: registerList.getAllCards()){
+            if (registerModel.getUsername().equals(usernameTextField) && passwordPasswordfield.equals(confirmPassword)){
+                return true;
             }
         }
+        return false;
     }
     public Boolean checkUserName(RegisterList registerList,String usernameTextfield){
+        System.out.println(2);
         for (RegisterModel registerModel: registerList.getAllCards()){
             if (registerModel.getUsername().equals(usernameTextfield)){
                 return true;
@@ -69,25 +79,25 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
         }
         return false;
     }
-    public void checkUserNameAndPassword(RegisterList registerList,String usernameTextfield,Label labelUsername,Label labelPassword,String passwordPasswordfield,String confirmPassword,String nameTextField ,String surnameTextField,String fileNameImage){
-        if (checkUserName(registerList, usernameTextfield)){
-            labelUsername.setText("USERNAME IS NOT ALREADY");
-        }
-        else if (checkPassword(passwordPasswordfield,confirmPassword)){
-            labelPassword.setText("PASSWORD IS NOT MATCH");
-        }
-        else{
+
+    public void checkUserNameAndPassword(RegisterList registerList,String usernameTextfield,String passwordPasswordfield,String nameTextField ,String surnameTextField,String fileNameImage){
+//        if (checkUserName(registerList, usernameTextfield)){
+//            labelUsername.setText("USERNAME IS NOT ALREADY");
+//        }
+//        else if (checkPassword(passwordPasswordfield,confirmPassword)){
+//            labelPassword.setText("PASSWORD IS NOT MATCH");
+//        }
             RegisterModel registerModel = new RegisterModel(nameTextField,surnameTextField,usernameTextfield,passwordPasswordfield,null,null,fileNameImage);
             registerList.addStudent(registerModel);
             writeData(registerList);
-            try {
-                FXRouter.goTo("signIn");
-            } catch (IOException e) {
-                System.err.println("ไปที่หน้าhome ไม่ได้");
-                System.err.println("ให้ตรวจสอบการกําหนดroute");
-            }
+//            try {
+//                FXRouter.goTo("main");
+//            } catch (IOException e) {
+//                System.err.println("ไปที่หน้าhome ไม่ได้");
+//                System.err.println("ให้ตรวจสอบการกําหนดroute");
+//            }
         }
-    }
+
     private void readCustomer() throws IOException {
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
@@ -97,14 +107,17 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
         registerList = new RegisterList();
         while ((line = reader.readLine()) != null) {
             String[] data = line.split(",");
-            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[5].trim(),data[6].trim());
-            customer.setImage(data[6].trim());
-//            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[5].trim()); // obj
-//            customer.setImage(data[6].trim());
+            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[5].trim(),data[6].trim());
+            customer.setImage(data[4]);
+//            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[6].trim(),data[7].trim());
+//            customer.setImage(data[5]);
+//            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[6].trim()); // obj
+//            customer.setImage(data[5].trim());
             registerList.addStudent(customer);
         }
         reader.close();
     }
+
 
     public RegisterList Read() {
         try {
