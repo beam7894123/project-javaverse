@@ -29,15 +29,19 @@ public class ProfileController extends RegisterModel {
     private RegisterList registerList;
     private RegisterModel register;
 
-    String usernameText = SignInController.loginUser;
-   String loginName = "name";
-   String loginSurname = "surname";
+    String usernameText = SignInController.strUsername;
+   String loginName;
+   String loginSurname;
+   String dateTime;
 
-
-
-    public ProfileController(String name, String surname, String username) {
-        super(name, surname, username);
+    public ProfileController(String name, String surname, String username, String password, String date, String time) {
+        super(name, surname, username, password, date, time);
+        loginName = name;
+        loginSurname = surname;
+        dateTime = date+""+time;
     }
+
+
 
 
 
@@ -48,7 +52,7 @@ public class ProfileController extends RegisterModel {
         registerList = dataSource.readData();
         allName.setText(loginName + " " + loginSurname);
         username.setText(usernameText);
-        date.setText(RegisterModel.getDate());
+        date.setText(String.valueOf(dateTime));
     }
 
     @FXML

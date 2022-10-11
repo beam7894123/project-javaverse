@@ -30,6 +30,7 @@ public class SignInController {
     public static String StrUserID;
     private String receive;
     private SignInWriteFile signInWriteFile;
+    public static String currentUser;
 
     
 
@@ -51,6 +52,7 @@ public class SignInController {
         if (!(signInWriteFile.checkConfirmsignIn(registerList,usernameTextfield.getText(),passwordPasswordfield.getText()))){
             loginChecker.setText("Username or Password is incorrect");
         }
+        currentUser = usernameTextfield.getText();
 //        signInWriteFile.SignInRecieveReadFile();
 //        signInWriteFile.checkConfirmsignIn(registerList,usernameTextfield.getText(),passwordPasswordfield.getText(),loginChecker);
 

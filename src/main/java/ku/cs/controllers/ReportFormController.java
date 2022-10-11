@@ -26,13 +26,13 @@ public class ReportFormController {
     private ReportModel reportModel;
     @FXML ChoiceBox<String> categoryButton;
     private DataSource write = new ReportWriteFile("filescsv", "report.csv");
-    String usernameText = SignInController.loginUser;
+    String usernameText = SignInController.currentUser;
 
     @FXML public void initialize() {
         dataSource = new ReportWriteFile("filescsv", "report.csv");
         reportList = new ReportList();
         categoryButton.setItems(FXCollections.observableArrayList("Person","Facilities","Building",
-                "Learning/Lesson","Traffic/Transport"));
+                "Learning","Traffic"));
     }
 
 

@@ -13,7 +13,7 @@ public class ReportModel {
     private ReportModel reportModel;
 
     LocalDateTime localDateTime = LocalDateTime.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy hh:mm:ss");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss");
     String timeReport = localDateTime.format(formatter);
 
     public ReportModel(String topic, String detail, Integer voteScore, String category, String dateTime, String authorName) {
