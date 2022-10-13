@@ -43,7 +43,7 @@ public class RegisterController {
         image.setImage(new Image(path));
         registerList = new RegisterList();
     }
-    public void handleOkClick(ActionEvent actionEvent){
+    public void handleOkClick(ActionEvent actionEvent) throws IOException {
         System.out.println(usernameTextfield.getText());
         registerList = writeFile.readData();
         if (writeFile.checkUserName(registerList,usernameTextfield.getText())){
@@ -58,7 +58,7 @@ public class RegisterController {
 //        }
         else {
             System.out.println(fileNameImage);
-            writeFile.checkUserNameAndPassword(registerList,usernameTextfield.getText(),passwordPasswordfield.getText(),nameTextfield.getText(),surnameTextfield.getText(),fileNameImage);
+            writeFile.checkUserNameAndPassword(registerList,usernameTextfield.getText(),passwordPasswordfield.getText(),nameTextfield.getText(),surnameTextfield.getText(),fileNameImage,confirmPasswordfield.getText());
             try {
                 FXRouter.goTo("main");
             } catch (IOException e) {

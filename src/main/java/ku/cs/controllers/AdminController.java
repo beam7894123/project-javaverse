@@ -26,7 +26,7 @@ public class AdminController {
         try {
             FXRouter.goTo("AdminChangePassword");
         } catch (IOException e) {
-            System.err.println("ไปที่หน้า AdminChangePassword.fxml ไม่ได้");
+            System.err.println("ไปที่หน้า adminChangePassword.fxml ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
@@ -35,7 +35,7 @@ public class AdminController {
         try {
            FXRouter.goTo("AdminStaffList");
         } catch (IOException e) {
-            System.err.println("ไปที่หน้า AdminStaffList.fxml ไม่ได้");
+            System.err.println("ไปที่หน้า adminStaffList.fxml ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
@@ -44,7 +44,7 @@ public class AdminController {
         try {
             FXRouter.goTo("AdminStudentList");
         } catch (IOException e) {
-            System.err.println("ไปที่หน้า AdminStudentList.fxml ไม่ได้");
+            System.err.println("ไปที่หน้า adminStudentList.fxml ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
@@ -52,7 +52,7 @@ public class AdminController {
         try {
            FXRouter.goTo("signIn");
         } catch (IOException e) {
-            System.err.println("ไปที่หน้า AdminStudentList.fxml ไม่ได้");
+            System.err.println("ไปที่หน้า adminStudentList.fxml ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }

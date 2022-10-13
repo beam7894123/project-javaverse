@@ -56,4 +56,14 @@ public class RegisterList  {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "RegisterList{" +
+                "usernameTextField=" + usernameTextField +
+                ", passwordPasswodfield=" + passwordPasswodfield +
+                ", registerWriteFile=" + registerWriteFile +
+                ", registerWriteFileforStaff=" + registerWriteFileforStaff +
+                ", registerModelArrayList=" + registerModelArrayList +
+                '}';
+    }
 }
