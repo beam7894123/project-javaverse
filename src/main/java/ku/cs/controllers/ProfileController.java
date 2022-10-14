@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import ku.cs.models.RegisterList;
 import ku.cs.models.RegisterModel;
@@ -20,39 +21,42 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
-public class ProfileController extends RegisterModel {
+public class ProfileController {
     @FXML private Label allName;
     @FXML private Label username;
     @FXML private Label date;
+    @FXML private ImageView imageUpload;
     private DataSource<RegisterList> dataSource;
     private RegisterList registerList;
     private RegisterModel register;
 
-    String usernameText = SignInController.strUsername;
+   static String usernameText = SignInController.currentUser;
    String loginName;
    String loginSurname;
-   String dateTime;
-
-    public ProfileController(String name, String surname, String username, String password, String date, String time) {
-        super(name, surname, username, password, date, time);
-        loginName = name;
-        loginSurname = surname;
-        dateTime = date+""+time;
-    }
-
-
-
-
-
+   static LocalDateTime dateTime = SignInController.currentDateTime;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    String timeReport = dateTime.format(formatter);
 
 
     public void initialize(){
         dataSource = new RegisterWriteFile("filescsv","register.csv");
         registerList = dataSource.readData();
-        allName.setText(loginName + " " + loginSurname);
+        for (RegisterModel registerModel : registerList.getAllCards()){
+            registerModel.getUsername();
+            if(registerModel.getUsername() .equals(usernameText)){
+                System.out.println(registerModel.getName());
+                System.out.println(registerModel.getSurname());
+                loginName = registerModel.getName();
+                loginSurname = registerModel.getSurname();
+            }
+        }
+        allName.setText(loginName + " " + loginSurname );
         username.setText(usernameText);
-        date.setText(String.valueOf(dateTime));
+        date.setText(timeReport);
     }
 
     @FXML

@@ -14,6 +14,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
+import ku.cs.models.RegisterModel;
+import ku.cs.models.RegisterList;
 import ku.cs.services.DataSource;
 import ku.cs.services.ReportWriteFile;
 import com.github.saacsos.FXRouter;
@@ -37,10 +39,15 @@ public class MainController implements Initializable {
     private ReportList reportList;
     private ObservableList<ReportModel> reportObservableList;
     private ReportModel selectReport;
-
+    private RegisterList registerList;
+    private RegisterModel register;
+    static String usernameText = SignInController.currentUser;
+    String loginName;
+    String loginSurname;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println(usernameText);
         dataSource = new ReportWriteFile("filescsv", "report.csv");
         reportList = dataSource.readData();
         showReportView();

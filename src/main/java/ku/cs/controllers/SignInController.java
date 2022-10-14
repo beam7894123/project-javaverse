@@ -13,6 +13,10 @@ import ku.cs.services.RegisterWriteFile;
 import ku.cs.services.SignInWriteFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class SignInController {
     @FXML
@@ -31,6 +35,8 @@ public class SignInController {
     private String receive;
     private SignInWriteFile signInWriteFile;
     public static String currentUser;
+    public static LocalDateTime currentDateTime;
+
 
     
 
@@ -53,6 +59,7 @@ public class SignInController {
             loginChecker.setText("Username or Password is incorrect");
         }
         currentUser = usernameTextfield.getText();
+        currentDateTime = LocalDateTime.now();
 //        signInWriteFile.SignInRecieveReadFile();
 //        signInWriteFile.checkConfirmsignIn(registerList,usernameTextfield.getText(),passwordPasswordfield.getText(),loginChecker);
 
