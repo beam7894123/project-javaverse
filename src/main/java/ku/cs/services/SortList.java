@@ -1,6 +1,7 @@
 package ku.cs.services;
 
 import ku.cs.models.AdminModels;
+import ku.cs.models.RegisterModel;
 
 import java.util.Comparator;
 
@@ -15,10 +16,10 @@ public class SortList {//รวมSorter อื่นๆ รวมในนี�
 //        return ชื่อตัวแปรlocal;
 //    }
 
-    public static Comparator<AdminModels> ascendingDateTime(){ //เรียงเวลา+วัน ของหน้า Admin
-        Comparator<AdminModels> ascendingDateTimeComparator = new Comparator<AdminModels>(){
+    public static Comparator<RegisterModel> ascendingDateTime(){ //เรียงเวลา+วัน ของหน้า Admin
+        Comparator<RegisterModel> ascendingDateTimeComparator = new Comparator<RegisterModel>(){
             @Override
-            public int compare(AdminModels o1, AdminModels o2){ return o2.getDateTime().compareTo(o1.getDateTime());}
+            public int compare(RegisterModel o1, RegisterModel o2){ return o2.getDateTime().compareTo(o1.getDateTime());}
         };
         return ascendingDateTimeComparator;
     }
