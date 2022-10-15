@@ -44,13 +44,13 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
     }
 
     public Date setDateTime(String date, String time) {
-        String datePlusTime = date + time;
+        String datePlusTime = date + " " + time;
 
         try {
             return timeFormat1.parse(datePlusTime);
         } catch (ParseException e) {
-//            System.err.println("\n!!TIME CONVERTER(v.2) ERROR!!");
-//            System.err.println("Time, Dr. Freeman?");
+            System.err.println("\n!!TIME CONVERTER(v.2) ERROR!!");
+            System.err.println("Time, Dr. Freeman?");
 //            System.err.println("Look like user date " + "\"" + getName()+ " " + getSurname() + "\"" + " is mess up -w-");
 //            System.err.println("Here input is: " + takeDateTime + "");
 //          takeDateTime = "00-00-0000 00:00:00";
