@@ -188,6 +188,7 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
             RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[5].trim(),data[6].trim());
             customer.setImage(data[4]);
             customer.setCategory(data[7]);
+            customer.setDateTime(setDateTime(data[5], data[6]));
             staffList.addStaff(customer);
         }
         reader.close();
