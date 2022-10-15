@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class AdminStudentListController {
-    @FXML private Label nameLabel, surnameLabel, usernameLabel, lastloginLabel, banLabel;
+    @FXML private Label nameLabel, surnameLabel, usernameLabel, lastloginLabel;
     @FXML private ImageView image;
     private DataSource<RegisterList> dataSource;
     private RegisterList list;
@@ -99,7 +99,7 @@ public class AdminStudentListController {
         surnameLabel.setText("------");
         usernameLabel.setText("------");
         lastloginLabel.setText("------");
-        banLabel.setText("N/A");
+//        banLabel.setText("N/A");
     }
     private void showSelectedStudent(RegisterModel registerModels) {
         String url = Objects.requireNonNull(getClass().getResource("/images/" + registerModels.getImage())).toExternalForm();
@@ -108,7 +108,7 @@ public class AdminStudentListController {
         nameLabel.setText(registerModels.getName());
         surnameLabel.setText(registerModels.getSurname());
         usernameLabel.setText(registerModels.getUsername());
-        lastloginLabel.setText(registerModels.getTime());
+        lastloginLabel.setText(registerModels.getStringDateTime());
 //        image.setImage(card.setImage());
 //        banLabel.setText(card);
 //        usernameLabel.setText(String.format("%.2f", card.getCumulativePurchase()));
