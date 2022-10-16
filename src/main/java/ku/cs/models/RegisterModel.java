@@ -3,6 +3,7 @@ package ku.cs.models;
 import javafx.fxml.FXML;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class RegisterModel {
     private String name;
@@ -14,6 +15,7 @@ public class RegisterModel {
     private String date;
     private String time;
     private String category;
+    private Date dateTime;
 
 
 
@@ -71,7 +73,7 @@ public class RegisterModel {
 
     }
 
-    public RegisterModel(String name, String surname, String username, String password,String date,String time) {
+    public RegisterModel(String name, String surname, String username, String password, String date, String time) {
         this.name = name;
         this.surname = surname;
         this.username = username;
@@ -146,14 +148,31 @@ public class RegisterModel {
     public void setDate(String date) {
         this.date = date;
     }
+    public void setTime(String time) {this.time = time;}
 
     public String getTime() {
         return time;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public Date getDateTime() {
+        return dateTime;
     }
+//    private String StringDateTime = date + " " + time;
+    public String getStringDateTime() { //use by tableview in AdminStudentListController
+        return date + " " + time;
+    }
+
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
+    }
+
+//    //FOR Check stringDateTime ONLY
+//    Locale locale = new Locale("en","en"); //SET LOCALE (if u sys is พศ. it will auto set to คศ. yay~ \^w^/ )
+//    SimpleDateFormat timeFormat1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", locale);
+//    private final String stringDateTime = timeFormat1.format(dateTime); //Date --> String
+//    public String getStringDateTime() {
+//        return stringDateTime;
+//    }
 
     @Override
     public String toString() {
@@ -166,6 +185,8 @@ public class RegisterModel {
                 ", image='" + image + '\'' +
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
+                ", dateTime=" + dateTime +
+//                ", stringDateTime='" + stringDateTime + '\'' +
                 ", category='" + category + '\'' +
                 '}';
     }

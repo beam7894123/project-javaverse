@@ -1,15 +1,9 @@
 package ku.cs.services;
-import com.github.saacsos.FXRouter;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import ku.cs.models.Category;
 import ku.cs.models.RegisterList;
 import ku.cs.models.RegisterModel;
 import ku.cs.models.StaffList;
@@ -20,11 +14,11 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
-
-import static ku.cs.controllers.SignInController.strUsername;
+import java.util.Locale;
 
 public class RegisterWriteFile implements DataSource<RegisterList> {
     private String directoryName;
@@ -37,6 +31,11 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
     private String categoryReceive;
     private StaffList staffList;
 
+    Locale locale = new Locale("en","en"); //SET LOCALE (if u sys is พศ. it will auto set to คศ. yay~ \^w^/ )
+    SimpleDateFormat timeFormat1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", locale);
+    private final Date defaultdateTime; {try {defaultdateTime = timeFormat1.parse("01-01-2000 00:00:00");} catch (
+            ParseException e) {throw new RuntimeException(e);}}
+
 
     public void initialize(){
         fileNameImage = "default1.png";
@@ -44,6 +43,23 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
         image.setImage(new Image(path));
     }
 
+    public Date setDateTime(String date, String time) {
+        String datePlusTime = date + " " + time;
+
+        try {
+            return timeFormat1.parse(datePlusTime);
+        } catch (ParseException e) {
+            System.err.println("\n!!TIME CONVERTER(v.2) ERROR!!");
+            System.err.println("Time, Dr. Freeman?");
+//            System.err.println("Look like user date " + "\"" + getName()+ " " + getSurname() + "\"" + " is mess up -w-");
+//            System.err.println("Here input is: " + takeDateTime + "");
+//          takeDateTime = "00-00-0000 00:00:00";
+            return defaultdateTime;
+//            System.out.println("Continue running...\n");
+//          dateTime = new GregorianCalendar(2000, 2, 1).getTime();
+//          throw new RuntimeException(e);
+        }
+    }
     public RegisterWriteFile(String directoryName, String fileName) {
       this.directoryName = directoryName;
       this.fileName = fileName;
@@ -151,6 +167,7 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
             String[] data = line.split(",");
             RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[5].trim(),data[6].trim());
             customer.setImage(data[4]);
+            customer.setDateTime(setDateTime(data[5], data[6]));
 //            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[6].trim(),data[7].trim());
 //            customer.setImage(data[5]);
 //            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[6].trim()); // obj
@@ -171,6 +188,7 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
             RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[5].trim(),data[6].trim());
             customer.setImage(data[4]);
             customer.setCategory(data[7]);
+            customer.setDateTime(setDateTime(data[5], data[6]));
             staffList.addStaff(customer);
         }
         reader.close();

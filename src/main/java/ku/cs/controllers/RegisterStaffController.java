@@ -76,7 +76,7 @@ public class RegisterStaffController extends RegisterController{
 
 //            writeFile.checkUsernameAndPasswordforStaff(staffList,usernameTextfield.getText(),passwordPasswordfield.getText(),nameTextfield.getText(),surnameTextfield.getText(),fileNameImage,category);
             try {
-                FXRouter.goTo("loginStaff");
+                FXRouter.goTo("admin");
             } catch (IOException e) {
                 System.err.println("ไปที่หน้าhome ไม่ได้");
                 System.err.println("ให้ตรวจสอบการกําหนดroute");
@@ -98,7 +98,7 @@ public class RegisterStaffController extends RegisterController{
     @Override
     public void handleBackButton(ActionEvent actionEvent) {
         try {
-          FXRouter.goTo("loginStaff");
+          FXRouter.goTo("admin");
         } catch (IOException e) {
             System.err.println("ไปที่หน้าhome ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");
