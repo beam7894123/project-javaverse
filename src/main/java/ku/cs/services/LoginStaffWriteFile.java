@@ -1,14 +1,12 @@
 package ku.cs.services;
 
-import ku.cs.models.RegisterList;
-
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 import com.github.saacsos.FXRouter;
-import ku.cs.models.StaffList;
+import ku.cs.models.UserList;
 
 public class LoginStaffWriteFile {
     private String strUsername,usernameText;
@@ -68,7 +66,7 @@ public class LoginStaffWriteFile {
         osw.close();
     }
 
-    public boolean checkConfirmsignIn(StaffList staffList, String usernameTextfield, String passwordPasswordfield) {
+    public boolean checkConfirmsignIn(UserList staffList, String usernameTextfield, String passwordPasswordfield) {
         if (staffList.checkForStaff(staffList, usernameTextfield, passwordPasswordfield)) {
             strUsername = usernameTextfield;
             strPassword = passwordPasswordfield;

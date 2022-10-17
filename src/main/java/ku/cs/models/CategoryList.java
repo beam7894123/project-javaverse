@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class CategoryList {
     //Category add
-    private static ArrayList<Category> categories;
+    private  ArrayList<Category> categories;
 
     public CategoryList(){
         categories = new ArrayList<>();
@@ -14,7 +14,7 @@ public class CategoryList {
         categories.add(category);
     }
 
-    public static ArrayList<Category> getCategories(){
+    public ArrayList<Category> getCategories(){
         return categories;
     }
 }

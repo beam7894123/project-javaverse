@@ -4,9 +4,8 @@ import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import ku.cs.models.RegisterList;
-import ku.cs.models.RegisterModel;
-import ku.cs.models.StaffList;
+import ku.cs.models.UserList;
+import ku.cs.models.User;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -14,27 +13,18 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Locale;
 
-public class RegisterWriteFile implements DataSource<RegisterList> {
+public class RegisterWriteFile implements DataSource<UserList> {
     private String directoryName;
     private String fileName;
-    private RegisterList registerList;
+    private UserList userList;
     private String path;
     private ImageView image;
     private String fileNameImage;
-    private RegisterModel registerModel;
+    private User user;
     private String categoryReceive;
-    private StaffList staffList;
-
-    Locale locale = new Locale("en","en"); //SET LOCALE (if u sys is พศ. it will auto set to คศ. yay~ \^w^/ )
-    SimpleDateFormat timeFormat1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", locale);
-    private final Date defaultdateTime; {try {defaultdateTime = timeFormat1.parse("01-01-2000 00:00:00");} catch (
-            ParseException e) {throw new RuntimeException(e);}}
+    private UserList staffList;
 
 
     public void initialize(){
@@ -43,29 +33,12 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
         image.setImage(new Image(path));
     }
 
-    public Date setDateTime(String date, String time) {
-        String datePlusTime = date + " " + time;
-
-        try {
-            return timeFormat1.parse(datePlusTime);
-        } catch (ParseException e) {
-            System.err.println("\n!!TIME CONVERTER(v.2) ERROR!!");
-            System.err.println("Time, Dr. Freeman?");
-//            System.err.println("Look like user date " + "\"" + getName()+ " " + getSurname() + "\"" + " is mess up -w-");
-//            System.err.println("Here input is: " + takeDateTime + "");
-//          takeDateTime = "00-00-0000 00:00:00";
-            return defaultdateTime;
-//            System.out.println("Continue running...\n");
-//          dateTime = new GregorianCalendar(2000, 2, 1).getTime();
-//          throw new RuntimeException(e);
-        }
-    }
     public RegisterWriteFile(String directoryName, String fileName) {
       this.directoryName = directoryName;
       this.fileName = fileName;
 //      checkFileIsExisted();
-      registerList = new RegisterList();
-      staffList = new StaffList();
+//      userList = new UserList();
+//      staffList = new UserList();
     }
 //    private void checkFileIsExisted(){
 //        // ถูกเรียกตอน constructor
@@ -85,17 +58,17 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
 //    }
 
     public Boolean checkUsernameAndpassword(String usernameTextField,String passwordPasswordfield,String confirmPassword){
-        for (RegisterModel registerModel: registerList.getAllCards()){
-            if (registerModel.getUsername().equals(usernameTextField) && passwordPasswordfield.equals(confirmPassword)){
+        for (User user : userList.getAllCards()){
+            if (user.getUsername().equals(usernameTextField) && passwordPasswordfield.equals(confirmPassword)){
                 return true;
             }
         }
         return false;
     }
-    public Boolean checkUserName(RegisterList registerList,String usernameTextfield){
+    public Boolean checkUserName(UserList userList, String usernameTextfield){
         System.out.println(2);
-        for (RegisterModel registerModel: registerList.getAllCards()){
-            if (registerModel.getUsername().equals(usernameTextfield)){
+        for (User user : userList.getAllCards()){
+            if (user.getUsername().equals(usernameTextfield)){
                 return true;
             }
         }
@@ -107,30 +80,25 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
         }
         return false;
     }
-    public Boolean checkUserNameforStaff(StaffList staffList,String usernameTextfield){
+    public Boolean checkUserNameforStaff(UserList staffList,String usernameTextfield){
         System.out.println(22);
-        for (RegisterModel registerModel : staffList.getAllstaff()){
-            if (registerModel.getUsername().equals(usernameTextfield)){
+        for (User user : staffList.getAllCards()){
+            if (user.getUsername().equals(usernameTextfield)){
                 return true;
             }
         }
         return false;
     }
-//    public Boolean checkPasswordforStaff(String passwordPasswordfield,String confirmPassword){
-//        if (!passwordPasswordfield.equals(confirmPassword)){
-//            return true;
-//        }
-//        return false;
-//    }
 
-    public void checkUserNameAndPassword(RegisterList registerList,String usernameTextfield,String passwordPasswordfield,String nameTextField ,String surnameTextField,String fileNameImage,String confirmPasswordpasswordField){
-            RegisterModel registerModel = new RegisterModel(nameTextField,surnameTextField,usernameTextfield,passwordPasswordfield,null,null,fileNameImage);
-            registerList.addStudent(registerModel);
-            writeData(registerList);
+
+    public void checkUserNameAndPassword(UserList userList, String usernameTextfield, String passwordPasswordfield, String nameTextField , String surnameTextField, String fileNameImage, String confirmPasswordpasswordField){
+            User user = new User(nameTextField,surnameTextField,usernameTextfield,passwordPasswordfield,null,null,fileNameImage);
+            userList.addStudent(user);
+            writeData(userList);
         }
-    public void checkUsernameAndPasswordforStaff(StaffList staffList,String usernameTextfield,String passwordPasswordfield,String nameTextfield,String surnameTextfield,String fileNameImage,String categoryChicebox) throws IOException {
-        RegisterModel registerModel = new RegisterModel(nameTextfield,surnameTextfield,usernameTextfield,passwordPasswordfield,null,null,fileNameImage,categoryChicebox);
-        staffList.addStaff(registerModel);
+    public void checkUsernameAndPasswordforStaff(UserList staffList,String usernameTextfield,String passwordPasswordfield,String nameTextfield,String surnameTextfield,String fileNameImage,String categoryChicebox) throws IOException {
+        User user = new User(nameTextfield,surnameTextfield,usernameTextfield,passwordPasswordfield,null,null,fileNameImage,categoryChicebox);
+        staffList.addStudent(user);
         writeDataforStaff(staffList);
 //        System.out.println(categoryChicebox);
 //
@@ -162,17 +130,16 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
         FileReader fileReader = new FileReader(file);
         BufferedReader reader = new BufferedReader(fileReader);
         String line = "";
-        registerList = new RegisterList();
+        userList = new UserList();
         while ((line = reader.readLine()) != null) {
             String[] data = line.split(",");
-            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[5].trim(),data[6].trim());
+            User customer = new User(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[5].trim(),data[6].trim());
             customer.setImage(data[4]);
-            customer.setDateTime(setDateTime(data[5], data[6]));
 //            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[6].trim(),data[7].trim());
 //            customer.setImage(data[5]);
 //            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[6].trim()); // obj
 //            customer.setImage(data[5].trim());
-            registerList.addStudent(customer);
+            userList.addStudent(customer);
         }
         reader.close();
     }
@@ -182,20 +149,19 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
         FileReader fileReader = new FileReader(file);
         BufferedReader reader = new BufferedReader(fileReader);
         String line = "";
-        staffList = new StaffList();
+        staffList = new UserList();
         while ((line = reader.readLine()) != null) {
             String[] data = line.split(",");
-            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[5].trim(),data[6].trim());
+            User customer = new User(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[5].trim(),data[6].trim());
             customer.setImage(data[4]);
             customer.setCategory(data[7]);
-            customer.setDateTime(setDateTime(data[5], data[6]));
-            staffList.addStaff(customer);
+            staffList.addStudent(customer);
         }
         reader.close();
     }
 
 
-    public RegisterList Read() {
+    public UserList Read() {
         try {
             readCustomer();
         } catch (FileNotFoundException e) {
@@ -203,11 +169,11 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
         } catch (IOException e) {
             System.err.println("IOException from reading " + this.fileName);
         }
-        return registerList;
+        return userList;
     }
 
     @Override
-    public RegisterList readData() {
+    public UserList readData() {
         try {
             readCustomer();
         } catch (FileNotFoundException e) {
@@ -215,9 +181,9 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
         } catch (IOException e) {
             System.err.println("IOException from reading " + this.fileName);
         }
-        return registerList;
+        return userList;
     }
-    public StaffList readDataforStaff(){
+    public UserList readDataforStaff(){
         try {
             readStaff();
         } catch (FileNotFoundException e) {
@@ -229,7 +195,7 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
     }
 
     @Override
-    public void writeData(RegisterList registerList) {
+    public void writeData(UserList userList) {
 
         String filePath = directoryName+File.separator+fileName;
         File file = new File(filePath);
@@ -238,15 +204,15 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
         try {
             writer = new FileWriter(file);
             buffer = new BufferedWriter(writer);
-            for (RegisterModel registerModel : registerList.getAllCards()){
-                System.out.println(registerList);
-                String line = registerModel.getName()+","
-                        +registerModel.getSurname()+","
-                        +registerModel.getUsername()+","
-                        +registerModel.getPassword()+","
-                        +registerModel.getImage()+","
-                        +registerModel.getDate()+","
-                        +registerModel.getTime();
+            for (User user : userList.getAllCards()){
+                System.out.println(userList);
+                String line = user.getName()+","
+                        + user.getSurname()+","
+                        + user.getUsername()+","
+                        + user.getPassword()+","
+                        + user.getImage()+","
+                        + user.getDate()+","
+                        + user.getTime();
                 buffer.append(line);
                 buffer.newLine();
             }
@@ -261,7 +227,7 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
             }
         }
     }
-    public void writeDataforStaff(StaffList staffList) throws IOException {
+    public void writeDataforStaff(UserList staffList) throws IOException {
         System.out.println(staffList.toString());
         String filePath = directoryName+File.separator+fileName;
         File file = new File(filePath);
@@ -270,16 +236,16 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
         try {
             writer = new FileWriter(file);
             buffer = new BufferedWriter(writer);
-            for (RegisterModel registerModel : staffList.getAllstaff()){
+            for (User user : staffList.getAllCards()){
                 System.out.println(staffList);
-                String line = registerModel.getName()+","
-                        +registerModel.getSurname()+","
-                        +registerModel.getUsername()+","
-                        +registerModel.getPassword()+","
-                        +registerModel.getImage()+","
-                        +registerModel.getDate()+","
-                        +registerModel.getTime()+","
-                        +registerModel.getCategory();
+                String line = user.getName()+","
+                        + user.getSurname()+","
+                        + user.getUsername()+","
+                        + user.getPassword()+","
+                        + user.getImage()+","
+                        + user.getDate()+","
+                        + user.getTime()+","
+                        + user.getCategory();
                 buffer.append(line);
                 buffer.newLine();
             }
@@ -362,8 +328,13 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
                 if (!destDir.exists()) destDir.mkdirs();
                 // RENAME FILE
                 String[] fileSplit = file.getName().split("\\.");
-                fileNameImage = LocalDate.now() + "_"+System.currentTimeMillis() + "."
-                        + fileSplit[fileSplit.length - 1];
+                fileNameImage = fileName;
+//                fileNameImage = fileSplit;
+//                fileNameImage = FileSystems.getDefault().getPath(destDir.getPath()+System.getProperty(fileNameImage));
+//                fileNameImage = destDir.getAbsolutePath()+System.getProperty("file.separator")+fileNameImage;
+//                fileNameImage =fileSplit[fileSplit.length - 1];
+////                fileNameImage = LocalDate.now() + "_"+System.currentTimeMillis() + "."
+////                        + fileSplit[fileSplit.length - 1];
                 Path target = FileSystems.getDefault().getPath(
                         destDir.getAbsolutePath()+System.getProperty("file.separator")+fileNameImage
                 );

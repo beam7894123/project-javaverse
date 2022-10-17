@@ -1,6 +1,5 @@
 package ku.cs.services;
 
-import ku.cs.controllers.AdminController;
 import ku.cs.models.*;
 
 import java.io.*;
@@ -76,7 +75,7 @@ public class AdminReadFile{
 //        return list;
 //    }
 
-    public void writeData(RegisterList write) {
+    public void writeData(UserList write) {
 
     }
 

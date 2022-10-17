@@ -8,8 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import ku.cs.models.RegisterList;
-import ku.cs.services.DataSource;
+import ku.cs.models.UserList;
 import ku.cs.services.RegisterWriteFile;
 
 
@@ -30,7 +29,7 @@ public class RegisterController {
     private String fileName;
     private String path;
     private RegisterWriteFile registerWriteFile;
-    private RegisterList registerList;
+    private UserList userList;
     private String  fileNameImage;
     private String date,time;
 
@@ -41,12 +40,12 @@ public class RegisterController {
         path = getClass().getResource("/images/default1.png").toExternalForm();
 //        image.setImage(new Image(getClass().getResource("/ku/cs/images/default1.png").toExternalForm()));
         image.setImage(new Image(path));
-        registerList = new RegisterList();
+        userList = new UserList();
     }
     public void handleOkClick(ActionEvent actionEvent) throws IOException {
         System.out.println(usernameTextfield.getText());
-        registerList = writeFile.readData();
-        if (writeFile.checkUserName(registerList,usernameTextfield.getText())){
+        userList = writeFile.readData();
+        if (writeFile.checkUserName(userList,usernameTextfield.getText())){
             System.out.println(1);
             labelUsername.setText("USERNAME IS NOT ALREADY");
         }
@@ -58,7 +57,7 @@ public class RegisterController {
 //        }
         else {
             System.out.println(fileNameImage);
-            writeFile.checkUserNameAndPassword(registerList,usernameTextfield.getText(),passwordPasswordfield.getText(),nameTextfield.getText(),surnameTextfield.getText(),fileNameImage,confirmPasswordfield.getText());
+            writeFile.checkUserNameAndPassword(userList,usernameTextfield.getText(),passwordPasswordfield.getText(),nameTextfield.getText(),surnameTextfield.getText(),fileNameImage,confirmPasswordfield.getText());
             try {
                 FXRouter.goTo("main");
             } catch (IOException e) {

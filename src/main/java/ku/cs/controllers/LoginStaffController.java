@@ -7,11 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import com.github.saacsos.FXRouter;
-import ku.cs.models.RegisterList;
-import ku.cs.models.StaffList;
+import ku.cs.models.UserList;
 import ku.cs.services.LoginStaffWriteFile;
 import ku.cs.services.RegisterWriteFile;
-import ku.cs.services.SignInWriteFile;
 
 import java.io.IOException;
 
@@ -26,14 +24,14 @@ public class LoginStaffController {
     @FXML
     Button backButton;
     private LoginStaffWriteFile loginStaffWriteFile;
-    private RegisterList registerList;
-    private StaffList staffList;
+    private UserList userList;
+    private UserList staffList;
 
     private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","staff.csv");
     public void initialize(){
-        staffList = new StaffList();
+        staffList = new UserList();
         writeFile = new RegisterWriteFile("filescsv","staff.csv");
-        System.out.println(staffList.getAllstaff());
+        System.out.println(staffList.getAllCards());
     }
     public void handleConfirmButtonClick(ActionEvent actionEvent) throws IOException {
         loginStaffWriteFile = new LoginStaffWriteFile("filescsv","staff.csv",usernameTextfield.getText(),passwordPasswordfield.getText());

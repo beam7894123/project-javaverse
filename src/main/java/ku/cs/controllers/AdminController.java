@@ -2,16 +2,13 @@ package ku.cs.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 
 import java.io.IOException;
 import com.github.saacsos.FXRouter;
-import ku.cs.models.RegisterModel;
-import ku.cs.services.DataSource;
-import ku.cs.services.RegisterWriteFile;
+import ku.cs.models.User;
 
 public class AdminController {
-    private RegisterModel john, anna, harry;
+    private User john, anna, harry;
 //    private DataSource write = new RegisterWriteFile("filescsv", "register.csv");
 
     @FXML

@@ -1,26 +1,20 @@
 package ku.cs.controllers;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import com.github.saacsos.FXRouter;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import ku.cs.models.RegisterList;
-import ku.cs.models.RegisterModel;
-import ku.cs.models.StaffList;
+import ku.cs.models.UserList;
+import ku.cs.models.User;
 import ku.cs.services.RegisterWriteFile;
 
 public class RegisterStaffController extends RegisterController{
@@ -30,11 +24,11 @@ public class RegisterStaffController extends RegisterController{
     Label labelUsername,labelPassword,labelUsernameforStaff,labelPasswordforStaff;
     @FXML Label labelUsernameStaff;
     private String fileNameImage;
-    private RegisterList registerList;
+    private UserList userList;
     private String path;
     @FXML public ImageView image;
-    private RegisterModel registerModel;
-    private StaffList staffList;
+    private User user;
+    private UserList staffList;
     @FXML ChoiceBox<String> categoryButton;
 //    @FXML
 ////    ChoiceBox<String> categoryChicebox;
@@ -48,7 +42,7 @@ public class RegisterStaffController extends RegisterController{
         path = getClass().getResource("/images/default1.png").toExternalForm();
 //        image.setImage(new Image(getClass().getResource("/ku/cs/images/default1.png").toExternalForm()));
         image.setImage(new Image(path));
-        staffList = new StaffList();
+        staffList = new UserList();
 //        comboBox.getItems().addAll("Person","Facilities","Building",
 //                "Learning/Lesson","Traffic/Transport");
         categoryButton.setItems(FXCollections.observableArrayList("Person","Facilities","Building",
@@ -68,8 +62,8 @@ public class RegisterStaffController extends RegisterController{
         else {
 
 //          String category = categoryChicebox.getValue();
-          RegisterModel registerModel1 = new RegisterModel(nameTextfield.getText(),surnameTextfield.getText(),usernameTextfield.getText(),passwordPasswordfield.getText(),null,null,fileNameImage,categoryButton.getValue());
-          staffList.addStaff(registerModel1);
+          User user1 = new User(nameTextfield.getText(),surnameTextfield.getText(),usernameTextfield.getText(),passwordPasswordfield.getText(),null,null,fileNameImage,categoryButton.getValue());
+          staffList.addStudent(user1);
           writeFile.writeDataforStaff(staffList);
 
 

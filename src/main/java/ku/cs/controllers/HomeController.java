@@ -3,25 +3,25 @@ package ku.cs.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import com.github.saacsos.FXRouter;
-import ku.cs.models.RegisterList;
+import ku.cs.models.UserList;
 import ku.cs.services.DataSource;
 import ku.cs.services.RegisterWriteFile;
 
 import java.io.IOException;
 
 public class HomeController {
-    private RegisterList registerList;
+    private UserList userList;
 
-    public void setRegisterList(RegisterList registerList){
-        this.registerList =  registerList;
+    public void setRegisterList(UserList userList){
+        this.userList = userList;
     }
-    private DataSource<RegisterList> registerWriteFile;
+    private DataSource<UserList> registerWriteFile;
 
     public void initialize(){
-        registerList = new RegisterList();
+        userList = new UserList();
         registerWriteFile = new RegisterWriteFile("filecsv","register.csv");
 //        registerList.setRegisterModelArrayList(registerWriteFile.readData().getAllCards());
-        System.out.println(registerList.getAllCards());
+        System.out.println(userList.getAllCards());
     }
     @FXML
     public void handleCreatorButton(ActionEvent actionEvent) {try {
@@ -36,7 +36,7 @@ public class HomeController {
     public void handleRegisterButton(ActionEvent actionEvent){
         try {
             FXRouter.goTo("register");
-            setRegisterList(registerList);
+            setRegisterList(userList);
         } catch (IOException e) {
             System.err.println("ไปที่หน้าregister ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");

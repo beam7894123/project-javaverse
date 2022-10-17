@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
 import ku.cs.services.DataSource;
@@ -42,6 +43,11 @@ public class DetailController {
         Alert status = new Alert(Alert.AlertType.WARNING,"you vote this report already!!");
         status.setTitle("WARNING!?");
         voteButton.setDisable(true);
+    }
+    @FXML
+    public int handleVoteimage(MouseEvent mouseEvent){
+       int totalScore = score+=1;
+      return totalScore;
     }
 
     @FXML
