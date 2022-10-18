@@ -1,10 +1,6 @@
 package ku.cs.models;
 
-import javafx.fxml.FXML;
-
-import java.util.ArrayList;
-
-public class RegisterModel {
+public class User {
     private String name;
     private String surname;
     private String username;
@@ -13,6 +9,7 @@ public class RegisterModel {
     private String  image;
     private String date;
     private String time;
+    private String category;
 
 
 
@@ -47,7 +44,18 @@ public class RegisterModel {
 //        this.surname = surname;
 //        this.time = time;
 //    }
-    public RegisterModel(String name, String surname, String username, String password,String date,String time,String fileNameImage) {
+    public User(String name, String surname, String username, String password, String date, String time, String fileNameImage, String category) {
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
+        this.date = date;
+        this.time = time;
+        this.category = category;
+        this.image = fileNameImage;
+        System.out.println(image);
+    }
+    public User(String name, String surname, String username, String password, String date, String time, String fileNameImage) {
         this.name = name;
         this.surname = surname;
         this.username = username;
@@ -56,9 +64,10 @@ public class RegisterModel {
         this.time = time;
         this.image = fileNameImage;
         System.out.println(image);
+
     }
 
-    public RegisterModel(String name, String surname, String username, String password,String date,String time) {
+    public User(String name, String surname, String username, String password, String date, String time) {
         this.name = name;
         this.surname = surname;
         this.username = username;
@@ -66,6 +75,8 @@ public class RegisterModel {
         this.date = date;
         this.time = time;
     }
+
+
 
 
     public String getConfirmPassword() {
@@ -82,6 +93,14 @@ public class RegisterModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getSurname() {
@@ -143,8 +162,10 @@ public class RegisterModel {
                 ", image='" + image + '\'' +
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
+                ", category='" + category + '\'' +
                 '}';
     }
+
     //    private String name;
 //    private String surname;
 //    private String username;

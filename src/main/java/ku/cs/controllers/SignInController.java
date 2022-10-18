@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import com.github.saacsos.FXRouter;
-import ku.cs.models.RegisterList;
+import ku.cs.models.UserList;
 import ku.cs.services.DataSource;
 import ku.cs.services.RegisterWriteFile;
 import ku.cs.services.SignInWriteFile;
@@ -26,11 +26,11 @@ public class SignInController {
     @FXML TextField usernameTextfield;
 
     @FXML PasswordField passwordPasswordfield;
-    private RegisterList control;
+    private UserList control;
     public  String strUserID;
     public  static String strUsername;
     public  String strPassword;
-    private RegisterList registerList;
+    private UserList userList;
     public static String StrUserID;
     private String receive;
     private SignInWriteFile signInWriteFile;
@@ -44,9 +44,9 @@ public class SignInController {
     private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","register.csv");
     @FXML public void initialize(){
 //        registerWriteFile = new RegisterWriteFile("filescsv","register.csv");
-        registerList = new RegisterList();
+        userList = new UserList();
         registerWriteFile = new RegisterWriteFile("filescsv","register.csv");
-        System.out.println(registerList.getAllCards());
+        System.out.println(userList.getAllCards());
 
 
     }
@@ -55,7 +55,7 @@ public class SignInController {
     public void handleConfirmButtonClick(ActionEvent actionEvent) throws IOException {
 //        registerList = writeFile.readData();
         signInWriteFile = new SignInWriteFile("filescsv","register.csv",usernameTextfield.getText(),passwordPasswordfield.getText());
-        if (!(signInWriteFile.checkConfirmsignIn(registerList,usernameTextfield.getText(),passwordPasswordfield.getText()))){
+        if (!(signInWriteFile.checkConfirmsignIn(userList,usernameTextfield.getText(),passwordPasswordfield.getText()))){
             loginChecker.setText("Username or Password is incorrect");
         }
         currentUser = usernameTextfield.getText();

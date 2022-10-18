@@ -1,9 +1,6 @@
 package ku.cs.services;
 
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import ku.cs.models.RegisterList;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
 

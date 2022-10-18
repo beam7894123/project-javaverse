@@ -1,8 +1,7 @@
 package ku.cs.services;
 
-import ku.cs.models.RegisterList;
+import ku.cs.models.UserList;
 import com.github.saacsos.FXRouter;
-import ku.cs.models.UsercheckRegister;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -11,13 +10,13 @@ import java.util.Date;
 public class SignInWriteFile {
     private String directoryName;
     private String fileName;
-    private RegisterList registerList;
+    private UserList userList;
     private String strUsername;
     private String strPassword;
     private String usernameText;
     private String username;
     private String password;
-    private UsercheckRegister usercheckRegister;
+//    private UsercheckRegister usercheckRegister;
 
     public SignInWriteFile(String directoryName, String fileName, String username, String password) {
         this.directoryName = directoryName;
@@ -61,7 +60,7 @@ public class SignInWriteFile {
         osw.close();
     }
 
-    public boolean checkConfirmsignIn(RegisterList registerList, String usernameTextfield, String passwordPasswordfield){
+    public boolean checkConfirmsignIn(UserList userList, String usernameTextfield, String passwordPasswordfield){
         if(usernameTextfield.equals("admin")&&passwordPasswordfield.equals("admin")){
             try {
                 FXRouter.goTo("admin");
@@ -70,7 +69,7 @@ public class SignInWriteFile {
                 System.err.println("ไปที่หน้าhome ไม่ได้");
                 System.err.println("ให้ตรวจสอบการกําหนดroute");
             }
-        }else if (registerList.userCheck(registerList,usernameTextfield,passwordPasswordfield)) {
+        }else if (userList.userCheck(userList,usernameTextfield,passwordPasswordfield)) {
             strUsername = usernameTextfield;
             strPassword = passwordPasswordfield;
             SignInWriteFile signInWriteFile = new SignInWriteFile("filescsv","register.csv",strUsername,strPassword);
