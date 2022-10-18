@@ -6,6 +6,7 @@ import com.github.saacsos.FXRouter;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class SignInWriteFile {
     private String directoryName;
@@ -25,6 +26,7 @@ public class SignInWriteFile {
         this.password = password;
     }
 
+    Locale locale = new Locale("en","en"); //SET LOCALE (if u sys is พศ. it will auto set to คศ. yay~ \^w^/ )
     public void SignInRecieveReadFile(String usernameTextField,String passwordPasswordField) throws IOException {
         StringBuilder newPurchaseCsv = new StringBuilder();
         String filePath = directoryName+File.separator+fileName;
@@ -38,8 +40,8 @@ public class SignInWriteFile {
             }
             String[] data = line.split(",");
             if (usernameTextField.equals(data[2]) && passwordPasswordField.equals(data[3])) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyy ");
-                SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm:ss");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyy ", locale); // <-- ทำไหมไม่เอา space ออกหะ??? 555
+                SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm:ss", locale);
                 Date d = new Date(System.currentTimeMillis());
                 newPurchaseCsv.append(data[0]).append(",").append(data[1])
                         .append(",").append(data[2])
