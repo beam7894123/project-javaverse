@@ -14,8 +14,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
-import ku.cs.models.RegisterModel;
-import ku.cs.models.RegisterList;
 import ku.cs.services.DataSource;
 import ku.cs.services.ReportWriteFile;
 import com.github.saacsos.FXRouter;
@@ -38,10 +36,9 @@ public class MainController implements Initializable {
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
     private ObservableList<ReportModel> reportObservableList;
-    public static String selectReport;
-    private RegisterList registerList;
-    private RegisterModel register;
-    static String usernameText = SignInController.currentUser;
+    public String selectReport;
+    String usernameText = SignInController.currentUser;
+
     String loginName;
     String loginSurname;
 
@@ -102,6 +99,7 @@ public class MainController implements Initializable {
     public void handleLogOutButton(ActionEvent actionEvent){
         try {
             usernameText = "";
+            System.out.println(usernameText);
             FXRouter.goTo("signIn");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า signIn ไม่ได้");

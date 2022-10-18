@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import ku.cs.models.RegisterModel;
+import ku.cs.models.User;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
 import ku.cs.services.DataSource;
@@ -14,7 +14,7 @@ import ku.cs.services.ReportWriteFile;
 
 import java.io.IOException;
 
-public class DetailController {
+public class DetailController extends MainController{
     @FXML
     private Label topicName;
     @FXML
@@ -28,7 +28,6 @@ public class DetailController {
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
     private int score = 1;
-    public String currentReport = MainController.selectReport;
     String topic;
     String detail;
     String vote;
@@ -41,7 +40,7 @@ public class DetailController {
         dataSource = (DataSource<ReportList>) new ReportWriteFile("filescsv","report.csv");
         reportList = dataSource.readData();
         for (ReportModel reportModel : reportList.getReports()){
-            if(currentReport .equals(reportModel.getTopic())){
+            if(selectReport .equals(reportModel.getTopic())){
                 System.out.println(reportModel.getTopic());
                 System.out.println(reportModel.getDetail());
                 System.out.println(reportModel.getVoteScore());

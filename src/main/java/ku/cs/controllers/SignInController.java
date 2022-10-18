@@ -28,10 +28,8 @@ public class SignInController {
     @FXML PasswordField passwordPasswordfield;
     private UserList control;
     public  String strUserID;
-    public  static String strUsername;
     public  String strPassword;
     private UserList userList;
-    public static String StrUserID;
     private String receive;
     private SignInWriteFile signInWriteFile;
     public static String currentUser;

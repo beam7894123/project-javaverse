@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class ReportFormController {
+public class ReportFormController extends SignInController {
     LocalDateTime localDateTime = LocalDateTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     String timeReport = localDateTime.format(formatter);
@@ -26,7 +26,7 @@ public class ReportFormController {
     private ReportModel reportModel;
     @FXML ChoiceBox<String> categoryButton;
     private DataSource write = new ReportWriteFile("filescsv", "report.csv");
-    String usernameText = SignInController.currentUser;
+
 
     @FXML public void initialize() {
         dataSource = new ReportWriteFile("filescsv", "report.csv");
@@ -41,7 +41,7 @@ public class ReportFormController {
         if(topicField.getText() != "" & detailField.getText() != "") {
             try {
                 ReportModel reportModel = new ReportModel(topicField.getText(), detailField.getText(),1,
-                        timeReport, categoryButton.getValue(), usernameText);
+                        timeReport, categoryButton.getValue(), currentUser);
                 reportList.addReport(reportModel);
                 write.writeData(reportList);
                 System.out.println("Do write file");

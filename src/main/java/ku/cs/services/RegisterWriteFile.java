@@ -133,7 +133,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
         userList = new UserList();
         while ((line = reader.readLine()) != null) {
             String[] data = line.split(",");
-            User customer = new User(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[5].trim(),data[6].trim());
+            User customer = new User(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[5].trim());
             customer.setImage(data[4]);
 //            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[6].trim(),data[7].trim());
 //            customer.setImage(data[5]);

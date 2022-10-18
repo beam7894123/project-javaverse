@@ -7,8 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import ku.cs.models.RegisterList;
-import ku.cs.models.RegisterModel;
+import ku.cs.models.UserList;
+import ku.cs.models.User;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
 import ku.cs.services.DataSource;
@@ -27,30 +27,32 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import com.github.saacsos.FXRouter;
 
+import static ku.cs.controllers.SignInController.currentDateTime;
+
 public class ProfileController {
     @FXML private Label allName;
     @FXML private Label username;
     @FXML private Label date;
     @FXML private ImageView imageUpload;
-    private DataSource<RegisterList> dataSource;
-    private RegisterList registerList;
-    private RegisterModel register;
+    private DataSource<UserList> dataSource;
+    private UserList registerList;
+    private User register;
 
-   static String usernameText = SignInController.currentUser;
+    String usernameText = SignInController.currentUser;
    String loginName;
    String loginSurname;
     private String  fileNameImage;
     private String path;
-   static LocalDateTime dateTime = SignInController.currentDateTime;
+
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-    String timeReport = dateTime.format(formatter);
+    String timeReport = currentDateTime.format(formatter);
     private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","register.csv");
 
 
     public void initialize(){
         dataSource = new RegisterWriteFile("filescsv","register.csv");
         registerList = dataSource.readData();
-        for (RegisterModel registerModel : registerList.getAllCards()){
+        for (User registerModel : registerList.getAllCards()){
             registerModel.getUsername();
             if(registerModel.getUsername() .equals(usernameText)){
                 System.out.println(registerModel.getName());
@@ -67,7 +69,7 @@ public class ProfileController {
         path = getClass().getResource("/images/"+fileNameImage).toExternalForm();
 //        image.setImage(new Image(getClass().getResource("/ku/cs/images/default1.png").toExternalForm()));
         imageUpload.setImage(new Image(path));
-        registerList = new RegisterList();
+        registerList = new UserList();
     }
 
     @FXML
