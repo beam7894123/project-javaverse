@@ -36,11 +36,8 @@ public class MainController implements Initializable {
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
     private ObservableList<ReportModel> reportObservableList;
-    public String selectReport;
+    public static String selectReport;
     String usernameText = SignInController.currentUser;
-
-    String loginName;
-    String loginSurname;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

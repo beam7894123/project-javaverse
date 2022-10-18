@@ -84,4 +84,12 @@ public class ProfileController {
 
         fileNameImage = writeFile.uploadImageFromFile(actionEvent,imageUpload);
     }
+    @FXML
+    public void handleReportButton(ActionEvent actionEvent) {
+        try {
+            FXRouter.goTo("myreport");
+        } catch (IOException e) {
+            System.err.println("ให้ตรวจสอบการกำหนด route");
+        }
+    }
 }

@@ -14,7 +14,7 @@ import ku.cs.services.ReportWriteFile;
 
 import java.io.IOException;
 
-public class DetailController extends MainController{
+public class DetailController {
     @FXML
     private Label topicName;
     @FXML
@@ -28,6 +28,7 @@ public class DetailController extends MainController{
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
     private int score = 1;
+    String currentReport = MainController.selectReport;
     String topic;
     String detail;
     String vote;
@@ -40,7 +41,7 @@ public class DetailController extends MainController{
         dataSource = (DataSource<ReportList>) new ReportWriteFile("filescsv","report.csv");
         reportList = dataSource.readData();
         for (ReportModel reportModel : reportList.getReports()){
-            if(selectReport .equals(reportModel.getTopic())){
+            if(currentReport .equals(reportModel.getTopic())){
                 System.out.println(reportModel.getTopic());
                 System.out.println(reportModel.getDetail());
                 System.out.println(reportModel.getVoteScore());
