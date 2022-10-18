@@ -107,7 +107,7 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
         registerList = new RegisterList();
         while ((line = reader.readLine()) != null) {
             String[] data = line.split(",");
-            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[5].trim(),data[6].trim());
+            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[5].trim());
             customer.setImage(data[4]);
 //            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[6].trim(),data[7].trim());
 //            customer.setImage(data[5]);
@@ -191,8 +191,7 @@ public class RegisterWriteFile implements DataSource<RegisterList> {
                 if (!destDir.exists()) destDir.mkdirs();
                 // RENAME FILE
                 String[] fileSplit = file.getName().split("\\.");
-                fileNameImage = LocalDate.now() + "_"+System.currentTimeMillis() + "."
-                        + fileSplit[fileSplit.length - 1];
+                fileNameImage = file.getName();
                 Path target = FileSystems.getDefault().getPath(
                         destDir.getAbsolutePath()+System.getProperty("file.separator")+fileNameImage
                 );

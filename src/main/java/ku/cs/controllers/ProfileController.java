@@ -16,6 +16,7 @@ import ku.cs.services.RegisterWriteFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -37,9 +38,12 @@ public class ProfileController {
    static String usernameText = SignInController.currentUser;
    String loginName;
    String loginSurname;
+    private String  fileNameImage;
+    private String path;
    static LocalDateTime dateTime = SignInController.currentDateTime;
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     String timeReport = dateTime.format(formatter);
+    private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","register.csv");
 
 
     public void initialize(){
@@ -50,13 +54,19 @@ public class ProfileController {
             if(registerModel.getUsername() .equals(usernameText)){
                 System.out.println(registerModel.getName());
                 System.out.println(registerModel.getSurname());
+                System.out.println(registerModel.getImage());
                 loginName = registerModel.getName();
                 loginSurname = registerModel.getSurname();
+                fileNameImage = registerModel.getImage();
             }
         }
         allName.setText(loginName + " " + loginSurname );
         username.setText(usernameText);
         date.setText(timeReport);
+        path = getClass().getResource("/images/"+fileNameImage).toExternalForm();
+//        image.setImage(new Image(getClass().getResource("/ku/cs/images/default1.png").toExternalForm()));
+        imageUpload.setImage(new Image(path));
+        registerList = new RegisterList();
     }
 
     @FXML
@@ -66,5 +76,9 @@ public class ProfileController {
         } catch (IOException e) {
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
+    }
+    public void handleUploadButton(ActionEvent actionEvent) throws MalformedURLException {
+
+        fileNameImage = writeFile.uploadImageFromFile(actionEvent,imageUpload);
     }
 }
