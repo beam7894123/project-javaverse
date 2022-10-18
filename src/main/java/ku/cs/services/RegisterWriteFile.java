@@ -13,7 +13,11 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.Locale;
 
 public class RegisterWriteFile implements DataSource<UserList> {
     private String directoryName;
@@ -32,6 +36,30 @@ public class RegisterWriteFile implements DataSource<UserList> {
         path = getClass().getResource("/images/default1.png").toExternalForm();
         image.setImage(new Image(path));
     }
+
+// TIME CONVERTER !!! DO NOT TOUCH !!! ห้ามลบ ถ้าเกิด Error บอก beam7894123 ก่อน ไม่งั้นต่อยนะ >:< //
+    Locale locale = new Locale("en","en"); //SET LOCALE (if u sys is พศ. it will auto set to คศ. yay~ \^w^/ )
+    SimpleDateFormat timeFormat1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", locale);
+    private final Date defaultdateTime; {try {defaultdateTime = timeFormat1.parse("01-01-2000 00:00:00");} catch (
+            ParseException e) {throw new RuntimeException(e);}}
+    public Date setDateTime(String date, String time) {
+        String datePlusTime = date + " " + time;
+
+        try {
+            return timeFormat1.parse(datePlusTime);
+        } catch (ParseException e) {
+            System.err.println("\n!!TIME CONVERTER(v.2) ERROR!!");
+            System.err.println("Time, Dr. Freeman?");
+//            System.err.println("Look like user date " + "\"" + getName()+ " " + getSurname() + "\"" + " is mess up -w-");
+//            System.err.println("Here input is: " + takeDateTime + "");
+//          takeDateTime = "00-00-0000 00:00:00";
+            return defaultdateTime;
+//            System.out.println("Continue running...\n");
+//          dateTime = new GregorianCalendar(2000, 2, 1).getTime();
+//          throw new RuntimeException(e);
+        }
+    }
+// TIME CONVERTER // END // END // END // END // END // END // END // END // END // END // END // END // END
 
     public RegisterWriteFile(String directoryName, String fileName) {
       this.directoryName = directoryName;
@@ -135,6 +163,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
             String[] data = line.split(",");
             User customer = new User(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[5].trim(),data[6].trim());
             customer.setImage(data[4]);
+            customer.setDateTime(setDateTime(data[5], data[6])); // TIME CONVERTER !!! DO NOT TOUCH !!! ห้ามลบ ถ้าเกิด Error บอก beam7894123 ก่อน ไม่งั้นต่อยนะ >:< //
 //            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[6].trim(),data[7].trim());
 //            customer.setImage(data[5]);
 //            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[6].trim()); // obj
@@ -155,6 +184,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
             User customer = new User(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[5].trim(),data[6].trim());
             customer.setImage(data[4]);
             customer.setCategory(data[7]);
+            customer.setDateTime(setDateTime(data[5], data[6])); // TIME CONVERTER !!! DO NOT TOUCH !!! ห้ามลบ ถ้าเกิด Error บอก beam7894123 ก่อน ไม่งั้นต่อยนะ >:< //
             staffList.addStudent(customer);
         }
         reader.close();
