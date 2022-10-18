@@ -25,6 +25,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import com.github.saacsos.FXRouter;
 
 public class ProfileController {
     @FXML private Label allName;
@@ -72,7 +73,7 @@ public class ProfileController {
     @FXML
     public void handleBackButton(ActionEvent actionEvent) {
         try {
-            com.github.saacsos.FXRouter.goTo("main");
+            FXRouter.goTo("main");
         } catch (IOException e) {
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }

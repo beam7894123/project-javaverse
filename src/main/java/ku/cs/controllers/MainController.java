@@ -38,7 +38,7 @@ public class MainController implements Initializable {
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
     private ObservableList<ReportModel> reportObservableList;
-    private ReportModel selectReport;
+    public static String selectReport;
     private RegisterList registerList;
     private RegisterModel register;
     static String usernameText = SignInController.currentUser;
@@ -65,7 +65,7 @@ public class MainController implements Initializable {
         reportTable.setItems(reportObservableList);
         ArrayList<StringConfig> configs = new ArrayList<>();
         configs.add(new StringConfig("title:Topic","field:topic"));
-        configs.add(new StringConfig("title:Detail","field:detail"));
+//        configs.add(new StringConfig("title:Detail","field:detail"));
         configs.add(new StringConfig("title:Score","field:voteScore"));
         configs.add(new StringConfig("title:Category","field:category"));
         configs.add(new StringConfig("title:Date","field:dateTime"));
@@ -78,9 +78,15 @@ public class MainController implements Initializable {
         };
     }
 
-    private void showSelectedReport(ReportModel reportModel){
+    @FXML private void showSelectedReport(ReportModel reportModel){
 //        ไปหน้าใหม่และโชว์ detail ของ report (´;ω;)
-        selectReport = reportModel;
+        selectReport = reportModel.getTopic();
+        try {
+            FXRouter.goTo("detail");
+        } catch (IOException e) {
+            System.err.println("ไปที่หน้า detail ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกําหนดroute");
+        }
     }
 
     @FXML
@@ -95,6 +101,7 @@ public class MainController implements Initializable {
     @FXML
     public void handleLogOutButton(ActionEvent actionEvent){
         try {
+            usernameText = "";
             FXRouter.goTo("signIn");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า signIn ไม่ได้");

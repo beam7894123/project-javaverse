@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.DetailController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.DetailController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -45,7 +45,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="709.0" layoutY="488.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="709.0" layoutY="488.0" onMouseClicked="#voteScoreButton" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/icon/icon_vote.png" />
          </image>
@@ -57,7 +57,7 @@
       </Label>
       <Label fx:id="topicDetail" alignment="TOP_LEFT" layoutX="31.0" layoutY="268.0" prefHeight="269.0" prefWidth="626.0" text="topicDetail" textFill="#5179f7">
          <font>
-            <Font name="System Bold" size="24.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <Label layoutX="682.0" layoutY="564.0" prefHeight="25.0" prefWidth="51.0" text="score :" textAlignment="CENTER" textFill="#51aff5">
