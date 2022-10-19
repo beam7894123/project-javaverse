@@ -36,3 +36,7 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+#Obsidian ignored files
+.obsidian/
+/.obsidian/
