@@ -57,11 +57,6 @@ public class MyReportController implements Initializable {
         reportObservableList = FXCollections.observableArrayList(reportList.getReports());
         sortedList = new SortedList(reportObservableList);
 //        filteredList = new FilteredList(sortedList);
-        for (ReportModel reportModel : reportList.getReports()){
-            if(reportModel.getAuthorName() .equals(usernameText)){
-
-            }
-        }
                 FilteredList<ReportModel> filterCategory = new FilteredList<>(sortedList, b-> true);
         input.textProperty().addListener((observable, oldValue, newValue) -> {
                     filterCategory.setPredicate(reportModel -> {
@@ -71,7 +66,7 @@ public class MyReportController implements Initializable {
 
                         String lowerCaseFilter = newValue.toLowerCase();
 
-                        if (reportModel.getTopic().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                        if (reportModel.getAuthorName().toLowerCase().contains(lowerCaseFilter)) {
                             return true;
                         }
                         return false;
@@ -80,20 +75,6 @@ public class MyReportController implements Initializable {
         SortedList<ReportModel> sortedData = new SortedList<>(filterCategory);
         sortedData.comparatorProperty().bind(myreportTable.comparatorProperty());
         myreportTable.setItems(sortedData);
-//        input.setText(usernameText);
-//        input.textProperty().addListener(new ChangeListener<String>() {
-//            @Override
-//            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-//                filteredList.setPredicate(new Predicate<ReportModel>() {
-//                    @Override
-//                    public boolean test(ReportModel reportModel) {
-//                        Boolean user = reportModel.getAuthorName().contains(t1);
-//                        return user;
-//                    }
-//                });
-//            }
-//        });
-//        myreportTable.setItems(filteredList);
         ArrayList<StringConfig> configs = new ArrayList<>();
         configs.add(new StringConfig("title:Topic","field:topic"));
 //        configs.add(new StringConfig("title:Detail","field:detail"));
