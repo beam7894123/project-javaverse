@@ -100,15 +100,15 @@ public class AdminStaffListController {
                     }
                 });
     }
-    private void showSelectedStudent(User registerModels) {
-        String url = Objects.requireNonNull(getClass().getResource("/images/" + registerModels.getImage())).toExternalForm();
+    private void showSelectedStudent(User user) {
+        String url = Objects.requireNonNull(getClass().getResource("/images/" + user.getImage())).toExternalForm();
         image.setImage(new Image(url)); //Set image url
 
-        nameLabel.setText(registerModels.getName());
-        surnameLabel.setText(registerModels.getSurname());
-        usernameLabel.setText(registerModels.getUsername());
-        lastloginLabel.setText(registerModels.getDate());
-        departmentLabel.setText(registerModels.getCategory());
+        nameLabel.setText(user.getName());
+        surnameLabel.setText(user.getSurname());
+        usernameLabel.setText(user.getUsername());
+        lastloginLabel.setText(user.getStringDateTime());
+        departmentLabel.setText(user.getCategory());
     }
     private void clearSelectedStaff() {
         String url = getClass().getResource("/images/default1.png").toExternalForm();

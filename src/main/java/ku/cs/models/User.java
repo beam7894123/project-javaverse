@@ -1,5 +1,7 @@
 package ku.cs.models;
 
+import java.util.Date;
+
 public class User {
     private String name;
     private String surname;
@@ -151,6 +153,20 @@ public class User {
         this.time = time;
     }
 
+// TIME CONVERTER !!! DO NOT TOUCH !!! ห้ามลบ ถ้าเกิด Error บอก beam7894123 ก่อน ไม่งั้นต่อยนะ >:< //
+    private Date dateTime;
+    public Date getDateTime() {
+        return dateTime;
+    }
+    //    private String StringDateTime = date + " " + time;
+    public String getStringDateTime() { //use by tableview in AdminStudentListController
+        return date + " " + time;
+    }
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
+    }
+// TIME CONVERTER // END // END // END // END // END // END // END // END // END // END // END // END // END
+
     @Override
     public String toString() {
         return "RegisterModel{" +
@@ -162,6 +178,7 @@ public class User {
                 ", image='" + image + '\'' +
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
+                ", dateTime=" + dateTime + // นี้ด้วย <<
                 ", category='" + category + '\'' +
                 '}';
     }
