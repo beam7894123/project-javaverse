@@ -9,6 +9,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -31,6 +32,7 @@ public class MyReportController implements Initializable {
     private TableView<ReportModel> myreportTable;
    @FXML private TextField input;
 
+
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
     private ObservableList<ReportModel> reportObservableList;
@@ -50,14 +52,15 @@ public class MyReportController implements Initializable {
                         showSelectedReport(newValue);
                     }
                 }
+
         );
 
     }
     private void showReportView() {
         reportObservableList = FXCollections.observableArrayList(reportList.getReports());
         sortedList = new SortedList(reportObservableList);
-//        filteredList = new FilteredList(sortedList);
                 FilteredList<ReportModel> filterCategory = new FilteredList<>(sortedList, b-> true);
+
         input.textProperty().addListener((observable, oldValue, newValue) -> {
                     filterCategory.setPredicate(reportModel -> {
                         if (newValue == null || newValue.isEmpty()) {
@@ -108,4 +111,5 @@ public class MyReportController implements Initializable {
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }
+
 }

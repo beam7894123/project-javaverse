@@ -357,7 +357,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
                 File destDir = new File("src/main/resources/images");
                 if (!destDir.exists()) destDir.mkdirs();
                 // RENAME FILE
-                String[] fileSplit = file.getName().split("\\.");
+//                String[] fileSplit = file.getName().split("\\.");
                 fileNameImage = fileName;
 //                fileNameImage = fileSplit;
 //                fileNameImage = FileSystems.getDefault().getPath(destDir.getPath()+System.getProperty(fileNameImage));
