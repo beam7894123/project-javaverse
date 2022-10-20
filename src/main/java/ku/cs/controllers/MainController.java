@@ -78,8 +78,8 @@ public class MainController implements Initializable {
         configs.add(new StringConfig("title:Topic","field:topic"));
 //        configs.add(new StringConfig("title:Detail","field:detail"));
         configs.add(new StringConfig("title:Score","field:voteScore"));
-        configs.add(new StringConfig("title:Category","field:category"));
         configs.add(new StringConfig("title:Date","field:dateTime"));
+        configs.add(new StringConfig("title:Category","field:category"));
         configs.add(new StringConfig("title:Author","field:authorName"));
         configs.add(new StringConfig("title:Status","field:status"));
         for (StringConfig conf: configs){

@@ -60,19 +60,21 @@ public class DetailController {
     public void voteScoreButton(MouseEvent mouseEvent){
         for (ReportModel reportModel : reportList.getReports()){
             if(currentReport .equals(reportModel.getTopic())){
-                System.out.println(reportModel.getTopic());
-                System.out.println(reportModel.getDetail());
-                reportModel.addScore(score);
-                vote = String.valueOf(reportModel.getVoteScore());
-                reportModel.setVoteScore(score);
-                System.out.println(vote);
+                int score1 = reportModel.getVoteScore();
+                score1++;
+                voteScoreLabel.setText(String.valueOf(vote));
+                reportModel.setVoteScore(score1);
+                dataSource.writeData(reportList);
+                Alert status = new Alert(Alert.AlertType.WARNING,"you vote this report already!!");
+                status.setTitle("WARNING!?");
+                voteButton.setDisable(true);
             }
         }
-        voteScoreLabel.setText(String.valueOf(vote));
-        Alert status = new Alert(Alert.AlertType.WARNING,"you vote this report already!!");
-        status.setTitle("WARNING!?");
-        voteButton.setDisable(true);
-//        starbutton.setDisable(true);
+//        voteScoreLabel.setText(String.valueOf(vote));
+//        Alert status = new Alert(Alert.AlertType.WARNING,"you vote this report already!!");
+//        status.setTitle("WARNING!?");
+//        voteButton.setDisable(true);
+////        starbutton.setDisable(true);
     }
 
     @FXML

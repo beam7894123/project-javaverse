@@ -26,12 +26,12 @@ public class ReportFormController extends SignInController {
     public ReportList reportList;
     private ReportModel reportModel;
     @FXML ChoiceBox<String> categoryButton;
-    private DataSource write = new ReportWriteFile("filescsv", "report.csv");
+    private DataSource<ReportList> write = new ReportWriteFile("filescsv", "report.csv");
 
 
     @FXML public void initialize() {
         dataSource = new ReportWriteFile("filescsv", "report.csv");
-        reportList = new ReportList();
+        reportList = write.readData();
         categoryButton.setItems(FXCollections.observableArrayList("Person","Facilities","Building",
                 "Learning","Traffic"));
     }
@@ -42,7 +42,7 @@ public class ReportFormController extends SignInController {
         if(topicField.getText() != "" & detailField.getText() != "") {
             try {
                 ReportModel reportModel = new ReportModel(topicField.getText(), detailField.getText(),0,
-                        timeReport, categoryButton.getValue(), currentUser);
+                        categoryButton.getValue(),timeReport, currentUser);
                 reportList.addReport(reportModel);
                 write.writeData(reportList);
                 System.out.println("Do write file");

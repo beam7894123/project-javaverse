@@ -13,7 +13,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
+import ku.cs.models.User;
+import ku.cs.models.UserList;
 import ku.cs.services.DataSource;
+import ku.cs.services.RegisterWriteFile;
 import ku.cs.services.ReportWriteFile;
 import com.github.saacsos.FXRouter;
 import ku.cs.services.StringConfig;
@@ -37,11 +40,15 @@ public class StaffController implements Initializable {
     @FXML private Label category;
     @FXML private TextField solve;
     private DataSource<ReportList> dataSource;
+    private DataSource<UserList> staffsource;
     private ReportList reportList;
+    private UserList registerList;
     private SortedList<ReportModel> sortedList;
     private ObservableList<ReportModel> reportObservableList;
     private ReportModel selectReport;
-
+    String usernameText = SignInController.currentUser;
+    String loginName;
+    String loginSurname;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,6 +74,21 @@ public class StaffController implements Initializable {
 
     private void showReportView() {
         reportObservableList = FXCollections.observableArrayList(reportList.getReports());
+        staffsource = new RegisterWriteFile("filescsv","register.csv");
+        registerList = staffsource.readData();
+        for (User registerModel : registerList.getAllCards()){
+            registerModel.getUsername();
+            if(registerModel.getUsername() .equals(usernameText)){
+                System.out.println(registerModel.getName());
+                System.out.println(registerModel.getSurname());
+                for(ReportModel reportModel : reportList.getReports()){
+                if(registerModel.getCategory().equals(reportModel.getCategory())){
+                    System.out.println(reportModel.getCategory());
+                    System.out.println(registerModel.getCategory());
+                }
+
+            }
+        }}
         reportTable.setItems(reportObservableList);
         ArrayList<StringConfig> configs = new ArrayList<>();
         configs.add(new StringConfig("title:Topic","field:topic"));
@@ -74,6 +96,7 @@ public class StaffController implements Initializable {
         configs.add(new StringConfig("title:Score","field:voteScore"));
         configs.add(new StringConfig("title:Category","field:category"));
         configs.add(new StringConfig("title:Date","field:dateTime"));
+        configs.add(new StringConfig("title:Status","field:status"));
         for (StringConfig conf: configs){
             TableColumn col = new TableColumn(conf.get("title"));
             col.setCellValueFactory(new PropertyValueFactory<>(conf.get("field")));
