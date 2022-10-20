@@ -44,7 +44,7 @@ public class StaffController implements Initializable {
     private ObservableList<ReportModel> reportObservableList;
     private ReportModel selectReport;
     String usernameText = LoginStaffController.usernameStaff;
-    private RegisterWriteFile registerWriteFile1;
+    private RegisterWriteFile readDataforStaff;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dataSource = new ReportWriteFile("filescsv", "report.csv");
@@ -68,8 +68,10 @@ public class StaffController implements Initializable {
     }
 
     private void showReportView() {
-        staffsource = new RegisterWriteFile("filescsv","staff.csv");
-        userList = staffsource.readData();
+        readDataforStaff = new RegisterWriteFile("filescsv","staff.csv");
+        userList = readDataforStaff.readDataforStaff();
+//        staffsource = new RegisterWriteFile("filescsv","staff.csv");
+//        userList = staffsource.readData();
         User staff = userList.findMyUsername(usernameText);
         reportList = reportList.findMyCategory(staff.getCategory());
         reportObservableList = FXCollections.observableList(reportList.getReports());
@@ -86,7 +88,7 @@ public class StaffController implements Initializable {
             TableColumn col = new TableColumn(conf.get("title"));
             col.setCellValueFactory(new PropertyValueFactory<>(conf.get("field")));
             reportTable.getColumns().add(col);
-        };
+        }
     }
 
     @FXML
