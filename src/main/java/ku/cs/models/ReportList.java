@@ -16,5 +16,14 @@ public class ReportList {
     public ArrayList<ReportModel> getReports(){
         return reports;
     }
+    public ReportList findMyReport(String writer){
+        ReportList searchReportList = new ReportList();
+        for(ReportModel a : reports) {
+            if(writer.equals(a.getAuthorName())){
+                searchReportList.addReport(a);
+            }
+        }
+        return  searchReportList;
+    }
 
 }

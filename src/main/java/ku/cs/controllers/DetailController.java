@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import ku.cs.models.User;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
@@ -23,6 +25,7 @@ public class DetailController {
     private Label voteScoreLabel;
     @FXML
     private Button voteButton;
+    @FXML private ImageView starbutton;
 
     private ReportModel reportModel;
     private DataSource<ReportList> dataSource;
@@ -33,9 +36,8 @@ public class DetailController {
     String detail;
     String vote;
 
-//    public DetailController(String topic, String detail, Integer voteScore, String category, String dateTime, String authorName) {
-//        super(topic, detail, voteScore, category, dateTime, authorName);
-//    }
+    ReportWriteFile writefile = new ReportWriteFile("filescsv", "report.csv");
+
 
     public void initialize(){
         dataSource = (DataSource<ReportList>) new ReportWriteFile("filescsv","report.csv");
@@ -56,12 +58,22 @@ public class DetailController {
     }
 
     @FXML
-    public void voteScoreButton(ActionEvent actionEvent){
-        reportModel.addScore(score);
+    public void voteScoreButton(MouseEvent mouseEvent){
+        for (ReportModel reportModel : reportList.getReports()){
+            if(currentReport .equals(reportModel.getTopic())){
+                System.out.println(reportModel.getTopic());
+                System.out.println(reportModel.getDetail());
+                reportModel.addScore(score);
+                vote = String.valueOf(reportModel.getVoteScore());
+                reportModel.setVoteScore(score);
+                System.out.println(vote);
+            }
+        }
         voteScoreLabel.setText(String.valueOf(vote));
         Alert status = new Alert(Alert.AlertType.WARNING,"you vote this report already!!");
         status.setTitle("WARNING!?");
         voteButton.setDisable(true);
+//        starbutton.setDisable(true);
     }
 
     @FXML

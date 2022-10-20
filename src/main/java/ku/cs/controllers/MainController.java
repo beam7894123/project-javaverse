@@ -72,6 +72,7 @@ public class MainController implements Initializable {
         });
         SortedList<ReportModel> sortedData = new SortedList<>(filterCategory);
         sortedData.comparatorProperty().bind(reportTable.comparatorProperty());
+
         reportTable.setItems(sortedData);
         ArrayList<StringConfig> configs = new ArrayList<>();
         configs.add(new StringConfig("title:Topic","field:topic"));

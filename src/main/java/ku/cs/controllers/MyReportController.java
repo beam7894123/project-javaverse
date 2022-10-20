@@ -58,26 +58,10 @@ public class MyReportController implements Initializable {
     }
     private void showReportView() {
         reportObservableList = FXCollections.observableArrayList(reportList.getReports());
-        sortedList = new SortedList(reportObservableList);
-                FilteredList<ReportModel> filterCategory = new FilteredList<>(sortedList, b-> true);
 
-        input.textProperty().addListener((observable, oldValue, newValue) -> {
-                    filterCategory.setPredicate(reportModel -> {
-                        if (newValue == null || newValue.isEmpty()) {
-                            return true;
-                        }
-
-                        String lowerCaseFilter = newValue.toLowerCase();
-
-                        if (reportModel.getAuthorName().toLowerCase().contains(lowerCaseFilter)) {
-                            return true;
-                        }
-                        return false;
-                    });
-                });
-        SortedList<ReportModel> sortedData = new SortedList<>(filterCategory);
-        sortedData.comparatorProperty().bind(myreportTable.comparatorProperty());
-        myreportTable.setItems(sortedData);
+        ReportList myReport = reportList.findMyReport(usernameText);
+        reportObservableList = FXCollections.observableArrayList(myReport.getReports());
+        myreportTable.setItems(reportObservableList);
         ArrayList<StringConfig> configs = new ArrayList<>();
         configs.add(new StringConfig("title:Topic","field:topic"));
 //        configs.add(new StringConfig("title:Detail","field:detail"));
