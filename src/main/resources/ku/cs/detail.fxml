@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.DetailController">
+<AnchorPane prefHeight="810.0" prefWidth="800.0" style="-fx-background-color: -white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.DetailController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="619.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/background_6.png" />
          </image>
@@ -35,17 +35,17 @@
             <Font name="System Bold" size="31.0" />
          </font>
       </Label>
-      <Label layoutX="669.0" layoutY="541.0" prefHeight="25.0" prefWidth="127.0" text="click this star to vote" textAlignment="CENTER" textFill="#5179f7">
+      <Label layoutX="656.0" layoutY="748.0" prefHeight="25.0" prefWidth="127.0" text="click this star to vote" textAlignment="CENTER" textFill="#5179f7">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="voteButton" layoutX="703.0" layoutY="489.0" mnemonicParsing="false" onAction="#voteScoreButton" opacity="0.0" prefHeight="51.0" prefWidth="60.0">
+      <Button fx:id="voteButton" layoutX="691.0" layoutY="696.0" mnemonicParsing="false" onAction="#voteScoreButton" opacity="0.0" prefHeight="51.0" prefWidth="60.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fx:id="starbutton" fitHeight="53.0" fitWidth="60.0" layoutX="709.0" layoutY="488.0" onMouseClicked="#voteScoreButton" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="696.0" layoutY="695.0" onMouseClicked="#voteScoreButton" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/icon/icon_vote.png" />
          </image>
@@ -60,17 +60,17 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="682.0" layoutY="564.0" prefHeight="25.0" prefWidth="51.0" text="score :" textAlignment="CENTER" textFill="#51aff5">
+      <Label layoutX="669.0" layoutY="771.0" prefHeight="25.0" prefWidth="51.0" text="score :" textAlignment="CENTER" textFill="#51aff5">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="voteScoreLabel" layoutX="728.0" layoutY="564.0" prefHeight="25.0" prefWidth="60.0" text="voteScore" textAlignment="CENTER" textFill="#f551d1">
+      <Label fx:id="voteScoreLabel" layoutX="715.0" layoutY="771.0" prefHeight="25.0" prefWidth="60.0" text="voteScore" textAlignment="CENTER" textFill="#f551d1">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button layoutX="31.0" layoutY="549.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="35.0" prefWidth="127.0" style="-fx-background-color: #517af5;" text="Back" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button layoutX="18.0" layoutY="756.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="35.0" prefWidth="127.0" style="-fx-background-color: #517af5;" text="Back" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -78,5 +78,15 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label layoutX="41.0" layoutY="557.0" prefHeight="53.0" prefWidth="367.0" text="How problem get solve :" textFill="#5179f7">
+         <font>
+            <Font name="System Bold" size="31.0" />
+         </font>
+      </Label>
+      <Label fx:id="solveText" alignment="TOP_LEFT" layoutX="41.0" layoutY="610.0" prefHeight="137.0" prefWidth="626.0" text="solveText" textFill="#5179f7" wrapText="true">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

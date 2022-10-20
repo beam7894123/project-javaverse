@@ -13,7 +13,7 @@ public class ProjectApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXRouter.bind(this, stage);
         configRoute();
-        FXRouter.goTo("signIn");
+        FXRouter.goTo("staff");
     }
 
     private static void configRoute() {
@@ -28,7 +28,7 @@ public class ProjectApplication extends Application {
         FXRouter.when("myreport",packageStr+"myreport.fxml","Javaverse | MyReport",600,400);
         FXRouter.when("staff",packageStr+"for_staff.fxml","Javaverse | Staff",1024,746);
         FXRouter.when("loginStaff",packageStr+"loginStaff.fxml","Javaverse | Login");
-        FXRouter.when("detail",packageStr+"detail.fxml","Javaverse | Detail");
+        FXRouter.when("detail",packageStr+"detail.fxml","Javaverse | Detail",800,810);
         //ADMIN
         FXRouter.when("admin",packageStr+"admin.fxml","Javaverse | ADMIN ONLY | Main");
         FXRouter.when("AdminStaffEdit",packageStr+"AdminStaffEdit.fxml","Javaverse | ADMIN ONLY | Edit Staff");

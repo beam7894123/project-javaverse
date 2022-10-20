@@ -19,6 +19,7 @@ public class ReportFormController extends SignInController {
     LocalDateTime localDateTime = LocalDateTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     String timeReport = localDateTime.format(formatter);
+    @FXML Label voteScoreLabel;
     @FXML
     private TextField topicField,detailField;
     private DataSource<ReportList> dataSource;
@@ -40,7 +41,7 @@ public class ReportFormController extends SignInController {
     public void handleSubmitButton(ActionEvent actionEvent){
         if(topicField.getText() != "" & detailField.getText() != "") {
             try {
-                ReportModel reportModel = new ReportModel(topicField.getText(), detailField.getText(),1,
+                ReportModel reportModel = new ReportModel(topicField.getText(), detailField.getText(),0,
                         timeReport, categoryButton.getValue(), currentUser);
                 reportList.addReport(reportModel);
                 write.writeData(reportList);

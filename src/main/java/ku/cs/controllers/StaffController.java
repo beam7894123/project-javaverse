@@ -3,6 +3,8 @@ package ku.cs.controllers;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,9 +36,9 @@ public class StaffController implements Initializable {
     @FXML private Label score;
     @FXML private Label category;
     @FXML private TextField solve;
-
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
+    private SortedList<ReportModel> sortedList;
     private ObservableList<ReportModel> reportObservableList;
     private ReportModel selectReport;
 
@@ -48,7 +50,7 @@ public class StaffController implements Initializable {
         showReportView();
         reportTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
-                        showSelectedReport(newValue);
+                        selectReport(newValue);
                     }
                 }
         );
@@ -59,7 +61,7 @@ public class StaffController implements Initializable {
         selectReport = report;
         topic.setText(report.getTopic());
         detail.setText(report.getDetail());
-//        score.setText(String.valueOf(report.getVoteSore()));
+        score.setText(String.valueOf(report.getVoteScore()));
         category.setText(report.getCategory());
     }
 
@@ -79,20 +81,6 @@ public class StaffController implements Initializable {
         };
     }
 
-    private void showSelectedReport(ReportModel reportModel){
-//        ไปหน้าใหม่และโชว์ detail ของ report (´;ω;)
-        selectReport = reportModel;
-    }
-
-    @FXML
-    public void handleAddReportButton(ActionEvent actionEvent){
-        try {
-            FXRouter.goTo("addreport");
-        } catch (IOException e) {
-            System.err.println("ไปที่หน้า report ไม่ได้");
-            System.err.println("ให้ตรวจสอบการกําหนดroute");
-        }
-    }
     @FXML
     public void handleLogOutButton(ActionEvent actionEvent){
         try {
@@ -102,23 +90,25 @@ public class StaffController implements Initializable {
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
+
     @FXML
-    public void handleAdminButtonClick(ActionEvent actionEvent){
-        try {
-            FXRouter.goTo("register");
-        } catch (IOException e) {
-            System.err.println("ไปที่หน้าhome ไม่ได้");
-            System.err.println("ให้ตรวจสอบการกําหนดroute");
-        }
+    public void submitSolve(ActionEvent actionEvent){
+        selectReport.setSolveProblem(solve.getText());
+        selectReport.setStatus("done");
+        clearText();
+        reportTable.refresh();
+        reportTable.getSelectionModel().clearSelection();
+//        reportList.addReport(selectReport);
+        dataSource.writeData(reportList);
     }
 
     @FXML
-    public void profileButton(ActionEvent actionEvent){
-        try {
-            FXRouter.goTo("profile");
-        } catch (IOException e) {
-            System.out.println("err");
-        }
+    public void clearText(){
+        topic.setText("");
+        detail.setText("");
+        score.setText("");
+        category.setText("");
+        solve.setText("");
     }
 
     @FXML

@@ -56,8 +56,8 @@ public class ReportWriteFile implements DataSource<ReportList> {
             while ((line = buffer.readLine()) != null) {
                 String[] data = line.split(",");
                 ReportModel reportModel = new ReportModel(data[0].trim(),
-                        data[1].trim(),Integer.parseInt(data[2].trim()),
-                        data[3].trim(),data[4].trim(),data[5].trim()); // obj
+                        data[1].trim(),Integer.parseInt(data[2]),
+                        data[3].trim(),data[4].trim(),data[5].trim(),data[6].trim(),data[7].trim()); // obj
                 reportList.addReport(reportModel);
             }
         } catch (FileNotFoundException e) {
@@ -91,7 +91,9 @@ public class ReportWriteFile implements DataSource<ReportList> {
                         + reportModel.getVoteScore() + ","
                         + reportModel.getDateTime() + ","
                         + reportModel.getCategory() + ","
-                        + reportModel.getAuthorName();
+                        + reportModel.getAuthorName() + ","
+                        + reportModel.getSolveProblem() + ","
+                        + reportModel.getStatus();
                 buffer.append(line);
                 buffer.newLine();
             }

@@ -32,9 +32,7 @@ public class DetailController {
     private ReportList reportList;
     private int score = 1;
     String currentReport = MainController.selectReport;
-    String topic;
-    String detail;
-    String vote;
+    String topic,detail,vote,solve;
 
     ReportWriteFile writefile = new ReportWriteFile("filescsv", "report.csv");
 
@@ -50,6 +48,7 @@ public class DetailController {
                 topic = reportModel.getTopic();
                 detail = reportModel.getDetail();
                 vote = String.valueOf(reportModel.getVoteScore());
+                solve = String.valueOf(reportModel.getSolveProblem());
             }
         }
         topicName.setText(topic);
