@@ -357,35 +357,14 @@ public class RegisterWriteFile implements DataSource<UserList> {
                 File destDir = new File("src/main/resources/images");
                 if (!destDir.exists()) destDir.mkdirs();
                 // RENAME FILE
-//                String[] fileSplit = file.getName().split("\\.");
                 fileNameImage = fileName;
-//                fileNameImage = fileSplit;
-//                fileNameImage = FileSystems.getDefault().getPath(destDir.getPath()+System.getProperty(fileNameImage));
-//                fileNameImage = destDir.getAbsolutePath()+System.getProperty("file.separator")+fileNameImage;
-//                fileNameImage =fileSplit[fileSplit.length - 1];
-////                fileNameImage = LocalDate.now() + "_"+System.currentTimeMillis() + "."
-////                        + fileSplit[fileSplit.length - 1];
                 Path target = FileSystems.getDefault().getPath(
                         destDir.getAbsolutePath()+System.getProperty("file.separator")+fileNameImage
                 );
                 // COPY WITH FLAG REPLACE FILE IF FILE IS EXIST
                 Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING );
-//                File destDir = new File("picture");
-//                if (!destDir.exists()) destDir.mkdirs();
-//                // RENAME FILE
-//                String[] fileSplit = file.getName().split("\\.");
-//                String filename = LocalDate.now() + "_" + System.currentTimeMillis() + "."
-//                        + fileSplit[fileSplit.length - 1];
-//                Path target = FileSystems.getDefault().getPath(
-//                        destDir.getPath() + System.getProperty("file.separator") + target2
-//                );
-//                Path temp = Files.move(Paths.get(String.valueOf(target)), Paths.get(String.valueOf(target2)));
-                // COPY WITH FLAG REPLACE FILE IF FILE IS EXIST
-//                Files.copy(file.toPath(), target2, StandardCopyOption.REPLACE_EXISTING);
                 // SET NEW FILE PATH TO IMAGE
                 image.setImage(new Image(target.toUri().toString()));
-//                purchase.setImagePath(destDir + "/" + filename);
-//                write.writeData(control);
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -3,13 +3,12 @@ package ku.cs.controllers;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TreeTableView;
-import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import ku.cs.models.ReportList;
@@ -28,10 +27,8 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
     @FXML private TableView<ReportModel> reportTable;
-    @FXML private TableColumn<ReportModel,String> topicName;
-    @FXML private TableColumn<ReportModel, String> status;
-    @FXML private TableColumn<ReportModel, Integer> voteScore;
-    @FXML private TableColumn<ReportModel, String> dateTime;
+    @FXML private TextField input;
+    SortedList<ReportModel> sortedList;
 
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
@@ -56,7 +53,26 @@ public class MainController implements Initializable {
 
     private void showReportView() {
         reportObservableList = FXCollections.observableArrayList(reportList.getReports());
-        reportTable.setItems(reportObservableList);
+        sortedList = new SortedList(reportObservableList);
+        FilteredList<ReportModel> filterCategory = new FilteredList<>(sortedList, b-> true);
+
+        input.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterCategory.setPredicate(reportModel -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (reportModel.getCategory().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }
+                return false;
+            });
+        });
+        SortedList<ReportModel> sortedData = new SortedList<>(filterCategory);
+        sortedData.comparatorProperty().bind(reportTable.comparatorProperty());
+        reportTable.setItems(sortedData);
         ArrayList<StringConfig> configs = new ArrayList<>();
         configs.add(new StringConfig("title:Topic","field:topic"));
 //        configs.add(new StringConfig("title:Detail","field:detail"));
