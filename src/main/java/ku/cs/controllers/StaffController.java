@@ -15,11 +15,8 @@ import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
 import ku.cs.models.User;
 import ku.cs.models.UserList;
-import ku.cs.services.DataSource;
-import ku.cs.services.RegisterWriteFile;
-import ku.cs.services.ReportWriteFile;
+import ku.cs.services.*;
 import com.github.saacsos.FXRouter;
-import ku.cs.services.StringConfig;
 
 import java.io.IOException;
 import java.net.URL;
@@ -42,14 +39,12 @@ public class StaffController implements Initializable {
     private DataSource<ReportList> dataSource;
     private DataSource<UserList> staffsource;
     private ReportList reportList;
-    private UserList registerList;
+    private UserList userList;
     private SortedList<ReportModel> sortedList;
     private ObservableList<ReportModel> reportObservableList;
     private ReportModel selectReport;
-    String usernameText = SignInController.currentUser;
-    String loginName;
-    String loginSurname;
-
+    String usernameText = LoginStaffController.usernameStaff;
+    private RegisterWriteFile registerWriteFile1;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dataSource = new ReportWriteFile("filescsv", "report.csv");
@@ -73,22 +68,12 @@ public class StaffController implements Initializable {
     }
 
     private void showReportView() {
-        reportObservableList = FXCollections.observableArrayList(reportList.getReports());
-        staffsource = new RegisterWriteFile("filescsv","register.csv");
-        registerList = staffsource.readData();
-        for (User registerModel : registerList.getAllCards()){
-            registerModel.getUsername();
-            if(registerModel.getUsername() .equals(usernameText)){
-                System.out.println(registerModel.getName());
-                System.out.println(registerModel.getSurname());
-                for(ReportModel reportModel : reportList.getReports()){
-                if(registerModel.getCategory().equals(reportModel.getCategory())){
-                    System.out.println(reportModel.getCategory());
-                    System.out.println(registerModel.getCategory());
-                }
+        staffsource = new RegisterWriteFile("filescsv","staff.csv");
+        userList = staffsource.readData();
+        User staff = userList.findMyUsername(usernameText);
+        reportList = reportList.findMyCategory(staff.getCategory());
+        reportObservableList = FXCollections.observableList(reportList.getReports());
 
-            }
-        }}
         reportTable.setItems(reportObservableList);
         ArrayList<StringConfig> configs = new ArrayList<>();
         configs.add(new StringConfig("title:Topic","field:topic"));

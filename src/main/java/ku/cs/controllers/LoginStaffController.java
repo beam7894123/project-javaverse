@@ -23,6 +23,7 @@ public class LoginStaffController {
     Label loginChecker;
     @FXML
     Button backButton;
+    static String usernameStaff;
     private LoginStaffWriteFile loginStaffWriteFile;
     private UserList userList;
     private UserList staffList;
@@ -38,6 +39,8 @@ public class LoginStaffController {
         if (!(loginStaffWriteFile.checkConfirmsignIn(staffList,usernameTextfield.getText(),passwordPasswordfield.getText()))){
             loginChecker.setText("Username or Password is incorrect");
         }
+        usernameStaff = usernameTextfield.getText();
+        System.out.println(usernameStaff);
 //        try {
 //           FXRouter.goTo("for_staff");
 //        } catch (IOException e) {

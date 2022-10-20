@@ -25,7 +25,7 @@ public class DetailController {
     private Label voteScoreLabel;
     @FXML
     private Button voteButton;
-    @FXML private ImageView starbutton;
+    @FXML Label solveText;
 
     private ReportModel reportModel;
     private DataSource<ReportList> dataSource;
@@ -54,6 +54,7 @@ public class DetailController {
         topicName.setText(topic);
         topicDetail.setText(detail);
         voteScoreLabel.setText(vote);
+        solveText.setText(solve);
     }
 
     @FXML

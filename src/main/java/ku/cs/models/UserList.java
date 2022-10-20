@@ -60,6 +60,14 @@ public class UserList {
         }
         return false;
     }
+    public User findMyUsername(String staff){
+        for(User a : userArrayList) {
+            if(staff.equals(a.getUsername())){
+                return a;
+            }
+        }
+        return  null;
+    }
 
 
     @Override
