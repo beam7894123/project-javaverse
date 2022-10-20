@@ -16,12 +16,6 @@ public class LoginStaffWriteFile {
     private String password,username;
     Locale locale = new Locale("en","en"); //SET LOCALE (if u sys is พศ. it will auto set to คศ. yay~ \^w^/ )
 
-//    public LoginStaffWriteFile(String strUsername, String usernameText, String strPassword) {
-//        this.strUsername = strUsername;
-//        this.usernameText = usernameText;
-//        this.strPassword = strPassword;
-//    }
-
         public LoginStaffWriteFile(String directory, String fileName, String username, String password) {
         this.directory = directory;
         this.fileName = fileName;

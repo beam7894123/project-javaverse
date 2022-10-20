@@ -128,28 +128,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
         User user = new User(nameTextfield,surnameTextfield,usernameTextfield,passwordPasswordfield,null,null,fileNameImage,categoryChicebox);
         staffList.addStudent(user);
         writeDataforStaff(staffList);
-//        System.out.println(categoryChicebox);
-//
-//        RegisterModel staffModel = new RegisterModel(nameTextfield,surnameTextfield,usernameTextfield,passwordPasswordfield,null,null,fileNameImage,categoryChicebox);
-//        System.out.println(1);
-//        System.out.println(staffList);
-//        staffList.addStaff(staffModel);
-//        System.out.println("after");
-//        System.out.println(staffList);
-//        System.out.println(2);
-////        writeDataforStaff(nameTextField,surnameTextField,usernameTextfield,passwordPasswordfield,null,null,fileNameImage,category);
-//        System.out.println("before WRITE");
-//        System.out.println(staffList.toString());
-//        writeDataforStaff(staffList);
-//        System.out.println(3);
-//        if (checkUserName(registerList,usernameTextfield) && checkPassword(passwordPasswordfield,confirmPasswordpasswordField)){
-//
-//            writeDataforStaff(registerList,usernameTextfield,)
-//        }
-//        RegisterModel registerModel = new RegisterModel(nameTextField,surnameTextField,usernameTextfield,passwordPasswordfield,null,null,fileNameImage);
-//        registerList.
-//        registerList.addStudent(registerModel);
-//        writeData(registerList);
+
     }
 
     private void readCustomer() throws IOException {
@@ -164,10 +143,6 @@ public class RegisterWriteFile implements DataSource<UserList> {
             User customer = new User(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[5].trim());
             customer.setImage(data[4]);
             customer.setDateTime(setDateTime(data[5], data[6])); // TIME CONVERTER !!! DO NOT TOUCH !!! ห้ามลบ ถ้าเกิด Error บอก beam7894123 ก่อน ไม่งั้นต่อยนะ >:< //
-//            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[6].trim(),data[7].trim());
-//            customer.setImage(data[5]);
-//            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[6].trim()); // obj
-//            customer.setImage(data[5].trim());
             userList.addStudent(customer);
         }
         reader.close();

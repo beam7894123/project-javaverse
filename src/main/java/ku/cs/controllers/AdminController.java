@@ -9,16 +9,7 @@ import ku.cs.models.User;
 
 public class AdminController {
     private User john, anna, harry;
-//    private DataSource write = new RegisterWriteFile("filescsv", "register.csv");
 
-    @FXML
-    public void initialize(){
-//        john = new RegisterModel("John ", "Smith","john","123",null,null,);
-//        anna = new RegisterModel("Anna ", "Frost","anna","ann",null,null);
-//        harry = new RegisterModel("Harry Potter","Potter","harry","999",null,null );
-
-
-    }
     @FXML public void handleChangePassButtonClick(ActionEvent actionEvent){
         try {
             FXRouter.goTo("AdminChangePassword");

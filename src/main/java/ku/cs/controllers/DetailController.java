@@ -7,11 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import ku.cs.models.User;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
 import ku.cs.services.DataSource;
-import ku.cs.services.RegisterWriteFile;
 import ku.cs.services.ReportWriteFile;
 
 import java.io.IOException;

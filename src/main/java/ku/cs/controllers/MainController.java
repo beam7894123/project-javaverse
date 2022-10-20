@@ -1,6 +1,5 @@
 package ku.cs.controllers;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -10,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
 import ku.cs.services.DataSource;
@@ -33,6 +31,7 @@ public class MainController implements Initializable {
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
     private ObservableList<ReportModel> reportObservableList;
+    private ArrayList<ReportModel> reports;
     public static String selectReport;
     String usernameText = SignInController.currentUser;
 
@@ -90,7 +89,6 @@ public class MainController implements Initializable {
     }
 
     @FXML private void showSelectedReport(ReportModel reportModel){
-//        ไปหน้าใหม่และโชว์ detail ของ report (´;ω;)
         selectReport = reportModel.getTopic();
         try {
             FXRouter.goTo("detail");

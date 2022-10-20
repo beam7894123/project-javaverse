@@ -11,41 +11,16 @@ public class User {
     private String  image;
     private String date;
     private String time;
-    private String category;
+    private static String category;
 
+    public User() {
+        this.category = category;
+    }
 
-
-
-    //    public RegisterModel(String name,String surname,String username,String password,String confirmPassword,String date,String time,String fileName){
-//        this(name,surname,username,password,date,time);
-//        this.image = fileName;
-//        System.out.println(image);
-//        this.confirmPassword = confirmPassword;
-//    }
-//    public RegisterModel(String name,String surname,String username,String password,String date,String time,String fileName){
-//        this(name,surname,username,password,date,time);
-//        this.image = fileName;
-//        System.out.println(image);
-//    }
     public void initialize(){
         String fileNameImage =  "dafault1.png";
     }
-//    public RegisterModel(String name, String surname, String username, String password,String confirmPassword,String date,String time,String fileNameImage) {
-//        this.name = name;
-//        this.surname = surname;
-//        this.username = username;
-//        this.confirmPassword =confirmPassword;
-//        this.password = password;
-//        this.date = date;
-//        this.time = time;
-//        this.image = fileNameImage;
-//        System.out.println(image);
-//    }
-//    public RegisterModel(String name ,String surname,String time){
-//        this.name = name;
-//        this.surname = surname;
-//        this.time = time;
-//    }
+
     public User(String name, String surname, String username, String password, String date, String time, String fileNameImage, String category) {
         this.name = name;
         this.surname = surname;
@@ -78,9 +53,6 @@ public class User {
         this.time = time;
     }
 
-
-
-
     public String getConfirmPassword() {
         return confirmPassword;
     }
@@ -97,7 +69,7 @@ public class User {
         this.name = name;
     }
 
-    public String getCategory() {
+    public static String getCategory() {
         return category;
     }
 
@@ -153,7 +125,6 @@ public class User {
         this.time = time;
     }
 
-// TIME CONVERTER !!! DO NOT TOUCH !!! ห้ามลบ ถ้าเกิด Error บอก beam7894123 ก่อน ไม่งั้นต่อยนะ >:< //
     private Date dateTime;
     public Date getDateTime() {
         return dateTime;
@@ -167,7 +138,6 @@ public class User {
     }
 // TIME CONVERTER // END // END // END // END // END // END // END // END // END // END // END // END // END
 
-
     @Override
     public String toString() {
         return "RegisterModel{" +
@@ -179,114 +149,9 @@ public class User {
                 ", image='" + image + '\'' +
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
-                ", dateTime=" + dateTime + // นี้ด้วย <<
+                ", dateTime=" + dateTime +
                 ", category='" + category + '\'' +
                 '}';
     }
 
-    //    private String name;
-//    private String surname;
-//    private String username;
-//    private String password;
-//    private String confirmPassword;
-//    private String image;
-//
-//    private String date;
-//    private String time;
-//
-//
-//
-//
-//    public RegisterModel(String name,String surname,String username,String password,String confirmPassword,String date, String time ,String fileName){
-//        this.name = name;
-//        this.surname = surname;
-//        this.username = username;
-//        this.password = password;
-//        this.confirmPassword = confirmPassword;
-//        this.date  = date;
-//        this.time = time;
-//        this.image =  fileName;
-//    }
-//    public RegisterModel(String name,String surname,String username,String password,String date,String time){
-//        this.name = name;
-//        this.surname = surname;
-//        this.username = username;
-//        this.password = password;
-//        this.image = image;
-////        System.out.println(image);
-//        this.date =date;
-//        this.time = time;
-//    }
-//    public RegisterModel(String name,String surname,String username,String password,String date,String time,String fileName){
-//        this.name = name;
-//        this.surname = surname;
-//        this.username = username;
-//        this.password = password;
-//        this.image = fileName;
-//        System.out.println(image);
-//        this.date = date;
-//        this.time = time;
-//    }
-//    public RegisterModel(String username,String password){
-//        this.username = username;
-//        this.password = password;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public String getSurname() {
-//        return surname;
-//    }
-//    private ArrayList<RegisterModel> registerModelArrayList;
-//    public RegisterModel(){
-//        registerModelArrayList = new ArrayList<>();
-//    }
-//
-//
-//    public String getUsername() {
-//        return username;
-//    }
-//
-//    public String getPassword() {
-//        return password;
-//    }
-//
-//    public String getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(String image) {
-//        this.image = image;
-//    }
-//
-//
-//    public String getDate() {
-//        return date;
-//    }
-//
-//    public void setDate(String date) {
-//        this.date = date;
-//    }
-//
-//    public String getTime() {
-//        return time;
-//    }
-//
-//    public void setTime(String time) {
-//        this.time = time;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "RegisterModel{" +
-//                "name='" + name + '\'' +
-//                ", surname='" + surname + '\'' +
-//                ", username='" + username + '\'' +
-//                ", password='" + password + '\'' +
-//                ", Date ='" + time + '\'' +
-//                ", time='" + image + '\'' +
-//                '}';
-//    }
 }

@@ -19,9 +19,5 @@ public class RegistersimpleStringproperty {
     public void setNamesimpleStringproperty(String categoryDataName) {
         nameSimpleStringproperty = new SimpleStringProperty(categoryDataName);
     }
-//    public void addData(SimpleStringProperty nameSimpleStringproperty){
-//        ArrayList arrayList = new ArrayList<>();
-//        arrayList.addAll(nameSimpleStringproperty);
-//    }
 
 }

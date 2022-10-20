@@ -38,12 +38,6 @@ public class LoginStaffController {
         if (!(loginStaffWriteFile.checkConfirmsignIn(staffList,usernameTextfield.getText(),passwordPasswordfield.getText()))){
             loginChecker.setText("Username or Password is incorrect");
         }
-//        try {
-//           FXRouter.goTo("for_staff");
-//        } catch (IOException e) {
-//            System.err.println("ไปที่หน้าhome ไม่ได้");
-//            System.err.println("ให้ตรวจสอบการกําหนดroute");
-//        }
     }
 
     public void handleRegisterButtonClick(ActionEvent actionEvent) {

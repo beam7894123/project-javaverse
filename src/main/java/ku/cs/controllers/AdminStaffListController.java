@@ -36,10 +36,6 @@ public class AdminStaffListController {
         list = readDataforStaff.readDataforStaff();
         //READ FILE END
 
-//        System.out.println(list.getAllCards().get(1)); //Test read
-//        System.out.println(list.getAllCards().get(1).getdate() + list.getAllCards().get(1).getTime()); //Test day+time read
-//        System.out.println(list.getAllCards().get(1).getDateTime()); //Test datetime read
-
         showStaffListView(list);
         clearSelectedStaff();
         handleSelectedListView();
@@ -54,11 +50,6 @@ public class AdminStaffListController {
     @FXML private TableColumn<User , String> listTable_Surname;
 
     private void showStaffListView(UserList list) {
-        //OLD CODE (LISTVIEW)
-//        studentListView.getItems().addAll(list.getAllCards());
-//        studentListView.refresh();
-
-        // ArrayList >> ObservableList
         ObservableList<User> TEMP = FXCollections.observableArrayList(
                 list.getAllCards()
         );
@@ -67,26 +58,14 @@ public class AdminStaffListController {
         listTable_Surname.setCellValueFactory(new PropertyValueFactory("surname"));
         listTable_LastLogin.setCellValueFactory(new PropertyValueFactory("StringDateTime"));
         listTable.setItems(TEMP);
-
-        //Anti Tamper code XD // Anti Tamper code XD // Anti Tamper code XD //
         listTable_Name.setReorderable(false);
         listTable_Surname.setReorderable(false);
         listTable_LastLogin.setReorderable(false);
         listTable_Name.setSortable(false);
         listTable_Surname.setSortable(false);
-        //Anti Tamper code END // Anti Tamper code END // Anti Tamper code END //
-
-        //Sorter @m@" //Sorter @m@" //Sorter @m@" //Sorter @m@" //
         Collections.sort(TEMP, SortList.ascendingDateTime());
-//      listTable_LastLogin.setSortType(TableColumn.SortType.DESCENDING);
-//      listTable.getSortOrder().add(listTable_LastLogin);
-        //Sorter END //Sorter END //Sorter END //Sorter END
-
-        listTable.refresh(); //Fix every unexpected error ^w^b 555
-
+        listTable.refresh();
     }
-
-// END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE //
 
     private void handleSelectedListView() {
         //OLD CODE + New Code (LISTVIEW)

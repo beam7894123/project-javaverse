@@ -1,16 +1,13 @@
 package ku.cs.controllers;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
 import ku.cs.models.User;
@@ -46,14 +43,37 @@ public class StaffController implements Initializable {
     private SortedList<ReportModel> sortedList;
     private ObservableList<ReportModel> reportObservableList;
     private ReportModel selectReport;
+    private ArrayList<ReportModel> reports;
+    private DataSource<UserList> dataSourceUser;
+    private User staff = new User("Facilities","Facilities","Facilities","Facilities","Facilities","Facilities","Facilities","Facilities");
     String usernameText = SignInController.currentUser;
     String loginName;
     String loginSurname;
+    private UserList userList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dataSource = new ReportWriteFile("filescsv", "report.csv");
         reportList = dataSource.readData();
+
+        dataSourceUser = new RegisterWriteFile("filescsv","staff.csv");
+        reportList = dataSource.readData();
+
+        System.out.println(User.getCategory());
+        StaffController staffController = new StaffController();
+
+        int count = 0;
+        reports = new ArrayList<>();
+        for (ReportModel reportModel : reportList.getReports()) {
+            System.out.println(User.getCategory());
+            System.out.println(reportModel.getCategory());
+            if (User.getCategory().equals(reportModel.getCategory())) {
+                reports.add(reportModel);
+            }
+            count = count + 1;
+        }
+
+
         showReportView();
         reportTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
@@ -73,22 +93,10 @@ public class StaffController implements Initializable {
     }
 
     private void showReportView() {
-        reportObservableList = FXCollections.observableArrayList(reportList.getReports());
-        staffsource = new RegisterWriteFile("filescsv","register.csv");
-        registerList = staffsource.readData();
-        for (User registerModel : registerList.getAllCards()){
-            registerModel.getUsername();
-            if(registerModel.getUsername() .equals(usernameText)){
-                System.out.println(registerModel.getName());
-                System.out.println(registerModel.getSurname());
-                for(ReportModel reportModel : reportList.getReports()){
-                if(registerModel.getCategory().equals(reportModel.getCategory())){
-                    System.out.println(reportModel.getCategory());
-                    System.out.println(registerModel.getCategory());
-                }
 
-            }
-        }}
+        reportObservableList = FXCollections.observableArrayList(reportList.getReports());
+        staffsource = new RegisterWriteFile("filescsv","staff.csv");
+        registerList = staffsource.readData();
         reportTable.setItems(reportObservableList);
         ArrayList<StringConfig> configs = new ArrayList<>();
         configs.add(new StringConfig("title:Topic","field:topic"));
@@ -121,7 +129,6 @@ public class StaffController implements Initializable {
         clearText();
         reportTable.refresh();
         reportTable.getSelectionModel().clearSelection();
-//        reportList.addReport(selectReport);
         dataSource.writeData(reportList);
     }
 
