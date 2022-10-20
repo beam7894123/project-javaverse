@@ -23,7 +23,6 @@ public class LoginStaffController {
     Label loginChecker;
     @FXML
     Button backButton;
-    static String usernameStaff;
     private LoginStaffWriteFile loginStaffWriteFile;
     private UserList userList;
     private UserList staffList;

@@ -28,20 +28,37 @@ public class AdminStaffListController {
     private RegisterWriteFile readDataforStaff;
     private UserList list;
 
+
+// INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE //
     @FXML public void initialize(){
+        //READ FILE
         readDataforStaff = new RegisterWriteFile("filescsv","staff.csv");
         list = readDataforStaff.readDataforStaff();
+        //READ FILE END
+
+//        System.out.println(list.getAllCards().get(1)); //Test read
+//        System.out.println(list.getAllCards().get(1).getdate() + list.getAllCards().get(1).getTime()); //Test day+time read
+//        System.out.println(list.getAllCards().get(1).getDateTime()); //Test datetime read
+
         showStaffListView(list);
         clearSelectedStaff();
         handleSelectedListView();
     }
+// INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE //
 
+// TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE //
+//    @FXML private ListView<RegisterModel> studentListView; //OLD CODE (LISTVIEW)
     @FXML private TableView<User> listTable;
     @FXML private TableColumn<User, String> listTable_LastLogin;
     @FXML private TableColumn<User , String> listTable_Name;
     @FXML private TableColumn<User , String> listTable_Surname;
 
     private void showStaffListView(UserList list) {
+        //OLD CODE (LISTVIEW)
+//        studentListView.getItems().addAll(list.getAllCards());
+//        studentListView.refresh();
+
+        // ArrayList >> ObservableList
         ObservableList<User> TEMP = FXCollections.observableArrayList(
                 list.getAllCards()
         );
@@ -50,16 +67,29 @@ public class AdminStaffListController {
         listTable_Surname.setCellValueFactory(new PropertyValueFactory("surname"));
         listTable_LastLogin.setCellValueFactory(new PropertyValueFactory("StringDateTime"));
         listTable.setItems(TEMP);
+
+        //Anti Tamper code XD // Anti Tamper code XD // Anti Tamper code XD //
         listTable_Name.setReorderable(false);
         listTable_Surname.setReorderable(false);
         listTable_LastLogin.setReorderable(false);
         listTable_Name.setSortable(false);
         listTable_Surname.setSortable(false);
+        //Anti Tamper code END // Anti Tamper code END // Anti Tamper code END //
+
+        //Sorter @m@" //Sorter @m@" //Sorter @m@" //Sorter @m@" //
         Collections.sort(TEMP, SortList.ascendingDateTime());
-        listTable.refresh();
+//      listTable_LastLogin.setSortType(TableColumn.SortType.DESCENDING);
+//      listTable.getSortOrder().add(listTable_LastLogin);
+        //Sorter END //Sorter END //Sorter END //Sorter END
+
+        listTable.refresh(); //Fix every unexpected error ^w^b 555
+
     }
 
+// END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE // END TableView ZONE //
+
     private void handleSelectedListView() {
+        //OLD CODE + New Code (LISTVIEW)
         listTable.getSelectionModel().selectedItemProperty().addListener(
                 new ChangeListener<User>() {
                     @Override
@@ -82,7 +112,7 @@ public class AdminStaffListController {
     }
     private void clearSelectedStaff() {
         String url = getClass().getResource("/images/default1.png").toExternalForm();
-        image.setImage(new Image(url));
+        image.setImage(new Image(url)); //Set image url
 
         nameLabel.setText("------");
         surnameLabel.setText("------");

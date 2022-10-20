@@ -18,7 +18,13 @@ public class LoginStaffWriteFile {
     private String password,username;
     @FXML
     TextField usernameTextfield;
-    Locale locale = new Locale("en","en");
+    Locale locale = new Locale("en","en"); //SET LOCALE (if u sys is พศ. it will auto set to คศ. yay~ \^w^/ )
+
+//    public LoginStaffWriteFile(String strUsername, String usernameText, String strPassword) {
+//        this.strUsername = strUsername;
+//        this.usernameText = usernameText;
+//        this.strPassword = strPassword;
+//    }
 
         public LoginStaffWriteFile(String directory, String fileName, String username, String password) {
         this.directory = directory;
@@ -51,6 +57,7 @@ public class LoginStaffWriteFile {
                         .append(",").append(sdf.format(d))
                         .append(",").append(sdf1.format(d))
                         .append(",").append(data[7]);
+//                    break;
             }
             else {
                 newPurchaseCsv.append(line);
