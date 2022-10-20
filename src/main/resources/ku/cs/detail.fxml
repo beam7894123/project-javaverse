@@ -45,7 +45,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="709.0" layoutY="488.0" onMouseClicked="#voteScoreButton" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="starbutton" fitHeight="53.0" fitWidth="60.0" layoutX="709.0" layoutY="488.0" onMouseClicked="#voteScoreButton" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/icon/icon_vote.png" />
          </image>

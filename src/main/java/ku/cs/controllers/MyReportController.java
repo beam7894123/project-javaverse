@@ -9,6 +9,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -31,6 +32,7 @@ public class MyReportController implements Initializable {
     private TableView<ReportModel> myreportTable;
    @FXML private TextField input;
 
+
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
     private ObservableList<ReportModel> reportObservableList;
@@ -50,32 +52,16 @@ public class MyReportController implements Initializable {
                         showSelectedReport(newValue);
                     }
                 }
+
         );
 
     }
     private void showReportView() {
         reportObservableList = FXCollections.observableArrayList(reportList.getReports());
-        sortedList = new SortedList(reportObservableList);
-        filteredList = new FilteredList(sortedList);
-        for (ReportModel reportModel : reportList.getReports()){
-            if(reportModel.getAuthorName() .equals(usernameText)){
 
-            }
-        }
-        input.setText(usernameText);
-        input.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                filteredList.setPredicate(new Predicate<ReportModel>() {
-                    @Override
-                    public boolean test(ReportModel reportModel) {
-                        Boolean user = reportModel.getAuthorName().contains(t1);
-                        return user;
-                    }
-                });
-            }
-        });
-        myreportTable.setItems(filteredList);
+        ReportList myReport = reportList.findMyReport(usernameText);
+        reportObservableList = FXCollections.observableArrayList(myReport.getReports());
+        myreportTable.setItems(reportObservableList);
         ArrayList<StringConfig> configs = new ArrayList<>();
         configs.add(new StringConfig("title:Topic","field:topic"));
 //        configs.add(new StringConfig("title:Detail","field:detail"));
@@ -109,4 +95,5 @@ public class MyReportController implements Initializable {
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }
+
 }

@@ -44,6 +44,7 @@ public class ProfileController {
     private String  fileNameImage;
     private String path;
 
+
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     String timeReport = currentDateTime.format(formatter);
     private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","register.csv");
@@ -83,6 +84,18 @@ public class ProfileController {
     public void handleUploadButton(ActionEvent actionEvent) throws MalformedURLException {
 
         fileNameImage = writeFile.uploadImageFromFile(actionEvent,imageUpload);
+//        UserList myUser = registerList.findCurrentUser(usernameText);
+        for (User registerModel : registerList.getAllCards()){
+            registerModel.getUsername();
+            if(registerModel.getUsername() .equals(usernameText)) {
+                registerModel.setImage(fileNameImage);
+            }
+        }
+//        registerList
+        System.out.println(fileNameImage);
+
+        dataSource.writeData(registerList);
+
     }
     @FXML
     public void handleReportButton(ActionEvent actionEvent) {
