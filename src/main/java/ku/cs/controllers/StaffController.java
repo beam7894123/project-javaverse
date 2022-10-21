@@ -71,7 +71,7 @@ public class StaffController implements Initializable {
         userList = readDataforStaff.readDataforStaff();
         User staff = userList.findMyUsername(usernameText);
         reportList = reportList.findMyCategory(staff.getCategory());
-        reportObservableList = FXCollections.observableList(reportList.getReports());
+        reportObservableList = FXCollections.observableArrayList(reportList.getReports());
 
         reportTable.setItems(reportObservableList);
         ArrayList<StringConfig> configs = new ArrayList<>();
@@ -91,6 +91,7 @@ public class StaffController implements Initializable {
     @FXML
     public void handleLogOutButton(ActionEvent actionEvent){
         try {
+            usernameText = "";
             FXRouter.goTo("signIn");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า signIn ไม่ได้");

@@ -26,6 +26,7 @@ public class LoginStaffController {
     private LoginStaffWriteFile loginStaffWriteFile;
     private UserList userList;
     private UserList staffList;
+    static String usernameStaff;
 
     private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","staff.csv");
     public void initialize(){
