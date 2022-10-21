@@ -43,12 +43,15 @@ public class StaffController implements Initializable {
     private SortedList<ReportModel> sortedList;
     private ObservableList<ReportModel> reportObservableList;
     private ReportModel selectReport;
-    String usernameText = LoginStaffController.usernameStaff;
     private RegisterWriteFile readDataforStaff;
+    String usernameText = (String) FXRouter.getData();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         dataSource = new ReportWriteFile("filescsv", "report.csv");
         reportList = dataSource.readData();
+        readDataforStaff = new RegisterWriteFile("filescsv","staff.csv");
+        userList = readDataforStaff.readDataforStaff();
         showReportView();
         reportTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
@@ -67,8 +70,6 @@ public class StaffController implements Initializable {
     }
 
     private void showReportView() {
-        readDataforStaff = new RegisterWriteFile("filescsv","staff.csv");
-        userList = readDataforStaff.readDataforStaff();
         User staff = userList.findMyUsername(usernameText);
         reportList = reportList.findMyCategory(staff.getCategory());
         reportObservableList = FXCollections.observableList(reportList.getReports());

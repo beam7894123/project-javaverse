@@ -77,7 +77,7 @@ public class LoginStaffWriteFile {
             LoginStaffWriteFile loginStaffWriteFile = new LoginStaffWriteFile("filescsv", "staff.csv", strUsername, strPassword);
             try {
                 loginStaffWriteFile.SignInRecieveReadFileforStaff(usernameTextfield, passwordPasswordfield);
-                FXRouter.goTo("staff");
+                FXRouter.goTo("staff", usernameTextfield);
             } catch (IOException e) {
                 System.err.println("ไปที่หน้า staff ไม่ได้");
                 System.err.println("ให้ตรวจสอบการกําหนดroute");

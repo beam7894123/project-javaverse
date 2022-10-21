@@ -26,12 +26,9 @@ public class LoginStaffController {
     private LoginStaffWriteFile loginStaffWriteFile;
     private UserList userList;
     private UserList staffList;
-    static String usernameStaff;
-
-    private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","staff.csv");
+    String usernameStaff;
     public void initialize(){
         staffList = new UserList();
-        writeFile = new RegisterWriteFile("filescsv","staff.csv");
         System.out.println(staffList.getAllCards());
     }
     public void handleConfirmButtonClick(ActionEvent actionEvent) throws IOException {
