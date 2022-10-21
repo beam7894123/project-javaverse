@@ -140,7 +140,7 @@
          <font>
             <Font size="20.0" />
          </font></TextField>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="562.0" layoutY="14.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: #FFBF00;" text="how to use" textFill="WHITE">
+      <Button fx:id="howTouseButton" alignment="CENTER" contentDisplay="CENTER" layoutX="562.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleHowtoUseButton" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: #FFBF00;" text="howToUse" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
