@@ -46,7 +46,7 @@ public class RegisterStaffController extends RegisterController{
 //        comboBox.getItems().addAll("Person","Facilities","Building",
 //                "Learning/Lesson","Traffic/Transport");
         categoryButton.setItems(FXCollections.observableArrayList("Person","Facilities","Building",
-                "Learning/Lesson","Traffic/Transport"));
+                "Learning","Traffic"));
     }
     @Override
     public void handleOkClick(ActionEvent actionEvent) throws IOException {
@@ -70,6 +70,7 @@ public class RegisterStaffController extends RegisterController{
 
 //            writeFile.checkUsernameAndPasswordforStaff(staffList,usernameTextfield.getText(),passwordPasswordfield.getText(),nameTextfield.getText(),surnameTextfield.getText(),fileNameImage,category);
             try {
+                FXRouter.setAnimationType("fade");
                 FXRouter.goTo("admin");
             } catch (IOException e) {
                 System.err.println("ไปที่หน้าhome ไม่ได้");
@@ -92,6 +93,7 @@ public class RegisterStaffController extends RegisterController{
     @Override
     public void handleBackButton(ActionEvent actionEvent) {
         try {
+          FXRouter.setAnimationType("fade");
           FXRouter.goTo("admin");
         } catch (IOException e) {
             System.err.println("ไปที่หน้าhome ไม่ได้");

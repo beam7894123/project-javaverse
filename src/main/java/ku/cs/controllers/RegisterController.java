@@ -55,6 +55,7 @@ public class RegisterController {
             System.out.println(fileNameImage);
             writeFile.checkUserNameAndPassword(userList,usernameTextfield.getText(),passwordPasswordfield.getText(),nameTextfield.getText(),surnameTextfield.getText(),fileNameImage,confirmPasswordfield.getText());
             try {
+                FXRouter.setAnimationType("fade");
                 FXRouter.goTo("signIn");
             } catch (IOException e) {
                 System.err.println("ไปที่หน้า signIn ไม่ได้");
@@ -64,6 +65,7 @@ public class RegisterController {
     }
     public void handleBackButton(ActionEvent actionEvent){
         try {
+            FXRouter.setAnimationType("fade");
             FXRouter.goTo("signIn");}
         catch (IOException e) {
             System.err.println("error");}

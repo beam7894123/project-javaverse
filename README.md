@@ -3,20 +3,22 @@
 
 ---
 
-### ขั้นตอนการติดตั้วโปรแกรม
----
+### ขั้นตอนการติดตั้งโปรแกรม
 1. ดาวน์โหลดโปรแกรมจาก [Releases](https://github.com/CS211-651/project211-javaverse/releases/)
-2. Extract file .zip ออกมา
+2. ทำการ Extract file .zip ออกมา
 3. ทำการ Run .jar เพื่อเปิดใช้งานโปรแกรม
 ---
 
 ## Roadmap
 - การส่งครั้งที่ 1
-	- qwertyuio
+	- ออกแบบ, วางแผน และแบ่งหน้าที่การทำงานกันในกลุ่ม
 - การส่งครั้งที่ 2
-	- qwertyui
+	- ส่วนที่ทำเสร็จ
+		- หน้า Register
+		- หน้า Login Student 
+		- หน้าจัดการ Student ของ Admin
 - การส่งครั้งที่ 3
-	- qwertyui
+	- เริ่มทำในส่วนของ Staff และ หน้า Register Staff ของ Admin 
 
 
 

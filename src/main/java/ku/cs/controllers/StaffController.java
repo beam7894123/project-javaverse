@@ -71,7 +71,7 @@ public class StaffController implements Initializable {
         userList = readDataforStaff.readDataforStaff();
         User staff = userList.findMyUsername(usernameText);
         reportList = reportList.findMyCategory(staff.getCategory());
-        reportObservableList = FXCollections.observableArrayList(reportList.getReports());
+        reportObservableList = FXCollections.observableList(reportList.getReports());
 
         reportTable.setItems(reportObservableList);
         ArrayList<StringConfig> configs = new ArrayList<>();
