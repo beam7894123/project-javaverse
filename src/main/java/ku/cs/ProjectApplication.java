@@ -32,10 +32,8 @@ public class ProjectApplication extends Application {
         FXRouter.when("howTouse", packageStr + "howTouse.fxml","Javaverse | Howtouse",542,759);
         //ADMIN
         FXRouter.when("admin",packageStr+"admin.fxml","Javaverse | ADMIN ONLY | Main");
-        FXRouter.when("AdminStaffEdit",packageStr+"AdminStaffEdit.fxml","Javaverse | ADMIN ONLY | Edit Staff");
-        FXRouter.when("AdminStaffList",packageStr+"AdminStaffList.fxml","Javaverse | ADMIN ONLY | Staff List");
-        FXRouter.when("AdminStudentList",packageStr+"AdminStudentList.fxml", "Javaverse | ADMIN ONLY | Student List");
-        FXRouter.when("AdminChangePassword",packageStr+"AdminChangePassword.fxml", "Javaverse | ADMIN ONLY | Change Password");
+        FXRouter.when("adminStaffList",packageStr+"adminStaffList.fxml","Javaverse | ADMIN ONLY | Staff List");
+        FXRouter.when("adminStudentList",packageStr+"adminStudentList.fxml", "Javaverse | ADMIN ONLY | Student List");
         FXRouter.when("registerStaff",packageStr+ "registerStaff.fxml","Javaverse | ADMIN ONLY | Register Staff");
     }
 
