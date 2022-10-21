@@ -44,6 +44,7 @@ public class ReportFormController extends SignInController {
                 reportList.addReport(reportModel);
                 write.writeData(reportList);
                 System.out.println("Do write file");
+                FXRouter.setAnimationType("fade");
                 FXRouter.goTo("main");
             } catch (IOException e) {
                 System.err.println("ไปที่หน้า main ไม่ได้");
@@ -58,6 +59,7 @@ public class ReportFormController extends SignInController {
     @FXML
     public void handleBackButtonClick(ActionEvent actionEvent){
         try {
+            FXRouter.setAnimationType("fade");
             FXRouter.goTo("main");
         } catch (IOException e) {
             System.err.println("ให้ตรวจสอบการกําหนดroute");

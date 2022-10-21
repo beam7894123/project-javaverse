@@ -24,6 +24,7 @@ public class HomeController {
     }
     @FXML
     public void handleCreatorButton(ActionEvent actionEvent) {try {
+        FXRouter.setAnimationType("fade");
         FXRouter.goTo("creator");}
     catch (IOException e) {
         System.err.println("ไปทีหน้า creator ไม่ได้");System.err.println("ให้ตรวจสอบการกําหนดroute");}}
@@ -31,6 +32,7 @@ public class HomeController {
     @FXML
     public void handleRegisterButton(ActionEvent actionEvent){
         try {
+            FXRouter.setAnimationType("fade");
             FXRouter.goTo("register");
             setRegisterList(userList);
         } catch (IOException e) {
@@ -42,6 +44,7 @@ public class HomeController {
     @FXML
     public void handleSignInButton(ActionEvent actionEvent){
         try {
+            FXRouter.setAnimationType("fade");
             FXRouter.goTo("signIn");
         } catch (IOException e) {
             System.err.println("ไปที่หน้าhome ไม่ได้");

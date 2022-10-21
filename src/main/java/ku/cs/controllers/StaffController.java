@@ -91,6 +91,7 @@ public class StaffController implements Initializable {
     @FXML
     public void handleLogOutButton(ActionEvent actionEvent){
         try {
+            FXRouter.setAnimationType("fade");
             FXRouter.goTo("signIn");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า signIn ไม่ได้");

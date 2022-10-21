@@ -59,6 +59,7 @@ public class RegisterStaffController extends RegisterController{
           writeFile.writeDataforStaff(staffList);
 
             try {
+                FXRouter.setAnimationType("fade");
                 FXRouter.goTo("admin");
             } catch (IOException e) {
                 System.err.println("ไปที่หน้าhome ไม่ได้");
@@ -74,6 +75,7 @@ public class RegisterStaffController extends RegisterController{
     @Override
     public void handleBackButton(ActionEvent actionEvent) {
         try {
+          FXRouter.setAnimationType("fade");
           FXRouter.goTo("admin");
         } catch (IOException e) {
             System.err.println("ไปที่หน้าhome ไม่ได้");

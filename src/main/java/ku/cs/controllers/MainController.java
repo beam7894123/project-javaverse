@@ -97,6 +97,7 @@ public class MainController implements Initializable {
     @FXML private void showSelectedReport(ReportModel reportModel){
         selectReport = reportModel.getTopic();
         try {
+            FXRouter.setAnimationType("fade");
             FXRouter.goTo("detail");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า detail ไม่ได้");
@@ -107,6 +108,7 @@ public class MainController implements Initializable {
     @FXML
     public void handleAddReportButton(ActionEvent actionEvent){
         try {
+            FXRouter.setAnimationType("fade");
             FXRouter.goTo("addreport");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า report ไม่ได้");
@@ -119,6 +121,7 @@ public class MainController implements Initializable {
             usernameText = "";
             System.out.println(usernameText);
             FXRouter.goTo("signIn");
+            FXRouter.setAnimationType("fade");
         } catch (IOException e) {
             System.err.println("ไปที่หน้า signIn ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");
@@ -129,6 +132,7 @@ public class MainController implements Initializable {
     public void profileButton(ActionEvent actionEvent){
         try {
             FXRouter.goTo("profile");
+            FXRouter.setAnimationType("fade");
         } catch (IOException e) {
             System.out.println("err");
             System.out.println(e);
