@@ -8,7 +8,6 @@ import com.github.saacsos.FXRouter;
 import ku.cs.models.User;
 
 public class AdminController {
-    private User john, anna, harry;
 
     @FXML public void handleChangePassButtonClick(ActionEvent actionEvent){
         try {

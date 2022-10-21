@@ -35,6 +35,7 @@ public class MainController implements Initializable {
     private ArrayList<ReportModel> reports;
     public static String selectReport;
     String usernameText = SignInController.currentUser;
+    String UsernameFromSignin = (String) FXRouter.getData();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -132,7 +133,7 @@ public class MainController implements Initializable {
     @FXML
     public void profileButton(ActionEvent actionEvent){
         try {
-            FXRouter.goTo("profile");
+            FXRouter.goTo("profile", UsernameFromSignin);
             FXRouter.setAnimationType("fade");
         } catch (IOException e) {
             System.out.println("err");

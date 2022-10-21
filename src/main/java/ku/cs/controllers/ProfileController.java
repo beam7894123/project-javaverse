@@ -44,6 +44,7 @@ public class ProfileController {
     private String  fileNameImage;
     private String path;
 
+    String UsernameFromSignin = (String) FXRouter.getData();
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     String timeReport = currentDateTime.format(formatter);
@@ -69,7 +70,6 @@ public class ProfileController {
         date.setText(timeReport);
         path = getClass().getResource("/images/"+fileNameImage).toExternalForm();
         imageUpload.setImage(new Image(path));
-        registerList = new UserList();
     }
 
     @FXML
@@ -81,18 +81,63 @@ public class ProfileController {
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }
-    public void handleUploadButton(ActionEvent actionEvent) throws MalformedURLException {
 
+    public void handleUploadButton(ActionEvent actionEvent) throws MalformedURLException {
         fileNameImage = writeFile.uploadImageFromFile(actionEvent,imageUpload);
         for (User registerModel : registerList.getAllCards()){
             registerModel.getUsername();
-            if(registerModel.getUsername() .equals(usernameText)) {
+            if(registerModel.getUsername().equals(usernameText)) {
                 registerModel.setImage(fileNameImage);
             }
         }
         System.out.println(fileNameImage);
         dataSource.writeData(registerList);
+//        registerList = new UserList();
+//        registerList
+
     }
+//    @FXML public void handleUploadButton(ActionEvent event){
+//        FileChooser chooser = new FileChooser();
+//        chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+//        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
+//        Node source = (Node) event.getSource();
+//        File file = chooser.showOpenDialog(source.getScene().getWindow());
+//        if (file != null){
+//            try {
+//                File destDir = new File("images");
+//                if (!destDir.exists()) destDir.mkdirs();
+//                String[] fileSplit = file.getName().split("\\.");
+//                String filename = LocalDate.now() + "_"+System.currentTimeMillis() + "."
+//                        + fileSplit[fileSplit.length - 1];
+//                Path target = FileSystems.getDefault().getPath(
+//                        destDir.getAbsolutePath()+System.getProperty("file.separator")+filename
+//                );
+//                Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING );
+//
+//                imageUpload.setImage(new Image(target.toUri().toString()));
+//                this.path = destDir + "/" + filename;
+//                System.out.println(this.path);
+//
+//                if (path == null){
+//                    path = "images/default1.png";
+//                }
+//
+//                int count = 0;
+//                for (User userData : registerList.getAllCards()) {
+//                    if (UsernameFromSignin.equals(userData.getUsername())) {
+//                        userData.setImage(path);
+//                        registerList.getAllCards().set(count, userData);
+//                        dataSource.writeData(registerList);
+//                    }
+//                    count = count + 1;
+//                }
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
+//    }
     @FXML
     public void handleReportButton(ActionEvent actionEvent) {
         try {

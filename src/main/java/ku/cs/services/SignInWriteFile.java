@@ -75,7 +75,7 @@ public class SignInWriteFile {
             SignInWriteFile signInWriteFile = new SignInWriteFile("filescsv","register.csv",strUsername,strPassword);
             try {
                 signInWriteFile.SignInRecieveReadFile(usernameTextfield,passwordPasswordfield);
-                FXRouter.goTo("main");
+                FXRouter.goTo("main", usernameTextfield);
             } catch (IOException e) {
                 System.err.println("ไปที่หน้า main ไม่ได้");
                 System.err.println("ให้ตรวจสอบการกําหนดroute");
