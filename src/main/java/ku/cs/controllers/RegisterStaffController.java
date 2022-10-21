@@ -30,21 +30,14 @@ public class RegisterStaffController extends RegisterController{
     private User user;
     private UserList staffList;
     @FXML ChoiceBox<String> categoryButton;
-//    @FXML
-////    ChoiceBox<String> categoryChicebox;
-////    ComboBox<String> comboBox;
-////    ObservableList<String> list =FXCollections.observableArrayList("Person","Facilities","Building",
-//            "Learning/Lesson","Traffic/Transport");
+
     private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","staff.csv");
 
     public void initialize(){
         fileNameImage = "default1.png";
         path = getClass().getResource("/images/default1.png").toExternalForm();
-//        image.setImage(new Image(getClass().getResource("/ku/cs/images/default1.png").toExternalForm()));
         image.setImage(new Image(path));
         staffList = new UserList();
-//        comboBox.getItems().addAll("Person","Facilities","Building",
-//                "Learning/Lesson","Traffic/Transport");
         categoryButton.setItems(FXCollections.observableArrayList("Person","Facilities","Building",
                 "Learning/Lesson","Traffic/Transport"));
     }
@@ -61,14 +54,10 @@ public class RegisterStaffController extends RegisterController{
         }
         else {
 
-//          String category = categoryChicebox.getValue();
           User user1 = new User(nameTextfield.getText(),surnameTextfield.getText(),usernameTextfield.getText(),passwordPasswordfield.getText(),null,null,fileNameImage,categoryButton.getValue());
           staffList.addStudent(user1);
           writeFile.writeDataforStaff(staffList);
 
-
-
-//            writeFile.checkUsernameAndPasswordforStaff(staffList,usernameTextfield.getText(),passwordPasswordfield.getText(),nameTextfield.getText(),surnameTextfield.getText(),fileNameImage,category);
             try {
                 FXRouter.goTo("admin");
             } catch (IOException e) {
@@ -81,14 +70,7 @@ public class RegisterStaffController extends RegisterController{
         String value = choiceBox.getValue();
         return value;
     }
-//    public Boolean checkUsername(){
-//        for (RegisterModel registerModel1: staffList.getAllstaff()){
-//            if (registerModel1.getUsername().equals(usernameTextfield)){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+
     @Override
     public void handleBackButton(ActionEvent actionEvent) {
         try {
@@ -103,9 +85,4 @@ public class RegisterStaffController extends RegisterController{
     public void handleUploadButton(ActionEvent actionEvent) throws MalformedURLException {
         fileNameImage = writeFile.uploadImageFromFile(actionEvent,image);
     }
-
-
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        comboBox.setItems(list);
-//    }
 }

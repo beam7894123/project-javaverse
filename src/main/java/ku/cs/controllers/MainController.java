@@ -1,6 +1,5 @@
 package ku.cs.controllers;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -10,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
 import ku.cs.services.DataSource;
@@ -33,6 +31,7 @@ public class MainController implements Initializable {
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
     private ObservableList<ReportModel> reportObservableList;
+    private ArrayList<ReportModel> reports;
     public static String selectReport;
     String usernameText = SignInController.currentUser;
 
@@ -61,10 +60,16 @@ public class MainController implements Initializable {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
-
                 String lowerCaseFilter = newValue.toLowerCase();
-
                 if (reportModel.getCategory().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }else if (reportModel.getAuthorName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }else if (reportModel.getTopic().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }else if (reportModel.getStatus().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }else if (reportModel.getDetail().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
                 }
                 return false;
@@ -76,10 +81,10 @@ public class MainController implements Initializable {
         reportTable.setItems(sortedData);
         ArrayList<StringConfig> configs = new ArrayList<>();
         configs.add(new StringConfig("title:Topic","field:topic"));
-//        configs.add(new StringConfig("title:Detail","field:detail"));
+        configs.add(new StringConfig("title:Detail","field:detail"));
         configs.add(new StringConfig("title:Score","field:voteScore"));
-        configs.add(new StringConfig("title:Category","field:category"));
         configs.add(new StringConfig("title:Date","field:dateTime"));
+        configs.add(new StringConfig("title:Category","field:category"));
         configs.add(new StringConfig("title:Author","field:authorName"));
         configs.add(new StringConfig("title:Status","field:status"));
         for (StringConfig conf: configs){
@@ -90,7 +95,6 @@ public class MainController implements Initializable {
     }
 
     @FXML private void showSelectedReport(ReportModel reportModel){
-//        ไปหน้าใหม่และโชว์ detail ของ report (´;ω;)
         selectReport = reportModel.getTopic();
         try {
             FXRouter.goTo("detail");

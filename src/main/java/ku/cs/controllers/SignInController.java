@@ -24,7 +24,6 @@ public class SignInController {
     @FXML
     Button staffButton;
     @FXML TextField usernameTextfield;
-
     @FXML PasswordField passwordPasswordfield;
     private UserList control;
     public  String strUserID;
@@ -35,32 +34,22 @@ public class SignInController {
     public static String currentUser;
     public static LocalDateTime currentDateTime;
 
-
-    
-
     private DataSource registerWriteFile;
     private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","register.csv");
     @FXML public void initialize(){
-//        registerWriteFile = new RegisterWriteFile("filescsv","register.csv");
         userList = new UserList();
         registerWriteFile = new RegisterWriteFile("filescsv","register.csv");
         System.out.println(userList.getAllCards());
-
-
     }
 
     @FXML
     public void handleConfirmButtonClick(ActionEvent actionEvent) throws IOException {
-//        registerList = writeFile.readData();
         signInWriteFile = new SignInWriteFile("filescsv","register.csv",usernameTextfield.getText(),passwordPasswordfield.getText());
         if (!(signInWriteFile.checkConfirmsignIn(userList,usernameTextfield.getText(),passwordPasswordfield.getText()))){
             loginChecker.setText("Username or Password is incorrect");
         }
         currentUser = usernameTextfield.getText();
         currentDateTime = LocalDateTime.now();
-//        signInWriteFile.SignInRecieveReadFile();
-//        signInWriteFile.checkConfirmsignIn(registerList,usernameTextfield.getText(),passwordPasswordfield.getText(),loginChecker);
-
     }
     @FXML
     public void handleRegisterButtonClick(ActionEvent actionEvent){

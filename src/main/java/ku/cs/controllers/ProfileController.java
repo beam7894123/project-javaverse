@@ -68,7 +68,6 @@ public class ProfileController {
         username.setText(usernameText);
         date.setText(timeReport);
         path = getClass().getResource("/images/"+fileNameImage).toExternalForm();
-//        image.setImage(new Image(getClass().getResource("/ku/cs/images/default1.png").toExternalForm()));
         imageUpload.setImage(new Image(path));
         registerList = new UserList();
     }
@@ -84,18 +83,14 @@ public class ProfileController {
     public void handleUploadButton(ActionEvent actionEvent) throws MalformedURLException {
 
         fileNameImage = writeFile.uploadImageFromFile(actionEvent,imageUpload);
-//        UserList myUser = registerList.findCurrentUser(usernameText);
         for (User registerModel : registerList.getAllCards()){
             registerModel.getUsername();
             if(registerModel.getUsername() .equals(usernameText)) {
                 registerModel.setImage(fileNameImage);
             }
         }
-//        registerList
         System.out.println(fileNameImage);
-
         dataSource.writeData(registerList);
-
     }
     @FXML
     public void handleReportButton(ActionEvent actionEvent) {

@@ -36,19 +36,7 @@
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></PasswordField>
-      <Button blendMode="DARKEN" layoutX="642.0" layoutY="541.0" mnemonicParsing="false" onAction="#handleRegisterButtonClick" prefHeight="35.0" prefWidth="134.0" style="-fx-background-color: #5179f7;" text="Create Profile" textAlignment="JUSTIFY" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <Label layoutX="637.0" layoutY="509.0" text="Don't have an account?" textFill="#7c7c7c" underline="true">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Button blendMode="DARKEN" layoutX="550.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleConfirmButtonClick" prefHeight="35.0" prefWidth="159.0" style="-fx-background-color: #5179f7;" text="Login" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button blendMode="DARKEN" layoutX="478.0" layoutY="389.0" mnemonicParsing="false" onAction="#handleConfirmButtonClick" prefHeight="35.0" prefWidth="284.0" style="-fx-background-color: #5179f7;" text="Login" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -85,7 +73,7 @@
          </cursor>
       </Button>
       <Label fx:id="loginChecker" layoutX="514.0" layoutY="253.0" prefHeight="18.0" prefWidth="231.0" />
-      <Label accessibleRole="BUTTON" layoutX="680.0" layoutY="363.0" text="how to use!?" textFill="#7c7c7c" underline="true">
+      <Label accessibleRole="BUTTON" layoutX="680.0" layoutY="363.0" text="for staff only" textFill="#7c7c7c" underline="true">
          <font>
             <Font size="14.0" />
          </font>
@@ -93,7 +81,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <Button fx:id="backButton" blendMode="DARKEN" layoutX="461.0" layoutY="542.0" mnemonicParsing="false" onAction="#handleBackbuttonClick" prefHeight="38.0" prefWidth="134.0" style="-fx-background-color: #5179f7;" text="Back" textAlignment="JUSTIFY" textFill="WHITE">
+      <Button fx:id="backButton" blendMode="DARKEN" layoutX="653.0" layoutY="542.0" mnemonicParsing="false" onAction="#handleBackbuttonClick" prefHeight="38.0" prefWidth="134.0" style="-fx-background-color: #5179f7;" text="Back" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

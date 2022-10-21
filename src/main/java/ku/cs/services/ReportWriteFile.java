@@ -5,8 +5,7 @@ import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 
 public class ReportWriteFile implements DataSource<ReportList> {
     private String fileDirectoryName;
@@ -83,14 +82,15 @@ public class ReportWriteFile implements DataSource<ReportList> {
         FileWriter writer = null;
         BufferedWriter buffer = null;
         try {
-            writer = new FileWriter(file,true);
+            writer = new FileWriter(file);
             buffer = new BufferedWriter(writer);
+            ArrayList<ReportModel> reports = null;
             for (ReportModel reportModel : reportList.getReports()) {
                 String line = reportModel.getTopic() + ","
                         + reportModel.getDetail() + ","
                         + reportModel.getVoteScore() + ","
-                        + reportModel.getDateTime() + ","
                         + reportModel.getCategory() + ","
+                        + reportModel.getDateTime() + ","
                         + reportModel.getAuthorName() + ","
                         + reportModel.getSolveProblem() + ","
                         + reportModel.getStatus();

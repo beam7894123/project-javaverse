@@ -1,7 +1,5 @@
 package ku.cs.controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -9,14 +7,12 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
-import ku.cs.models.User;
 import ku.cs.services.DataSource;
 import ku.cs.services.ReportWriteFile;
 import ku.cs.services.StringConfig;
@@ -25,7 +21,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 
 public class MyReportController implements Initializable {
     @FXML
@@ -52,11 +47,11 @@ public class MyReportController implements Initializable {
                         showSelectedReport(newValue);
                     }
                 }
-
         );
 
     }
     private void showReportView() {
+        ArrayList<ReportModel> reports = new ArrayList<>();
         reportObservableList = FXCollections.observableArrayList(reportList.getReports());
 
         ReportList myReport = reportList.findMyReport(usernameText);
@@ -64,7 +59,6 @@ public class MyReportController implements Initializable {
         myreportTable.setItems(reportObservableList);
         ArrayList<StringConfig> configs = new ArrayList<>();
         configs.add(new StringConfig("title:Topic","field:topic"));
-//        configs.add(new StringConfig("title:Detail","field:detail"));
         configs.add(new StringConfig("title:Score","field:voteScore"));
         configs.add(new StringConfig("title:Category","field:category"));
         configs.add(new StringConfig("title:Date","field:dateTime"));
@@ -78,7 +72,6 @@ public class MyReportController implements Initializable {
         }
 
     @FXML private void showSelectedReport(ReportModel reportModel){
-//        ไปหน้าใหม่และโชว์ detail ของ report (´;ω;)
         selectReport = reportModel.getTopic();
         try {
             com.github.saacsos.FXRouter.goTo("detail");
@@ -87,6 +80,7 @@ public class MyReportController implements Initializable {
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
+
     @FXML
     public void handleBackButton(ActionEvent actionEvent) {
         try {
@@ -95,5 +89,4 @@ public class MyReportController implements Initializable {
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }
-
 }

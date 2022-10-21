@@ -17,7 +17,6 @@ public class SignInWriteFile {
     private String usernameText;
     private String username;
     private String password;
-//    private UsercheckRegister usercheckRegister;
 
     public SignInWriteFile(String directoryName, String fileName, String username, String password) {
         this.directoryName = directoryName;
@@ -49,7 +48,6 @@ public class SignInWriteFile {
                         .append(",").append(data[4])
                         .append(",").append(sdf.format(d))
                         .append(",").append(sdf1.format(d));
-//                    break;
             }
             else {
                 newPurchaseCsv.append(line);
@@ -79,8 +77,6 @@ public class SignInWriteFile {
                 signInWriteFile.SignInRecieveReadFile(usernameTextfield,passwordPasswordfield);
                 FXRouter.goTo("main");
             } catch (IOException e) {
-//                throw new RuntimeException(e);
-//                loginChecker.setText("Username or Password is incorrect");
                 System.err.println("ไปที่หน้า main ไม่ได้");
                 System.err.println("ให้ตรวจสอบการกําหนดroute");
                 return false;
@@ -90,50 +86,6 @@ public class SignInWriteFile {
             return true;
         }
 
-//        else {
-//            loginChecker.setText("Username or Password is incorrect");
-//            try {
-//                loginChecker.setText("Username or Password is incorrect");
-//            } catch (IOException e) {
-//                System.err.println("ไปที่หน้าhome ไม่ได้");
-//                System.err.println("ให้ตรวจสอบการกําหนดroute");
-//            }
         return false;
     }
     }
-//    public void checkConfirm(RegisterList registerList,String usernameTextfield,String passwordPasswordfield,Label loginChecker){
-//        if(usernameTextfield.equals("admin")&&passwordPasswordfield.equals("admin")){
-//            try {
-//                FXRouter.goTo("admin");
-//            } catch (IOException e) {
-//                System.err.println("ไปที่หน้าhome ไม่ได้");
-//                System.err.println("ให้ตรวจสอบการกําหนดroute");
-//            }
-//        }else if (registerList.UserCheck(registerList,usernameTextfield,passwordPasswordfield)) {
-////            strUsername = usernameTextfield;
-////            strPassword = passwordPasswordfield;
-//            SignInWriteFile signInWriteFile = new SignInWriteFile("filescsv","register.csv",usernameTextfield,passwordPasswordfield);
-//            try {
-//                signInWriteFile.SignInRecieveReadFile();
-//                FXRouter.goTo("main");
-//            } catch (IOException e) {
-////                throw new RuntimeException(e);
-//                loginChecker.setText("Username or Password is incorrect");
-//                System.err.println("ไปที่หน้า main ไม่ได้");
-//                System.err.println("ให้ตรวจสอบการกําหนดroute");
-//            }
-//
-//        }
-//
-//        else {
-//            loginChecker.setText("Username or Password is incorrect");
-////            try {
-////                loginChecker.setText("Username or Password is incorrect");
-////            } catch (IOException e) {
-////                System.err.println("ไปที่หน้าhome ไม่ได้");
-////                System.err.println("ให้ตรวจสอบการกําหนดroute");
-////            }
-//        }
-//
-//    }
-

@@ -6,21 +6,19 @@ import java.util.Date;
 import java.util.Locale;
 
 import com.github.saacsos.FXRouter;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import ku.cs.models.UserList;
 
 public class LoginStaffWriteFile {
-    private String strUsername,usernameText;
+    private String strUsername;
     private String strPassword;
     private String directory;
     private String fileName;
     private String password,username;
-    Locale locale = new Locale("en","en"); //SET LOCALE (if u sys is พศ. it will auto set to คศ. yay~ \^w^/ )
-
-//    public LoginStaffWriteFile(String strUsername, String usernameText, String strPassword) {
-//        this.strUsername = strUsername;
-//        this.usernameText = usernameText;
-//        this.strPassword = strPassword;
-//    }
+    @FXML
+    TextField usernameTextfield;
+    Locale locale = new Locale("en","en");
 
         public LoginStaffWriteFile(String directory, String fileName, String username, String password) {
         this.directory = directory;
@@ -53,7 +51,6 @@ public class LoginStaffWriteFile {
                         .append(",").append(sdf.format(d))
                         .append(",").append(sdf1.format(d))
                         .append(",").append(data[7]);
-//                    break;
             }
             else {
                 newPurchaseCsv.append(line);
@@ -79,8 +76,7 @@ public class LoginStaffWriteFile {
                 System.err.println("ให้ตรวจสอบการกําหนดroute");
                 return false;
             }
-            usernameText = usernameTextfield;
-            System.out.println(usernameText);
+
             return true;
         }
         return false;

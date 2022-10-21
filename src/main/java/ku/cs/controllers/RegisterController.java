@@ -38,7 +38,6 @@ public class RegisterController {
     public void initialize(){
         fileNameImage = "default1.png";
         path = getClass().getResource("/images/default1.png").toExternalForm();
-//        image.setImage(new Image(getClass().getResource("/ku/cs/images/default1.png").toExternalForm()));
         image.setImage(new Image(path));
         userList = new UserList();
     }
@@ -52,9 +51,6 @@ public class RegisterController {
         else if (writeFile.checkPassword(passwordPasswordfield.getText(),confirmPasswordfield.getText())){
             labelPassword.setText("PASSWORD IS NOT MATCH");
         }
-//        if (writeFile.checkUsernameAndpassword(usernameTextfield.getText(),passwordPasswordfield.getText(),confirmPasswordfield.getText())) {
-//            usernameAndpasswordLabel.setText("USERNAME OR PASSWORD IS NOT ALREADY");
-//        }
         else {
             System.out.println(fileNameImage);
             writeFile.checkUserNameAndPassword(userList,usernameTextfield.getText(),passwordPasswordfield.getText(),nameTextfield.getText(),surnameTextfield.getText(),fileNameImage,confirmPasswordfield.getText());

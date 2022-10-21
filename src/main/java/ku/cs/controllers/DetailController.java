@@ -7,11 +7,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import ku.cs.models.User;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
 import ku.cs.services.DataSource;
-import ku.cs.services.RegisterWriteFile;
 import ku.cs.services.ReportWriteFile;
 
 import java.io.IOException;
@@ -25,7 +23,7 @@ public class DetailController {
     private Label voteScoreLabel;
     @FXML
     private Button voteButton;
-    @FXML private ImageView starbutton;
+    @FXML Label solveText;
 
     private ReportModel reportModel;
     private DataSource<ReportList> dataSource;
@@ -54,25 +52,24 @@ public class DetailController {
         topicName.setText(topic);
         topicDetail.setText(detail);
         voteScoreLabel.setText(vote);
+        solveText.setText(solve);
     }
 
     @FXML
     public void voteScoreButton(MouseEvent mouseEvent){
         for (ReportModel reportModel : reportList.getReports()){
             if(currentReport .equals(reportModel.getTopic())){
-                System.out.println(reportModel.getTopic());
-                System.out.println(reportModel.getDetail());
-                reportModel.addScore(score);
-                vote = String.valueOf(reportModel.getVoteScore());
-                reportModel.setVoteScore(score);
-                System.out.println(vote);
+                Alert status = new Alert(Alert.AlertType.WARNING,"you vote this report already!!");
+                status.setTitle("WARNING!?");
+                voteButton.setDisable(true);
+                int score1 = reportModel.getVoteScore();
+                score1++;
+                voteScoreLabel.setText(String.valueOf(vote));
+                reportModel.setVoteScore(score1);
+                dataSource.writeData(reportList);
             }
         }
-        voteScoreLabel.setText(String.valueOf(vote));
-        Alert status = new Alert(Alert.AlertType.WARNING,"you vote this report already!!");
-        status.setTitle("WARNING!?");
-        voteButton.setDisable(true);
-//        starbutton.setDisable(true);
+
     }
 
     @FXML
@@ -83,8 +80,4 @@ public class DetailController {
         System.err.println("ไปที่หน้า main ไม่ได้");
         System.err.println("ให้ตรวจสอบการกําหนดroute");}
     }
-
-
-
-
 }

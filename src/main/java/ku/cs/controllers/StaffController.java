@@ -13,10 +13,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
-import ku.cs.services.DataSource;
-import ku.cs.services.ReportWriteFile;
+import ku.cs.models.User;
+import ku.cs.models.UserList;
+import ku.cs.services.*;
 import com.github.saacsos.FXRouter;
-import ku.cs.services.StringConfig;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,12 +37,14 @@ public class StaffController implements Initializable {
     @FXML private Label category;
     @FXML private TextField solve;
     private DataSource<ReportList> dataSource;
+    private DataSource<UserList> staffsource;
     private ReportList reportList;
+    private UserList userList;
     private SortedList<ReportModel> sortedList;
     private ObservableList<ReportModel> reportObservableList;
     private ReportModel selectReport;
-
-
+    String usernameText = LoginStaffController.usernameStaff;
+    private RegisterWriteFile readDataforStaff;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dataSource = new ReportWriteFile("filescsv", "report.csv");
@@ -54,7 +56,6 @@ public class StaffController implements Initializable {
                     }
                 }
         );
-
     }
 
     public void selectReport(ReportModel report){
@@ -66,7 +67,12 @@ public class StaffController implements Initializable {
     }
 
     private void showReportView() {
-        reportObservableList = FXCollections.observableArrayList(reportList.getReports());
+        readDataforStaff = new RegisterWriteFile("filescsv","staff.csv");
+        userList = readDataforStaff.readDataforStaff();
+        User staff = userList.findMyUsername(usernameText);
+        reportList = reportList.findMyCategory(staff.getCategory());
+        reportObservableList = FXCollections.observableList(reportList.getReports());
+
         reportTable.setItems(reportObservableList);
         ArrayList<StringConfig> configs = new ArrayList<>();
         configs.add(new StringConfig("title:Topic","field:topic"));
@@ -74,11 +80,12 @@ public class StaffController implements Initializable {
         configs.add(new StringConfig("title:Score","field:voteScore"));
         configs.add(new StringConfig("title:Category","field:category"));
         configs.add(new StringConfig("title:Date","field:dateTime"));
+        configs.add(new StringConfig("title:Status","field:status"));
         for (StringConfig conf: configs){
             TableColumn col = new TableColumn(conf.get("title"));
             col.setCellValueFactory(new PropertyValueFactory<>(conf.get("field")));
             reportTable.getColumns().add(col);
-        };
+        }
     }
 
     @FXML
@@ -94,11 +101,20 @@ public class StaffController implements Initializable {
     @FXML
     public void submitSolve(ActionEvent actionEvent){
         selectReport.setSolveProblem(solve.getText());
-        selectReport.setStatus("done");
+        selectReport.setStatus("success");
         clearText();
         reportTable.refresh();
         reportTable.getSelectionModel().clearSelection();
-//        reportList.addReport(selectReport);
+        dataSource.writeData(reportList);
+    }
+
+    @FXML
+    public void submitSolve2(ActionEvent actionEvent){
+        selectReport.setSolveProblem(solve.getText());
+        selectReport.setStatus("processing");
+        clearText();
+        reportTable.refresh();
+        reportTable.getSelectionModel().clearSelection();
         dataSource.writeData(reportList);
     }
 
