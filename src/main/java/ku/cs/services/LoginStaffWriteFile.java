@@ -1,6 +1,7 @@
 package ku.cs.services;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -38,7 +39,7 @@ public class LoginStaffWriteFile {
         StringBuilder newPurchaseCsv = new StringBuilder();
         String filePath = directory+File.separator+fileName;
         File file = new File(filePath);
-        FileReader fileReader = new FileReader(file);
+        FileReader fileReader = new FileReader(file, StandardCharsets.UTF_8);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String line = "";
         while ((line = bufferedReader.readLine()) != null) {

@@ -9,6 +9,7 @@ import ku.cs.models.User;
 
 import java.io.*;
 import java.net.MalformedURLException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -155,7 +156,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
     private void readCustomer() throws IOException {
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
-        FileReader fileReader = new FileReader(file);
+        FileReader fileReader = new FileReader(file, StandardCharsets.UTF_8);
         BufferedReader reader = new BufferedReader(fileReader);
         String line = "";
         userList = new UserList();
@@ -175,7 +176,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
     private void readStaff() throws IOException {
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
-        FileReader fileReader = new FileReader(file);
+        FileReader fileReader = new FileReader(file, StandardCharsets.UTF_8);
         BufferedReader reader = new BufferedReader(fileReader);
         String line = "";
         staffList = new UserList();
@@ -232,7 +233,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
         FileWriter writer = null;
         BufferedWriter buffer = null;
         try {
-            writer = new FileWriter(file);
+            writer = new FileWriter(file, StandardCharsets.UTF_8);
             buffer = new BufferedWriter(writer);
             for (User user : userList.getAllCards()){
                 System.out.println(userList);
@@ -264,7 +265,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
         FileWriter writer = null;
         BufferedWriter buffer = null;
         try {
-            writer = new FileWriter(file);
+            writer = new FileWriter(file, StandardCharsets.UTF_8);
             buffer = new BufferedWriter(writer);
             for (User user : staffList.getAllCards()){
                 System.out.println(staffList);
@@ -290,56 +291,56 @@ public class RegisterWriteFile implements DataSource<UserList> {
             }
         }
     }
-    public void writeDataforStaff1(String nameTextfield,String surnameTextfield,String usernameTextfield,String passwordPasswordField,String date,String time,String category,String fileNameImage ) {
-        System.out.println(category);
-        File file = new File("filescsv","staff.csv");
-        FileReader fileReader = null;
-        try {
-            fileReader = new FileReader(file);
-            BufferedReader reader = new BufferedReader(fileReader);
-            String line = "";
-            while ((line = reader.readLine()) != null) {
-                String[] data = line.split(",");
-
-                PrintWriter writer = null;
-                try {
-                    FileWriter fw = new FileWriter(file,true);
-                    writer=new PrintWriter(fw);
-//                while (Str_Username.equals(Data_Username)&& Str_Password.equals(Data_Password))
-//                Data_Username=data[1];
-//                Data_Password=data[2];
-                    if(usernameTextfield.equals(data[2]) && passwordPasswordField.equals(data[3])){
-                        writer.println(data[0] + "," + data[1] + "," + data[2] + "," +data[3]+","+ data[4]+","+data[5]+","+data[6]);
-                    }else{
-                        writer.println(data[0] + "," + data[1] + "," + data[2] + "," + data[3]
-                                + "," + data[4] + "," + data[5] + "," + data[6]);
-                    }
-
-                } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-                writer.close();
-            }
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//    public void writeDataforStaff1(String nameTextfield,String surnameTextfield,String usernameTextfield,String passwordPasswordField,String date,String time,String category,String fileNameImage ) {
+//        System.out.println(category);
 //        File file = new File("filescsv","staff.csv");
-        PrintWriter writer = null;
-        try {
-            StringBuilder sb = new StringBuilder();
-            sb.append(nameTextfield).append(",")
-            .append(category).append("\n");
-            FileWriter fileWriter = new FileWriter("filescsv/staff.csv", true);
-            fileWriter.write(sb.toString());
-            fileWriter.close();
-        } catch (IOException e) {
-            System.err.println();
-        }
-    }
+//        FileReader fileReader = null;
+//        try {
+//            fileReader = new FileReader(file);
+//            BufferedReader reader = new BufferedReader(fileReader);
+//            String line = "";
+//            while ((line = reader.readLine()) != null) {
+//                String[] data = line.split(",");
+//
+//                PrintWriter writer = null;
+//                try {
+//                    FileWriter fw = new FileWriter(file,true);
+//                    writer=new PrintWriter(fw);
+////                while (Str_Username.equals(Data_Username)&& Str_Password.equals(Data_Password))
+////                Data_Username=data[1];
+////                Data_Password=data[2];
+//                    if(usernameTextfield.equals(data[2]) && passwordPasswordField.equals(data[3])){
+//                        writer.println(data[0] + "," + data[1] + "," + data[2] + "," +data[3]+","+ data[4]+","+data[5]+","+data[6]);
+//                    }else{
+//                        writer.println(data[0] + "," + data[1] + "," + data[2] + "," + data[3]
+//                                + "," + data[4] + "," + data[5] + "," + data[6]);
+//                    }
+//
+//                } catch (FileNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//                writer.close();
+//            }
+//
+//        } catch (FileNotFoundException e) {
+//            throw new RuntimeException(e);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+////        File file = new File("filescsv","staff.csv");
+//        PrintWriter writer = null;
+//        try {
+//            StringBuilder sb = new StringBuilder();
+//            sb.append(nameTextfield).append(",")
+//            .append(category).append("\n");
+//            FileWriter fileWriter = new FileWriter("filescsv/staff.csv", true);
+//            fileWriter.write(sb.toString());
+//            fileWriter.close();
+//        } catch (IOException e) {
+//            System.err.println();
+//        }
+//    }
     public String uploadImageFromFile(ActionEvent event,ImageView image) throws MalformedURLException {
         FileChooser chooser = new FileChooser();
         // SET FILECHOOSER INITIAL DIRECTORY
