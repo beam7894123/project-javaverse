@@ -75,6 +75,7 @@ public class ProfileController {
     @FXML
     public void handleBackButton(ActionEvent actionEvent) {
         try {
+            FXRouter.setAnimationType("fade");
             FXRouter.goTo("main");
         } catch (IOException e) {
             System.err.println("ให้ตรวจสอบการกำหนด route");
@@ -95,6 +96,7 @@ public class ProfileController {
     @FXML
     public void handleReportButton(ActionEvent actionEvent) {
         try {
+            FXRouter.setAnimationType("fade");
             FXRouter.goTo("myreport");
         } catch (IOException e) {
             System.err.println("ให้ตรวจสอบการกำหนด route");

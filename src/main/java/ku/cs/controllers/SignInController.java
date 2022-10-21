@@ -54,6 +54,7 @@ public class SignInController {
     @FXML
     public void handleRegisterButtonClick(ActionEvent actionEvent){
         try {
+            FXRouter.setAnimationType("fade");
             FXRouter.goTo("register");
         } catch (IOException e) {
             System.err.println("ไปที่หน้าhome ไม่ได้");
@@ -63,6 +64,7 @@ public class SignInController {
     @FXML
     public void handleStaffbuttonClick(ActionEvent actionEvent){
         try {
+            FXRouter.setAnimationType("fade");
             FXRouter.goTo("loginStaff");
         } catch (IOException e) {
             System.err.println("ไปที่หน้าhome ไม่ได้");
@@ -73,6 +75,7 @@ public class SignInController {
     @FXML
     public void handleCreatorButton(ActionEvent actionEvent) {
         try {
+        FXRouter.setAnimationType("fade");
         FXRouter.goTo("creator");}
         catch (IOException e) {
         System.err.println("err");}
