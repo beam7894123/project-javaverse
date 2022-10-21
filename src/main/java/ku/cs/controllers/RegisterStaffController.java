@@ -39,7 +39,7 @@ public class RegisterStaffController extends RegisterController{
         image.setImage(new Image(path));
         staffList = new UserList();
         categoryButton.setItems(FXCollections.observableArrayList("Person","Facilities","Building",
-                "Learning/Lesson","Traffic/Transport"));
+                "Learning","Traffic"));
     }
     @Override
     public void handleOkClick(ActionEvent actionEvent) throws IOException {
