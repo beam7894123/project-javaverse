@@ -39,7 +39,7 @@ public class SignInWriteFile {
             }
             String[] data = line.split(",");
             if (usernameTextField.equals(data[2]) && passwordPasswordField.equals(data[3])) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyy ", locale); // <-- ทำไหมไม่เอา space ออกหะ??? 555
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyy", locale);
                 SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm:ss", locale);
                 Date d = new Date(System.currentTimeMillis());
                 newPurchaseCsv.append(data[0]).append(",").append(data[1])
