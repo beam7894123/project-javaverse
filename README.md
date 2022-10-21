@@ -5,8 +5,8 @@
 
 ### ขั้นตอนการติดตั้งโปรแกรม
 1. ดาวน์โหลดโปรแกรมจาก [Releases](https://github.com/CS211-651/project211-javaverse/releases/)
-2. ทำการ Extract file .zip ออกมา
-3. ทำการ Run .jar เพื่อเปิดใช้งานโปรแกรม
+2. ทำการ Extract file Project.zip ออกมา
+3. ทำการ Run CS211-Project-1.0-SNAPSHOT-shaded.jar เพื่อเปิดใช้งานโปรแกรม
 ---
 
 ## Roadmap
