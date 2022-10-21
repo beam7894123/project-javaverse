@@ -1,6 +1,7 @@
 package ku.cs.services;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -18,7 +19,13 @@ public class LoginStaffWriteFile {
     private String password,username;
     @FXML
     TextField usernameTextfield;
-    Locale locale = new Locale("en","en");
+    Locale locale = new Locale("en","en"); //SET LOCALE (if u sys is พศ. it will auto set to คศ. yay~ \^w^/ )
+
+//    public LoginStaffWriteFile(String strUsername, String usernameText, String strPassword) {
+//        this.strUsername = strUsername;
+//        this.usernameText = usernameText;
+//        this.strPassword = strPassword;
+//    }
 
         public LoginStaffWriteFile(String directory, String fileName, String username, String password) {
         this.directory = directory;
@@ -32,7 +39,7 @@ public class LoginStaffWriteFile {
         StringBuilder newPurchaseCsv = new StringBuilder();
         String filePath = directory+File.separator+fileName;
         File file = new File(filePath);
-        FileReader fileReader = new FileReader(file);
+        FileReader fileReader = new FileReader(file, StandardCharsets.UTF_8);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String line = "";
         while ((line = bufferedReader.readLine()) != null) {
@@ -41,7 +48,7 @@ public class LoginStaffWriteFile {
             }
             String[] data = line.split(",");
             if (usernameTextField.equals(data[2]) && passwordPasswordField.equals(data[3])) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyy ", locale); // <-- ทำไหมไม่เอา space ออกหะ??? 555
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyy", locale);
                 SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm:ss", locale);
                 Date d = new Date(System.currentTimeMillis());
                 newPurchaseCsv.append(data[0]).append(",").append(data[1])
@@ -51,6 +58,7 @@ public class LoginStaffWriteFile {
                         .append(",").append(sdf.format(d))
                         .append(",").append(sdf1.format(d))
                         .append(",").append(data[7]);
+//                    break;
             }
             else {
                 newPurchaseCsv.append(line);
@@ -70,7 +78,7 @@ public class LoginStaffWriteFile {
             LoginStaffWriteFile loginStaffWriteFile = new LoginStaffWriteFile("filescsv", "staff.csv", strUsername, strPassword);
             try {
                 loginStaffWriteFile.SignInRecieveReadFileforStaff(usernameTextfield, passwordPasswordfield);
-                FXRouter.goTo("staff");
+                FXRouter.goTo("staff", usernameTextfield);
             } catch (IOException e) {
                 System.err.println("ไปที่หน้า staff ไม่ได้");
                 System.err.println("ให้ตรวจสอบการกําหนดroute");

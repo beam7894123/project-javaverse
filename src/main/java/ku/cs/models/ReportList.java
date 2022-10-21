@@ -14,7 +14,7 @@ public class ReportList {
     }
 
     public ArrayList<ReportModel> getReports(){
-        return this.reports;
+        return reports;
     }
     public ReportList findMyReport(String writer){
         ReportList searchReportList = new ReportList();
@@ -25,7 +25,6 @@ public class ReportList {
         }
         return  searchReportList;
     }
-
     public ReportList findMyCategory(String category){
         ReportList searchReportList = new ReportList();
         for(ReportModel a : reports) {
@@ -35,4 +34,5 @@ public class ReportList {
         }
         return  searchReportList;
     }
+
 }
