@@ -24,7 +24,6 @@ public class SignInController {
     @FXML
     Button staffButton;
     @FXML TextField usernameTextfield;
-
     @FXML PasswordField passwordPasswordfield;
     private UserList control;
     public  String strUserID;
@@ -35,17 +34,12 @@ public class SignInController {
     public static String currentUser;
     public static LocalDateTime currentDateTime;
 
-
-    
-
     private DataSource registerWriteFile;
     private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","register.csv");
     @FXML public void initialize(){
         userList = new UserList();
         registerWriteFile = new RegisterWriteFile("filescsv","register.csv");
         System.out.println(userList.getAllCards());
-
-
     }
 
     @FXML
@@ -56,7 +50,6 @@ public class SignInController {
         }
         currentUser = usernameTextfield.getText();
         currentDateTime = LocalDateTime.now();
-
     }
     @FXML
     public void handleRegisterButtonClick(ActionEvent actionEvent){

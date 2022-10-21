@@ -47,7 +47,6 @@ public class MyReportController implements Initializable {
                         showSelectedReport(newValue);
                     }
                 }
-
         );
 
     }
@@ -81,6 +80,7 @@ public class MyReportController implements Initializable {
             System.err.println("ให้ตรวจสอบการกําหนดroute");
         }
     }
+
     @FXML
     public void handleBackButton(ActionEvent actionEvent) {
         try {
@@ -89,5 +89,4 @@ public class MyReportController implements Initializable {
             System.err.println("ให้ตรวจสอบการกำหนด route");
         }
     }
-
 }

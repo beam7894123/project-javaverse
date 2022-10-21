@@ -58,6 +58,7 @@ public class CreatorController {
 
     String url3 = getClass().getResource("/images/boss.jpg").toExternalForm();
     String url4 = getClass().getResource("/images/beam.jpg").toExternalForm();
+
     @FXML
     public void handleBackButton(ActionEvent actionEvent) {try
     {

@@ -28,14 +28,12 @@ public class ReportFormController extends SignInController {
     @FXML ChoiceBox<String> categoryButton;
     private DataSource<ReportList> write = new ReportWriteFile("filescsv", "report.csv");
 
-
     @FXML public void initialize() {
         dataSource = new ReportWriteFile("filescsv", "report.csv");
         reportList = write.readData();
         categoryButton.setItems(FXCollections.observableArrayList("Person","Facilities","Building",
                 "Learning","Traffic"));
     }
-
 
     @FXML
     public void handleSubmitButton(ActionEvent actionEvent){

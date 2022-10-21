@@ -23,7 +23,7 @@ public class DetailController {
     private Label voteScoreLabel;
     @FXML
     private Button voteButton;
-    @FXML private ImageView starbutton;
+    @FXML Label solveText;
 
     private ReportModel reportModel;
     private DataSource<ReportList> dataSource;
@@ -52,27 +52,24 @@ public class DetailController {
         topicName.setText(topic);
         topicDetail.setText(detail);
         voteScoreLabel.setText(vote);
+        solveText.setText(solve);
     }
 
     @FXML
     public void voteScoreButton(MouseEvent mouseEvent){
         for (ReportModel reportModel : reportList.getReports()){
             if(currentReport .equals(reportModel.getTopic())){
+                Alert status = new Alert(Alert.AlertType.WARNING,"you vote this report already!!");
+                status.setTitle("WARNING!?");
+                voteButton.setDisable(true);
                 int score1 = reportModel.getVoteScore();
                 score1++;
                 voteScoreLabel.setText(String.valueOf(vote));
                 reportModel.setVoteScore(score1);
                 dataSource.writeData(reportList);
-                Alert status = new Alert(Alert.AlertType.WARNING,"you vote this report already!!");
-                status.setTitle("WARNING!?");
-                voteButton.setDisable(true);
             }
         }
-//        voteScoreLabel.setText(String.valueOf(vote));
-//        Alert status = new Alert(Alert.AlertType.WARNING,"you vote this report already!!");
-//        status.setTitle("WARNING!?");
-//        voteButton.setDisable(true);
-////        starbutton.setDisable(true);
+
     }
 
     @FXML
@@ -83,8 +80,4 @@ public class DetailController {
         System.err.println("ไปที่หน้า main ไม่ได้");
         System.err.println("ให้ตรวจสอบการกําหนดroute");}
     }
-
-
-
-
 }

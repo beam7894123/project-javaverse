@@ -129,14 +129,12 @@ public class User {
     public Date getDateTime() {
         return dateTime;
     }
-    //    private String StringDateTime = date + " " + time;
     public String getStringDateTime() { //use by tableview in AdminStudentListController
         return date + " " + time;
     }
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
-// TIME CONVERTER // END // END // END // END // END // END // END // END // END // END // END // END // END
 
     @Override
     public String toString() {

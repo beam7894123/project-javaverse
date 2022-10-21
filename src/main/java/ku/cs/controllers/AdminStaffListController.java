@@ -28,22 +28,14 @@ public class AdminStaffListController {
     private RegisterWriteFile readDataforStaff;
     private UserList list;
 
-
-// INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE //
     @FXML public void initialize(){
-        //READ FILE
         readDataforStaff = new RegisterWriteFile("filescsv","staff.csv");
         list = readDataforStaff.readDataforStaff();
-        //READ FILE END
-
         showStaffListView(list);
         clearSelectedStaff();
         handleSelectedListView();
     }
-// INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE // INITIALIZE IS UP HERE //
 
-// TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE //
-//    @FXML private ListView<RegisterModel> studentListView; //OLD CODE (LISTVIEW)
     @FXML private TableView<User> listTable;
     @FXML private TableColumn<User, String> listTable_LastLogin;
     @FXML private TableColumn<User , String> listTable_Name;
@@ -68,7 +60,6 @@ public class AdminStaffListController {
     }
 
     private void handleSelectedListView() {
-        //OLD CODE + New Code (LISTVIEW)
         listTable.getSelectionModel().selectedItemProperty().addListener(
                 new ChangeListener<User>() {
                     @Override
@@ -91,7 +82,7 @@ public class AdminStaffListController {
     }
     private void clearSelectedStaff() {
         String url = getClass().getResource("/images/default1.png").toExternalForm();
-        image.setImage(new Image(url)); //Set image url
+        image.setImage(new Image(url));
 
         nameLabel.setText("------");
         surnameLabel.setText("------");

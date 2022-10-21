@@ -85,6 +85,4 @@ public class RegisterStaffController extends RegisterController{
     public void handleUploadButton(ActionEvent actionEvent) throws MalformedURLException {
         fileNameImage = writeFile.uploadImageFromFile(actionEvent,image);
     }
-
-
 }

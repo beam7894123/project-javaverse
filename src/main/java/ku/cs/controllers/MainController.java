@@ -60,10 +60,16 @@ public class MainController implements Initializable {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
-
                 String lowerCaseFilter = newValue.toLowerCase();
-
                 if (reportModel.getCategory().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }else if (reportModel.getAuthorName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }else if (reportModel.getTopic().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }else if (reportModel.getStatus().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }else if (reportModel.getDetail().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
                 }
                 return false;
@@ -75,7 +81,7 @@ public class MainController implements Initializable {
         reportTable.setItems(sortedData);
         ArrayList<StringConfig> configs = new ArrayList<>();
         configs.add(new StringConfig("title:Topic","field:topic"));
-//        configs.add(new StringConfig("title:Detail","field:detail"));
+        configs.add(new StringConfig("title:Detail","field:detail"));
         configs.add(new StringConfig("title:Score","field:voteScore"));
         configs.add(new StringConfig("title:Date","field:dateTime"));
         configs.add(new StringConfig("title:Category","field:category"));

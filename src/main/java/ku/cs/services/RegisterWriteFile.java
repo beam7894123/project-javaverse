@@ -30,15 +30,13 @@ public class RegisterWriteFile implements DataSource<UserList> {
     private String categoryReceive;
     private UserList staffList;
 
-
     public void initialize(){
         fileNameImage = "default1.png";
         path = getClass().getResource("/images/default1.png").toExternalForm();
         image.setImage(new Image(path));
     }
 
-// TIME CONVERTER !!! DO NOT TOUCH !!! ห้ามลบ ถ้าเกิด Error บอก beam7894123 ก่อน ไม่งั้นต่อยนะ >:< //
-    Locale locale = new Locale("en","en"); //SET LOCALE (if u sys is พศ. it will auto set to คศ. yay~ \^w^/ )
+    Locale locale = new Locale("en","en");
     SimpleDateFormat timeFormat1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", locale);
     private final Date defaultdateTime; {try {defaultdateTime = timeFormat1.parse("01-01-2000 00:00:00");} catch (
             ParseException e) {throw new RuntimeException(e);}}
@@ -50,40 +48,15 @@ public class RegisterWriteFile implements DataSource<UserList> {
         } catch (ParseException e) {
             System.err.println("\n!!TIME CONVERTER(v.2) ERROR!!");
             System.err.println("Time, Dr. Freeman?");
-//            System.err.println("Look like user date " + "\"" + getName()+ " " + getSurname() + "\"" + " is mess up -w-");
-//            System.err.println("Here input is: " + takeDateTime + "");
-//          takeDateTime = "00-00-0000 00:00:00";
             return defaultdateTime;
-//            System.out.println("Continue running...\n");
-//          dateTime = new GregorianCalendar(2000, 2, 1).getTime();
-//          throw new RuntimeException(e);
+
         }
     }
-// TIME CONVERTER // END // END // END // END // END // END // END // END // END // END // END // END // END
 
     public RegisterWriteFile(String directoryName, String fileName) {
       this.directoryName = directoryName;
       this.fileName = fileName;
-//      checkFileIsExisted();
-//      userList = new UserList();
-//      staffList = new UserList();
     }
-//    private void checkFileIsExisted(){
-//        // ถูกเรียกตอน constructor
-//        File file = new File(directoryName);
-//        if (!file.exists()){// exist ใช้บอกว่าเช็คว่ามีไฟลื
-//            file.mkdirs(); // mkdir คือจะสร้าง folder เดียวไม่สร้าง parent ให้ เเต่ถ้าเป็น mkdires มันจะสร้างให้
-//        }
-//        String filePath = directoryName+fileName;
-//        file = new File(filePath);
-//        if (!file.exists()){
-//            try { // เราจัดการเองเลย
-//                file.createNewFile(); // ถ้าไม่มีให้สร้างไฟล์ใหม่
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-//    }
 
     public Boolean checkUsernameAndpassword(String usernameTextField,String passwordPasswordfield,String confirmPassword){
         for (User user : userList.getAllCards()){
@@ -142,7 +115,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
             String[] data = line.split(",");
             User customer = new User(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[5].trim());
             customer.setImage(data[4]);
-            customer.setDateTime(setDateTime(data[5], data[6])); // TIME CONVERTER !!! DO NOT TOUCH !!! ห้ามลบ ถ้าเกิด Error บอก beam7894123 ก่อน ไม่งั้นต่อยนะ >:< //
+            customer.setDateTime(setDateTime(data[5], data[6]));
             userList.addStudent(customer);
         }
         reader.close();
@@ -159,7 +132,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
             User customer = new User(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[5].trim(),data[6].trim());
             customer.setImage(data[4]);
             customer.setCategory(data[7]);
-            customer.setDateTime(setDateTime(data[5], data[6])); // TIME CONVERTER !!! DO NOT TOUCH !!! ห้ามลบ ถ้าเกิด Error บอก beam7894123 ก่อน ไม่งั้นต่อยนะ >:< //
+            customer.setDateTime(setDateTime(data[5], data[6]));
             staffList.addStudent(customer);
         }
         reader.close();
@@ -280,9 +253,6 @@ public class RegisterWriteFile implements DataSource<UserList> {
                 try {
                     FileWriter fw = new FileWriter(file,true);
                     writer=new PrintWriter(fw);
-//                while (Str_Username.equals(Data_Username)&& Str_Password.equals(Data_Password))
-//                Data_Username=data[1];
-//                Data_Password=data[2];
                     if(usernameTextfield.equals(data[2]) && passwordPasswordField.equals(data[3])){
                         writer.println(data[0] + "," + data[1] + "," + data[2] + "," +data[3]+","+ data[4]+","+data[5]+","+data[6]);
                     }else{
@@ -302,7 +272,6 @@ public class RegisterWriteFile implements DataSource<UserList> {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-//        File file = new File("filescsv","staff.csv");
         PrintWriter writer = null;
         try {
             StringBuilder sb = new StringBuilder();
@@ -317,28 +286,21 @@ public class RegisterWriteFile implements DataSource<UserList> {
     }
     public String uploadImageFromFile(ActionEvent event,ImageView image) throws MalformedURLException {
         FileChooser chooser = new FileChooser();
-        // SET FILECHOOSER INITIAL DIRECTORY
         chooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-        // DEFINE ACCEPTABLE FILE EXTENSION
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("images PNG JPG", "*.png", "*.jpg", "*.jpeg"));
-        // GET FILE FROM FILECHOOSER WITH JAVAFX COMPONENT WINDOW
         Node source = (Node) event.getSource();
         File file = chooser.showOpenDialog(source.getScene().getWindow());
         String fileName = "";
         if (file != null){
             fileName = file.getName();
             try {
-                // CREATE FOLDER IF NOT EXIST
                 File destDir = new File("src/main/resources/images");
                 if (!destDir.exists()) destDir.mkdirs();
-                // RENAME FILE
                 fileNameImage = fileName;
                 Path target = FileSystems.getDefault().getPath(
                         destDir.getAbsolutePath()+System.getProperty("file.separator")+fileNameImage
                 );
-                // COPY WITH FLAG REPLACE FILE IF FILE IS EXIST
                 Files.copy(file.toPath(), target, StandardCopyOption.REPLACE_EXISTING );
-                // SET NEW FILE PATH TO IMAGE
                 image.setImage(new Image(target.toUri().toString()));
             } catch (Exception e) {
                 e.printStackTrace();
