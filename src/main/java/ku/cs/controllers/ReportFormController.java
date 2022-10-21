@@ -40,7 +40,7 @@ public class ReportFormController extends SignInController {
         if(topicField.getText() != "" & detailField.getText() != "") {
             try {
                 ReportModel reportModel = new ReportModel(topicField.getText(), detailField.getText(),0,
-                        categoryButton.getValue(),timeReport, currentUser);
+                        categoryButton.getValue(),timeReport, currentUser,"null","inprogress");
                 reportList.addReport(reportModel);
                 write.writeData(reportList);
                 System.out.println("Do write file");
