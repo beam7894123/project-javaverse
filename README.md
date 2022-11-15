@@ -7,6 +7,8 @@
 1. ดาวน์โหลดโปรแกรมจาก [Releases](https://github.com/CS211-651/project211-javaverse/releases/)
 2. ทำการ Extract file Project.zip ออกมา
 3. ทำการ Run CS211-Project-1.0-SNAPSHOT-shaded.jar เพื่อเปิดใช้งานโปรแกรม
+- ปล.หน้าต้องการดูวิธีการใช้งาน/การทำงานของโปรเเกรมJavaverse โปรดเช็คใน [PDF](How_to_use.pdf)
+
 ---
 
 ## Roadmap
