@@ -128,24 +128,12 @@ public class StaffController implements Initializable {
 
     @FXML
     public void sortByDateUp(ActionEvent actionEvent){
-        Collections.sort(reportObservableList, new Comparator<ReportModel>() {
-            @Override
-            public int compare(ReportModel o1, ReportModel o2) {
-                String dateTime1 = ((ReportModel) o1).getDateTime();
-                String dateTime2 = ((ReportModel) o2).getDateTime();
-                return dateTime2.compareTo(dateTime1);
-            }});
+        Collections.sort(reportObservableList, SortList.descendingReportDateTime());
     }
 
     @FXML
     public void sortByDateDown(ActionEvent actionEvent){
-        Collections.sort(reportObservableList, new Comparator<ReportModel>() {
-            @Override
-            public int compare(ReportModel o1, ReportModel o2) {
-                String dateTime1 = ((ReportModel) o1).getDateTime();
-                String dateTime2 = ((ReportModel) o2).getDateTime();
-                return dateTime1.compareTo(dateTime2);
-            }});
+        Collections.sort(reportObservableList, SortList.ascendingReporDateTime());
     }
 
     @FXML

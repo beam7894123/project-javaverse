@@ -14,6 +14,7 @@ import ku.cs.models.ReportModel;
 import ku.cs.services.DataSource;
 import ku.cs.services.ReportWriteFile;
 import com.github.saacsos.FXRouter;
+import ku.cs.services.SortList;
 import ku.cs.services.StringConfig;
 
 import java.io.IOException;
@@ -153,25 +154,13 @@ public class MainController implements Initializable {
 
     @FXML
     public void sortByDateUp(ActionEvent actionEvent){
-        Collections.sort(reportObservableList, new Comparator<ReportModel>() {
-            @Override
-            public int compare(ReportModel o1, ReportModel o2) {
-                String dateTime1 = ((ReportModel) o1).getDateTime();
-                String dateTime2 = ((ReportModel) o2).getDateTime();
-                return dateTime2.compareTo(dateTime1);
-            }});
+        Collections.sort(reportObservableList, SortList.descendingReportDateTime());
     }
 
 
     @FXML
     public void sortByDateDown(ActionEvent actionEvent){
-        Collections.sort(reportObservableList, new Comparator<ReportModel>() {
-            @Override
-            public int compare(ReportModel o1, ReportModel o2) {
-                String dateTime1 = ((ReportModel) o1).getDateTime();
-                String dateTime2 = ((ReportModel) o2).getDateTime();
-                return dateTime1.compareTo(dateTime2);
-            }});
+        Collections.sort(reportObservableList, SortList.ascendingReporDateTime());
     }
 
     @FXML

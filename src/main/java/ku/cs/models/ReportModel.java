@@ -3,6 +3,7 @@ package ku.cs.models;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ReportModel{
     private String topic;
@@ -108,6 +109,16 @@ public class ReportModel{
     public String getDateTime() {
         return dateTime;
     }
+
+    // TIME CONVERTER !!! DO NOT TOUCH !!! ห้ามลบ ถ้าเกิด Error บอก beam7894123 ก่อน ไม่งั้นต่อยนะ >:< //
+    private Date realDateTime;
+    public void setRealDateTime(Date realDateTime) {
+        this.realDateTime = realDateTime;
+    }
+    public Date getRealDateTime() {
+        return realDateTime;
+    }
+    // TIME CONVERTER // END // END // END // END // END // END // END // END // END // END // END // END // END
 
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;

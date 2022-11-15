@@ -6,7 +6,11 @@ import ku.cs.models.ReportModel;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class ReportWriteFile implements DataSource<ReportList> {
     private String fileDirectoryName;
@@ -16,6 +20,29 @@ public class ReportWriteFile implements DataSource<ReportList> {
 
 
     private String image;
+
+    // TIME CONVERTER !!! DO NOT TOUCH !!! ห้ามลบ ถ้าเกิด Error บอก beam7894123 ก่อน ไม่งั้นต่อยนะ >:< //
+    Locale locale = new Locale("en","en"); //SET LOCALE (if u sys is พศ. it will auto set to คศ. yay~ \^w^/ )
+    SimpleDateFormat timeFormat1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", locale);
+    private final Date defaultdateTime; {try {defaultdateTime = timeFormat1.parse("01/01/2000 00:00:00");} catch (
+            ParseException e) {throw new RuntimeException(e);}}
+    public Date setDateTime(String time) {
+
+        try {
+            return timeFormat1.parse(time);
+        } catch (ParseException e) {
+            System.err.println("\n!!TIME CONVERTER(v.2) ERROR!!");
+            System.err.println("Time, Dr. Freeman?");
+//            System.err.println("Look like user date " + "\"" + getName()+ " " + getSurname() + "\"" + " is mess up -w-");
+//            System.err.println("Here input is: " + takeDateTime + "");
+//          takeDateTime = "00-00-0000 00:00:00";
+            return defaultdateTime;
+//            System.out.println("Continue running...\n");
+//          dateTime = new GregorianCalendar(2000, 2, 1).getTime();
+//          throw new RuntimeException(e);
+        }
+    }
+// TIME CONVERTER // END // END // END // END // END // END // END // END // END // END // END // END // END
 
     public ReportWriteFile(String fileDirectoryName, String fileName) {
         this.fileDirectoryName = fileDirectoryName;
@@ -58,6 +85,7 @@ public class ReportWriteFile implements DataSource<ReportList> {
                 ReportModel reportModel = new ReportModel(data[0].trim(),
                         data[1].trim(),Integer.parseInt(data[2]),
                         data[3].trim(),data[4].trim(),data[5].trim(),data[6].trim(),data[7].trim()); // obj
+                reportModel.setRealDateTime(setDateTime(data[4]));
                 reportList.addReport(reportModel);
             }
         } catch (FileNotFoundException e) {
