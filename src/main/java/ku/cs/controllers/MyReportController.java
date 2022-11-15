@@ -52,10 +52,10 @@ public class MyReportController implements Initializable {
     }
     private void showReportView() {
         ArrayList<ReportModel> reports = new ArrayList<>();
-        reportObservableList = FXCollections.observableArrayList(reportList.getReports());
+        reportObservableList = FXCollections.observableArrayList(reportList.getAnything());
 
-        ReportList myReport = reportList.findMyReport(usernameText);
-        reportObservableList = FXCollections.observableArrayList(myReport.getReports());
+        ReportList myReport = reportList.findMyThing(usernameText);
+        reportObservableList = FXCollections.observableArrayList(myReport.getAnything());
         myreportTable.setItems(reportObservableList);
         ArrayList<StringConfig> configs = new ArrayList<>();
         configs.add(new StringConfig("title:Topic","field:topic"));

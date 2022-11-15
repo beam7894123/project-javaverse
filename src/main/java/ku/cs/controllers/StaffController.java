@@ -1,16 +1,13 @@
 package ku.cs.controllers;
 
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
 import ku.cs.models.User;
@@ -72,7 +69,7 @@ public class StaffController implements Initializable {
     private void showReportView() {
         User staff = userList.findMyUsername(usernameText);
         reportList = reportList.findMyCategory(staff.getCategory());
-        reportObservableList = FXCollections.observableList(reportList.getReports());
+        reportObservableList = FXCollections.observableList(reportList.getAnything());
 
         reportTable.setItems(reportObservableList);
         ArrayList<StringConfig> configs = new ArrayList<>();

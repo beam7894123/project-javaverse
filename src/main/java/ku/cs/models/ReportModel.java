@@ -2,8 +2,9 @@ package ku.cs.models;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
-public class ReportModel {
+public class ReportModel{
     private String topic;
     private String detail;
     private Integer voteScore;
@@ -13,6 +14,7 @@ public class ReportModel {
     private ReportModel reportModel;
     private String solveProblem;
     private String status;
+    private ArrayList<ReportModel> anything;
 
     LocalDateTime localDateTime = LocalDateTime.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss");
@@ -36,6 +38,10 @@ public class ReportModel {
         this.authorName = authorName;
         this.solveProblem = solveProblem;
         this.status = status;
+    }
+
+    public ReportModel() {
+        this.authorName = authorName;
     }
 
     public String getSolveProblem() {
@@ -107,4 +113,13 @@ public class ReportModel {
         this.dateTime = dateTime;
     }
 
+    public ReportList findMyThing(String something){  //use to polymorphism
+        ReportList searchReportList = new ReportList();
+        for(ReportModel a : anything) {
+            if(status.equals(a.getStatus())){
+                searchReportList.addReport(a);
+            }
+        }
+        return searchReportList;
+    }
 }

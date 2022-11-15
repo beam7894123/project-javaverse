@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
@@ -38,7 +37,7 @@ public class DetailController {
     public void initialize(){
         dataSource = (DataSource<ReportList>) new ReportWriteFile("filescsv","report.csv");
         reportList = dataSource.readData();
-        for (ReportModel reportModel : reportList.getReports()){
+        for (ReportModel reportModel : reportList.getAnything()){
             if(currentReport .equals(reportModel.getTopic())){
                 System.out.println(reportModel.getTopic());
                 System.out.println(reportModel.getDetail());
@@ -57,7 +56,7 @@ public class DetailController {
 
     @FXML
     public void voteScoreButton(MouseEvent mouseEvent){
-        for (ReportModel reportModel : reportList.getReports()){
+        for (ReportModel reportModel : reportList.getAnything()){
             if(currentReport .equals(reportModel.getTopic())){
                 Alert status = new Alert(Alert.AlertType.WARNING,"you vote this report already!!");
                 status.setTitle("WARNING!?");

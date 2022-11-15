@@ -86,7 +86,7 @@ public class ReportWriteFile implements DataSource<ReportList> {
             writer = new FileWriter(file, StandardCharsets.UTF_8);
             buffer = new BufferedWriter(writer);
             ArrayList<ReportModel> reports = null;
-            for (ReportModel reportModel : reportList.getReports()) {
+            for (ReportModel reportModel : reportList.getAnything()) {
                 String line = reportModel.getTopic() + ","
                         + reportModel.getDetail() + ","
                         + reportModel.getVoteScore() + ","
