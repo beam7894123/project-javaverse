@@ -36,6 +36,7 @@ public class StaffController implements Initializable {
     private DataSource<ReportList> dataSource;
     private DataSource<UserList> staffsource;
     private ReportList reportList;
+    private ReportList reportListTemp; //สร้าง list เพื่มแก้เขียนทับ (จริงๆก็ใช้ filter ก็ได้ละแต่มันจะยุ่งยากเอง -w- )
     private UserList userList;
     private SortedList<ReportModel> sortedList;
     private ObservableList<ReportModel> reportObservableList;
@@ -68,8 +69,9 @@ public class StaffController implements Initializable {
 
     private void showReportView() {
         User staff = userList.findMyUsername(usernameText);
-        reportList = reportList.findMyCategory(staff.getCategory());
-        reportObservableList = FXCollections.observableList(reportList.getAnything());
+        reportListTemp = reportList.findMyCategory(staff.getCategory());
+//        reportObservableList = FXCollections.observableList(reportList.getAnything());
+        reportObservableList = FXCollections.observableList(reportListTemp.getAnything());
 
         reportTable.setItems(reportObservableList);
         ArrayList<StringConfig> configs = new ArrayList<>();
