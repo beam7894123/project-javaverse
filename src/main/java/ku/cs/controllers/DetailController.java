@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
@@ -23,6 +24,8 @@ public class DetailController {
     @FXML
     private Button voteButton;
     @FXML Label solveText;
+    @FXML ImageView image1;
+    @FXML Label voteText;
 
     private ReportModel reportModel;
     private DataSource<ReportList> dataSource;
@@ -58,17 +61,19 @@ public class DetailController {
     public void voteScoreButton(MouseEvent mouseEvent){
         for (ReportModel reportModel : reportList.getAnything()){
             if(currentReport .equals(reportModel.getTopic())){
-                Alert status = new Alert(Alert.AlertType.WARNING,"you vote this report already!!");
-                status.setTitle("WARNING!?");
-                voteButton.setDisable(true);
+                Alert status = new Alert(Alert.AlertType.INFORMATION,"Thank you !? for vote topic : "+ reportModel.getTopic().toLowerCase());
+                status.setTitle("INFORMATION!?");
+                status.show();
                 int score1 = reportModel.getVoteScore();
                 score1++;
-                voteScoreLabel.setText(String.valueOf(vote));
                 reportModel.setVoteScore(score1);
                 dataSource.writeData(reportList);
+                voteButton.setDisable(true);
+                image1.setVisible(false);
+                voteText.setVisible(false);
+                voteScoreLabel.setText(String.valueOf(reportModel.getVoteScore()));
             }
         }
-
     }
 
     @FXML

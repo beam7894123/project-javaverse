@@ -17,6 +17,7 @@ public class ReportList extends ReportModel{
     public ArrayList<ReportModel> getAnything(){
         return anything;
     }
+
     public ReportList findMyThing(String writer){ //use to polymorphism
         ReportList searchReportList = new ReportList();
         for(ReportModel a : anything) {
