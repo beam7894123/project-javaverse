@@ -48,11 +48,11 @@ public class ProfileController {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
     String timeReport = currentDateTime.format(formatter);
-    private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","register.csv");
+    private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","student.csv");
 
 
     public void initialize(){
-        dataSource = new RegisterWriteFile("filescsv","register.csv");
+        dataSource = new RegisterWriteFile("filescsv","student.csv");
         registerList = dataSource.readData();
         for (User registerModel : registerList.getAllCards()){
             registerModel.getUsername();

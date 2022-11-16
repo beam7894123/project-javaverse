@@ -72,7 +72,7 @@ public class SignInWriteFile {
         }else if (userList.userCheck(userList,usernameTextfield,passwordPasswordfield)) {
             strUsername = usernameTextfield;
             strPassword = passwordPasswordfield;
-            SignInWriteFile signInWriteFile = new SignInWriteFile("filescsv","register.csv",strUsername,strPassword);
+            SignInWriteFile signInWriteFile = new SignInWriteFile("filescsv","student.csv",strUsername,strPassword);
             try {
                 signInWriteFile.SignInRecieveReadFile(usernameTextfield,passwordPasswordfield);
                 FXRouter.goTo("main", usernameTextfield);

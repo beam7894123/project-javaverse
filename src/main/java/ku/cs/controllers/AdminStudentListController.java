@@ -97,7 +97,7 @@ public class AdminStudentListController {
 
 // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE //
     @FXML public void initialize(){
-        dataSource = new RegisterWriteFile("filescsv","register.csv");
+        dataSource = new RegisterWriteFile("filescsv","student.csv");
         list = dataSource.readData();
 
         showStudentListView(list);

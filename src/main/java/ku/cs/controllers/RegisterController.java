@@ -15,7 +15,7 @@ import ku.cs.services.RegisterWriteFile;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-public class RegisterController {
+public class  RegisterController {
     Label nameLabel,surnameLabel,usernameLabel,passwordLabel,confirmPasswordLabel,registerLabel,usernameDuplicate;
     @FXML
     private Label labelUsername,labelPassword,usernameAndpasswordLabel;
@@ -33,7 +33,7 @@ public class RegisterController {
     private String  fileNameImage;
     private String date,time;
 
-    private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","register.csv");
+    private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","student.csv");
 
     public void initialize(){
         fileNameImage = "default1.png";

@@ -140,14 +140,6 @@
          <font>
             <Font size="20.0" />
          </font></TextField>
-      <Button fx:id="howTouseButton" alignment="CENTER" contentDisplay="CENTER" layoutX="562.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleHowtoUseButton" prefHeight="35.0" prefWidth="108.0" style="-fx-background-color: #FFBF00;" text="howToUse" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <Label layoutX="777.0" layoutY="695.0" text="sort by vote :" textFill="#5179f7">
          <font>
             <Font name="System Bold" size="24.0" />

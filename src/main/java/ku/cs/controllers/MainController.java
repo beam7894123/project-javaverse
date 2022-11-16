@@ -141,16 +141,16 @@ public class MainController implements Initializable {
             System.out.println(e);
         }
     }
-    @FXML
-    public void handleHowtoUseButton(ActionEvent actionEvent){
-        try {
-            FXRouter.goTo("howTouse");
-            FXRouter.setAnimationType("fade");
-        } catch (IOException e) {
-            System.out.println("error howtouse");
-            System.out.println(e);
-        }
-    }
+//    @FXML
+//    public void handleHowtoUseButton(ActionEvent actionEvent){
+//        try {
+//            FXRouter.goTo("howTouse");
+//            FXRouter.setAnimationType("fade");
+//        } catch (IOException e) {
+//            System.out.println("error howtouse");
+//            System.out.println(e);
+//        }
+//    }
 
     @FXML
     public void sortByDateUp(ActionEvent actionEvent){

@@ -15,13 +15,13 @@ public class UserList {
     private LoginStaffWriteFile registerWriteFileforStaff;
     private ArrayList<User> userArrayList;
     private UserList userList;
-//    registerWriteFile = new RegisterWriteFile("filescsv","register.csv");
+//    registerWriteFile = new RegisterWriteFile("filescsv","student.csv");
     public UserList() {
         // ใช้new เพื'อสร้างinstance ของArrayList
         this.userArrayList = new ArrayList<>(); // dynamic type มันสามารถเปลี่ยนเเปลงได้
 //        registerWriteFile =
 
-        registerWriteFile = new RegisterWriteFile("filescsv","register.csv");
+        registerWriteFile = new RegisterWriteFile("filescsv","student.csv");
 
         registerWriteFile1 = new RegisterWriteFile("filescsv","staff.csv");
     }
@@ -36,7 +36,6 @@ public class UserList {
     }
 
     public Boolean userCheck(UserList userList, String usernameTextField, String passwordPasswordField) {
-//        registerWriteFile = new RegisterWriteFile("filescsv","register.csv");
         userList = registerWriteFile.readData();
         for (User user : userList.getAllCards()) {
             System.out.println(userList.getAllCards());
@@ -47,9 +46,7 @@ public class UserList {
         return false;
     }
     public Boolean checkForStaff(UserList staffList, String usernameTextField, String passwordPasswordField) {
-//        registerWriteFileforStaff = new LoginStaffWriteFile("filescsv","staff.csv",usernameTextField,passwordPasswordField);
-//        registerWriteFile = new RegisterWriteFile("filescsv","staff.csv");
-        System.out.println(1);
+//        System.out.println(1);
         staffList = registerWriteFile1.readDataforStaff();
         System.out.println(staffList);
         for (User user : staffList.getAllCards()) {

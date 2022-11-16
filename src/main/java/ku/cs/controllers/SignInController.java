@@ -39,11 +39,11 @@ public class SignInController {
     
 
     private DataSource registerWriteFile;
-    private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","register.csv");
+    private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","student.csv");
     @FXML public void initialize(){
-//        registerWriteFile = new RegisterWriteFile("filescsv","register.csv");
+//        registerWriteFile = new RegisterWriteFile("filescsv","student.csv");
         userList = new UserList();
-        registerWriteFile = new RegisterWriteFile("filescsv","register.csv");
+        registerWriteFile = new RegisterWriteFile("filescsv","student.csv");
         System.out.println(userList.getAllCards());
 
 
@@ -52,7 +52,7 @@ public class SignInController {
     @FXML
     public void handleConfirmButtonClick(ActionEvent actionEvent) throws IOException {
 //        registerList = writeFile.readData();
-        signInWriteFile = new SignInWriteFile("filescsv","register.csv",usernameTextfield.getText(),passwordPasswordfield.getText());
+        signInWriteFile = new SignInWriteFile("filescsv","student.csv",usernameTextfield.getText(),passwordPasswordfield.getText());
         if (!(signInWriteFile.checkConfirmsignIn(userList,usernameTextfield.getText(),passwordPasswordfield.getText()))){
             loginChecker.setText("Username or Password is incorrect");
         }
@@ -90,6 +90,14 @@ public class SignInController {
         FXRouter.goTo("creator");}
         catch (IOException e) {
         System.err.println("err");}
+    }
+    @FXML
+    public void handleHowtoUseButton(ActionEvent actionEvent){
+        try {
+            FXRouter.setAnimationType("fade");
+            FXRouter.goTo("howTouse");}
+        catch (IOException e) {
+            System.err.println("err");}
     }
 
 }
