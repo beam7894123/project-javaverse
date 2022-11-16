@@ -42,6 +42,8 @@ public class  RegisterController {
         userList = new UserList();
     }
     public void handleOkClick(ActionEvent actionEvent) throws IOException {
+        labelUsername.setText("");
+        labelPassword.setText("");
         System.out.println(usernameTextfield.getText());
         userList = writeFile.readData();
         if (writeFile.checkUserName(userList,usernameTextfield.getText())){

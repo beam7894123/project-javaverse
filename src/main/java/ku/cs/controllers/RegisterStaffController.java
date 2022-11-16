@@ -50,6 +50,8 @@ public class RegisterStaffController extends RegisterController{
     }
     @Override
     public void handleOkClick(ActionEvent actionEvent) throws IOException {
+        labelUsername.setText("");
+        labelPassword.setText("");
         System.out.println(usernameTextfield.getText());
         staffList = writeFile.readDataforStaff();
         if (writeFile.checkUserNameforStaff(staffList,usernameTextfield.getText())){
