@@ -74,7 +74,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="50.0" layoutY="409.0" text="เมื่อเราทำการ login ในฐานะเป็น student นั้นเมื่อกด signIn เเล้วก็จะมาที่หน้า main">
+      <Label layoutX="50.0" layoutY="411.0" text="เมื่อเราทำการ login ในฐานะเป็น student นั้นเมื่อกด signIn เเล้วก็จะมาที่หน้า main">
          <font>
             <Font size="14.0" />
          </font>
@@ -104,7 +104,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="54.0" layoutY="445.0" text="ก็จะประกอบไปด้วย 4 ปุ่ม : ปุ่ม how to use คือวิธีใช้งาน, logout">
+      <Label layoutX="54.0" layoutY="445.0" text="ก็จะประกอบไปด้วย 3 ปุ่ม : logout">
          <font>
             <Font size="14.0" />
          </font>
@@ -114,7 +114,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="46.0" layoutY="313.0" text="เมื่อกด logout หน้าของตัว admin ก็จะกลับมาสู่หน้า login เเละในเเถบด้านล่างซ้าย">
+      <Label layoutX="46.0" layoutY="313.0" text="เมื่อกด logout หน้าของตัว admin ก็จะกลับมาสู่หน้า logIn เเละในเเถบด้านล่างซ้าย">
          <font>
             <Font size="14.0" />
          </font>
@@ -125,7 +125,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="48.0" layoutY="379.0" text="กลับมาที่หน้า login ดังเดิม">
+      <Label layoutX="48.0" layoutY="379.0" text="กลับมาที่หน้า login ดังเดิม เเละจะมีปุ่มชื่อ how to use เป็นวิธีการใช้งานโปรเเกรม">
          <font>
             <Font size="14.0" />
          </font>
