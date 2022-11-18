@@ -21,8 +21,7 @@ public class RegisterStaffController extends RegisterController{
     @FXML
     TextField usernameTextfield,passwordPasswordfield,confirmPasswordfield,nameTextfield,surnameTextfield;
     @FXML
-    Label labelUsername,labelPassword,labelUsernameforStaff,labelPasswordforStaff;
-    @FXML Label labelUsernameStaff;
+    Label labelPasswordforStaff, labelUsernameStaff;
     private String fileNameImage;
     private UserList userList;
     private String path;
@@ -50,8 +49,8 @@ public class RegisterStaffController extends RegisterController{
     }
     @Override
     public void handleOkClick(ActionEvent actionEvent) throws IOException {
-        labelUsername.setText("");
-        labelPassword.setText("");
+        labelUsernameStaff.setText("");
+        labelPasswordforStaff.setText("");
         System.out.println(usernameTextfield.getText());
         staffList = writeFile.readDataforStaff();
         if (writeFile.checkUserNameforStaff(staffList,usernameTextfield.getText())){
