@@ -153,7 +153,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
 //        writeData(registerList);
     }
 
-    private void readCustomer() throws IOException {
+    public void readCustomer() throws IOException {
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
         FileReader fileReader = new FileReader(file, StandardCharsets.UTF_8);

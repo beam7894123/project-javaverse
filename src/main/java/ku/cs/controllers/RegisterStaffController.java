@@ -17,7 +17,7 @@ import ku.cs.models.UserList;
 import ku.cs.models.User;
 import ku.cs.services.RegisterWriteFile;
 
-public class RegisterStaffController extends RegisterController{
+public class RegisterStaffController {
     @FXML
     TextField usernameTextfield,passwordPasswordfield,confirmPasswordfield,nameTextfield,surnameTextfield;
     @FXML
@@ -47,7 +47,7 @@ public class RegisterStaffController extends RegisterController{
         categoryButton.setItems(FXCollections.observableArrayList("Person","Facilities","Building",
                 "Learning","Traffic"));
     }
-    @Override
+
     public void handleOkClick(ActionEvent actionEvent) throws IOException {
         labelUsernameStaff.setText("");
         labelPasswordforStaff.setText("");
@@ -91,7 +91,7 @@ public class RegisterStaffController extends RegisterController{
 //        }
 //        return false;
 //    }
-    @Override
+
     public void handleBackButton(ActionEvent actionEvent) {
         try {
           FXRouter.setAnimationType("fade");
@@ -102,7 +102,7 @@ public class RegisterStaffController extends RegisterController{
         }
     }
 
-    @Override
+
     public void handleUploadButton(ActionEvent actionEvent) throws MalformedURLException {
         fileNameImage = writeFile.uploadImageFromFile(actionEvent,image);
     }

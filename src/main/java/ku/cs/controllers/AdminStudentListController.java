@@ -19,6 +19,7 @@ import ku.cs.services.SortList;
 import ku.cs.services.DataSource;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -85,8 +86,9 @@ public class AdminStudentListController {
         lastloginLabel.setText("------");
     }
     private void showSelectedStudent(User user) {
-        String url = Objects.requireNonNull(getClass().getResource("/images/" + user.getImage())).toExternalForm();
-        image.setImage(new Image(url)); //Set image url
+        File imageFile = new File("src/main/resources/images");
+//        String url = Objects.requireNonNull(imageFile.getAbsolutePath()+"/"+user.getImage());
+        image.setImage(new Image(imageFile.getAbsolutePath()+"/"+user.getImage())); //Set image url
 
         nameLabel.setText(user.getName());
         surnameLabel.setText(user.getSurname());

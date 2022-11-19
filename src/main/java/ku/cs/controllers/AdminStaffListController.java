@@ -17,6 +17,7 @@ import ku.cs.models.UserList;
 import ku.cs.services.RegisterWriteFile;
 import ku.cs.services.SortList;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Objects;
@@ -101,8 +102,11 @@ public class AdminStaffListController {
                 });
     }
     private void showSelectedStudent(User user) {
-        String url = Objects.requireNonNull(getClass().getResource("/images/" + user.getImage())).toExternalForm();
-        image.setImage(new Image(url)); //Set image url
+        File imageFile = new File("src/main/resources/images");
+//        String url = Objects.requireNonNull(imageFile.getAbsolutePath()+"/"+user.getImage());
+        image.setImage(new Image(imageFile.getAbsolutePath()+"/"+user.getImage()));
+//        String url = Objects.requireNonNull(getClass().getResource("/images/" + user.getImage())).toExternalForm();
+//        image.setImage(new Image(url)); //Set image url
 
         nameLabel.setText(user.getName());
         surnameLabel.setText(user.getSurname());

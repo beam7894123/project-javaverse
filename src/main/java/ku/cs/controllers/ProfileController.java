@@ -68,8 +68,11 @@ public class ProfileController {
         allName.setText(loginName + " " + loginSurname );
         username.setText(usernameText);
         date.setText(timeReport);
-        path = getClass().getResource("/images/"+fileNameImage).toExternalForm();
-        imageUpload.setImage(new Image(path));
+        File imageFile = new File("src/main/resources/images");
+//        String url = Objects.requireNonNull(imageFile.getAbsolutePath()+"/"+user.getImage());
+        imageUpload.setImage(new Image(imageFile.getAbsolutePath()+"/"+fileNameImage));
+//        path = getClass().getResource("/images/"+fileNameImage).toExternalForm();
+//        imageUpload.setImage(new Image(path));
     }
 
     @FXML
