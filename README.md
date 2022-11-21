@@ -37,7 +37,7 @@
 #### การวางโครงสร้างไฟล์
 ```
 *
-├───filescsv                                                    // เก็บ Data csv ทั้งหมด
+├───filescsv                                                    	  // เก็บ Data csv ทั้งหมด
 │		report.csv
 │		staff.csv
 │		student.csv
@@ -92,24 +92,24 @@
 			├───images  
 			│   └───icon     
 			└───ku
-				└───cs                                              // เก็บ FXML ทั้งหมด
-						admin.fxml
-						adminStaffList.fxml
-						adminStudentList.fxml
-						creator.fxml
-						detail.fxml
-						for_staff.fxml
-						home.fxml
-						howTouse.fxml
-						loginStaff.fxml
-						main.fxml
-						myreport.fxml
-						profile.fxml
-						project.fxml
-						register.fxml
-						registerStaff.fxml
-						report_form.fxml
-						signIn.fxml
+				└───cs                                    // เก็บ FXML ทั้งหมด
+					admin.fxml
+					adminStaffList.fxml
+					adminStudentList.fxml
+					creator.fxml
+					detail.fxml
+					for_staff.fxml
+					home.fxml
+					howTouse.fxml
+					loginStaff.fxml
+					main.fxml
+					myreport.fxml
+					profile.fxml
+					project.fxml
+					register.fxml
+					registerStaff.fxml
+					report_form.fxml
+					signIn.fxml
 ```
 ---
 
