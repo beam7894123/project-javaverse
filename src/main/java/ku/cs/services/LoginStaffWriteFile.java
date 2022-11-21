@@ -9,7 +9,7 @@ import java.util.Locale;
 import com.github.saacsos.FXRouter;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import ku.cs.models.UserList;
+import ku.cs.models.StaffList;
 
 public class LoginStaffWriteFile {
     private String strUsername;
@@ -71,7 +71,7 @@ public class LoginStaffWriteFile {
         osw.close();
     }
 
-    public boolean checkConfirmsignIn(UserList staffList, String usernameTextfield, String passwordPasswordfield) {
+    public boolean checkConfirmsignIn(StaffList staffList, String usernameTextfield, String passwordPasswordfield) {
         if (staffList.checkForStaff(staffList, usernameTextfield, passwordPasswordfield)) {
             strUsername = usernameTextfield;
             strPassword = passwordPasswordfield;

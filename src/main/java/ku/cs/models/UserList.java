@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class UserList {
     @FXML TextField usernameTextField;
     @FXML PasswordField passwordPasswodfield;
-    private RegisterWriteFile registerWriteFile,registerWriteFile1;
+    private RegisterWriteFile registerWriteFile;
     private LoginStaffWriteFile registerWriteFileforStaff;
     private ArrayList<User> userArrayList;
     private UserList userList;
@@ -23,7 +23,6 @@ public class UserList {
 
         registerWriteFile = new RegisterWriteFile("filescsv","student.csv");
 
-        registerWriteFile1 = new RegisterWriteFile("filescsv","staff.csv");
     }
     public void addStudent(User registerList) {
         // เรียกmethod add จากArrayList เพื'อเพิ'มข้อมูล
@@ -45,26 +44,6 @@ public class UserList {
         }
         return false;
     }
-    public Boolean checkForStaff(UserList staffList, String usernameTextField, String passwordPasswordField) {
-//        System.out.println(1);
-        staffList = registerWriteFile1.readDataforStaff();
-        System.out.println(staffList);
-        for (User user : staffList.getAllCards()) {
-            System.out.println(staffList.getAllCards());
-            if ((user.getUsername().equals(usernameTextField)) && user.getPassword().equals(passwordPasswordField)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    public User findMyUsername(String staff){
-        for(User a : userArrayList) {
-            if(staff.equals(a.getUsername())){
-                return a;
-            }
-        }
-        return  null;
-    }
 
 
     @Override
@@ -73,7 +52,6 @@ public class UserList {
                 "usernameTextField=" + usernameTextField +
                 ", passwordPasswodfield=" + passwordPasswodfield +
                 ", registerWriteFile=" + registerWriteFile +
-                ", registerWriteFile1=" + registerWriteFile1 +
                 ", registerWriteFileforStaff=" + registerWriteFileforStaff +
                 ", userArrayList=" + userArrayList +
                 ", userList=" + userList +

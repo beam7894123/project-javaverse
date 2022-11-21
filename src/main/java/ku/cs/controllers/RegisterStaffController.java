@@ -13,7 +13,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import ku.cs.models.UserList;
+import ku.cs.models.Staff;
+import ku.cs.models.StaffList;
 import ku.cs.models.User;
 import ku.cs.services.RegisterWriteFile;
 
@@ -23,11 +24,9 @@ public class RegisterStaffController {
     @FXML
     Label labelPasswordforStaff, labelUsernameStaff;
     private String fileNameImage;
-    private UserList userList;
     private String path;
     @FXML public ImageView image;
-    private User user;
-    private UserList staffList;
+    private StaffList staffList;
     @FXML ChoiceBox<String> categoryButton;
 //    @FXML
 ////    ChoiceBox<String> categoryChicebox;
@@ -41,7 +40,7 @@ public class RegisterStaffController {
         path = getClass().getResource("/images/default1.png").toExternalForm();
 //        image.setImage(new Image(getClass().getResource("/ku/cs/images/default1.png").toExternalForm()));
         image.setImage(new Image(path));
-        staffList = new UserList();
+        staffList = new StaffList();
 //        comboBox.getItems().addAll("Person","Facilities","Building",
 //                "Learning/Lesson","Traffic/Transport");
         categoryButton.setItems(FXCollections.observableArrayList("Person","Facilities","Building",
@@ -63,8 +62,8 @@ public class RegisterStaffController {
         else {
 
 //          String category = categoryChicebox.getValue();
-          User user1 = new User(nameTextfield.getText(),surnameTextfield.getText(),usernameTextfield.getText(),passwordPasswordfield.getText(),null,null,fileNameImage,categoryButton.getValue());
-          staffList.addStudent(user1);
+          Staff staff1 = new Staff(nameTextfield.getText(),surnameTextfield.getText(),usernameTextfield.getText(),passwordPasswordfield.getText(),null,null,fileNameImage,categoryButton.getValue());
+          staffList.addStaffToArrayList(staff1);
           writeFile.writeDataforStaff(staffList);
 
 

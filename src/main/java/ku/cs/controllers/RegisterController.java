@@ -55,7 +55,7 @@ public class  RegisterController {
         }
         else {
             System.out.println(fileNameImage);
-            writeFile.checkUserNameAndPassword(userList,usernameTextfield.getText(),passwordPasswordfield.getText(),nameTextfield.getText(),surnameTextfield.getText(),fileNameImage,confirmPasswordfield.getText());
+            writeFile.checkUserNameAndPassword(userList,usernameTextfield.getText(),passwordPasswordfield.getText(),nameTextfield.getText(),surnameTextfield.getText(),fileNameImage);
             try {
                 FXRouter.setAnimationType("fade");
                 FXRouter.goTo("signIn");

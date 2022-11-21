@@ -7,61 +7,26 @@ public class User {
     private String surname;
     private String username;
     private String password;
-    private String confirmPassword;
+
+//    private String confirmPassword; // <-- This is never use so why it here -w-
     private String  image;
     private String date;
     private String time;
-    private String category;
-
-
-
-
 
     public void initialize(){
         String fileNameImage =  "dafault1.png";
     }
 
-    public User(String name, String surname, String username, String password, String date, String time, String fileNameImage, String category) {
+    public User(String name, String surname, String username, String password,String fileNameImage, String date, String time) {
         this.name = name;
         this.surname = surname;
         this.username = username;
         this.password = password;
-        this.date = date;
-        this.time = time;
-        this.category = category;
         this.image = fileNameImage;
-        System.out.println(image);
-    }
-    public User(String name, String surname, String username, String password, String date, String time, String fileNameImage) {
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.password = password;
         this.date = date;
         this.time = time;
-        this.image = fileNameImage;
-        System.out.println(image);
+//        System.out.println(image); //debug
 
-    }
-
-    public User(String name, String surname, String username, String password, String date, String time) {
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
-        this.password = password;
-        this.date = date;
-        this.time = time;
-    }
-
-
-
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
     }
 
     public String getName() {
@@ -70,14 +35,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getSurname() {
@@ -150,12 +107,10 @@ public class User {
                 ", surname='" + surname + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", confirmPassword='" + confirmPassword + '\'' +
                 ", image='" + image + '\'' +
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
                 ", dateTime=" + dateTime + // นี้ด้วย <<
-                ", category='" + category + '\'' +
                 '}';
     }
 

@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import ku.cs.models.ReportList;
-import ku.cs.models.ReportModel;
-import ku.cs.models.User;
-import ku.cs.models.UserList;
+import ku.cs.models.*;
 import ku.cs.services.*;
 import com.github.saacsos.FXRouter;
 
@@ -34,10 +31,10 @@ public class StaffController implements Initializable {
     @FXML private Label category;
     @FXML private TextField solve;
     private DataSource<ReportList> dataSource;
-    private DataSource<UserList> staffsource;
+    private DataSource<StaffList> staffsource;
     private ReportList reportList;
     private ReportList reportListTemp; //สร้าง list เพื่มแก้เขียนทับ (จริงๆก็ใช้ filter ก็ได้ละแต่มันจะยุ่งยากเอง -w- )
-    private UserList userList;
+    private StaffList staffList;
     private SortedList<ReportModel> sortedList;
     private ObservableList<ReportModel> reportObservableList;
     private ReportModel selectReport;
@@ -49,7 +46,7 @@ public class StaffController implements Initializable {
         dataSource = new ReportWriteFile("filescsv", "report.csv");
         reportList = dataSource.readData();
         readDataforStaff = new RegisterWriteFile("filescsv","staff.csv");
-        userList = readDataforStaff.readDataforStaff();
+        staffList = readDataforStaff.readDataforStaff();
         showReportView();
         reportTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
@@ -68,7 +65,7 @@ public class StaffController implements Initializable {
     }
 
     private void showReportView() {
-        User staff = userList.findMyUsername(usernameText);
+        Staff staff = staffList.findMyUsername(usernameText);
         reportListTemp = reportList.findMyCategory(staff.getCategory());
 //        reportObservableList = FXCollections.observableList(reportList.getAnything());
         reportObservableList = FXCollections.observableList(reportListTemp.getAnything());
