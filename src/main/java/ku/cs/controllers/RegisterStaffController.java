@@ -53,7 +53,7 @@ public class RegisterStaffController {
         System.out.println(usernameTextfield.getText());
         staffList = writeFile.readDataforStaff();
         if (writeFile.checkUserNameforStaff(staffList,usernameTextfield.getText())){
-            System.out.println(1);
+//            System.out.println(1); //aHHHHHHHHHHHHH USE DEBUG >m<
             labelUsernameStaff.setText("USERNAME IS NOT ALREADY");
         }
         else if (writeFile.checkPassword(passwordPasswordfield.getText(),confirmPasswordfield.getText())) {
@@ -62,7 +62,7 @@ public class RegisterStaffController {
         else {
 
 //          String category = categoryChicebox.getValue();
-          Staff staff1 = new Staff(nameTextfield.getText(),surnameTextfield.getText(),usernameTextfield.getText(),passwordPasswordfield.getText(),null,null,fileNameImage,categoryButton.getValue());
+          Staff staff1 = new Staff(nameTextfield.getText(),surnameTextfield.getText(),usernameTextfield.getText(),passwordPasswordfield.getText(),fileNameImage,null,null,categoryButton.getValue());
           staffList.addStaffToArrayList(staff1);
           writeFile.writeDataforStaff(staffList);
 

@@ -160,7 +160,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
     }
 
     public Boolean checkUserNameforStaff(StaffList staffList,String usernameTextfield){
-        System.out.println(22);
+//        System.out.println(22); //omg just use debug
         for (User user : staffList.getAllCards()){
             if (user.getUsername().equals(usernameTextfield)){
                 return true;
@@ -203,7 +203,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
 
     //ตัวเขียน Register
     public void checkUserNameAndPassword(UserList userList, String usernameTextfield, String passwordPasswordfield, String nameTextField , String surnameTextField, String fileNameImage){
-            User user = new User(nameTextField,surnameTextField,usernameTextfield,passwordPasswordfield,null,null,fileNameImage);
+            User user = new User(nameTextField,surnameTextField,usernameTextfield,passwordPasswordfield,fileNameImage,null,null);
             userList.addStudent(user); //เพิ่มเข้า Array
             writeData(userList); //ส่งไปเขียน
         }
