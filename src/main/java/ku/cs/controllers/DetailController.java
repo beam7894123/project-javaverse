@@ -31,7 +31,8 @@ public class DetailController {
     private DataSource<ReportList> dataSource;
     private ReportList reportList;
     private int score = 1;
-    String currentReport = MainController.selectReport;
+    String currentReport = (String) com.github.saacsos.FXRouter.getData();
+    String UsernameFromSignin = (String) com.github.saacsos.FXRouter.getData();
     String topic,detail,vote,solve;
 
     ReportWriteFile writefile = new ReportWriteFile("filescsv", "report.csv");
@@ -79,6 +80,8 @@ public class DetailController {
     @FXML
     public void handleBackButton(ActionEvent actionEvent) {try
     {
+        currentReport = "";
+        System.out.println(currentReport);
         com.github.saacsos.FXRouter.goTo("main");}
     catch (IOException e) {
         System.err.println("ไปที่หน้า main ไม่ได้");

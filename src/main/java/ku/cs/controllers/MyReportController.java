@@ -33,7 +33,7 @@ public class MyReportController implements Initializable {
     private ObservableList<ReportModel> reportObservableList;
     SortedList<ReportModel> sortedList;
     FilteredList<ReportModel> filteredList;
-    public static String selectReport;
+    public String selectReport;
     String usernameText = SignInController.currentUser;
 
     @Override
@@ -74,7 +74,7 @@ public class MyReportController implements Initializable {
     @FXML private void showSelectedReport(ReportModel reportModel){
         selectReport = reportModel.getTopic();
         try {
-            com.github.saacsos.FXRouter.goTo("detail");
+            com.github.saacsos.FXRouter.goTo("detail",selectReport);
         } catch (IOException e) {
             System.err.println("ไปที่หน้า detail ไม่ได้");
             System.err.println("ให้ตรวจสอบการกําหนดroute");

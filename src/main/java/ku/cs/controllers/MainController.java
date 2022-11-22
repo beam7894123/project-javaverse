@@ -34,7 +34,7 @@ public class MainController implements Initializable {
     private ReportList reportList;
     private ObservableList<ReportModel> reportObservableList;
     private ArrayList<ReportModel> reports;
-    public static String selectReport;
+    public String selectReport;
     String usernameText = SignInController.currentUser;
     String UsernameFromSignin = (String) FXRouter.getData();
 
@@ -51,6 +51,15 @@ public class MainController implements Initializable {
         }
         );
 
+    }
+    @FXML private void showSelectedReport(ReportModel reportModel){
+        selectReport = reportModel.getTopic();
+        try {
+            com.github.saacsos.FXRouter.goTo("detail",selectReport);
+        } catch (IOException e) {
+            System.err.println("ไปที่หน้า detail ไม่ได้");
+            System.err.println("ให้ตรวจสอบการกําหนดroute");
+        }
     }
 
     private void showReportView() {
@@ -97,16 +106,7 @@ public class MainController implements Initializable {
         };
     }
 
-    @FXML private void showSelectedReport(ReportModel reportModel){
-        selectReport = reportModel.getTopic();
-        try {
-            FXRouter.setAnimationType("fade");
-            FXRouter.goTo("detail");
-        } catch (IOException e) {
-            System.err.println("ไปที่หน้า detail ไม่ได้");
-            System.err.println("ให้ตรวจสอบการกําหนดroute");
-        }
-    }
+
 
     @FXML
     public void handleAddReportButton(ActionEvent actionEvent){
