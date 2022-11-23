@@ -40,7 +40,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
         image.setImage(new Image(path));
     }
 
-// TIME CONVERTER !!! DO NOT TOUCH !!! ห้ามลบ ถ้าเกิด Error บอก beam7894123 ก่อน ไม่งั้นต่อยนะ >:< //
+    // TIME CONVERTER !!! DO NOT TOUCH !!! ห้ามลบ ถ้าเกิด Error บอก beam7894123 ก่อน ไม่งั้นต่อยนะ >:< //
     Locale locale = new Locale("en","en"); //SET LOCALE (if u sys is พศ. it will auto set to คศ. yay~ \^w^/ )
     SimpleDateFormat timeFormat1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", locale);
     private final Date defaultdateTime; {try {defaultdateTime = timeFormat1.parse("01-01-2000 00:00:00");} catch (
@@ -65,8 +65,8 @@ public class RegisterWriteFile implements DataSource<UserList> {
 // TIME CONVERTER // END // END // END // END // END // END // END // END // END // END // END // END // END
 
     public RegisterWriteFile(String directoryName, String fileName) {
-      this.directoryName = directoryName;
-      this.fileName = fileName;
+        this.directoryName = directoryName;
+        this.fileName = fileName;
 //      checkFileIsExisted();
 //      userList = new UserList();
 //      staffList = new UserList();
@@ -89,7 +89,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
 //    }
 
 
-// STAFF Services // STAFF Services // STAFF Services // STAFF Services // STAFF Services // STAFF Services // STAFF Services //
+    // STAFF Services // STAFF Services // STAFF Services // STAFF Services // STAFF Services // STAFF Services // STAFF Services //
     private void readStaff() throws IOException {
         String filePath = directoryName + File.separator + fileName;
         File file = new File(filePath);
@@ -125,6 +125,20 @@ public class RegisterWriteFile implements DataSource<UserList> {
         return staffList;
     }
 
+    private String convertUserToString (User user){
+        String line = user.getName()+","
+                + user.getSurname()+","
+                + user.getUsername()+","
+                + user.getPassword()+","
+                + user.getImage()+","
+                + user.getDate()+","
+                + user.getTime()+",";
+        if (user instanceof Staff) {
+            Staff staff = (Staff) user;
+            line = line + "" + staff.getCategory();
+        }
+        return line;
+    }
     public void writeDataforStaff(StaffList staffList) throws IOException { //write Data for Staff
         System.out.println(staffList.toString());
         String filePath = directoryName+File.separator+fileName;
@@ -136,14 +150,16 @@ public class RegisterWriteFile implements DataSource<UserList> {
             buffer = new BufferedWriter(writer);
             for (Staff staff : staffList.getAllCards()){
                 System.out.println(staffList);
-                String line = staff.getName()+","
-                        + staff.getSurname()+","
-                        + staff.getUsername()+","
-                        + staff.getPassword()+","
-                        + staff.getImage()+","
-                        + staff.getDate()+","
-                        + staff.getTime()+","
-                        + staff.getCategory();
+//                String line = staff.getName()+","
+//                        + staff.getSurname()+","
+//                        + staff.getUsername()+","
+//                        + staff.getPassword()+","
+//                        + staff.getImage()+","
+//                        + staff.getDate()+","
+//                        + staff.getTime()+","
+//                        + staff.getCategory();
+
+                String line = convertUserToString(staff);
                 buffer.append(line);
                 buffer.newLine();
             }
@@ -203,10 +219,10 @@ public class RegisterWriteFile implements DataSource<UserList> {
 
     //ตัวเขียน Register
     public void checkUserNameAndPassword(UserList userList, String usernameTextfield, String passwordPasswordfield, String nameTextField , String surnameTextField, String fileNameImage){
-            User user = new User(nameTextField,surnameTextField,usernameTextfield,passwordPasswordfield,fileNameImage,null,null);
-            userList.addStudent(user); //เพิ่มเข้า Array
-            writeData(userList); //ส่งไปเขียน
-        }
+        User user = new User(nameTextField,surnameTextField,usernameTextfield,passwordPasswordfield,fileNameImage,null,null);
+        userList.addStudent(user); //เพิ่มเข้า Array
+        writeData(userList); //ส่งไปเขียน
+    }
 //        System.out.println(categoryChicebox);
 //
 //        RegisterModel staffModel = new RegisterModel(nameTextfield,surnameTextfield,usernameTextfield,passwordPasswordfield,null,null,fileNameImage,categoryChicebox);
@@ -291,13 +307,14 @@ public class RegisterWriteFile implements DataSource<UserList> {
             buffer = new BufferedWriter(writer);
             for (User user : userList.getAllCards()){
                 System.out.println(userList);
-                String line = user.getName()+","
-                        + user.getSurname()+","
-                        + user.getUsername()+","
-                        + user.getPassword()+","
-                        + user.getImage()+","
-                        + user.getDate()+","
-                        + user.getTime();
+//                String line = user.getName()+","
+//                        + user.getSurname()+","
+//                        + user.getUsername()+","
+//                        + user.getPassword()+","
+//                        + user.getImage()+","
+//                        + user.getDate()+","
+//                        + user.getTime();
+                String line = convertUserToString(user);
                 buffer.append(line);
                 buffer.newLine();
             }
@@ -312,7 +329,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
             }
         }
     }
-//    public void writeDataforStaff1(String nameTextfield,String surnameTextfield,String usernameTextfield,String passwordPasswordField,String date,String time,String category,String fileNameImage ) {
+    //    public void writeDataforStaff1(String nameTextfield,String surnameTextfield,String usernameTextfield,String passwordPasswordField,String date,String time,String category,String fileNameImage ) {
 //        System.out.println(category);
 //        File file = new File("filescsv","staff.csv");
 //        FileReader fileReader = null;

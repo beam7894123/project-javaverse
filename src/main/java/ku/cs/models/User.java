@@ -7,8 +7,6 @@ public class User {
     private String surname;
     private String username;
     private String password;
-
-//    private String confirmPassword; // <-- This is never use so why it here -w-
     private String  image;
     private String date;
     private String time;
