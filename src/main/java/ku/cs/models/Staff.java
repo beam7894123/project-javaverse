@@ -15,4 +15,8 @@ public class Staff extends User{
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public String getStringDateTime() { //use by tableview in AdminStaffListController
+        return getTime() + " " + getDate();
+    }
 }
