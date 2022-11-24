@@ -12,7 +12,6 @@ public class ReportModel{
     private String category;
     private String dateTime;
     private String authorName;
-    private ReportModel reportModel;
     private String solveProblem;
     private String status;
     private ArrayList<ReportModel> anything;
@@ -124,13 +123,5 @@ public class ReportModel{
         this.dateTime = dateTime;
     }
 
-    public ReportList findMyThing(String something){  //use to polymorphism
-        ReportList searchReportList = new ReportList();
-        for(ReportModel a : anything) {
-            if(status.equals(a.getStatus())){
-                searchReportList.addReport(a);
-            }
-        }
-        return searchReportList;
-    }
+
 }

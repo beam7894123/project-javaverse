@@ -14,10 +14,7 @@ import com.github.saacsos.FXRouter;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class StaffController implements Initializable {
     @FXML private TableView<ReportModel> reportTable;
@@ -31,10 +28,9 @@ public class StaffController implements Initializable {
     @FXML private Label category;
     @FXML private TextField solve;
     private DataSource<ReportList> dataSource;
-    private DataSource<StaffList> staffsource;
+    private DataSource<UserList> staffsource;
     private ReportList reportList;
-    private ReportList reportListTemp; //สร้าง list เพื่มแก้เขียนทับ (จริงๆก็ใช้ filter ก็ได้ละแต่มันจะยุ่งยากเอง -w- )
-    private StaffList staffList;
+    private UserList staffList;
     private SortedList<ReportModel> sortedList;
     private ObservableList<ReportModel> reportObservableList;
     private ReportModel selectReport;
@@ -65,10 +61,10 @@ public class StaffController implements Initializable {
     }
 
     private void showReportView() {
-        Staff staff = staffList.findMyUsername(usernameText);
-        reportListTemp = reportList.findMyCategory(staff.getCategory());
+        Staff staff = (Staff) staffList.findMyUsername(usernameText);
+        List<ReportModel>reportListTemp = reportList.findMyThing(staff.getCategory(),new Findcategory());
 //        reportObservableList = FXCollections.observableList(reportList.getAnything());
-        reportObservableList = FXCollections.observableList(reportListTemp.getAnything());
+        reportObservableList = FXCollections.observableList(reportListTemp);
 
         reportTable.setItems(reportObservableList);
         ArrayList<StringConfig> configs = new ArrayList<>();

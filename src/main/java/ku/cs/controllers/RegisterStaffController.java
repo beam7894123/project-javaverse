@@ -14,8 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import ku.cs.models.Staff;
-import ku.cs.models.StaffList;
-import ku.cs.models.User;
+import ku.cs.models.UserList;
 import ku.cs.services.RegisterWriteFile;
 
 public class RegisterStaffController {
@@ -26,7 +25,7 @@ public class RegisterStaffController {
     private String fileNameImage;
     private String path;
     @FXML public ImageView image;
-    private StaffList staffList;
+    private UserList staffList;
     @FXML ChoiceBox<String> categoryButton;
 //    @FXML
 ////    ChoiceBox<String> categoryChicebox;
@@ -40,7 +39,7 @@ public class RegisterStaffController {
         path = getClass().getResource("/images/default1.png").toExternalForm();
 //        image.setImage(new Image(getClass().getResource("/ku/cs/images/default1.png").toExternalForm()));
         image.setImage(new Image(path));
-        staffList = new StaffList();
+        staffList = new UserList("staff.csv");
 //        comboBox.getItems().addAll("Person","Facilities","Building",
 //                "Learning/Lesson","Traffic/Transport");
         categoryButton.setItems(FXCollections.observableArrayList("Person","Facilities","Building",
@@ -63,7 +62,7 @@ public class RegisterStaffController {
 
 //          String category = categoryChicebox.getValue();
           Staff staff1 = new Staff(nameTextfield.getText(),surnameTextfield.getText(),usernameTextfield.getText(),passwordPasswordfield.getText(),fileNameImage,null,null,categoryButton.getValue());
-          staffList.addStaffToArrayList(staff1);
+          staffList.addUser(staff1);
           writeFile.writeDataforStaff(staffList);
 
 

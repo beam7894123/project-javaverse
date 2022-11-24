@@ -1,41 +1,42 @@
 package ku.cs.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ReportList extends ReportModel{
-    private ArrayList<ReportModel> anything;
+    private ArrayList<ReportModel> reportList;
 
     public ReportList() {
         super();
-        anything = new ArrayList<>();
+        reportList = new ArrayList<>();
     }
 
     public void addReport(ReportModel report){
-        anything.add(report);
+        reportList.add(report);
     }
 
-    public ArrayList<ReportModel> getAnything(){
-        return anything;
+    public ArrayList<ReportModel> getReportList(){
+        return reportList;
     }
 
-    public ReportList findMyThing(String writer){ //use to polymorphism
-        ReportList searchReportList = new ReportList();
-        for(ReportModel a : anything) {
-            if(writer.equals(a.getAuthorName())){
-                searchReportList.addReport(a);
+    public List<ReportModel> findMyThing(String thing, Findable<ReportModel> findableType){
+        List<ReportModel> searchReportList= new ArrayList<>();
+        for(ReportModel a : reportList) {
+            if(thing.equals(findableType.getAnything(a))){ // polymorphism
+                searchReportList.add(a);
             }
         }
         return  searchReportList;
     }
 
-    public ReportList findMyCategory(String category){
-        ReportList searchReportList = new ReportList();
-        for(ReportModel a : anything) {
-            if(category.equals(a.getCategory())){
-                searchReportList.addReport(a);
-            }
-        }
-        return  searchReportList;
-    }
+//    public ReportList findMyCategory(String category){
+//        ReportList searchReportList = new ReportList();
+//        for(ReportModel a : anything) {
+//            if(category.equals(a.getCategory())){
+//                searchReportList.addReport(a);
+//            }
+//        }
+//        return  searchReportList;
+//    }
 
 }

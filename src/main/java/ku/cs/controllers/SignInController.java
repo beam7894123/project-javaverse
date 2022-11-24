@@ -26,7 +26,6 @@ public class SignInController {
     @FXML TextField usernameTextfield;
 
     @FXML PasswordField passwordPasswordfield;
-    private UserList control;
     public  String strUserID;
     public  String strPassword;
     private UserList userList;
@@ -42,8 +41,8 @@ public class SignInController {
     private RegisterWriteFile writeFile = new RegisterWriteFile("filescsv","student.csv");
     @FXML public void initialize(){
 //        registerWriteFile = new RegisterWriteFile("filescsv","student.csv");
-        userList = new UserList();
-        registerWriteFile = new RegisterWriteFile("filescsv","student.csv");
+        userList = new UserList("student.csv");
+//        registerWriteFile = new RegisterWriteFile("filescsv","student.csv");
         System.out.println(userList.getAllCards());
 
 

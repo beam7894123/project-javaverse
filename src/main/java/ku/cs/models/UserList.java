@@ -14,19 +14,17 @@ public class UserList {
     private RegisterWriteFile registerWriteFile;
     private LoginStaffWriteFile registerWriteFileforStaff;
     private ArrayList<User> userArrayList;
-    private UserList userList;
-//    registerWriteFile = new RegisterWriteFile("filescsv","student.csv");
-    public UserList() {
+    public UserList(String filename) {
         // ใช้new เพื'อสร้างinstance ของArrayList
         this.userArrayList = new ArrayList<>(); // dynamic type มันสามารถเปลี่ยนเเปลงได้
 //        registerWriteFile =
 
-        registerWriteFile = new RegisterWriteFile("filescsv","student.csv");
+        registerWriteFile = new RegisterWriteFile("filescsv",filename);
 
     }
-    public void addStudent(User registerList) {
+    public void addUser(User user) {
         // เรียกmethod add จากArrayList เพื'อเพิ'มข้อมูล
-        userArrayList.add(registerList);
+        userArrayList.add(user);
     }
     public ArrayList<User> getAllCards() {
         return userArrayList;}
@@ -44,7 +42,14 @@ public class UserList {
         }
         return false;
     }
-
+    public User findMyUsername(String user){
+        for(User a : userArrayList) {
+            if(user.equals(a.getUsername())){
+                return a;
+            }
+        }
+        return  null;
+    }
 
     @Override
     public String toString() {
@@ -54,7 +59,6 @@ public class UserList {
                 ", registerWriteFile=" + registerWriteFile +
                 ", registerWriteFileforStaff=" + registerWriteFileforStaff +
                 ", userArrayList=" + userArrayList +
-                ", userList=" + userList +
                 '}';
     }
 }

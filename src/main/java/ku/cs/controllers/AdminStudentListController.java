@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import ku.cs.models.User;
 import ku.cs.models.UserList;
+import ku.cs.services.AscendingDateTimeComparator;
 import ku.cs.services.RegisterWriteFile;
 import ku.cs.services.SortList;
 import ku.cs.services.DataSource;
@@ -49,7 +50,8 @@ public class AdminStudentListController {
         listTable_Name.setSortable(false);
         listTable_Surname.setSortable(false);
 
-        Collections.sort(TEMP, SortList.ascendingDateTime());
+        Collections.sort(TEMP, new AscendingDateTimeComparator()); // polymor
+
 
         listTable.refresh(); //Fix every unexpected error ^w^b 555
 

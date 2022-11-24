@@ -39,7 +39,7 @@ public class  RegisterController {
         fileNameImage = "default1.png";
         path = getClass().getResource("/images/default1.png").toExternalForm();
         image.setImage(new Image(path));
-        userList = new UserList();
+        userList = new UserList("student.csv");
     }
     public void handleOkClick(ActionEvent actionEvent) throws IOException {
         labelUsername.setText("");

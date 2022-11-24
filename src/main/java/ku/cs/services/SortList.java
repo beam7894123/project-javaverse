@@ -16,13 +16,6 @@ public class SortList {//รวมSorter อื่นๆ รวมในนี�
 //        return ชื่อตัวแปรlocal;
 //    }
 
-    public static Comparator<User> ascendingDateTime(){ //เรียงเวลา+วัน ของหน้า Admin
-        Comparator<User> ascendingDateTimeComparator = new Comparator<User>(){
-            @Override
-            public int compare(User o1, User o2){ return o2.getDateTime().compareTo(o1.getDateTime());}
-        };
-        return ascendingDateTimeComparator;
-    }
 
     //บอกแล้วให้รวม -w-
     public static Comparator<ReportModel> ascendingReporDateTime(){ //เรียงเวลา
@@ -36,7 +29,8 @@ public class SortList {//รวมSorter อื่นๆ รวมในนี�
     public static Comparator<ReportModel> descendingReportDateTime(){ //เรียงเวลา
         Comparator<ReportModel> descendingReportDateTime = new Comparator<ReportModel>(){
             @Override
-            public int compare(ReportModel o1, ReportModel o2){ return o1.getRealDateTime().compareTo(o2.getRealDateTime());}
+            public int compare(ReportModel o1, ReportModel o2){
+                return o1.getRealDateTime().compareTo(o2.getRealDateTime());}
         };
         return descendingReportDateTime;
     }

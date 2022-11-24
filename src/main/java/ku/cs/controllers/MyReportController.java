@@ -11,6 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import ku.cs.models.Findauther;
+import ku.cs.models.FindmyUser;
 import ku.cs.models.ReportList;
 import ku.cs.models.ReportModel;
 import ku.cs.services.DataSource;
@@ -20,6 +22,7 @@ import ku.cs.services.StringConfig;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MyReportController implements Initializable {
@@ -52,10 +55,10 @@ public class MyReportController implements Initializable {
     }
     private void showReportView() {
         ArrayList<ReportModel> reports = new ArrayList<>();
-        reportObservableList = FXCollections.observableArrayList(reportList.getAnything());
+        reportObservableList = FXCollections.observableArrayList(reportList.getReportList());
 
-        ReportList myReport = reportList.findMyThing(usernameText);
-        reportObservableList = FXCollections.observableArrayList(myReport.getAnything());
+        List<ReportModel> myReport = reportList.findMyThing(usernameText,new Findauther());
+        reportObservableList = FXCollections.observableArrayList(myReport);
         myreportTable.setItems(reportObservableList);
         ArrayList<StringConfig> configs = new ArrayList<>();
         configs.add(new StringConfig("title:Topic","field:topic"));

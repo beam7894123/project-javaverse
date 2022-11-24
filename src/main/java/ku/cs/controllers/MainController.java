@@ -63,7 +63,7 @@ public class MainController implements Initializable {
     }
 
     private void showReportView() {
-        reportObservableList = FXCollections.observableArrayList(reportList.getAnything());
+        reportObservableList = FXCollections.observableArrayList(reportList.getReportList());
         sortedList = new SortedList(reportObservableList);
         FilteredList<ReportModel> filterCategory = new FilteredList<>(sortedList, b-> true);
 

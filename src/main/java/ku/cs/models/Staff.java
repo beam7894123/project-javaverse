@@ -16,7 +16,5 @@ public class Staff extends User{
         this.category = category;
     }
 
-    public String getStringDateTime() { //use by tableview in AdminStaffListController
-        return getTime() + " " + getDate();
-    }
+
 }

@@ -37,9 +37,6 @@ public class ReportWriteFile implements DataSource<ReportList> {
 //            System.err.println("Here input is: " + takeDateTime + "");
 //          takeDateTime = "00-00-0000 00:00:00";
             return defaultdateTime;
-//            System.out.println("Continue running...\n");
-//          dateTime = new GregorianCalendar(2000, 2, 1).getTime();
-//          throw new RuntimeException(e);
         }
     }
 // TIME CONVERTER // END // END // END // END // END // END // END // END // END // END // END // END // END
@@ -114,7 +111,7 @@ public class ReportWriteFile implements DataSource<ReportList> {
             writer = new FileWriter(file, StandardCharsets.UTF_8);
             buffer = new BufferedWriter(writer);
             ArrayList<ReportModel> reports = null;
-            for (ReportModel reportModel : reportList.getAnything()) {
+            for (ReportModel reportModel : reportList.getReportList()) {
                 String line = reportModel.getTopic() + ","
                         + reportModel.getDetail() + ","
                         + reportModel.getVoteScore() + ","

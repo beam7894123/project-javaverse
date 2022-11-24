@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import com.github.saacsos.FXRouter;
-import ku.cs.models.StaffList;
+import ku.cs.models.UserList;
 import ku.cs.services.LoginStaffWriteFile;
 
 import java.io.IOException;
@@ -23,10 +23,10 @@ public class LoginStaffController {
     @FXML
     Button backButton;
     private LoginStaffWriteFile loginStaffWriteFile;
-    private StaffList staffList;
+    private UserList staffList;
     String usernameStaff;
     public void initialize(){
-        staffList = new StaffList();
+        staffList = new UserList("staff.csv");
         System.out.println(staffList.getAllCards());
     }
     public void handleConfirmButtonClick(ActionEvent actionEvent) throws IOException {

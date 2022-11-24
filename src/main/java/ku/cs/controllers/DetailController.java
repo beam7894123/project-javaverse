@@ -41,7 +41,7 @@ public class DetailController {
     public void initialize(){
         dataSource = (DataSource<ReportList>) new ReportWriteFile("filescsv","report.csv");
         reportList = dataSource.readData();
-        for (ReportModel reportModel : reportList.getAnything()){
+        for (ReportModel reportModel : reportList.getReportList()){
             if(currentReport .equals(reportModel.getTopic())){
                 System.out.println(reportModel.getTopic());
                 System.out.println(reportModel.getDetail());
@@ -60,7 +60,7 @@ public class DetailController {
 
     @FXML
     public void voteScoreButton(MouseEvent mouseEvent){
-        for (ReportModel reportModel : reportList.getAnything()){
+        for (ReportModel reportModel : reportList.getReportList()){
             if(currentReport .equals(reportModel.getTopic())){
                 Alert status = new Alert(Alert.AlertType.INFORMATION,"Thank you !? for vote topic : "+ reportModel.getTopic().toLowerCase());
                 status.setTitle("INFORMATION!?");

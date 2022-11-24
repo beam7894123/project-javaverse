@@ -18,8 +18,8 @@ public class HomeController {
     private DataSource<UserList> registerWriteFile;
 
     public void initialize(){
-        userList = new UserList();
-        registerWriteFile = new RegisterWriteFile("filecsv","student.csv");
+        userList = new UserList("student.csv");
+//        registerWriteFile = new RegisterWriteFile("filecsv","student.csv");
         System.out.println(userList.getAllCards());
     }
     @FXML

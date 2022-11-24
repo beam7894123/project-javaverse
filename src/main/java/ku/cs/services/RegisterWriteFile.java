@@ -5,7 +5,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import ku.cs.models.Staff;
-import ku.cs.models.StaffList;
 import ku.cs.models.UserList;
 import ku.cs.models.User;
 
@@ -18,15 +17,13 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Locale;
 
 public class RegisterWriteFile implements DataSource<UserList> {
     private String directoryName;
     private String fileName;
-    private UserList userList;
-    private StaffList staffList;
+    private UserList userList,staffList;
     private String path;
     private ImageView image;
     private String fileNameImage;
@@ -96,7 +93,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
         FileReader fileReader = new FileReader(file, StandardCharsets.UTF_8);
         BufferedReader reader = new BufferedReader(fileReader);
         String line = "";
-        staffList = new StaffList();
+        staffList = new UserList("staff.csv");
         while ((line = reader.readLine()) != null) {
             String[] data = line.split(",");
             Staff customer = new Staff(
@@ -110,11 +107,11 @@ public class RegisterWriteFile implements DataSource<UserList> {
                     data[7].trim()  //Category
             );
             customer.setDateTime(setDateTime(data[5], data[6])); // TIME CONVERTER !!! DO NOT TOUCH !!! ห้ามลบ ถ้าเกิด Error บอก beam7894123 ก่อน ไม่งั้นต่อยนะ >:< //
-            staffList.addStaffToArrayList(customer);
+            staffList.addUser(customer);
         }
         reader.close();
     }
-    public StaffList readDataforStaff(){ //Check for file
+    public UserList readDataforStaff(){ //Check for file
         try {
             readStaff();
         } catch (FileNotFoundException e) {
@@ -139,7 +136,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
         }
         return line;
     }
-    public void writeDataforStaff(StaffList staffList) throws IOException { //write Data for Staff
+    public void writeDataforStaff(UserList staffList) throws IOException { //write Data for Staff
         System.out.println(staffList.toString());
         String filePath = directoryName+File.separator+fileName;
         File file = new File(filePath);
@@ -148,17 +145,8 @@ public class RegisterWriteFile implements DataSource<UserList> {
         try {
             writer = new FileWriter(file, StandardCharsets.UTF_8);
             buffer = new BufferedWriter(writer);
-            for (Staff staff : staffList.getAllCards()){
+            for (User staff : staffList.getAllCards()){
                 System.out.println(staffList);
-//                String line = staff.getName()+","
-//                        + staff.getSurname()+","
-//                        + staff.getUsername()+","
-//                        + staff.getPassword()+","
-//                        + staff.getImage()+","
-//                        + staff.getDate()+","
-//                        + staff.getTime()+","
-//                        + staff.getCategory();
-
                 String line = convertUserToString(staff);
                 buffer.append(line);
                 buffer.newLine();
@@ -175,8 +163,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
         }
     }
 
-    public Boolean checkUserNameforStaff(StaffList staffList,String usernameTextfield){
-//        System.out.println(22); //omg just use debug
+    public Boolean checkUserNameforStaff(UserList staffList,String usernameTextfield){
         for (User user : staffList.getAllCards()){
             if (user.getUsername().equals(usernameTextfield)){
                 return true;
@@ -220,7 +207,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
     //ตัวเขียน Register
     public void checkUserNameAndPassword(UserList userList, String usernameTextfield, String passwordPasswordfield, String nameTextField , String surnameTextField, String fileNameImage){
         User user = new User(nameTextField,surnameTextField,usernameTextfield,passwordPasswordfield,fileNameImage,null,null);
-        userList.addStudent(user); //เพิ่มเข้า Array
+        userList.addUser(user); //เพิ่มเข้า Array
         writeData(userList); //ส่งไปเขียน
     }
 //        System.out.println(categoryChicebox);
@@ -252,7 +239,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
         FileReader fileReader = new FileReader(file, StandardCharsets.UTF_8);
         BufferedReader reader = new BufferedReader(fileReader);
         String line = "";
-        userList = new UserList();
+        userList = new UserList("student.csv");
         while ((line = reader.readLine()) != null) {
             String[] data = line.split(",");
             User customer = new User( // god the old one it hurt to read T^T
@@ -268,7 +255,7 @@ public class RegisterWriteFile implements DataSource<UserList> {
 //            customer.setImage(data[5]);
 //            RegisterModel customer = new RegisterModel(data[0].trim(),data[1].trim(),data[2].trim(),data[3].trim(),data[4].trim(),data[6].trim()); // obj
 //            customer.setImage(data[5].trim());
-            userList.addStudent(customer);
+            userList.addUser(customer);
         }
         reader.close();
     }

@@ -13,22 +13,22 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import ku.cs.models.Staff;
-import ku.cs.models.StaffList;
 
+import ku.cs.models.User;
+import ku.cs.models.UserList;
+import ku.cs.services.AscendingDateTimeComparator;
 import ku.cs.services.RegisterWriteFile;
-import ku.cs.services.SortList;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Objects;
 
 public class AdminStaffListController {
     @FXML
     private Label nameLabel, surnameLabel, usernameLabel, lastloginLabel, departmentLabel;
     @FXML private ImageView image;
     private RegisterWriteFile readDataforStaff;
-    private StaffList list;
+    private UserList list;
 
 
 // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE // INITIALIZE IS DOWN HERE //
@@ -50,18 +50,18 @@ public class AdminStaffListController {
 
 // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE // TableView ZONE //
 //    @FXML private ListView<RegisterModel> studentListView; //OLD CODE (LISTVIEW)
-    @FXML private TableView<Staff> listTable;
-    @FXML private TableColumn<Staff, String> listTable_LastLogin;
-    @FXML private TableColumn<Staff , String> listTable_Name;
-    @FXML private TableColumn<Staff , String> listTable_Surname;
+    @FXML private TableView<User> listTable;
+    @FXML private TableColumn<User, String> listTable_LastLogin;
+    @FXML private TableColumn<User , String> listTable_Name;
+    @FXML private TableColumn<User , String> listTable_Surname;
 
-    private void showStaffListView(StaffList list) {
+    private void showStaffListView( UserList list) {
         //OLD CODE (LISTVIEW)
 //        studentListView.getItems().addAll(list.getAllCards());
 //        studentListView.refresh();
 
         // ArrayList >> ObservableList
-        ObservableList<Staff> TEMP = FXCollections.observableArrayList(
+        ObservableList<User> TEMP = FXCollections.observableArrayList(
                 list.getAllCards()
         );
 
@@ -79,7 +79,7 @@ public class AdminStaffListController {
         //Anti Tamper code END // Anti Tamper code END // Anti Tamper code END //
 
         //Sorter @m@" //Sorter @m@" //Sorter @m@" //Sorter @m@" //
-        Collections.sort(TEMP, SortList.ascendingDateTime());
+        Collections.sort(TEMP, new AscendingDateTimeComparator()); // polymor
 //      listTable_LastLogin.setSortType(TableColumn.SortType.DESCENDING);
 //      listTable.getSortOrder().add(listTable_LastLogin);
         //Sorter END //Sorter END //Sorter END //Sorter END
@@ -93,16 +93,17 @@ public class AdminStaffListController {
     private void handleSelectedListView() {
         //OLD CODE + New Code (LISTVIEW)
         listTable.getSelectionModel().selectedItemProperty().addListener(
-                new ChangeListener<Staff>() {
+                new ChangeListener<User>() {
                     @Override
-                    public void changed(ObservableValue<? extends Staff> observable,
-                                        Staff oldValue, Staff newValue) {
+                    public void changed(ObservableValue<? extends User> observable,
+                                        User oldValue, User newValue) {
                         System.out.println(newValue + " is selected");
                         showSelectedStudent(newValue);
                     }
                 });
     }
-    private void showSelectedStudent(Staff staff) {
+    private void showSelectedStudent(User user) {
+        Staff staff = (Staff) user;
         File imageFile = new File("src/main/resources/images");
 //        String url = Objects.requireNonNull(imageFile.getAbsolutePath()+"/"+user.getImage());
         image.setImage(new Image(imageFile.getAbsolutePath()+"/"+staff.getImage()));
